@@ -98,14 +98,14 @@ processResources
 }
 
 task DownloadThaumcraft(type: Download) {
-    src 'https://minecraft.curseforge.com/projects/thaumcraft/files/2564655/download'
-    dest new File("libs/Thaumcraft-1.12.2-6.1.BETA14.jar")
+    src 'https://minecraft.curseforge.com/projects/thaumcraft/files/2569273/download'
+    dest new File("libs/Thaumcraft-1.12.2-6.1.BETA16.jar")
     overwrite false
 }
 
 task DownloadThaumicJEI(type: Download) {
-    src 'https://minecraft.curseforge.com/projects/thaumic-jei/files/2555794/download'
-    dest new File("libs/ThaumicJEI-1.12.2-1.2.2-5.jar")
+    src 'https://minecraft.curseforge.com/projects/thaumic-jei/files/2568938/download'
+    dest new File("libs/ThaumicJEI-1.12.2-1.3.1-12.jar")
     overwrite false
 }
 
@@ -155,6 +155,7 @@ curseforge {
 		}
 		relations {
             requiredLibrary 'Hammer-Core'
+            requiredLibrary 'Thaumcraft'
         }
 	}
 }

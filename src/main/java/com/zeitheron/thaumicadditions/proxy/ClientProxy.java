@@ -66,6 +66,7 @@ public class ClientProxy extends CommonProxy
 		// Adding custom color handlers
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(ItemsTAR.SALT_ESSENCE::getItemColor, ItemsTAR.SALT_ESSENCE);
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(ItemsTAR.ENTITY_CELL::getColor, ItemsTAR.ENTITY_CELL);
+		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(BlocksTAR.CRYSTAL_BLOCK::getColor, BlocksTAR.CRYSTAL_BLOCK);
 		
 		// Add custom TESRs
 		
@@ -92,6 +93,18 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalBore.class, crybo);
 		ItemRenderingHandler.INSTANCE.setItemRender(Item.getItemFromBlock(BlocksTAR.CRYSTAL_BORE), crybo);
 		Minecraft.getMinecraft().getRenderItem().registerItem(Item.getItemFromBlock(BlocksTAR.CRYSTAL_BORE), 0, "chest");
+		
+		{
+			ModelResourceLocation cryloc = new ModelResourceLocation(BlocksTAR.CRYSTAL_BLOCK.getRegistryName(), "normal");
+			ModelLoader.setCustomStateMapper(BlocksTAR.CRYSTAL_BLOCK, new StateMapperBase()
+			{
+				@Override
+				protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+				{
+					return cryloc;
+				}
+			});
+		}
 		
 		// Fluid state mapping.
 		mapFluid(BlocksTAR.CRYSTAL_WATER);

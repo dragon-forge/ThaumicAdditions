@@ -42,7 +42,7 @@ import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchCategory;
 import thaumcraft.common.entities.monster.EntityPech;
 
-@Mod(modid = InfoTAR.MOD_ID, name = InfoTAR.MOD_NAME, version = InfoTAR.MOD_VERSION, certificateFingerprint = "4d7b29cd19124e986da685107d16ce4b49bc0a97", dependencies = "required-after:hammercore;required-after:thaumcraft@[6.1.BETA14,)")
+@Mod(modid = InfoTAR.MOD_ID, name = InfoTAR.MOD_NAME, version = InfoTAR.MOD_VERSION, certificateFingerprint = "4d7b29cd19124e986da685107d16ce4b49bc0a97", dependencies = "required-after:hammercore;required-after:thaumcraft@[6.1.BETA13,);before:iceandfire")
 public class TAReconstructed
 {
 	public static final Logger LOG = LogManager.getLogger(InfoTAR.MOD_NAME);
@@ -68,6 +68,7 @@ public class TAReconstructed
 	@EventHandler
 	public void construct(FMLConstructionEvent e)
 	{
+		MinecraftForge.EVENT_BUS.register(proxy);
 		proxy.construct();
 	}
 	
