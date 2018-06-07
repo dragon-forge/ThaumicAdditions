@@ -1,25 +1,33 @@
 package com.zeitheron.thaumicadditions.blocks;
 
+import com.pengu.hammercore.common.blocks.iItemBlock;
 import com.pengu.hammercore.common.blocks.base.BlockDeviceHC;
 import com.pengu.hammercore.common.blocks.base.iBlockOrientable;
 import com.pengu.hammercore.common.utils.WorldUtil;
+import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.tiles.TileCrystalBlock;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.crafting.IInfusionStabiliser;
 
-public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements iBlockOrientable, IInfusionStabiliser
+public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements iBlockOrientable, IInfusionStabiliser, iItemBlock
 {
+	public final ItemCrystalBlock itemBlock = new ItemCrystalBlock();
+	
 	public BlockCrystal()
 	{
 		super(Material.ROCK, TileCrystalBlock.class, "crystal_block");
@@ -33,10 +41,17 @@ public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements iBl
 		return 0xFFFFFF;
 	}
 	
+	public int getColor(ItemStack stack, int tintIndex)
+	{
+		return AspectUtil.getAspectFromCrystalBlockStack(stack).getColor();
+	}
+	
 	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
 	{
 		super.getSubBlocks(itemIn, items);
+		for(Aspect a : Aspect.aspects.values())
+			items.add(AspectUtil.crystalBlock(a));
 	}
 	
 	@Override
@@ -47,17 +62,44 @@ public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements iBl
 	@Override
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
-		TileCrystalBlock tcb = new TileCrystalBlock();
-		tcb.setAspect(Aspect.AURA);
+		return getDefaultState().withProperty(iBlockOrientable.FACING, facing);
+	}
+	
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+	{
+		TileCrystalBlock tcb = WorldUtil.cast(worldIn.getTileEntity(pos), TileCrystalBlock.class);
+		if(tcb == null)
+			tcb = new TileCrystalBlock();
+		tcb.setAspect(AspectUtil.getAspectFromCrystalBlockStack(stack));
 		worldIn.setTileEntity(pos, tcb);
 		
-		return getDefaultState().withProperty(iBlockOrientable.FACING, facing);
+		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+	}
+	
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+	{
+		TileCrystalBlock tcb = WorldUtil.cast(world.getTileEntity(pos), TileCrystalBlock.class);
+		return tcb != null ? AspectUtil.crystalBlock(tcb.getAspect()) : super.getPickBlock(state, target, world, pos, player);
 	}
 	
 	@Override
 	public boolean canStabaliseInfusion(World worldIn, BlockPos pos)
 	{
 		return true;
+	}
+	
+	@Override
+	public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side)
+	{
+		return false;
+	}
+	
+	@Override
+	public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
+	{
+		return BlockFaceShape.UNDEFINED;
 	}
 	
 	@Override
@@ -70,5 +112,31 @@ public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements iBl
 	public boolean isFullBlock(IBlockState state)
 	{
 		return false;
+	}
+	
+	@Override
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
+	}
+	
+	@Override
+	public ItemBlock getItemBlock()
+	{
+		return itemBlock;
+	}
+	
+	public class ItemCrystalBlock extends ItemBlock
+	{
+		public ItemCrystalBlock()
+		{
+			super(BlockCrystal.this);
+		}
+		
+		@Override
+		public String getItemStackDisplayName(ItemStack stack)
+		{
+			return super.getItemStackDisplayName(stack).replace("@ASPECT", AspectUtil.getAspectFromCrystalBlockStack(stack).getName());
+		}
 	}
 }

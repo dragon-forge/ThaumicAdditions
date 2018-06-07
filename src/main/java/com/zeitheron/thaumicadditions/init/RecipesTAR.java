@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.pengu.hammercore.common.SimpleRegistration;
 import com.pengu.hammercore.recipeAPI.helper.RecipeRegistry;
 import com.pengu.hammercore.recipeAPI.helper.RegisterRecipes;
 import com.pengu.hammercore.utils.ArrayHelper;
@@ -39,6 +40,7 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.crafting.CrucibleRecipe;
+import thaumcraft.api.crafting.IArcaneRecipe;
 import thaumcraft.api.crafting.InfusionRecipe;
 import thaumcraft.api.crafting.ShapedArcaneRecipe;
 import thaumcraft.api.items.ItemsTC;
@@ -46,6 +48,8 @@ import thaumcraft.api.items.ItemsTC;
 @RegisterRecipes(modid = InfoTAR.MOD_ID)
 public class RecipesTAR extends RecipeRegistry
 {
+	public static final ResourceLocation crystalBlockRecipeIDFake = new ResourceLocation(InfoTAR.MOD_ID, "crystal_block_recipes_all");
+	public static final List<ResourceLocation> crystalBlockRecipes = new ArrayList<>();
 	public static final Map<Item, List<ResourceLocation>> FAKE_RECIPE_MAP = new HashMap<>();
 	
 	public static OnetimeCaller init;
@@ -77,6 +81,16 @@ public class RecipesTAR extends RecipeRegistry
 		recipe(new RecipeMixSalts().setRegistryName(new ResourceLocation(getMod(), "essence_salt.mix")));
 		recipe(new RecipeApplySalt().setRegistryName(new ResourceLocation(getMod(), "essence_salt.apply")));
 		recipe(new RecipeClearSalt().setRegistryName(new ResourceLocation(getMod(), "essence_salt.remove")));
+		
+		for(Aspect a : Aspect.aspects.values())
+		{
+			IArcaneRecipe rec = new ShapedArcaneRecipe(defaultGroup, "TAR_CRYSTAL_BLOCK", 10, new AspectList(), AspectUtil.crystalBlock(a), "ccc", "ccc", "ccc", 'c', AspectUtil.crystalEssence(a));
+			ResourceLocation loc = new ResourceLocation(InfoTAR.MOD_ID, a.getTag() + "_crystal_block");
+			crystalBlockRecipes.add(loc);
+			ThaumcraftApi.addArcaneCraftingRecipe(loc, rec);
+		}
+		
+		ThaumcraftApi.addFakeCraftingRecipe(crystalBlockRecipeIDFake, crystalBlockRecipes);
 	}
 	
 	private void infusing()

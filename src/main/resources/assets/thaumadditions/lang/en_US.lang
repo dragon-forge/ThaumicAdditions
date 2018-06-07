@@ -25,6 +25,7 @@ tile.thaumadditions:aura_disperser.name=Aura Disperser
 tile.thaumadditions:crystal_bore.name=Crystal Bore
 tile.thaumadditions:entity_summoner.name=Entity Summoner
 tile.thaumadditions:puriflower.name=Puriflower
+tile.thaumadditions:crystal_block.name=@ASPECT Crystal Block
 
 tile.thaumadditions:jar_brass.name=Brass Warded Jar
 tile.thaumadditions:jar_thaumium.name=Thaumium Reinforced Jar

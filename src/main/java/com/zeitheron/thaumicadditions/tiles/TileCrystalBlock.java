@@ -1,5 +1,6 @@
 package com.zeitheron.thaumicadditions.tiles;
 
+import java.util.Map;
 import java.util.Random;
 
 import com.pengu.hammercore.common.utils.WorldUtil;
@@ -10,6 +11,7 @@ import com.zeitheron.thaumicadditions.api.AspectUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 import thaumcraft.api.aspects.Aspect;
@@ -56,5 +58,11 @@ public class TileCrystalBlock extends TileSyncable implements iTileDroppable
 	{
 		if(!world.isRemote && (player == null || !player.capabilities.isCreativeMode) && aspect != null)
 			WorldUtil.spawnItemStack(world, pos, AspectUtil.crystalEssence(getAspect(), 9));
+	}
+	
+	@Override
+	public void addProperties(Map<String, Object> properties, RayTraceResult trace)
+	{
+		properties.put("Aspect", getAspect().getTag());
 	}
 }

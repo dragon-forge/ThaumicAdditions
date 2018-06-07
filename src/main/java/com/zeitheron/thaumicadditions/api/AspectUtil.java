@@ -1,10 +1,15 @@
 package com.zeitheron.thaumicadditions.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.pengu.hammercore.utils.ColorHelper;
+import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.Constants.NBT;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.items.ItemsTC;
@@ -106,6 +111,26 @@ public class AspectUtil
 		ItemStack is = new ItemStack(ItemsTC.crystalEssence, count);
 		((ItemCrystalEssence) ItemsTC.crystalEssence).setAspects(is, new AspectList().add(a, 1));
 		return is;
+	}
+	
+	public static ItemStack crystalBlock(Aspect a)
+	{
+		ItemStack is = new ItemStack(BlocksTAR.CRYSTAL_BLOCK);
+		is.setTagCompound(new NBTTagCompound());
+		is.getTagCompound().setString("Aspect", a.getTag());
+		return is;
+	}
+	
+	public static Aspect getAspectFromCrystalBlockStack(ItemStack is)
+	{
+		if(is.hasTagCompound() && is.getTagCompound().hasKey("Aspect", NBT.TAG_STRING))
+		{
+			Aspect a = Aspect.getAspect(is.getTagCompound().getString("Aspect"));
+			if(a != null)
+				return a;
+		}
+		List<Aspect> al = new ArrayList<>(Aspect.aspects.values());
+		return al.get((int) (System.currentTimeMillis() % (al.size() * 1000L) / 1000));
 	}
 	
 	public static NBTTagCompound writeALToNBT(AspectList list, NBTTagCompound nbt)
