@@ -1,6 +1,6 @@
 package com.zeitheron.thaumicadditions.client.runnable;
 
-import com.pengu.hammercore.utils.ColorHelper;
+import com.zeitheron.hammercore.utils.color.ColorHelper;
 
 import thaumcraft.client.fx.FXDispatcher;
 import thaumcraft.client.fx.ParticleEngine;

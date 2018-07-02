@@ -2,9 +2,9 @@ package com.zeitheron.thaumicadditions.client.isr;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.hammercore.client.render.item.iItemRender;
-import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.hammercore.utils.ColorHelper;
+import com.zeitheron.hammercore.client.render.item.IItemRender;
+import com.zeitheron.hammercore.client.utils.RenderBlocks;
+import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractEssentiaJar.BlockAbstractJarItem;
 import com.zeitheron.thaumicadditions.client.tesr.TESRAbstractJar;
@@ -16,14 +16,13 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.client.lib.UtilsFX;
 import thaumcraft.common.blocks.essentia.BlockJarItem;
 import thaumcraft.common.config.ModConfig;
 
-public class ItemRenderJar implements iItemRender
+public class ItemRenderJar implements IItemRender
 {
 	@Override
 	public void renderItem(ItemStack stack)

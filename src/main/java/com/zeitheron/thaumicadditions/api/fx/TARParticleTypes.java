@@ -1,6 +1,6 @@
 package com.zeitheron.thaumicadditions.api.fx;
 
-import com.pengu.hammercore.client.ParticleHelper;
+import com.zeitheron.hammercore.client.utils.ParticleHelper;
 
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.text.TextFormatting;

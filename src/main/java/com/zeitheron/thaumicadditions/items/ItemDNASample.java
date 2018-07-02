@@ -7,11 +7,11 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.pengu.hammercore.common.utils.ChatUtil;
-import com.pengu.hammercore.common.utils.SoundUtil;
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.net.HCNetwork;
-import com.pengu.hammercore.raytracer.RayTracer;
+import com.zeitheron.hammercore.net.HCNet;
+import com.zeitheron.hammercore.raytracer.RayTracer;
+import com.zeitheron.hammercore.utils.ChatUtil;
+import com.zeitheron.hammercore.utils.SoundUtil;
+import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 
@@ -71,7 +71,7 @@ public class ItemDNASample extends Item
 			if(stack.hasTagCompound() && stack.getTagCompound().hasKey("Entity", NBT.TAG_COMPOUND))
 			{
 				stack.getTagCompound().removeTag("Entity");
-				HCNetwork.swingArm(playerIn, handIn);
+				HCNet.swingArm(playerIn, handIn);
 			}
 		} else spawn: if(!worldIn.isRemote && r != null && r.typeOfHit == Type.BLOCK && stack.hasTagCompound() && stack.getTagCompound().hasKey("Entity", NBT.TAG_COMPOUND))
 		{
@@ -98,7 +98,7 @@ public class ItemDNASample extends Item
 			AnvilChunkLoader.spawnEntity(entity, world);
 			SoundUtil.playSoundEffect(world, SoundsTC.poof.getRegistryName().toString(), pos, 1F, 1F, SoundCategory.PLAYERS);
 			stack.getTagCompound().removeTag("Entity");
-			HCNetwork.swingArm(playerIn, handIn);
+			HCNet.swingArm(playerIn, handIn);
 		}
 		
 		return super.onItemRightClick(worldIn, playerIn, handIn);

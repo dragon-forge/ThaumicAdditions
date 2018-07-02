@@ -4,12 +4,11 @@ import javax.vecmath.Vector4f;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.hammercore.utils.ColorHelper;
+import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.client.util.planemath.Matrix4f;
 import com.zeitheron.thaumicadditions.client.util.planemath.TrigMath;
 
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.Vec3d;

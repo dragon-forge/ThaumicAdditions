@@ -1,9 +1,9 @@
 package com.zeitheron.thaumicadditions.proxy;
 
-import com.pengu.hammercore.common.utils.IOUtils;
-import com.pengu.hammercore.json.JSONArray;
-import com.pengu.hammercore.json.JSONException;
-import com.pengu.hammercore.json.JSONObject;
+import com.zeitheron.hammercore.lib.zlib.error.JSONException;
+import com.zeitheron.hammercore.lib.zlib.io.IOUtils;
+import com.zeitheron.hammercore.lib.zlib.json.JSONArray;
+import com.zeitheron.hammercore.lib.zlib.json.JSONObject;
 import com.zeitheron.thaumicadditions.TAReconstructed;
 
 import net.minecraft.client.Minecraft;

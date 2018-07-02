@@ -2,13 +2,13 @@ package com.zeitheron.thaumicadditions.inventory.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.hammercore.client.gui.GuiWidgets;
-import com.pengu.hammercore.client.texture.gui.DynGuiTex;
-import com.pengu.hammercore.client.texture.gui.GuiTexBakery;
-import com.pengu.hammercore.client.texture.gui.theme.GuiTheme;
-import com.pengu.hammercore.client.utils.RenderUtil;
-import com.pengu.hammercore.client.utils.UtilsFX;
-import com.pengu.hammercore.utils.ColorHelper;
+import com.zeitheron.hammercore.client.gui.GuiWidgets;
+import com.zeitheron.hammercore.client.utils.RenderUtil;
+import com.zeitheron.hammercore.client.utils.UtilsFX;
+import com.zeitheron.hammercore.client.utils.texture.gui.DynGuiTex;
+import com.zeitheron.hammercore.client.utils.texture.gui.GuiTexBakery;
+import com.zeitheron.hammercore.client.utils.texture.gui.theme.GuiTheme;
+import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.inventory.container.ContainerCraftingFurnace;
 import com.zeitheron.thaumicadditions.tiles.TileCraftingFurnace;

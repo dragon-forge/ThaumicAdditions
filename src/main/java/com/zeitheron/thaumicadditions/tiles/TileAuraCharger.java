@@ -2,16 +2,10 @@ package com.zeitheron.thaumicadditions.tiles;
 
 import java.util.Random;
 
-import com.pengu.hammercore.net.pkt.thunder.Thunder.Layer;
-import com.pengu.hammercore.tile.TileSyncableTickable;
-import com.pengu.hammercore.tile.iTileDroppable;
-import com.pengu.hammercore.utils.ColorHelper;
-import com.pengu.hammercore.utils.FrictionRotator;
-import com.zeitheron.thaumicadditions.client.ChainReaction;
-import com.zeitheron.thaumicadditions.client.ClientChainReactor;
-import com.zeitheron.thaumicadditions.client.runnable.ThunderRunnable;
-import com.zeitheron.thaumicadditions.client.runnable.VisSparkleRunnable;
-import com.zeitheron.thaumicadditions.init.KnowledgeTAR;
+import com.zeitheron.hammercore.tile.ITileDroppable;
+import com.zeitheron.hammercore.tile.TileSyncableTickable;
+import com.zeitheron.hammercore.utils.FrictionRotator;
+import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.net.PacketBlockEvent;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +13,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -34,7 +27,7 @@ import thaumcraft.client.fx.ParticleEngine;
 import thaumcraft.client.fx.particles.FXVisSparkle;
 import thaumcraft.common.world.aura.AuraHandler;
 
-public class TileAuraCharger extends TileSyncableTickable implements IEssentiaTransport, IAspectContainer, iTileDroppable
+public class TileAuraCharger extends TileSyncableTickable implements IEssentiaTransport, IAspectContainer, ITileDroppable
 {
 	public static final Aspect AURA = Aspect.AURA;
 	

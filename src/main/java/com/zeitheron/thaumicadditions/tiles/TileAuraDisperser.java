@@ -3,10 +3,10 @@ package com.zeitheron.thaumicadditions.tiles;
 import java.util.List;
 import java.util.Map;
 
-import com.pengu.hammercore.common.inventory.InventoryDummy;
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.tile.TileSyncableTickable;
-import com.pengu.hammercore.tile.iTileDroppable;
+import com.zeitheron.hammercore.tile.ITileDroppable;
+import com.zeitheron.hammercore.tile.TileSyncableTickable;
+import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.inventory.InventoryDummy;
 import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 
-public class TileAuraDisperser extends TileSyncableTickable implements iTileDroppable, IInventory
+public class TileAuraDisperser extends TileSyncableTickable implements ITileDroppable, IInventory
 {
 	public final InventoryDummy inventory = new InventoryDummy(9);
 	public final ListenerList<TileAuraDisperser> listeners = new ListenerList<>(this);

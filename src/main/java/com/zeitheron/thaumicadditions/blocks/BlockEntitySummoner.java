@@ -1,8 +1,8 @@
 package com.zeitheron.thaumicadditions.blocks;
 
-import com.pengu.hammercore.common.blocks.base.BlockDeviceHC;
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.net.HCNetwork;
+import com.zeitheron.hammercore.internal.blocks.base.BlockDeviceHC;
+import com.zeitheron.hammercore.net.HCNet;
+import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.tiles.TileEntitySummoner;
 
@@ -10,7 +10,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -55,14 +54,14 @@ public class BlockEntitySummoner extends BlockDeviceHC<TileEntitySummoner>
 					WorldUtil.spawnItemStack(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, tile);
 				s.sample = ItemStack.EMPTY;
 				s.sendChangesToNearby();
-				HCNetwork.swingArm(playerIn, hand);
+				HCNet.swingArm(playerIn, hand);
 			} else if(!hit.isEmpty() && hit.getItem() == ItemsTAR.ENTITY_CELL && hit.hasTagCompound() && hit.getTagCompound().hasKey("Entity", NBT.TAG_COMPOUND))
 			{
 				s.sample = hit.copy();
 				s.sample.setCount(1);
 				hit.shrink(1);
 				s.sendChangesToNearby();
-				HCNetwork.swingArm(playerIn, hand);
+				HCNet.swingArm(playerIn, hand);
 			}
 		}
 		

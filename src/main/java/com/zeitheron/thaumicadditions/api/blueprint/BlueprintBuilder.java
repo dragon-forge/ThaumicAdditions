@@ -3,9 +3,6 @@ package com.zeitheron.thaumicadditions.api.blueprint;
 import java.util.Objects;
 import java.util.Random;
 
-import com.pengu.hammercore.common.blocks.base.iBlockHorizontal;
-import com.pengu.hammercore.common.utils.ItemStackUtil;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;

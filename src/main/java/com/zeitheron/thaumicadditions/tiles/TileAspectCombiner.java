@@ -1,10 +1,10 @@
 package com.zeitheron.thaumicadditions.tiles;
 
-import com.pengu.hammercore.common.utils.SoundUtil;
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.tile.TileSyncable;
-import com.pengu.hammercore.tile.TileSyncableTickable;
-import com.pengu.hammercore.tile.iTileDroppable;
+import com.zeitheron.hammercore.tile.ITileDroppable;
+import com.zeitheron.hammercore.tile.TileSyncable;
+import com.zeitheron.hammercore.tile.TileSyncableTickable;
+import com.zeitheron.hammercore.utils.SoundUtil;
+import com.zeitheron.hammercore.utils.WorldUtil;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,7 +23,7 @@ import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.tiles.TileThaumcraft;
 import thaumcraft.common.tiles.essentia.TileJarFillable;
 
-public class TileAspectCombiner extends TileSyncableTickable implements IEssentiaTransport, IAspectContainer, iTileDroppable
+public class TileAspectCombiner extends TileSyncableTickable implements IEssentiaTransport, IAspectContainer, ITileDroppable
 {
 	public Aspect inA, inB, output;
 	public int craftingTime, prevCraftingTime;

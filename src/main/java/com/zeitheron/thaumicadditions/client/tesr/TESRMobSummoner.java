@@ -1,9 +1,8 @@
 package com.zeitheron.thaumicadditions.client.tesr;
 
-import com.pengu.hammercore.annotations.AtTESR;
-import com.pengu.hammercore.client.render.tesr.TESR;
-import com.pengu.hammercore.client.utils.UtilsFX;
-import com.zeitheron.thaumicadditions.InfoTAR;
+import com.zeitheron.hammercore.annotations.AtTESR;
+import com.zeitheron.hammercore.client.render.tesr.TESR;
+import com.zeitheron.hammercore.client.utils.UtilsFX;
 import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.client.util.tesseract.Tesseract;
 import com.zeitheron.thaumicadditions.tiles.TileEntitySummoner;

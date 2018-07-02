@@ -12,7 +12,6 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry.Impl;
-import thaumcraft.api.aspects.AspectList;
 
 public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
 {

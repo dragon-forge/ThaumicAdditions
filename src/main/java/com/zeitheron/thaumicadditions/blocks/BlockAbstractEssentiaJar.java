@@ -2,11 +2,11 @@ package com.zeitheron.thaumicadditions.blocks;
 
 import java.util.List;
 
-import com.pengu.hammercore.common.blocks.iItemBlock;
-import com.pengu.hammercore.common.blocks.base.BlockTileHC;
-import com.pengu.hammercore.common.utils.SoundUtil;
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.utils.ColorHelper;
+import com.zeitheron.hammercore.internal.blocks.IItemBlock;
+import com.zeitheron.hammercore.internal.blocks.base.BlockTileHC;
+import com.zeitheron.hammercore.utils.SoundUtil;
+import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.tiles.TileAbstractJarFillable;
 
@@ -48,7 +48,7 @@ import thaumcraft.common.items.consumables.ItemPhial;
 import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.tiles.essentia.TileAlembic;
 
-public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable> extends BlockTileHC<T> implements ILabelable, iItemBlock
+public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable> extends BlockTileHC<T> implements ILabelable, IItemBlock
 {
 	public final int capacity;
 	

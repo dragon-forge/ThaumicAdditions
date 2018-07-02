@@ -2,8 +2,8 @@ package com.zeitheron.thaumicadditions.proxy.fx;
 
 import java.util.Random;
 
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.utils.FrictionRotator;
+import com.zeitheron.hammercore.utils.FrictionRotator;
+import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.tiles.TileAuraDisperser;
 

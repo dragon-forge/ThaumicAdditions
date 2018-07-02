@@ -3,9 +3,9 @@ package com.zeitheron.thaumicadditions.tiles;
 import java.util.Objects;
 import java.util.Random;
 
-import com.pengu.hammercore.common.inventory.InventoryDummy;
-import com.pengu.hammercore.tile.TileSyncableTickable;
-import com.pengu.hammercore.utils.FrictionRotator;
+import com.zeitheron.hammercore.tile.TileSyncableTickable;
+import com.zeitheron.hammercore.utils.FrictionRotator;
+import com.zeitheron.hammercore.utils.inventory.InventoryDummy;
 import com.zeitheron.thaumicadditions.api.fx.ParticleHelperTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.inventory.container.ContainerCrystalCrusher;

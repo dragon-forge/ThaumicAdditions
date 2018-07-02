@@ -2,8 +2,8 @@ package com.zeitheron.thaumicadditions.effect;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.hammercore.client.utils.RenderUtil;
-import com.pengu.hammercore.client.utils.UtilsFX;
+import com.zeitheron.hammercore.client.utils.RenderUtil;
+import com.zeitheron.hammercore.client.utils.UtilsFX;
 import com.zeitheron.thaumicadditions.InfoTAR;
 
 import net.minecraft.client.Minecraft;

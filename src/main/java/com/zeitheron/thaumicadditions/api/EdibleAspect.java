@@ -3,14 +3,12 @@ package com.zeitheron.thaumicadditions.api;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
 import com.zeitheron.thaumicadditions.init.KnowledgeTAR;
 import com.zeitheron.thaumicadditions.init.PotionsTAR;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;

@@ -1,6 +1,6 @@
 package com.zeitheron.thaumicadditions.blocks;
 
-import com.pengu.hammercore.common.blocks.base.BlockDeviceHC;
+import com.zeitheron.hammercore.internal.blocks.base.BlockDeviceHC;
 import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;
 
 import net.minecraft.block.SoundType;

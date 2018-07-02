@@ -1,10 +1,10 @@
 package com.zeitheron.thaumicadditions.proxy;
 
-import com.pengu.hammercore.client.render.item.ItemRenderingHandler;
-import com.pengu.hammercore.common.blocks.base.iBlockHorizontal;
-import com.pengu.hammercore.common.blocks.base.iBlockOrientable;
-import com.pengu.hammercore.utils.ColorHelper;
-import com.pengu.hammercore.utils.NBTUtils;
+import com.zeitheron.hammercore.client.render.item.ItemRenderingHandler;
+import com.zeitheron.hammercore.internal.blocks.base.IBlockHorizontal;
+import com.zeitheron.hammercore.internal.blocks.base.IBlockOrientable;
+import com.zeitheron.hammercore.utils.NBTUtils;
+import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.api.fx.TARParticleTypes;
@@ -51,8 +51,8 @@ public class ClientProxy extends CommonProxy
 	public void preInit()
 	{
 		ModelLoader.setCustomStateMapper(BlocksTAR.CRYSTAL_WATER, new StateMap.Builder().ignore(BlockFluidBase.LEVEL).build());
-		ModelLoader.setCustomStateMapper(BlocksTAR.ASPECT_COMBINER, new StateMap.Builder().ignore(iBlockHorizontal.FACING).build());
-		ModelLoader.setCustomStateMapper(BlocksTAR.CRYSTAL_BORE, new StateMap.Builder().ignore(iBlockOrientable.FACING).build());
+		ModelLoader.setCustomStateMapper(BlocksTAR.ASPECT_COMBINER, new StateMap.Builder().ignore(IBlockHorizontal.FACING).build());
+		ModelLoader.setCustomStateMapper(BlocksTAR.CRYSTAL_BORE, new StateMap.Builder().ignore(IBlockOrientable.FACING).build());
 	}
 	
 	@Override

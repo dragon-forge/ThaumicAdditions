@@ -1,22 +1,25 @@
 package com.zeitheron.thaumicadditions.net.fxh;
 
-import com.pengu.hammercore.HammerCore;
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.net.packetAPI.iPacket;
-import com.pengu.hammercore.net.packetAPI.iPacketListener;
+import com.zeitheron.hammercore.HammerCore;
+import com.zeitheron.hammercore.net.IPacket;
+import com.zeitheron.hammercore.net.PacketContext;
+import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.tiles.TileAuraDisperser;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.relauncher.Side;
 
-public class FXHPacket implements iPacket, iPacketListener<FXHPacket, iPacket>
+public class FXHPacket implements IPacket
 {
 	BlockPos pos;
 	int sub;
+	
+	static
+	{
+		IPacket.handle(FXHPacket.class, FXHPacket::new);
+	}
 	
 	public FXHPacket(BlockPos pos, int sub)
 	{
@@ -43,26 +46,21 @@ public class FXHPacket implements iPacket, iPacketListener<FXHPacket, iPacket>
 	}
 	
 	@Override
-	public iPacket onArrived(FXHPacket packet, MessageContext context)
+	public IPacket executeOnClient(PacketContext net)
 	{
-		if(context.side == Side.CLIENT)
+		EntityPlayer ep = HammerCore.renderProxy.getClientPlayer();
+		
+		switch(sub)
 		{
-			BlockPos pos = packet.pos;
-			EntityPlayer ep = HammerCore.renderProxy.getClientPlayer();
-			
-			switch(packet.sub)
-			{
-			case 0:
-				TileAuraDisperser tad = WorldUtil.cast(ep.world.getTileEntity(pos), TileAuraDisperser.class);
-				if(tad != null)
-					TAReconstructed.proxy.getFX().spawnAuraDisperserFX(tad);
-			break;
-		
-			default:
-			break;
-			}
+		case 0:
+			TileAuraDisperser tad = WorldUtil.cast(ep.world.getTileEntity(pos), TileAuraDisperser.class);
+			if(tad != null)
+				TAReconstructed.proxy.getFX().spawnAuraDisperserFX(tad);
+		break;
+	
+		default:
+		break;
 		}
-		
 		return null;
 	}
 }

@@ -1,7 +1,5 @@
 package com.zeitheron.thaumicadditions.client;
 
-import java.util.function.Consumer;
-
 public class ChainReaction
 {
 	int delayLeft;

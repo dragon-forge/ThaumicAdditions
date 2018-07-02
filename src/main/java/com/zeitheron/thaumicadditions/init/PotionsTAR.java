@@ -3,7 +3,7 @@ package com.zeitheron.thaumicadditions.init;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
-import com.pengu.hammercore.utils.OnetimeCaller;
+import com.zeitheron.hammercore.utils.OnetimeCaller;
 import com.zeitheron.thaumicadditions.effect.PotionSoundSensivity;
 
 import net.minecraft.potion.Potion;

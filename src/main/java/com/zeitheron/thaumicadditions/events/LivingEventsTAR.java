@@ -1,8 +1,8 @@
 package com.zeitheron.thaumicadditions.events;
 
-import com.pengu.hammercore.annotations.MCFBus;
-import com.pengu.hammercore.common.utils.SoundUtil;
-import com.pengu.hammercore.event.FoodEatenEvent;
+import com.zeitheron.hammercore.annotations.MCFBus;
+import com.zeitheron.hammercore.event.FoodEatenEvent;
+import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 
@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

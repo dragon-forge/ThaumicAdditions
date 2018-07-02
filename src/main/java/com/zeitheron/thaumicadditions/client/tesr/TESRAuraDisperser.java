@@ -1,6 +1,6 @@
 package com.zeitheron.thaumicadditions.client.tesr;
 
-import com.pengu.hammercore.client.render.tesr.TESR;
+import com.zeitheron.hammercore.client.render.tesr.TESR;
 import com.zeitheron.thaumicadditions.tiles.TileAuraDisperser;
 
 import net.minecraft.util.ResourceLocation;

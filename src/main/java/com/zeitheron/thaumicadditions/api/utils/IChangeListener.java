@@ -1,6 +1,6 @@
 package com.zeitheron.thaumicadditions.api.utils;
 
-public interface iChangeListener
+public interface IChangeListener
 {
 	void update(int id);
 	

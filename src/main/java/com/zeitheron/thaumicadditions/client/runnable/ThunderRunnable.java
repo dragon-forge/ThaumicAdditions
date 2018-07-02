@@ -1,7 +1,7 @@
 package com.zeitheron.thaumicadditions.client.runnable;
 
-import com.pengu.hammercore.HammerCore;
-import com.pengu.hammercore.net.pkt.thunder.Thunder;
+import com.zeitheron.hammercore.HammerCore;
+import com.zeitheron.hammercore.net.internal.thunder.Thunder;
 
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;

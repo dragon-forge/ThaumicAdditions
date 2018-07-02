@@ -3,9 +3,9 @@ package com.zeitheron.thaumicadditions.tiles;
 import java.util.Map;
 import java.util.Random;
 
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.tile.TileSyncable;
-import com.pengu.hammercore.tile.iTileDroppable;
+import com.zeitheron.hammercore.tile.ITileDroppable;
+import com.zeitheron.hammercore.tile.TileSyncable;
+import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 import thaumcraft.api.aspects.Aspect;
 
-public class TileCrystalBlock extends TileSyncable implements iTileDroppable
+public class TileCrystalBlock extends TileSyncable implements ITileDroppable
 {
 	private Aspect aspect;
 	

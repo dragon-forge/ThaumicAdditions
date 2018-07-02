@@ -3,7 +3,7 @@ package com.zeitheron.thaumicadditions.api.utils;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
-public class ListenerList<T> extends ArrayList<iChangeListener> implements iChangeListener
+public class ListenerList<T> extends ArrayList<IChangeListener> implements IChangeListener
 {
 	public final T holder;
 	
@@ -13,7 +13,7 @@ public class ListenerList<T> extends ArrayList<iChangeListener> implements iChan
 	}
 	
 	@Override
-	public Stream<iChangeListener> stream()
+	public Stream<IChangeListener> stream()
 	{
 		validate();
 		return super.stream();
@@ -24,7 +24,7 @@ public class ListenerList<T> extends ArrayList<iChangeListener> implements iChan
 		removeIf(l -> !l.valid());
 	}
 	
-	public void addListener(iChangeListener listener)
+	public void addListener(IChangeListener listener)
 	{
 		if(!contains(listener))
 			add(listener);
