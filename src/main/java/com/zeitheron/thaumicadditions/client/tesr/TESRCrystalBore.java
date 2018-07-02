@@ -2,7 +2,7 @@ package com.zeitheron.thaumicadditions.client.tesr;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.hammercore.client.render.tesr.TESR;
+import com.zeitheron.hammercore.client.render.tesr.TESR;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.client.models.ModelCrystalBore;
 import com.zeitheron.thaumicadditions.tiles.TileCrystalBore;

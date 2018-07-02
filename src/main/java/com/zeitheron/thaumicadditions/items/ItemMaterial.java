@@ -1,11 +1,11 @@
 package com.zeitheron.thaumicadditions.items;
 
-import com.pengu.hammercore.utils.iRegisterListener;
+import com.zeitheron.hammercore.utils.IRegisterListener;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class ItemMaterial extends Item implements iRegisterListener
+public class ItemMaterial extends Item implements IRegisterListener
 {
 	private final String[] OD;
 	

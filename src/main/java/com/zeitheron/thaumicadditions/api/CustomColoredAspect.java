@@ -1,17 +1,15 @@
 package com.zeitheron.thaumicadditions.api;
 
-import java.util.function.IntSupplier;
-
-import com.endie.lib.utils.function.ObjToIntFunction;
+import java.util.function.Function;
 
 import net.minecraft.util.ResourceLocation;
 import thaumcraft.api.aspects.Aspect;
 
 public class CustomColoredAspect extends Aspect
 {
-	public final ObjToIntFunction<CustomColoredAspect> getColor;
+	public final Function<CustomColoredAspect, Integer> getColor;
 	
-	public CustomColoredAspect(String tag, int color, Aspect[] components, ResourceLocation image, int blend, ObjToIntFunction<CustomColoredAspect> getcolor)
+	public CustomColoredAspect(String tag, int color, Aspect[] components, ResourceLocation image, int blend, Function<CustomColoredAspect, Integer> getcolor)
 	{
 		super(tag, color, components, image, blend);
 		this.getColor = getcolor;
@@ -20,6 +18,6 @@ public class CustomColoredAspect extends Aspect
 	@Override
 	public int getColor()
 	{
-		return getColor.applyAsInt(this);
+		return getColor.apply(this);
 	}
 }

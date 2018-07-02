@@ -2,13 +2,12 @@ package com.zeitheron.thaumicadditions.inventory.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.hammercore.client.utils.RenderUtil;
-import com.pengu.hammercore.client.utils.UtilsFX;
-import com.pengu.hammercore.color.InterpolationUtil;
-import com.pengu.hammercore.utils.ColorHelper;
+import com.zeitheron.hammercore.client.utils.RenderUtil;
+import com.zeitheron.hammercore.client.utils.UtilsFX;
+import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
-import com.zeitheron.thaumicadditions.api.utils.iChangeListener;
+import com.zeitheron.thaumicadditions.api.utils.IChangeListener;
 import com.zeitheron.thaumicadditions.inventory.container.ContainerAuraDisperser;
 import com.zeitheron.thaumicadditions.tiles.TileAuraDisperser;
 
@@ -16,7 +15,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class GuiAuraDisperser extends GuiContainer implements iChangeListener
+public class GuiAuraDisperser extends GuiContainer implements IChangeListener
 {
 	TileAuraDisperser t;
 	
@@ -54,13 +53,13 @@ public class GuiAuraDisperser extends GuiContainer implements iChangeListener
 		if(t.aspects != null)
 		{
 			int rgb = AspectUtil.getColor(t.aspects, true);
-			int red = InterpolationUtil.interpolate(rgb, 0xFF0000, .5F);
+			int red = ColorHelper.interpolate(rgb, 0xFF0000, .5F);
 			
 			float hit = prevHit + (this.hit - prevHit) * partialTicks;
 			if(hit > 6)
-				rgb = InterpolationUtil.interpolate(rgb, red, 1 - (hit - 6) / 2F);
+				rgb = ColorHelper.interpolate(rgb, red, 1 - (hit - 6) / 2F);
 			else if(hit > 0)
-				rgb = InterpolationUtil.interpolate(rgb, red, hit / 6F);
+				rgb = ColorHelper.interpolate(rgb, red, hit / 6F);
 			
 			float r = ColorHelper.getRed(rgb), g = ColorHelper.getGreen(rgb), b = ColorHelper.getBlue(rgb);
 			

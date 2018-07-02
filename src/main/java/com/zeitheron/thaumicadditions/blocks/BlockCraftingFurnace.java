@@ -2,10 +2,10 @@ package com.zeitheron.thaumicadditions.blocks;
 
 import java.util.Random;
 
-import com.pengu.hammercore.api.iTileBlock;
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.core.gui.GuiManager;
-import com.pengu.hammercore.tile.TileSyncable;
+import com.zeitheron.hammercore.api.ITileBlock;
+import com.zeitheron.hammercore.internal.GuiManager;
+import com.zeitheron.hammercore.tile.TileSyncable;
+import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.tiles.TileCraftingFurnace;
 
 import net.minecraft.block.Block;
@@ -14,7 +14,6 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -35,7 +34,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCraftingFurnace extends Block implements iTileBlock<TileCraftingFurnace>, ITileEntityProvider
+public class BlockCraftingFurnace extends Block implements ITileBlock<TileCraftingFurnace>, ITileEntityProvider
 {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	public static final PropertyBool BURNING = PropertyBool.create("burning");

@@ -2,8 +2,8 @@ package com.zeitheron.thaumicadditions.client.tesr;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.hammercore.client.render.tesr.TESR;
-import com.pengu.hammercore.utils.FrictionRotator;
+import com.zeitheron.hammercore.client.render.tesr.TESR;
+import com.zeitheron.hammercore.utils.FrictionRotator;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.client.models.ModelAuraCharger;
 import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;

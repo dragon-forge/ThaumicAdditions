@@ -2,16 +2,15 @@ package com.zeitheron.thaumicadditions.tiles;
 
 import java.util.UUID;
 
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.tile.TileSyncableTickable;
-import com.pengu.hammercore.tile.iTileDroppable;
-import com.pengu.hammercore.utils.FrictionRotator;
+import com.zeitheron.hammercore.tile.ITileDroppable;
+import com.zeitheron.hammercore.tile.TileSyncableTickable;
+import com.zeitheron.hammercore.utils.FrictionRotator;
+import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,7 +18,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.storage.AnvilChunkLoader;
@@ -37,7 +35,7 @@ import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.api.internal.CommonInternals;
 import thaumcraft.common.lib.events.EssentiaHandler;
 
-public class TileEntitySummoner extends TileSyncableTickable implements IAspectContainer, iTileDroppable
+public class TileEntitySummoner extends TileSyncableTickable implements IAspectContainer, ITileDroppable
 {
 	public ItemStack sample = ItemStack.EMPTY;
 	public AspectList accumulated = new AspectList();
@@ -157,7 +155,7 @@ public class TileEntitySummoner extends TileSyncableTickable implements IAspectC
 			NBTTagList nbttaglist = nbttagcompound.getTagList("Pos", 6);
 			int j = nbttaglist.tagCount();
 			double d0 = j >= 1 ? nbttaglist.getDoubleAt(0) : (double) pos.getX() + (world.rand.nextDouble() - world.rand.nextDouble()) * (double) spawnRange + 0.5D;
-			double d1 = j >= 2 ? nbttaglist.getDoubleAt(1) : (double) (pos.getY() + world.rand.nextInt(3) - 1);
+			double d1 = j >= 2 ? nbttaglist.getDoubleAt(1) : (double) (pos.getY() + world.rand.nextInt(3));
 			double d2 = j >= 3 ? nbttaglist.getDoubleAt(2) : (double) pos.getZ() + (world.rand.nextDouble() - world.rand.nextDouble()) * (double) spawnRange + 0.5D;
 			Entity entity = AnvilChunkLoader.readWorldEntityPos(nbttagcompound, world, d0, d1, d2, false);
 			
@@ -184,7 +182,6 @@ public class TileEntitySummoner extends TileSyncableTickable implements IAspectC
 			if(!world.isRemote)
 			{
 				AnvilChunkLoader.spawnEntity(entity, world);
-				
 				++spawned;
 			}
 		}

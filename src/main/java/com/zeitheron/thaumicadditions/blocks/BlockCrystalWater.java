@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.pengu.hammercore.api.iNoItemBlock;
-import com.pengu.hammercore.net.HCNetwork;
+import com.zeitheron.hammercore.api.INoItemBlock;
+import com.zeitheron.hammercore.net.HCNet;
 import com.zeitheron.thaumicadditions.api.fx.TARParticleTypes;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.FluidsTAR;
@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import thaumcraft.common.blocks.world.ore.BlockCrystal;
 
-public class BlockCrystalWater extends BlockFluidClassic implements iNoItemBlock
+public class BlockCrystalWater extends BlockFluidClassic implements INoItemBlock
 {
 	public BlockCrystalWater()
 	{
@@ -111,7 +111,7 @@ public class BlockCrystalWater extends BlockFluidClassic implements iNoItemBlock
 				world.setBlockToAir(bp);
 			world.setBlockState(pos, state.withProperty(BlockCrystal.SIZE, size + 1), 3);
 			
-			HCNetwork.spawnParticle(world, TARParticleTypes.COLOR_CLOUD, bp.getX() + .5, bp.getY() + .7, bp.getZ() + .5, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, 0, 255, 255, 255, 1);
+			HCNet.spawnParticle(world, TARParticleTypes.COLOR_CLOUD, bp.getX() + .5, bp.getY() + .7, bp.getZ() + .5, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, 0, 255, 255, 255, 1);
 		}
 	}
 }

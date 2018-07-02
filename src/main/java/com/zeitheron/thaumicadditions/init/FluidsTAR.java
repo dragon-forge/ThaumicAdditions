@@ -1,6 +1,6 @@
 package com.zeitheron.thaumicadditions.init;
 
-import com.pengu.hammercore.utils.OnetimeCaller;
+import com.zeitheron.hammercore.utils.OnetimeCaller;
 import com.zeitheron.thaumicadditions.fluids.FluidCrystalWater;
 
 import net.minecraftforge.fluids.Fluid;

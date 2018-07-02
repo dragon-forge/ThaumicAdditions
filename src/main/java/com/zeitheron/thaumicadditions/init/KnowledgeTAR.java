@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.endie.lib.utils.Joiner;
-import com.pengu.hammercore.annotations.MCFBus;
-import com.pengu.hammercore.color.Rainbow;
-import com.pengu.hammercore.utils.OnetimeCaller;
+import com.zeitheron.hammercore.annotations.MCFBus;
+import com.zeitheron.hammercore.lib.zlib.utils.Joiner;
+import com.zeitheron.hammercore.utils.OnetimeCaller;
+import com.zeitheron.hammercore.utils.color.Rainbow;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
@@ -144,6 +144,9 @@ public class KnowledgeTAR
 		appendAspects(new ItemStack(Blocks.PISTON), new AspectList().add(FLUCTUS, 10).add(VENTUS, 10));
 		appendAspects(new ItemStack(ItemsTAR.ZEITH_SCALES), new AspectList().add(Aspect.MIND, 15).add(DRACO, 15).add(Aspect.LIFE, 15).add(CAELES, 2).add(Aspect.AURA, 20));
 		
+		for(Aspect a : Aspect.aspects.values())
+			CommonInternals.objectTags.put(CommonInternals.generateUniqueItemstackId(AspectUtil.crystalBlock(a)), new AspectList().add(a, 6).add(Aspect.MAGIC, 2));
+		
 		String prefix = addIfPresent("thaumictinkerer:ichor", new AspectList().add(CAELES, 5), "");
 		prefix = addIfPresent("thaumictinkerer:ichorium", new AspectList().add(CAELES, 8), prefix);
 		prefix = addIfPresent("draconicevolution:draconic_ingot", new AspectList().add(CAELES, 6).add(DRACO, 18), prefix);
@@ -250,6 +253,5 @@ public class KnowledgeTAR
 	
 	private static void $()
 	{
-		
 	}
 }

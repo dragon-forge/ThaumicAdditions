@@ -2,9 +2,9 @@ package com.zeitheron.thaumicadditions.client.tesr;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.hammercore.client.render.tesr.TESR;
-import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.hammercore.utils.ColorHelper;
+import com.zeitheron.hammercore.client.render.tesr.TESR;
+import com.zeitheron.hammercore.client.utils.RenderBlocks;
+import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.client.models.ModelAspectCombiner;
 import com.zeitheron.thaumicadditions.tiles.TileAspectCombiner;

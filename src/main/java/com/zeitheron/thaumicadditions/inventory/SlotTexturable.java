@@ -3,7 +3,7 @@ package com.zeitheron.thaumicadditions.inventory;
 import java.util.function.Predicate;
 
 import com.google.common.base.Predicates;
-import com.pengu.hammercore.client.texture.TextureAtlasSpriteFull;
+import com.zeitheron.hammercore.client.utils.texture.TextureAtlasSpriteFull;
 
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.inventory.IInventory;

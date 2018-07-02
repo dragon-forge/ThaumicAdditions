@@ -1,7 +1,7 @@
 package com.zeitheron.thaumicadditions.blocks;
 
-import com.pengu.hammercore.common.blocks.base.BlockDeviceHC;
-import com.pengu.hammercore.common.blocks.base.iBlockOrientable;
+import com.zeitheron.hammercore.internal.blocks.base.BlockDeviceHC;
+import com.zeitheron.hammercore.internal.blocks.base.IBlockOrientable;
 import com.zeitheron.thaumicadditions.tiles.TileCrystalBore;
 
 import net.minecraft.block.SoundType;
@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockCrystalBore extends BlockDeviceHC<TileCrystalBore> implements iBlockOrientable
+public class BlockCrystalBore extends BlockDeviceHC<TileCrystalBore> implements IBlockOrientable
 {
 	public BlockCrystalBore()
 	{

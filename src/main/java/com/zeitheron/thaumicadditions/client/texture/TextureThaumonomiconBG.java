@@ -8,14 +8,11 @@ import javax.imageio.ImageIO;
 
 import com.zeitheron.thaumicadditions.InfoTAR;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.client.renderer.texture.ITickableTextureObject;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
-import thaumcraft.client.gui.GuiResearchBrowser;
 
 public class TextureThaumonomiconBG extends AbstractTexture implements ITickableTextureObject
 {

@@ -1,9 +1,9 @@
 package com.zeitheron.thaumicadditions.blocks;
 
-import com.pengu.hammercore.common.blocks.iItemBlock;
-import com.pengu.hammercore.common.blocks.base.BlockDeviceHC;
-import com.pengu.hammercore.common.blocks.base.iBlockOrientable;
-import com.pengu.hammercore.common.utils.WorldUtil;
+import com.zeitheron.hammercore.internal.blocks.IItemBlock;
+import com.zeitheron.hammercore.internal.blocks.base.BlockDeviceHC;
+import com.zeitheron.hammercore.internal.blocks.base.IBlockOrientable;
+import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.tiles.TileCrystalBlock;
 
@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.crafting.IInfusionStabiliser;
 
-public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements iBlockOrientable, IInfusionStabiliser, iItemBlock
+public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements IBlockOrientable, IInfusionStabiliser, IItemBlock
 {
 	public final ItemCrystalBlock itemBlock = new ItemCrystalBlock();
 	
@@ -62,7 +62,7 @@ public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements iBl
 	@Override
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
-		return getDefaultState().withProperty(iBlockOrientable.FACING, facing);
+		return getDefaultState().withProperty(IBlockOrientable.FACING, facing);
 	}
 	
 	@Override

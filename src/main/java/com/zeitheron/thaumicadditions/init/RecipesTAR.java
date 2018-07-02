@@ -8,33 +8,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.pengu.hammercore.common.SimpleRegistration;
-import com.pengu.hammercore.recipeAPI.helper.RecipeRegistry;
-import com.pengu.hammercore.recipeAPI.helper.RegisterRecipes;
-import com.pengu.hammercore.utils.ArrayHelper;
-import com.pengu.hammercore.utils.OnetimeCaller;
+import com.zeitheron.hammercore.utils.ArrayHelper;
+import com.zeitheron.hammercore.utils.OnetimeCaller;
+import com.zeitheron.hammercore.utils.recipes.helper.RecipeRegistry;
+import com.zeitheron.hammercore.utils.recipes.helper.RegisterRecipes;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.api.blueprint.BlueprintBuilder;
 import com.zeitheron.thaumicadditions.recipes.RecipeApplySalt;
 import com.zeitheron.thaumicadditions.recipes.RecipeClearSalt;
 import com.zeitheron.thaumicadditions.recipes.RecipeMixSalts;
+import com.zeitheron.thaumicadditions.recipes.ingr.NBTRespectfulIngredient;
 import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemSaddle;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.UniversalBucket;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -81,16 +77,6 @@ public class RecipesTAR extends RecipeRegistry
 		recipe(new RecipeMixSalts().setRegistryName(new ResourceLocation(getMod(), "essence_salt.mix")));
 		recipe(new RecipeApplySalt().setRegistryName(new ResourceLocation(getMod(), "essence_salt.apply")));
 		recipe(new RecipeClearSalt().setRegistryName(new ResourceLocation(getMod(), "essence_salt.remove")));
-		
-		for(Aspect a : Aspect.aspects.values())
-		{
-			IArcaneRecipe rec = new ShapedArcaneRecipe(defaultGroup, "TAR_CRYSTAL_BLOCK", 10, new AspectList(), AspectUtil.crystalBlock(a), "ccc", "ccc", "ccc", 'c', AspectUtil.crystalEssence(a));
-			ResourceLocation loc = new ResourceLocation(InfoTAR.MOD_ID, a.getTag() + "_crystal_block");
-			crystalBlockRecipes.add(loc);
-			ThaumcraftApi.addArcaneCraftingRecipe(loc, rec);
-		}
-		
-		ThaumcraftApi.addFakeCraftingRecipe(crystalBlockRecipeIDFake, crystalBlockRecipes);
 	}
 	
 	private void infusing()
@@ -104,7 +90,7 @@ public class RecipesTAR extends RecipeRegistry
 		addInfusionRecipe("crystal_crusher", new ItemStack(BlocksTAR.CRYSTAL_CRUSHER), "TAR_CRYSTAL_CRUSHER", 3, new ItemStack(ItemsTC.mechanismComplex), new AspectList().add(Aspect.CRAFT, 20).add(KnowledgeTAR.EXITIUM, 20).add(Aspect.TOOL, 20), crystalEssence(Aspect.AIR), crystalEssence(Aspect.EARTH), crystalEssence(Aspect.FIRE), crystalEssence(Aspect.WATER), crystalEssence(Aspect.ORDER), crystalEssence(Aspect.ENTROPY), new ItemStack(ItemsTC.plate, 1, 2), new ItemStack(ItemsTC.plate, 1, 2), new ItemStack(ItemsTC.plate, 1, 2), new ItemStack(BlocksTC.slabArcaneStone), new ItemStack(BlocksTC.slabArcaneStone), new ItemStack(BlocksTC.slabArcaneStone), new ItemStack(ItemsTAR.SALT_ESSENCE), new ItemStack(ItemsTAR.SALT_ESSENCE));
 		addInfusionRecipe("aura_disperser", new ItemStack(BlocksTAR.AURA_DISPERSER), "TAR_AURA_DISPERSER", 4, new ItemStack(Blocks.DISPENSER), new AspectList().add(KnowledgeTAR.FLUCTUS, 30).add(Aspect.AURA, 10).add(Aspect.ALCHEMY, 20).add(KnowledgeTAR.VENTUS, 50), new ItemStack(ItemsTC.mechanismComplex), AspectUtil.salt(Aspect.AURA), AspectUtil.salt(Aspect.ALCHEMY), new ItemStack(BlocksTC.shimmerleaf), new ItemStack(ItemsTC.morphicResonator), AspectUtil.salt(KnowledgeTAR.FLUCTUS), AspectUtil.salt(KnowledgeTAR.DRACO), "nitor");
 		addInfusionRecipe("crystal_bore", new ItemStack(BlocksTAR.CRYSTAL_BORE), "TAR_CRYSTAL_BORE", 5, new ItemStack(ItemsTC.morphicResonator), new AspectList().add(KnowledgeTAR.EXITIUM, 20).add(Aspect.EARTH, 10).add(Aspect.ENTROPY, 30), new ItemStack(BlocksTC.stoneArcane), new ItemStack(ItemsTC.plate), new ItemStack(BlocksTC.stoneArcane), new ItemStack(ItemsTC.plate), new ItemStack(BlocksTC.stoneArcane), new ItemStack(ItemsTC.mechanismComplex));
-		addInfusionRecipe("enchanted_golden_apple", new ItemStack(Items.GOLDEN_APPLE, 1, 1), "TAR_ENCHANTED_GOLDEN_APPLE", 6, new ItemStack(Items.GOLDEN_APPLE), new AspectList().add(Aspect.DESIRE, 10).add(Aspect.LIFE, 5).add(KnowledgeTAR.VISUM, 20), new ItemStack(Blocks.GOLD_BLOCK), crystalEssence(Aspect.DESIRE), new ItemStack(Blocks.GOLD_BLOCK), crystalEssence(Aspect.DESIRE), new ItemStack(Blocks.GOLD_BLOCK), crystalEssence(Aspect.DESIRE), new ItemStack(Blocks.GOLD_BLOCK), crystalEssence(Aspect.DESIRE));
+//		addInfusionRecipe("enchanted_golden_apple", new ItemStack(Items.GOLDEN_APPLE, 1, 1), "TAR_ENCHANTED_GOLDEN_APPLE", 6, new ItemStack(Items.GOLDEN_APPLE), new AspectList().add(Aspect.DESIRE, 10).add(Aspect.LIFE, 5).add(KnowledgeTAR.VISUM, 20), new ItemStack(Blocks.GOLD_BLOCK), crystalEssence(Aspect.DESIRE), new ItemStack(Blocks.GOLD_BLOCK), crystalEssence(Aspect.DESIRE), new ItemStack(Blocks.GOLD_BLOCK), crystalEssence(Aspect.DESIRE), new ItemStack(Blocks.GOLD_BLOCK), crystalEssence(Aspect.DESIRE));
 		addInfusionRecipe("mob_summoner", new ItemStack(BlocksTAR.ENTITY_SUMMONER), "TAR_MOB_SUMMONING", 5, new ItemStack(BlocksTC.metalBlockThaumium), new AspectList().add(KnowledgeTAR.DRACO, 20).add(KnowledgeTAR.EXITIUM, 10).add(Aspect.LIFE, 15).add(AspectUtil.primals(15)).add(Aspect.SOUL, 20).add(Aspect.MAN, 30).add(Aspect.BEAST, 25).add(KnowledgeTAR.INFERNUM, 100), new ItemStack(ItemsTAR.ENTITY_CELL), new ItemStack(ItemsTC.mechanismSimple), new ItemStack(ItemsTC.filter), new ItemStack(ItemsTC.alumentum), "nitor", new ItemStack(BlocksTAR.PURIFLOWER));
 	}
 	
@@ -119,6 +105,16 @@ public class RecipesTAR extends RecipeRegistry
 		addShapedArcaneRecipe("eldritch_jar", "TAR_ELDRITCH_JAR", 150, new AspectList().add(Aspect.WATER, 6), new ItemStack(BlocksTAR.ELDRITCH_JAR), "gpg", "gjg", "ggg", 'g', "paneGlass", 'p', new ItemStack(ItemsTC.plate, 1, 3), 'j', BlocksTAR.THAUMIUM_JAR);
 		addShapedArcaneRecipe("mithrillium_jar", "TAR_MITHRILLIUM_JAR", 750, new AspectList().add(Aspect.WATER, 12), new ItemStack(BlocksTAR.MITHRILLIUM_JAR), "gpg", "gjg", "ggg", 'g', "paneGlass", 'p', new ItemStack(ItemsTAR.MITHRILLIUM_PLATE), 'j', BlocksTAR.ELDRITCH_JAR);
 		addShapedArcaneRecipe("adaminite_jar", "TAR_ADAMINITE_JAR@2", 1000, new AspectList().add(Aspect.WATER, 24), new ItemStack(BlocksTAR.ADAMINITE_JAR), "gpg", "gjg", "ggg", 'g', "paneGlass", 'p', new ItemStack(ItemsTAR.ADAMINITE_PLATE), 'j', BlocksTAR.MITHRILLIUM_JAR);
+		
+		for(Aspect a : Aspect.aspects.values())
+		{
+			IArcaneRecipe rec = new ShapedArcaneRecipe(defaultGroup, "TAR_CRYSTAL_BLOCK", 10, new AspectList(), AspectUtil.crystalBlock(a), "ccc", "ccc", "ccc", 'c', new NBTRespectfulIngredient(AspectUtil.crystalEssence(a)));
+			ResourceLocation loc = new ResourceLocation(InfoTAR.MOD_ID, a.getTag() + "_crystal_block");
+			crystalBlockRecipes.add(loc);
+			ThaumcraftApi.addArcaneCraftingRecipe(loc, rec);
+		}
+		
+		ThaumcraftApi.addFakeCraftingRecipe(crystalBlockRecipeIDFake, crystalBlockRecipes);
 	}
 	
 	private void crucible()

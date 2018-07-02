@@ -2,7 +2,7 @@ package com.zeitheron.thaumicadditions.inventory.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.hammercore.client.utils.RenderUtil;
+import com.zeitheron.hammercore.client.utils.RenderUtil;
 import com.zeitheron.thaumicadditions.inventory.container.ContainerAbstractSmelter;
 import com.zeitheron.thaumicadditions.tiles.TileAbstractSmelter;
 

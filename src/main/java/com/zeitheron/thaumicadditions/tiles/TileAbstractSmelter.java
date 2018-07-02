@@ -1,7 +1,7 @@
 package com.zeitheron.thaumicadditions.tiles;
 
-import com.pengu.hammercore.common.inventory.InventoryDummy;
-import com.pengu.hammercore.tile.TileSyncableTickable;
+import com.zeitheron.hammercore.tile.TileSyncableTickable;
+import com.zeitheron.hammercore.utils.inventory.InventoryDummy;
 import com.zeitheron.thaumicadditions.inventory.container.ContainerAbstractSmelter;
 import com.zeitheron.thaumicadditions.inventory.gui.GuiAbstractSmelter;
 

@@ -1,10 +1,10 @@
 package com.zeitheron.thaumicadditions.blocks;
 
-import com.pengu.hammercore.common.blocks.base.BlockDeviceHC;
-import com.pengu.hammercore.common.blocks.base.iBlockOrientable;
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.core.gui.GuiManager;
-import com.pengu.hammercore.tile.TileSyncable;
+import com.zeitheron.hammercore.internal.GuiManager;
+import com.zeitheron.hammercore.internal.blocks.base.BlockDeviceHC;
+import com.zeitheron.hammercore.internal.blocks.base.IBlockOrientable;
+import com.zeitheron.hammercore.tile.TileSyncable;
+import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.tiles.TileAuraDisperser;
 
 import net.minecraft.block.material.Material;
@@ -17,7 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockAuraDisperser extends BlockDeviceHC<TileAuraDisperser> implements iBlockOrientable
+public class BlockAuraDisperser extends BlockDeviceHC<TileAuraDisperser> implements IBlockOrientable
 {
 	public BlockAuraDisperser()
 	{

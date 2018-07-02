@@ -3,7 +3,7 @@ package com.zeitheron.thaumicadditions.api;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pengu.hammercore.utils.ColorHelper;
+import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 

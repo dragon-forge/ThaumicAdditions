@@ -1,6 +1,6 @@
 package com.zeitheron.thaumicadditions.inventory.container;
 
-import com.pengu.hammercore.core.gui.container.ItemTransferHelper.TransferableContainer;
+import com.zeitheron.hammercore.client.gui.impl.container.ItemTransferHelper.TransferableContainer;
 import com.zeitheron.thaumicadditions.tiles.TileCrystalCrusher;
 
 import net.minecraft.entity.player.EntityPlayer;

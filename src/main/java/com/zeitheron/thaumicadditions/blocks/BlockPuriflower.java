@@ -2,7 +2,7 @@ package com.zeitheron.thaumicadditions.blocks;
 
 import java.util.Random;
 
-import com.pengu.hammercore.utils.ColorHelper;
+import com.zeitheron.hammercore.utils.color.ColorHelper;
 
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;

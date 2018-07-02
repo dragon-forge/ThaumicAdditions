@@ -1,22 +1,25 @@
 package com.zeitheron.thaumicadditions.net;
 
-import com.pengu.hammercore.HammerCore;
-import com.pengu.hammercore.net.HCNetwork;
-import com.pengu.hammercore.net.packetAPI.iPacket;
-import com.pengu.hammercore.net.packetAPI.iPacketListener;
+import com.zeitheron.hammercore.HammerCore;
+import com.zeitheron.hammercore.net.HCNet;
+import com.zeitheron.hammercore.net.IPacket;
+import com.zeitheron.hammercore.net.PacketContext;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.relauncher.Side;
 
-public class PacketBlockEvent implements iPacket, iPacketListener<PacketBlockEvent, iPacket>
+public class PacketBlockEvent implements IPacket
 {
 	public int id, type;
 	public long pos;
+	
+	static
+	{
+		IPacket.handle(PacketBlockEvent.class, PacketBlockEvent::new);
+	}
 	
 	public static void performBlockEvent(World world, BlockPos pos, int id, int type)
 	{
@@ -28,22 +31,19 @@ public class PacketBlockEvent implements iPacket, iPacketListener<PacketBlockEve
 			bpe.id = id;
 			bpe.type = type;
 			bpe.pos = pos.toLong();
-			HCNetwork.manager.sendToAllAround(bpe, new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 128));
+			HCNet.INSTANCE.sendToAllAround(bpe, new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 128));
 		}
 	}
 	
 	@Override
-	public iPacket onArrived(PacketBlockEvent packet, MessageContext context)
+	public IPacket executeOnClient(PacketContext net)
 	{
-		if(context.side == Side.CLIENT)
+		EntityPlayer player = HammerCore.renderProxy.getClientPlayer();
+		if(player != null)
 		{
-			EntityPlayer player = HammerCore.renderProxy.getClientPlayer();
-			if(player != null)
-			{
-				World wc = player.world;
-				BlockPos pos = BlockPos.fromLong(packet.pos);
-				wc.addBlockEvent(pos, wc.getBlockState(pos).getBlock(), packet.id, packet.type);
-			}
+			World wc = player.world;
+			BlockPos pos = BlockPos.fromLong(this.pos);
+			wc.addBlockEvent(pos, wc.getBlockState(pos).getBlock(), id, type);
 		}
 		return null;
 	}

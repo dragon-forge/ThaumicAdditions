@@ -1,7 +1,7 @@
 package com.zeitheron.thaumicadditions.blocks;
 
-import com.pengu.hammercore.common.blocks.base.BlockDeviceHC;
-import com.pengu.hammercore.common.blocks.base.iBlockHorizontal;
+import com.zeitheron.hammercore.internal.blocks.base.BlockDeviceHC;
+import com.zeitheron.hammercore.internal.blocks.base.IBlockHorizontal;
 import com.zeitheron.thaumicadditions.tiles.TileAspectCombiner;
 
 import net.minecraft.block.SoundType;
@@ -13,7 +13,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
-public class BlockAspectCombiner extends BlockDeviceHC<TileAspectCombiner> implements iBlockHorizontal
+public class BlockAspectCombiner extends BlockDeviceHC<TileAspectCombiner> implements IBlockHorizontal
 {
 	public BlockAspectCombiner()
 	{

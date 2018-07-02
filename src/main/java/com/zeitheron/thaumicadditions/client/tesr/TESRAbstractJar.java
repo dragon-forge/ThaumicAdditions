@@ -2,28 +2,14 @@ package com.zeitheron.thaumicadditions.client.tesr;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.hammercore.annotations.AtTESR;
-import com.pengu.hammercore.client.render.tesr.TESR;
-import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.hammercore.utils.ColorHelper;
-import com.zeitheron.thaumicadditions.InfoTAR;
-import com.zeitheron.thaumicadditions.blocks.BlockAbstractEssentiaJar.BlockAbstractJarItem;
+import com.zeitheron.hammercore.annotations.AtTESR;
+import com.zeitheron.hammercore.client.render.tesr.TESR;
 import com.zeitheron.thaumicadditions.client.isr.ItemRenderJar;
 import com.zeitheron.thaumicadditions.tiles.TileAbstractJarFillable;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import thaumcraft.api.ThaumcraftApiHelper;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
 import thaumcraft.client.lib.UtilsFX;
 import thaumcraft.client.renderers.models.block.ModelJar;
 import thaumcraft.common.config.ModConfig;

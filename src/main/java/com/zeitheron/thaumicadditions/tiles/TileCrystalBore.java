@@ -2,15 +2,14 @@ package com.zeitheron.thaumicadditions.tiles;
 
 import java.util.Random;
 
-import com.pengu.hammercore.common.utils.ItemStackUtil;
-import com.pengu.hammercore.common.utils.SoundUtil;
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.tile.TileSyncableTickable;
-import com.pengu.hammercore.utils.FrictionRotator;
+import com.zeitheron.hammercore.tile.TileSyncableTickable;
+import com.zeitheron.hammercore.utils.FrictionRotator;
+import com.zeitheron.hammercore.utils.ItemStackUtil;
+import com.zeitheron.hammercore.utils.SoundUtil;
+import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

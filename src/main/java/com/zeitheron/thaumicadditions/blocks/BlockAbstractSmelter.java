@@ -2,12 +2,12 @@ package com.zeitheron.thaumicadditions.blocks;
 
 import java.util.Random;
 
-import com.pengu.hammercore.common.blocks.base.BlockDeviceHC;
-import com.pengu.hammercore.common.blocks.base.iBlockEnableable;
-import com.pengu.hammercore.common.blocks.base.iBlockHorizontal;
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.core.gui.GuiManager;
-import com.pengu.hammercore.tile.TileSyncable;
+import com.zeitheron.hammercore.internal.GuiManager;
+import com.zeitheron.hammercore.internal.blocks.base.BlockDeviceHC;
+import com.zeitheron.hammercore.internal.blocks.base.IBlockEnableable;
+import com.zeitheron.hammercore.internal.blocks.base.IBlockHorizontal;
+import com.zeitheron.hammercore.tile.TileSyncable;
+import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.tiles.TileAbstractSmelter;
 import com.zeitheron.thaumicadditions.tiles.TileSmelterImpl;
 
@@ -31,7 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.common.tiles.essentia.TileSmelter;
 
-public class BlockAbstractSmelter extends BlockDeviceHC<TileSmelterImpl> implements iBlockEnableable, iBlockHorizontal
+public class BlockAbstractSmelter extends BlockDeviceHC<TileSmelterImpl> implements IBlockEnableable, IBlockHorizontal
 {
 	public float efficiency;
 	public int speed;
@@ -44,7 +44,7 @@ public class BlockAbstractSmelter extends BlockDeviceHC<TileSmelterImpl> impleme
 		this.capacity = capacity;
 		this.speed = speed;
 		setSoundType(SoundType.METAL);
-		setDefaultState(blockState.getBaseState().withProperty(iBlockHorizontal.FACING, EnumFacing.NORTH).withProperty(iBlockEnableable.ENABLED, false));
+		setDefaultState(blockState.getBaseState().withProperty(IBlockHorizontal.FACING, EnumFacing.NORTH).withProperty(IBlockEnableable.ENABLED, false));
 	}
 	
 	@Override
@@ -67,7 +67,7 @@ public class BlockAbstractSmelter extends BlockDeviceHC<TileSmelterImpl> impleme
 	@Override
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
-		return getDefaultState().withProperty(iBlockHorizontal.FACING, placer.getHorizontalFacing().getOpposite()).withProperty(iBlockEnableable.ENABLED, false);
+		return getDefaultState().withProperty(IBlockHorizontal.FACING, placer.getHorizontalFacing().getOpposite()).withProperty(IBlockEnableable.ENABLED, false);
 	}
 	
 	@Override
@@ -118,7 +118,7 @@ public class BlockAbstractSmelter extends BlockDeviceHC<TileSmelterImpl> impleme
 			return;
 		TileEntity tileentity = world.getTileEntity(pos);
 		keepInventory = true;
-		world.setBlockState(pos, world.getBlockState(pos).withProperty(iBlockEnableable.ENABLED, state), 3);
+		world.setBlockState(pos, world.getBlockState(pos).withProperty(IBlockEnableable.ENABLED, state), 3);
 		if(tileentity != null)
 		{
 			tileentity.validate();
