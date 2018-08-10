@@ -37,7 +37,7 @@ public class TileCrystalCrusher extends TileSyncableTickable implements ISidedIn
 		if(world.isRemote)
 			rotator.update();
 		
-		if(world.isBlockIndirectlyGettingPowered(pos) > 0)
+		if(world.getRedstonePowerFromNeighbors(pos) > 0)
 			return;
 		
 		if(crushes <= 0 && EssentiaHandler.drainEssentia(this, Aspect.MECHANISM, null, 12, 1))

@@ -187,7 +187,7 @@ public class TileAspectCombiner extends TileSyncableTickable implements IEssenti
 	
 	public boolean gettingPower()
 	{
-		return world.isBlockIndirectlyGettingPowered(pos) > 0;
+		return world.getRedstonePowerFromNeighbors(pos) > 0;
 	}
 	
 	public boolean canAccept(Aspect type)

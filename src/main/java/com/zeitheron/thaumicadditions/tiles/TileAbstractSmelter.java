@@ -384,7 +384,7 @@ public abstract class TileAbstractSmelter extends TileSyncableTickable implement
 			if(this.world.isRemote)
 			{
 				EnumFacing d = EnumFacing.VALUES[j];
-				this.world.playSound(this.getPos().getX() + 0.5 + d.getOpposite().getFrontOffsetX(), this.getPos().getY() + 0.5, this.getPos().getZ() + 0.5 + d.getOpposite().getFrontOffsetZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.25f, 2.6f + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.8f, true);
+				this.world.playSound(this.getPos().getX() + 0.5 + d.getOpposite().getXOffset(), this.getPos().getY() + 0.5, this.getPos().getZ() + 0.5 + d.getOpposite().getZOffset(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.25f, 2.6f + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.8f, true);
 				for(int a = 0; a < 4; ++a)
 				{
 					float fx = 0.1f - this.world.rand.nextFloat() * 0.2f;
@@ -394,7 +394,7 @@ public abstract class TileAbstractSmelter extends TileSyncableTickable implement
 					float fz2 = 0.1f - this.world.rand.nextFloat() * 0.2f;
 					float fy2 = 0.1f - this.world.rand.nextFloat() * 0.2f;
 					int color = 11184810;
-					FXDispatcher.INSTANCE.drawVentParticles(this.getPos().getX() + 0.5f + fx + d.getOpposite().getFrontOffsetX(), this.getPos().getY() + 0.5f + fy, this.getPos().getZ() + 0.5f + fz + d.getOpposite().getFrontOffsetZ(), d.getOpposite().getFrontOffsetX() / 4.0f + fx2, d.getOpposite().getFrontOffsetY() / 4.0f + fy2, d.getOpposite().getFrontOffsetZ() / 4.0f + fz2, color);
+					FXDispatcher.INSTANCE.drawVentParticles(this.getPos().getX() + 0.5f + fx + d.getOpposite().getXOffset(), this.getPos().getY() + 0.5f + fy, this.getPos().getZ() + 0.5f + fz + d.getOpposite().getZOffset(), d.getOpposite().getXOffset() / 4.0f + fx2, d.getOpposite().getYOffset() / 4.0f + fy2, d.getOpposite().getZOffset() / 4.0f + fz2, color);
 				}
 			}
 			return true;

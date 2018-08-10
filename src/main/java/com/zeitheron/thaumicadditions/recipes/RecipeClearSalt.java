@@ -120,7 +120,7 @@ public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
 	}
 	
 	@Override
-	public boolean isHidden()
+	public boolean isDynamic()
 	{
 		return true;
 	}

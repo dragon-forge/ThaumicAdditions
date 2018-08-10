@@ -66,7 +66,7 @@ public class TileAuraDisperser extends TileSyncableTickable implements ITileDrop
 		if(!world.isRemote && timer > 0 && aspects != null && atTickRate(20))
 		{
 			EnumFacing face = WorldUtil.getFacing(getLocation().getState());
-			AxisAlignedBB aabb = new AxisAlignedBB(pos).offset(face.getFrontOffsetX() * 5, face.getFrontOffsetY() * 4, face.getFrontOffsetZ() * 5).grow(4, 3, 4);
+			AxisAlignedBB aabb = new AxisAlignedBB(pos).offset(face.getXOffset() * 5, face.getYOffset() * 4, face.getZOffset() * 5).grow(4, 3, 4);
 			List<EntityLivingBase> ents = world.getEntitiesWithinAABB(EntityLivingBase.class, aabb);
 			boolean did = false;
 			for(EntityLivingBase b : ents)

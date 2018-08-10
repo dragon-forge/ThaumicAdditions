@@ -50,6 +50,7 @@ import thaumcraft.common.tiles.essentia.TileAlembic;
 
 public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable> extends BlockTileHC<T> implements ILabelable, IItemBlock
 {
+	public static boolean spillEssentia;
 	public final int capacity;
 	
 	public BlockAbstractEssentiaJar(Class<T> t, int capacity, String name)
@@ -99,8 +100,8 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable> extends
 	}
 	
 	@Override
-	@SideOnly(value = Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getRenderLayer()
 	{
 		return BlockRenderLayer.TRANSLUCENT;
 	}
@@ -238,7 +239,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable> extends
 								return true;
 							if(tile.addToContainer(aspect, 10) == 0)
 							{
-								world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 3);
+								world.markAndNotifyBlock(pos, world.getChunk(pos), state, state, 3);
 								tile.syncTile(true);
 								player.getHeldItem(hand).shrink(1);
 								if(!player.inventory.addItemStackToInventory(new ItemStack(ip, 1, 0)))
@@ -270,7 +271,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable> extends
 				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundsTC.page, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
 			} else
 			{
-				world.spawnEntity(new EntityItem(world, pos.getX() + 0.5f + side.getFrontOffsetX() / 3.0f, pos.getY() + 0.5f, pos.getZ() + 0.5f + side.getFrontOffsetZ() / 3.0f, new ItemStack(ItemsTC.label)));
+				world.spawnEntity(new EntityItem(world, pos.getX() + 0.5f + side.getXOffset() / 3.0f, pos.getY() + 0.5f, pos.getZ() + 0.5f + side.getZOffset() / 3.0f, new ItemStack(ItemsTC.label)));
 			}
 		} else if(te != null && te instanceof TileAbstractJarFillable && player.isSneaking() && player.getHeldItem(hand).isEmpty())
 		{
@@ -306,7 +307,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable> extends
 			}
 			this.onBlockPlacedBy(player.world, pos, player.world.getBlockState(pos), player, null);
 			((TileAbstractJarFillable) te).aspectFilter = ((TileAbstractJarFillable) te).aspect;
-			player.world.markAndNotifyBlock(pos, player.world.getChunkFromBlockCoords(pos), player.world.getBlockState(pos), player.world.getBlockState(pos), 3);
+			player.world.markAndNotifyBlock(pos, player.world.getChunk(pos), player.world.getBlockState(pos), player.world.getBlockState(pos), 3);
 			te.markDirty();
 			player.world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundsTC.jar, SoundCategory.BLOCKS, 0.4f, 1.0f);
 			return true;
@@ -450,7 +451,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable> extends
 				if(stack.hasTagCompound() && stack.getTagCompound().hasKey("AspectFilter"))
 					jar.aspectFilter = Aspect.getAspect(stack.getTagCompound().getString("AspectFilter"));
 				te.markDirty();
-				world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), newState, newState, 3);
+				world.markAndNotifyBlock(pos, world.getChunk(pos), newState, newState, 3);
 			}
 			return b;
 		}

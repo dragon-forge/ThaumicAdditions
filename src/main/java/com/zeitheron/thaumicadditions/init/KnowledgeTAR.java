@@ -1,11 +1,13 @@
 package com.zeitheron.thaumicadditions.init;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.zeitheron.hammercore.annotations.MCFBus;
+import com.zeitheron.hammercore.lib.zlib.tuple.TwoTuple;
 import com.zeitheron.hammercore.lib.zlib.utils.Joiner;
 import com.zeitheron.hammercore.utils.OnetimeCaller;
 import com.zeitheron.hammercore.utils.color.Rainbow;
@@ -27,7 +29,9 @@ import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
@@ -59,6 +63,7 @@ public class KnowledgeTAR
 	public static final Aspect INFERNUM = new Aspect("infernum", 0xFF2314, new Aspect[] { Aspect.FIRE, Aspect.DEATH }, new ResourceLocation(InfoTAR.MOD_ID, "textures/aspects/infernum.png"), 1);
 	public static final Aspect VENTUS = new Aspect("ventus", 0xFCFCCF, new Aspect[] { Aspect.AIR, Aspect.FLIGHT }, new ResourceLocation(InfoTAR.MOD_ID, "textures/aspects/ventus.png"), 1);
 	public static final Aspect VISUM = new Aspect("visum", 0x45CF35, new Aspect[] { Aspect.SENSES, Aspect.CRYSTAL }, new ResourceLocation(InfoTAR.MOD_ID, "textures/aspects/visum.png"), 1);
+	public static final Aspect IMPERIUM = new Aspect("imperium", 0xD6A255, new Aspect[] { Aspect.MIND, Aspect.MECHANISM }, new ResourceLocation(InfoTAR.MOD_ID, "textures/aspects/imperium.png"), 1);
 	
 	@SubscribeEvent
 	public void commandEvent(CommandEvent ce)
@@ -92,7 +97,9 @@ public class KnowledgeTAR
 		new REB().setBaseInfo("TAR_CRYSTAL_BORE", "crystal_bore", 3, 0, new ItemStack(BlocksTAR.CRYSTAL_BORE)).setMeta(EnumResearchMeta.SPIKY).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_bore.1").setConsumedItems(new ItemStack(ItemsTC.crystalEssence)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ALCHEMY"), 1), new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("GOLEMANCY"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_bore.2").setRecipes(InfoTAR.MOD_ID + ":crystal_bore").build()).setParents("TAR_THAUMADDS").buildAndRegister();
 		new REB().setBaseInfo("TAR_CRYSTAL_WATER", "crystal_water", -1, 1, FluidUtil.getFilledBucket(new FluidStack(FluidsTAR.CRYSTAL_WATER, Fluid.BUCKET_VOLUME))).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_water.1").setConsumedItems(new ItemStack(ItemsTC.crystalEssence), new ItemStack(Items.WATER_BUCKET)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ALCHEMY"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_water.2").setRecipes(InfoTAR.MOD_ID + ":crystal_water", InfoTAR.MOD_ID + ":mb.crystal_acceleration").build()).setParents("TAR_THAUMADDS").buildAndRegister();
 		new REB().setBaseInfo("TAR_ENCHANTED_GOLDEN_APPLE", "enchanted_golden_apple", -2, 1, new ItemStack(Items.GOLDEN_APPLE, 1, 1)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":enchanted_golden_apple.1").setConsumedItems(new ItemStack(Items.GOLDEN_APPLE), AspectUtil.crystalEssence(Aspect.DESIRE)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ALCHEMY"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":enchanted_golden_apple.2").setRecipes(InfoTAR.MOD_ID + ":enchanted_golden_apple").build()).setParents("TAR_THAUMADDS").buildAndRegister();
+		
 		new REB().setBaseInfo("TAR_CRYSTAL_BLOCK", "crystal_block", -3, 1, new ItemStack(BlocksTAR.CRYSTAL_BLOCK)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_block.1").setConsumedItems(AspectUtil.crystalEssence(Aspect.AIR), AspectUtil.crystalEssence(Aspect.WATER), AspectUtil.crystalEssence(Aspect.FIRE), AspectUtil.crystalEssence(Aspect.EARTH), AspectUtil.crystalEssence(Aspect.ORDER), AspectUtil.crystalEssence(Aspect.ENTROPY)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ARTIFICE"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_block.2").setRecipes(RecipesTAR.crystalBlockRecipeIDFake).build()).setParents("TAR_THAUMADDS").buildAndRegister();
+		new REB().setBaseInfo("TAR_GROWTH_CHAMBER", "growth_chamber", -3, 3, new ItemStack(BlocksTAR.GROWTH_CHAMBER)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":growth_chamber.1").setKnow(new Knowledge(EnumKnowledgeType.THEORY, TAReconstructed.RES_CAT, 1)).setConsumedItems(AspectUtil.crystalEssence(Aspect.PLANT)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":growth_chamber.2").setRecipes(RecipesTAR.getFakeRecipesFor(Item.getItemFromBlock(BlocksTAR.GROWTH_CHAMBER))).build()).setParents("TAR_CRYSTAL_BLOCK").buildAndRegister();
 		
 		new REB().setBaseInfo("TAR_MITHRILLIUM", "mithrillium", 1, -2, new ItemStack(ItemsTAR.MITHRILLIUM_INGOT)).setMeta(EnumResearchMeta.ROUND, EnumResearchMeta.SPIKY).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":mithrillium.1").setConsumedItems(new ItemStack(ItemsTC.ingots, 1, 1)).setKnow(new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("INFUSION"), 1), new Knowledge(EnumKnowledgeType.OBSERVATION, TAReconstructed.RES_CAT, 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":mithrillium.2").setRecipes(RecipesTAR.getFakeRecipesPre(ItemsTAR.MITHRILLIUM_NUGGET, RecipesTAR.getFakeRecipesPre(ItemsTAR.MITHRILLIUM_PLATE, InfoTAR.MOD_ID + ":mithrillium_ingot"))).build()).setParents("TAR_THAUMADDS", "INFUSION").buildAndRegister();
 		new REB().setBaseInfo("TAR_ADAMINITE", "adaminite", 2, -4, new ItemStack(ItemsTAR.ADAMINITE_INGOT)).setMeta(EnumResearchMeta.ROUND, EnumResearchMeta.SPIKY).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":adaminite.1").setRequiredCraft(new ItemStack(ItemsTAR.MITHRILLIUM_INGOT)).setKnow(new Knowledge(EnumKnowledgeType.THEORY, TAReconstructed.RES_CAT, 1)).setWarp(1).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":adaminite.2").setRecipes(RecipesTAR.getFakeRecipesPre(ItemsTAR.ADAMINITE_NUGGET, RecipesTAR.getFakeRecipesPre(ItemsTAR.ADAMINITE_PLATE, InfoTAR.MOD_ID + ":adaminite_ingot"))).build()).setParents("TAR_MITHRILLIUM").buildAndRegister();
@@ -125,7 +132,10 @@ public class KnowledgeTAR
 		appendAspects("ingotMithrillium", new AspectList().add(CAELES, 6));
 		appendAspects(new ItemStack(Items.EGG), new AspectList().add(Aspect.EXCHANGE, 6));
 		
-		appendAspects(new ItemStack(BlocksTC.vishroom), new AspectList().add(Aspect.FLUX, 2));
+		appendAspects(new ItemStack(Blocks.LEVER), new AspectList().add(IMPERIUM, 5));
+		appendAspects(new ItemStack(Blocks.STONE_BUTTON), new AspectList().add(IMPERIUM, 5));
+		appendAspects(new ItemStack(Blocks.WOODEN_BUTTON), new AspectList().add(IMPERIUM, 5));
+		appendAspects(new ItemStack(BlocksTC.vishroom), new AspectList().add(Aspect.FLUX, 8));
 		appendAspects(new ItemStack(Blocks.NOTEBLOCK), new AspectList().add(SONUS, 8));
 		appendAspects(new ItemStack(Blocks.JUKEBOX), new AspectList().add(SONUS, 12));
 		appendAspects(new ItemStack(BlocksTC.arcaneEar), new AspectList().add(SONUS, 12));
@@ -136,7 +146,7 @@ public class KnowledgeTAR
 		appendAspects(new ItemStack(Items.GUNPOWDER), new AspectList().add(EXITIUM, 10));
 		appendAspects(new ItemStack(Blocks.DRAGON_EGG), new AspectList().add(DRACO, 100));
 		appendAspects(new ItemStack(Items.DRAGON_BREATH), new AspectList().add(DRACO, 25));
-		appendAspects(new ItemStack(ItemsTC.goggles), new AspectList().add(VISUM, 20));
+		appendAspects(new ItemStack(ItemsTC.thaumometer), new AspectList().add(VISUM, 20));
 		appendAspects(new ItemStack(Items.CARROT), new AspectList().add(VISUM, 10));
 		appendAspects(new ItemStack(Blocks.NETHER_BRICK), new AspectList().add(INFERNUM, 15));
 		appendAspects(new ItemStack(Blocks.NETHER_BRICK_STAIRS), new AspectList().add(INFERNUM, 10));
@@ -153,6 +163,25 @@ public class KnowledgeTAR
 		prefix = addIfPresent("draconicevolution:dragon_heart", new AspectList().add(CAELES, 20).add(DRACO, 100), prefix);
 		prefix = addIfPresent("draconicevolution:draconic_block", new AspectList().add(CAELES, 54).add(DRACO, 18 * 9), prefix);
 		prefix = addIfPresent("draconicevolution:chaos_shard", new AspectList().add(CAELES, 16).add(EXITIUM, 96), prefix);
+		
+		if(Loader.isModLoaded("thaumicbases"))
+		{
+			Aspect iter = Aspect.getAspect("iter");
+			List<TwoTuple<ItemStack, Integer>> iters = new ArrayList<>();
+			
+			ForgeRegistries.ITEMS.getValuesCollection().forEach(i ->
+			{
+				if(i.getRegistryName().toString().contains("boat"))
+					iters.add(new TwoTuple<ItemStack, Integer>(new ItemStack(i), 5));
+			});
+			
+			for(TwoTuple<ItemStack, Integer> t : iters)
+			{
+				AspectList al = ThaumcraftCraftingManager.getObjectTags(t.get1());
+				if(al == null || al.getAmount(iter) <= 0)
+					appendAspects(t.get1(), new AspectList().add(iter, t.get2()));
+			}
+		}
 	}
 	
 	private static void appendAspects(String oreDict, AspectList toAdd)

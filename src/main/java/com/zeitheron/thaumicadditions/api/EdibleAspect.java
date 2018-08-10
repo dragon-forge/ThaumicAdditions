@@ -5,10 +5,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.BiFunction;
 
+import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.init.KnowledgeTAR;
 import com.zeitheron.thaumicadditions.init.PotionsTAR;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -16,10 +19,21 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.util.Constants.NBT;
+import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.capabilities.IPlayerWarp;
+import thaumcraft.api.capabilities.ThaumcraftCapabilities;
+import thaumcraft.api.capabilities.IPlayerKnowledge.EnumKnowledgeType;
+import thaumcraft.api.capabilities.IPlayerWarp.EnumWarpType;
 import thaumcraft.api.potions.PotionFluxTaint;
+import thaumcraft.api.research.ResearchCategories;
+import thaumcraft.api.research.ResearchCategory;
+import thaumcraft.common.lib.SoundsTC;
+import thaumcraft.common.lib.potions.PotionWarpWard;
 
 public class EdibleAspect
 {
@@ -30,10 +44,9 @@ public class EdibleAspect
 	static
 	{
 		addEatCall(Aspect.WATER, (player, count) -> addPotionEffect(player, MobEffects.WATER_BREATHING, 10 + (count * count), 0));
-		addEatCall(Aspect.TRAP, (player, count) -> addPotionEffect(player, MobEffects.SLOWNESS, 10 + (count * count), 1));
+		addEatCall(Aspect.TRAP, (player, count) -> addPotionEffect(player, MobEffects.SLOWNESS, 20 + (count * count) * 20, 1));
 		addEatCall(Aspect.SENSES, (player, count) -> addPotionEffect(player, MobEffects.NIGHT_VISION, 400 + count * count, 0));
 		addEatCall(Aspect.DARKNESS, (player, count) -> addPotionEffect(player, MobEffects.BLINDNESS, 10 + (count * count), 0));
-		addEatCall(Aspect.FLUX, (player, count) -> addPotionEffect(player, PotionFluxTaint.instance, 10 + (count * count), 0));
 		addEatCall(Aspect.ALCHEMY, (player, count) -> addPotionEffect(player, MobEffects.NAUSEA, 10 + (count * count), 0));
 		addEatCall(Aspect.ENERGY, (player, count) -> addPotionEffect(player, MobEffects.STRENGTH, 20 + (count * count), (int) Math.sqrt(count)));
 		addEatCall(Aspect.TOOL, (player, count) -> addPotionEffect(player, MobEffects.HASTE, 20 + (count * count), (int) Math.sqrt(count)));
@@ -42,6 +55,47 @@ public class EdibleAspect
 		addEatCall(KnowledgeTAR.SONUS, (player, count) -> addPotionEffect(player, PotionsTAR.SOUND_SENSIVITY, 120 + (count * count), count * 21 / MAX_ESSENTIA));
 		addEatCall(Aspect.DESIRE, (player, count) -> addPotionEffect(player, MobEffects.HUNGER, 100 + (count * count), count * 5 / MAX_ESSENTIA));
 		addEatCall(Aspect.PROTECT, (player, count) -> addPotionEffect(player, MobEffects.RESISTANCE, 200 + (count * count) * 2, count * 10 / MAX_ESSENTIA));
+		addEatCall(Aspect.AURA, (player, count) -> addPotionEffect(player, PotionWarpWard.instance, 20 * 60 + count * 200, 0));
+		
+		addEatCall(Aspect.MIND, (player, count) ->
+		{
+			if(player instanceof EntityPlayer)
+			{
+				player.world.playSound(null, player.posX, player.posY, player.posZ, SoundsTC.learn, SoundCategory.NEUTRAL, 0.5f, 0.4f / (player.getRNG().nextFloat() * 0.4f + 0.8f));
+				
+				if(player instanceof EntityPlayerMP && !player.world.isRemote)
+				{
+					EntityPlayerMP mp = (EntityPlayerMP) player;
+					
+					// Transform count
+					count = (int) (Math.sqrt(count) * 2);
+					
+					int oProg = EnumKnowledgeType.OBSERVATION.getProgression() * count;
+					int tProg = EnumKnowledgeType.THEORY.getProgression() * count;
+					
+					ResearchCategory[] rc = ResearchCategories.researchCategories.values().toArray(new ResearchCategory[0]);
+					ThaumcraftApi.internalMethods.addKnowledge(mp, EnumKnowledgeType.OBSERVATION, rc[player.getRNG().nextInt(rc.length)], MathHelper.getInt(player.getRNG(), oProg / 10, oProg / 8));
+					ThaumcraftApi.internalMethods.addKnowledge(mp, EnumKnowledgeType.THEORY, rc[player.getRNG().nextInt(rc.length)], MathHelper.getInt(player.getRNG(), tProg / 20, tProg / 16));
+				}
+				
+				return true;
+			}
+			
+			return false;
+		});
+		
+		addEatCall(Aspect.FLUX, (player, count) ->
+		{
+			if(player instanceof EntityPlayerMP && !player.world.isRemote)
+			{
+				EntityPlayerMP mp = (EntityPlayerMP) player;
+				IPlayerWarp warp = ThaumcraftCapabilities.getWarp(mp);
+				warp.add(EnumWarpType.TEMPORARY, count);
+				warp.sync(mp);
+			}
+			
+			return addPotionEffect(player, PotionFluxTaint.instance, 10 + (count * count), 0);
+		});
 		
 		addEatCall(Aspect.LIFE, (player, count) ->
 		{
@@ -98,6 +152,11 @@ public class EdibleAspect
 		return used;
 	}
 	
+	public static void addComplexCall(AspectList list, BiFunction<EntityLivingBase, AspectList, Boolean> c)
+	{
+		COMPLEX_FUNCTIONS.put(list, c);
+	}
+	
 	public static void addEatCall(Aspect asp, BiFunction<EntityLivingBase, Integer, Boolean> c)
 	{
 		BiFunction<EntityLivingBase, Integer, Boolean> ef = EAT_FUNCTIONS.get(asp);
@@ -123,7 +182,7 @@ public class EdibleAspect
 		if(stack.hasTagCompound())
 			stack.getTagCompound().removeTag("TARSalt");
 		
-		if(stack.getTagCompound().hasNoTags())
+		if(stack.getTagCompound().isEmpty())
 			stack.setTagCompound(null);
 		
 		return stack;

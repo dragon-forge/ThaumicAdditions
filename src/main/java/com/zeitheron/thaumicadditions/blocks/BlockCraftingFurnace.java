@@ -42,7 +42,7 @@ public class BlockCraftingFurnace extends Block implements ITileBlock<TileCrafti
 	public BlockCraftingFurnace()
 	{
 		super(Material.ROCK);
-		setUnlocalizedName("crafting_furnace");
+		setTranslationKey("crafting_furnace");
 		setHardness(2);
 		setHarvestLevel("pickaxe", 0);
 	}
@@ -68,7 +68,7 @@ public class BlockCraftingFurnace extends Block implements ITileBlock<TileCrafti
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		EnumFacing enumfacing = EnumFacing.getFront(meta % 4);
+		EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta % 4);
 		if(enumfacing.getAxis() == EnumFacing.Axis.Y)
 			enumfacing = EnumFacing.NORTH;
 		return this.getDefaultState().withProperty(FACING, enumfacing).withProperty(BURNING, meta >= 4);

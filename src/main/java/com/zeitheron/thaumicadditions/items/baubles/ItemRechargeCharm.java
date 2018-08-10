@@ -28,7 +28,7 @@ public class ItemRechargeCharm extends Item implements IBauble, IRenderBauble
 	public ItemRechargeCharm()
 	{
 		setMaxStackSize(1);
-		setUnlocalizedName("recharge_charm");
+		setTranslationKey("recharge_charm");
 	}
 	
 	@Override

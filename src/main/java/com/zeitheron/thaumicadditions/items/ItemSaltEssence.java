@@ -21,7 +21,7 @@ public class ItemSaltEssence extends Item implements IEssentiaContainerItem
 {
 	public ItemSaltEssence()
 	{
-		setUnlocalizedName("salt_essence");
+		setTranslationKey("salt_essence");
 		setMaxStackSize(64);
 		setHasSubtypes(true);
 	}
