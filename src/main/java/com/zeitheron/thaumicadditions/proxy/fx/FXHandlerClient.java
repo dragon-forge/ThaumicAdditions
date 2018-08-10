@@ -43,7 +43,7 @@ public class FXHandlerClient extends FXHandler
 		
 		Minecraft mc = Minecraft.getMinecraft();
 		
-		AxisAlignedBB aabb = new AxisAlignedBB(blockPosIn).offset(face.getFrontOffsetX() * 5, face.getFrontOffsetY() * 4, face.getFrontOffsetZ() * 5).grow(4, 3, 4);
+		AxisAlignedBB aabb = new AxisAlignedBB(blockPosIn).offset(face.getXOffset() * 5, face.getYOffset() * 4, face.getZOffset() * 5).grow(4, 3, 4);
 		
 		for(int j3 = 0; j3 < 100; ++j3)
 		{
@@ -87,7 +87,7 @@ public class FXHandlerClient extends FXHandler
 			GlStateManager.rotate(-30F, 1F, 0F, 0F);
 			GlStateManager.scale(f, f, f);
 			entity.setLocationAndAngles(posX, posY, posZ, 0.0F, 0.0F);
-			Minecraft.getMinecraft().getRenderManager().doRenderEntity(entity, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks, false);
+			Minecraft.getMinecraft().getRenderManager().renderEntity(entity, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks, false);
 			GlStateManager.popMatrix();
 		}
 	}

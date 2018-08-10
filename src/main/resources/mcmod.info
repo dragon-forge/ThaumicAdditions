@@ -1,10 +1,12 @@
 [
 	{
-	  "modid": "",
-	  "name": "",
-	  "description": "",
+	  "modid": "thaumicadditions",
+	  "name": "Thaumic Additions",
+	  "description": "A magical addon that brings some functional and decorative additions to Thaumcraft VI.",
 	  "version": "${version}",
-	  "mcversion": "${mcversion}",
-	  "authorList": ["APengu"]
+	  "mcversion": "1.12.2",
+	  "authorList": ["Zeitheron"],
+	  "credits": "Thanks to Azanor",
+	  "dependencies": [ "Hammer Core" ]
 	}
 ]

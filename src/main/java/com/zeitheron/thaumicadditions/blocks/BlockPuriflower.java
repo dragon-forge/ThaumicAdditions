@@ -17,7 +17,7 @@ public class BlockPuriflower extends BlockBush
 	public BlockPuriflower()
 	{
 		setSoundType(SoundType.PLANT);
-		setUnlocalizedName("puriflower");
+		setTranslationKey("puriflower");
 		lightValue = 8;
 	}
 	

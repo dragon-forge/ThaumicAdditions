@@ -98,14 +98,14 @@ processResources
 }
 
 task DownloadThaumcraft(type: Download) {
-    src 'https://minecraft.curseforge.com/projects/thaumcraft/files/2578520/download'
-    dest new File("libs/Thaumcraft-1.12.2-6.1.BETA17.jar")
+    src 'https://minecraft.curseforge.com/projects/thaumcraft/files/2599798/download'
+    dest new File("libs/Thaumcraft-1.12.2-6.1.BETA21.jar")
     overwrite false
 }
 
 task DownloadThaumicJEI(type: Download) {
-    src 'https://minecraft.curseforge.com/projects/thaumic-jei/files/2568938/download'
-    dest new File("libs/ThaumicJEI-1.12.2-1.3.1-12.jar")
+    src 'https://minecraft.curseforge.com/projects/thaumic-jei/files/2600095/download'
+    dest new File("libs/ThaumicJEI-1.12.2-1.5.2-19.jar")
     overwrite false
 }
 

@@ -9,9 +9,9 @@ import javax.annotation.Nullable;
 
 import com.zeitheron.hammercore.net.HCNet;
 import com.zeitheron.hammercore.raytracer.RayTracer;
-import com.zeitheron.hammercore.utils.ChatUtil;
 import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.thaumicadditions.ChatTA;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 
@@ -56,7 +56,7 @@ public class ItemDNASample extends Item
 	
 	public ItemDNASample()
 	{
-		setUnlocalizedName("dna_sample");
+		setTranslationKey("dna_sample");
 		setMaxStackSize(1);
 	}
 	
@@ -157,7 +157,7 @@ public class ItemDNASample extends Item
 		if(!nbt.hasKey("Entity") && !player.world.isRemote)
 		{
 			NBTTagCompound sampled = sampleNBT(null, entity);
-			if(sampled != null && !sampled.hasNoTags())
+			if(sampled != null && !sampled.isEmpty())
 			{
 				NBTTagCompound data = sampled.getCompoundTag("Data");
 				
@@ -178,7 +178,7 @@ public class ItemDNASample extends Item
 			{
 				TextComponentTranslation tct = new TextComponentTranslation("status." + InfoTAR.MOD_ID + ":dna_unpickable" + (entity instanceof EntityLivingBase ? "" : ".1"));
 				tct.getStyle().setColor(TextFormatting.DARK_RED);
-				ChatUtil.sendNoSpam(player, tct);
+				ChatTA.sendMessage(player, tct);
 				SoundUtil.playSoundEffect(player.world, SoundsTC.wandfail.getRegistryName().toString(), player.getPosition(), 1F, 1F, SoundCategory.PLAYERS);
 			}
 		}

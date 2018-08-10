@@ -11,6 +11,7 @@ import com.zeitheron.thaumicadditions.blocks.BlockCrystalBore;
 import com.zeitheron.thaumicadditions.blocks.BlockCrystalCrusher;
 import com.zeitheron.thaumicadditions.blocks.BlockCrystalWater;
 import com.zeitheron.thaumicadditions.blocks.BlockEntitySummoner;
+import com.zeitheron.thaumicadditions.blocks.BlockGrowthChamber;
 import com.zeitheron.thaumicadditions.blocks.BlockPuriflower;
 import com.zeitheron.thaumicadditions.tiles.jars.TileAdaminiteJar;
 import com.zeitheron.thaumicadditions.tiles.jars.TileBrassJar;
@@ -35,6 +36,8 @@ public class BlocksTAR
 	public static final BlockEntitySummoner ENTITY_SUMMONER = new BlockEntitySummoner();
 	public static final BlockPuriflower PURIFLOWER = new BlockPuriflower();
 	public static final BlockCrystal CRYSTAL_BLOCK = new BlockCrystal();
+	
+	public static final BlockGrowthChamber GROWTH_CHAMBER = new BlockGrowthChamber();
 	
 	public static final BlockAbstractEssentiaJar<TileBrassJar> BRASS_JAR = new BlockAbstractEssentiaJar<>(TileBrassJar.class, 275, "jar_brass");
 	public static final BlockAbstractEssentiaJar<TileThaumiumJar> THAUMIUM_JAR = new BlockAbstractEssentiaJar<>(TileThaumiumJar.class, 350, "jar_thaumium");

@@ -35,7 +35,7 @@ public class ItemZeithScale extends ItemMaterial
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		tooltip.add(I18n.format("item.curio.text"));
-		tooltip.add(I18n.format(getUnlocalizedName() + ".tip"));
+		tooltip.add(I18n.format(getTranslationKey() + ".tip"));
 	}
 	
 	@Override
@@ -52,8 +52,8 @@ public class ItemZeithScale extends ItemMaterial
 			ThaumcraftApi.internalMethods.addKnowledge(player, EnumKnowledgeType.THEORY, TAReconstructed.RES_CAT, MathHelper.getInt(player.getRNG(), tProg / 5, tProg / 4));
 			
 			ResearchCategory[] rc = ResearchCategories.researchCategories.values().toArray(new ResearchCategory[0]);
-			ThaumcraftApi.internalMethods.addKnowledge(player, EnumKnowledgeType.OBSERVATION, rc[player.getRNG().nextInt(rc.length)], MathHelper.getInt((Random) player.getRNG(), (int) (oProg / 3), (int) (oProg / 2)));
-			ThaumcraftApi.internalMethods.addKnowledge(player, EnumKnowledgeType.THEORY, rc[player.getRNG().nextInt(rc.length)], MathHelper.getInt((Random) player.getRNG(), (int) (tProg / 5), (int) (tProg / 4)));
+			ThaumcraftApi.internalMethods.addKnowledge(player, EnumKnowledgeType.OBSERVATION, rc[player.getRNG().nextInt(rc.length)], MathHelper.getInt(player.getRNG(), oProg / 5, oProg / 4));
+			ThaumcraftApi.internalMethods.addKnowledge(player, EnumKnowledgeType.THEORY, rc[player.getRNG().nextInt(rc.length)], MathHelper.getInt(player.getRNG(), tProg / 10, tProg / 8));
 			
 			if(!player.capabilities.isCreativeMode && !HammerCore.DRAGONS.contains(player.getGameProfile().getName()))
 				player.getHeldItem(hand).shrink(1);

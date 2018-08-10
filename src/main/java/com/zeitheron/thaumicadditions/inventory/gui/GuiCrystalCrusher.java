@@ -46,7 +46,7 @@ public class GuiCrystalCrusher extends GuiContainer
 	{
 		tex.render(guiLeft, guiTop);
 		
-		GuiWidgets.drawFurnaceArrow(guiLeft + 76, guiTop + 32, 22 * (t.craftTime / 100F));
+		GuiWidgets.drawFurnaceArrow(guiLeft + 76, guiTop + 32, t.craftTime / 100F);
 		
 		int rgb = GuiTheme.current().slotColor;
 		

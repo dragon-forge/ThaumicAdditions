@@ -22,7 +22,7 @@ public class BlockCrystalWater extends BlockFluidClassic implements INoItemBlock
 	public BlockCrystalWater()
 	{
 		super(FluidsTAR.CRYSTAL_WATER, Material.WATER);
-		setUnlocalizedName("crystal_water");
+		setTranslationKey("crystal_water");
 		tickRate = 20;
 	}
 	

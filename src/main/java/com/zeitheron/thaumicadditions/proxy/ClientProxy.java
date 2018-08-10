@@ -159,7 +159,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public int getItemColor(ItemStack stack, int layer)
 	{
-		return Minecraft.getMinecraft().getItemColors().getColorFromItemstack(stack, layer);
+		return Minecraft.getMinecraft().getItemColors().colorMultiplier(stack, layer);
 	}
 	
 	@Override
