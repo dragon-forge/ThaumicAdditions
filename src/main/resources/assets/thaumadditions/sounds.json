@@ -1,0 +1,6 @@
+{
+	"rune_set": { "sounds": [ "thaumadditions:rune_set" ] },
+	"popen": { "sounds": [ "thaumadditions:popen" ] },
+	"fizz": { "sounds": [ "thaumadditions:fizz" ] },
+	"pclose": { "sounds": [ "thaumadditions:pclose" ] }
+}

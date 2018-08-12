@@ -18,6 +18,7 @@ tile.thaumadditions:crafting_furnace.name=Crafting Furnace
 tile.thaumadditions:mithrillium_smelter.name=Mithrillium Smeltery
 tile.thaumadditions:mithminite_smelter.name=Mithminite Smeltery
 tile.thaumadditions:adaminite_smelter.name=Adaminite Smeltery
+tile.thaumadditions:seal.name=Arcane Seal
 
 tile.thaumadditions:aspect_combiner.name=Essentia Combiner
 tile.thaumadditions:aura_charger.name=Aura Charger
@@ -66,6 +67,7 @@ item.thaumadditions:mithrillium_plate.name=Mithrillium Plate
 item.thaumadditions:adaminite_plate.name=Adaminite Plate
 item.thaumadditions:mithminite_plate.name=Mithminite Plate
 item.thaumadditions:salt_essence.name=Vis Salt
+item.thaumadditions:seal_symbol.name=Seal Symbol: @ASPECT
 
 item.thaumadditions:zeith_scale.name=Zeitheron's Curiosity
 item.thaumadditions:zeith_scale.tip=Drops from a mystical scalie

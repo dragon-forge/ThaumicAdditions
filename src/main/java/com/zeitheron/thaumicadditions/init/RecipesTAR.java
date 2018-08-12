@@ -18,6 +18,7 @@ import com.zeitheron.thaumicadditions.api.blueprint.BlueprintBuilder;
 import com.zeitheron.thaumicadditions.recipes.RecipeApplySalt;
 import com.zeitheron.thaumicadditions.recipes.RecipeClearSalt;
 import com.zeitheron.thaumicadditions.recipes.RecipeMixSalts;
+import com.zeitheron.thaumicadditions.recipes.RecipePaintSeal;
 import com.zeitheron.thaumicadditions.recipes.ingr.NBTRespectfulIngredient;
 import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;
 
@@ -77,6 +78,7 @@ public class RecipesTAR extends RecipeRegistry
 		recipe(new RecipeMixSalts().setRegistryName(new ResourceLocation(getMod(), "essence_salt.mix")));
 		recipe(new RecipeApplySalt().setRegistryName(new ResourceLocation(getMod(), "essence_salt.apply")));
 		recipe(new RecipeClearSalt().setRegistryName(new ResourceLocation(getMod(), "essence_salt.remove")));
+		recipe(new RecipePaintSeal());
 	}
 	
 	private void infusing()

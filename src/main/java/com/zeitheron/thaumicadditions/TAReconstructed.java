@@ -15,6 +15,7 @@ import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.init.KnowledgeTAR;
 import com.zeitheron.thaumicadditions.init.PotionsTAR;
 import com.zeitheron.thaumicadditions.init.RecipesTAR;
+import com.zeitheron.thaumicadditions.init.SealsTAR;
 import com.zeitheron.thaumicadditions.proxy.CommonProxy;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -103,6 +104,7 @@ public class TAReconstructed
 		RES_CAT = ResearchCategories.registerCategory("THAUMADDITIONS", "UNLOCKINFUSION", new AspectList().add(Aspect.ALCHEMY, 30).add(Aspect.FLUX, 10).add(Aspect.MAGIC, 10).add(Aspect.LIFE, 5).add(Aspect.AVERSION, 5).add(Aspect.DESIRE, 5).add(Aspect.WATER, 5), new ResourceLocation(InfoTAR.MOD_ID, "textures/gui/thaumonomicon_icon.png"), CommonProxy.TEXTURE_THAUMONOMICON_BG, new ResourceLocation(InfoTAR.MOD_ID, "textures/gui/gui_research_back_over.png"));
 		RecipesTAR.init.call();
 		PotionsTAR.register.call();
+		SealsTAR.init();
 		
 		WeightedRandomLoot.lootBagRare.add(new WeightedRandomLoot(new ItemStack(ItemsTAR.ZEITH_SCALES), 1));
 		EntityPech.tradeInventory.get(2).add(Arrays.asList(5, new ItemStack(ItemsTAR.ZEITH_SCALES)));

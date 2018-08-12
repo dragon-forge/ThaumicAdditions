@@ -1,5 +1,7 @@
 package com.zeitheron.thaumicadditions.proxy;
 
+import javax.annotation.Nonnull;
+
 import com.zeitheron.hammercore.client.render.item.ItemRenderingHandler;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockHorizontal;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockOrientable;
@@ -19,6 +21,7 @@ import com.zeitheron.thaumicadditions.client.tesr.TESRCrystalCrusher;
 import com.zeitheron.thaumicadditions.client.texture.TextureThaumonomiconBG;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
+import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.proxy.fx.FXHandler;
 import com.zeitheron.thaumicadditions.proxy.fx.FXHandlerClient;
 import com.zeitheron.thaumicadditions.tiles.TileAspectCombiner;
@@ -30,10 +33,13 @@ import com.zeitheron.thaumicadditions.tiles.TileCrystalCrusher;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleBreaking;
+import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -41,12 +47,18 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import thaumcraft.api.aspects.Aspect;
 import thaumcraft.client.fx.ParticleEngine;
 import thaumcraft.client.fx.particles.FXGeneric;
 import thaumcraft.common.blocks.essentia.BlockJarItem;
 
 public class ClientProxy extends CommonProxy
 {
+	public static RenderGlobal RG;
+	private static World lastWorld;
+	
 	@Override
 	public void preInit()
 	{
@@ -67,6 +79,29 @@ public class ClientProxy extends CommonProxy
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(ItemsTAR.SALT_ESSENCE::getItemColor, ItemsTAR.SALT_ESSENCE);
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(ItemsTAR.ENTITY_CELL::getColor, ItemsTAR.ENTITY_CELL);
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(BlocksTAR.CRYSTAL_BLOCK::getColor, BlocksTAR.CRYSTAL_BLOCK.getItemBlock());
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, index) ->
+		{
+			Aspect a;
+			return index == 0 && (a = ItemSealSymbol.getAspect(stack)) != null ? a.getColor() : 0xFFFFFF;
+		}, ItemsTAR.SEAL_SYMBOL);
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, layer) -> 
+		{
+			if(layer == 1)
+			{
+				int color = 0xFFFFFF;
+				
+				if(stack.hasTagCompound())
+				{
+					int[] rgb = stack.getTagCompound().getIntArray("RGB");
+					if(rgb != null && rgb.length >= 3)
+						color = rgb[0] << 16 | rgb[1] << 8 | rgb[2];
+				}
+				
+				return color;
+			}
+			
+			return 0xFFFFFF;
+		}, Item.getItemFromBlock(BlocksTAR.SEAL));
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(BlocksTAR.CRYSTAL_BLOCK::getColor, BlocksTAR.CRYSTAL_BLOCK);
 		
 		// Add custom TESRs
@@ -168,6 +203,18 @@ public class ClientProxy extends CommonProxy
 		return new FXHandlerClient();
 	}
 	
+	@SubscribeEvent
+	public void clientTick(ClientTickEvent evt)
+	{
+		if(RG == null)
+			RG = new RenderGlobal(Minecraft.getMinecraft());
+		
+		if(lastWorld != Minecraft.getMinecraft().world)
+			RG.setWorldAndLoadRenderers(Minecraft.getMinecraft().world);
+		
+		lastWorld = Minecraft.getMinecraft().world;
+	}
+	
 	private static void mapFluid(BlockFluidBase fluidBlock)
 	{
 		final Item item = Item.getItemFromBlock(fluidBlock);
@@ -193,5 +240,15 @@ public class ClientProxy extends CommonProxy
 			int color = TAReconstructed.proxy.getItemColor(stack, 0);
 			setRBGColorF(ColorHelper.getRed(color), ColorHelper.getGreen(color), ColorHelper.getBlue(color));
 		}
+	}
+	
+	@Nonnull
+	public static TextureAtlasSprite getSprite(String path)
+	{
+		TextureMap m = Minecraft.getMinecraft().getTextureMapBlocks();
+		TextureAtlasSprite s = m.getTextureExtry(path);
+		if(s == null)
+			s = m.getAtlasSprite(path);
+		return s != null ? s : m.getMissingSprite();
 	}
 }

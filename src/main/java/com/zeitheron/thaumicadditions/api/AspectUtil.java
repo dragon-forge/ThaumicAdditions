@@ -6,6 +6,7 @@ import java.util.List;
 import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
+import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -119,6 +120,16 @@ public class AspectUtil
 		is.setTagCompound(new NBTTagCompound());
 		is.getTagCompound().setString("Aspect", a.getTag());
 		return is;
+	}
+	
+	public static ItemStack sealSymbol(Aspect a, int count)
+	{
+		return ItemSealSymbol.createItem(a, count);
+	}
+	
+	public static ItemStack sealSymbol(Aspect a)
+	{
+		return sealSymbol(a, 1);
 	}
 	
 	public static Aspect getAspectFromCrystalBlockStack(ItemStack is)
