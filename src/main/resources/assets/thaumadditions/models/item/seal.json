@@ -1,0 +1,1 @@
+{ "parent": "item/generated", "textures": { "layer0": "thaumadditions:blocks/seal_base", "layer1": "thaumadditions:blocks/seal_inner" } }
