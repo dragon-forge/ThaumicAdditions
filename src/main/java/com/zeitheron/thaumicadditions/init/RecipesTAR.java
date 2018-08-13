@@ -15,6 +15,7 @@ import com.zeitheron.hammercore.utils.recipes.helper.RegisterRecipes;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.api.blueprint.BlueprintBuilder;
+import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.recipes.RecipeApplySalt;
 import com.zeitheron.thaumicadditions.recipes.RecipeClearSalt;
 import com.zeitheron.thaumicadditions.recipes.RecipeMixSalts;
@@ -32,6 +33,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.oredict.OreDictionary;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -47,6 +49,10 @@ public class RecipesTAR extends RecipeRegistry
 {
 	public static final ResourceLocation crystalBlockRecipeIDFake = new ResourceLocation(InfoTAR.MOD_ID, "crystal_block_recipes_all");
 	public static final List<ResourceLocation> crystalBlockRecipes = new ArrayList<>();
+	
+	public static final ResourceLocation sealSymbolRecipeIDFake = new ResourceLocation(InfoTAR.MOD_ID, "seal_symbol_recipes_all");
+	public static final List<ResourceLocation> sealSymbolRecipes = new ArrayList<>();
+	
 	public static final Map<Item, List<ResourceLocation>> FAKE_RECIPE_MAP = new HashMap<>();
 	
 	public static OnetimeCaller init;
@@ -93,7 +99,19 @@ public class RecipesTAR extends RecipeRegistry
 		addInfusionRecipe("aura_disperser", new ItemStack(BlocksTAR.AURA_DISPERSER), "TAR_AURA_DISPERSER", 4, new ItemStack(Blocks.DISPENSER), new AspectList().add(KnowledgeTAR.FLUCTUS, 30).add(Aspect.AURA, 10).add(Aspect.ALCHEMY, 20).add(KnowledgeTAR.VENTUS, 50), new ItemStack(ItemsTC.mechanismComplex), AspectUtil.salt(Aspect.AURA), AspectUtil.salt(Aspect.ALCHEMY), new ItemStack(BlocksTC.shimmerleaf), new ItemStack(ItemsTC.morphicResonator), AspectUtil.salt(KnowledgeTAR.FLUCTUS), AspectUtil.salt(KnowledgeTAR.DRACO), "nitor");
 		addInfusionRecipe("crystal_bore", new ItemStack(BlocksTAR.CRYSTAL_BORE), "TAR_CRYSTAL_BORE", 5, new ItemStack(ItemsTC.morphicResonator), new AspectList().add(KnowledgeTAR.EXITIUM, 20).add(Aspect.EARTH, 10).add(Aspect.ENTROPY, 30), new ItemStack(BlocksTC.stoneArcane), new ItemStack(ItemsTC.plate), new ItemStack(BlocksTC.stoneArcane), new ItemStack(ItemsTC.plate), new ItemStack(BlocksTC.stoneArcane), new ItemStack(ItemsTC.mechanismComplex));
 		addInfusionRecipe("enchanted_golden_apple", new ItemStack(Items.GOLDEN_APPLE, 1, 1), "TAR_ENCHANTED_GOLDEN_APPLE", 6, new ItemStack(Items.GOLDEN_APPLE, 1, 0), new AspectList().add(Aspect.DESIRE, 10).add(Aspect.LIFE, 5).add(KnowledgeTAR.VISUM, 20), new ItemStack(Blocks.GOLD_BLOCK), crystalEssence(Aspect.DESIRE), new ItemStack(Blocks.GOLD_BLOCK), crystalEssence(Aspect.DESIRE), new ItemStack(Blocks.GOLD_BLOCK), crystalEssence(Aspect.DESIRE), new ItemStack(Blocks.GOLD_BLOCK), crystalEssence(Aspect.DESIRE));
-		addInfusionRecipe("mob_summoner", new ItemStack(BlocksTAR.ENTITY_SUMMONER), "TAR_MOB_SUMMONING", 5, new ItemStack(BlocksTC.metalBlockThaumium), new AspectList().add(KnowledgeTAR.DRACO, 20).add(KnowledgeTAR.EXITIUM, 10).add(Aspect.LIFE, 15).add(AspectUtil.primals(15)).add(Aspect.SOUL, 20).add(Aspect.MAN, 30).add(Aspect.BEAST, 25).add(KnowledgeTAR.INFERNUM, 100), new ItemStack(ItemsTAR.ENTITY_CELL), new ItemStack(ItemsTC.mechanismSimple), new ItemStack(ItemsTC.filter), new ItemStack(ItemsTC.alumentum), "nitor", new ItemStack(BlocksTAR.PURIFLOWER));
+		addInfusionRecipe("mob_summoner", new ItemStack(BlocksTAR.ENTITY_SUMMONER), "TAR_MOB_SUMMONING", 5, new ItemStack(BlocksTC.metalBlockThaumium), new AspectList().add(KnowledgeTAR.DRACO, 10).add(KnowledgeTAR.IMPERIUM, 50).add(KnowledgeTAR.EXITIUM, 10).add(Aspect.LIFE, 15).add(Aspect.SOUL, 20).add(Aspect.MAN, 30).add(Aspect.BEAST, 25).add(KnowledgeTAR.INFERNUM, 100), new ItemStack(ItemsTAR.ENTITY_CELL), new ItemStack(ItemsTC.mechanismSimple), new ItemStack(ItemsTC.filter), new ItemStack(ItemsTC.alumentum), "nitor", new ItemStack(BlocksTAR.TWILIGHT_TOTEM));
+		addInfusionRecipe("puriflower", new ItemStack(BlocksTAR.PURIFLOWER), "TAR_PURIFLOWER", 2, new ItemStack(BlocksTAR.DAWN_TOTEM), new AspectList().add(Aspect.AURA, 10).add(KnowledgeTAR.IMPERIUM, 15).add(Aspect.ORDER, 30).add(Aspect.PLANT, 60), BlocksTC.shimmerleaf, BlocksTC.vishroom, crystalEssence(Aspect.PLANT), BlocksTC.vishroom);
+		addInfusionRecipe("growth_chamber", new ItemStack(BlocksTAR.GROWTH_CHAMBER), "TAR_GROWTH_CHAMBER", 3, BlocksTAR.CRYSTAL_BLOCK, new AspectList().add(Aspect.ORDER, 20).add(Aspect.MECHANISM, 15).add(KnowledgeTAR.IMPERIUM, 10), ItemsTC.amber, new ItemStack(ItemsTC.plate, 1, 2), ItemsTC.morphicResonator, new ItemStack(ItemsTC.plate, 1, 2), ItemsTC.visResonator, new ItemStack(ItemsTC.plate, 1, 2), ItemsTC.mechanismComplex, new ItemStack(ItemsTC.plate, 1, 2));
+		
+		for(Aspect a : Aspect.aspects.values())
+		{
+			InfusionRecipe rec = new InfusionRecipe("TAR_SEAL_SYMBOLS", ItemSealSymbol.createItem(a, 1), 1, new AspectList().add(a, 10), AspectUtil.crystalEssence(a), "nuggetGold", "nuggetGold", "nuggetGold", "nuggetGold");
+			ResourceLocation loc = new ResourceLocation(InfoTAR.MOD_ID, a.getTag() + "_seal_symbol");
+			sealSymbolRecipes.add(loc);
+			ThaumcraftApi.addInfusionCraftingRecipe(loc, rec);
+		}
+		
+		ThaumcraftApi.addFakeCraftingRecipe(sealSymbolRecipeIDFake, sealSymbolRecipes);
 	}
 	
 	private void arcaneCrafting()
@@ -107,6 +125,10 @@ public class RecipesTAR extends RecipeRegistry
 		addShapedArcaneRecipe("eldritch_jar", "TAR_ELDRITCH_JAR", 150, new AspectList().add(Aspect.WATER, 6), new ItemStack(BlocksTAR.ELDRITCH_JAR), "gpg", "gjg", "ggg", 'g', "paneGlass", 'p', new ItemStack(ItemsTC.plate, 1, 3), 'j', BlocksTAR.THAUMIUM_JAR);
 		addShapedArcaneRecipe("mithrillium_jar", "TAR_MITHRILLIUM_JAR", 750, new AspectList().add(Aspect.WATER, 12), new ItemStack(BlocksTAR.MITHRILLIUM_JAR), "gpg", "gjg", "ggg", 'g', "paneGlass", 'p', new ItemStack(ItemsTAR.MITHRILLIUM_PLATE), 'j', BlocksTAR.ELDRITCH_JAR);
 		addShapedArcaneRecipe("adaminite_jar", "TAR_ADAMINITE_JAR@2", 1000, new AspectList().add(Aspect.WATER, 24), new ItemStack(BlocksTAR.ADAMINITE_JAR), "gpg", "gjg", "ggg", 'g', "paneGlass", 'p', new ItemStack(ItemsTAR.ADAMINITE_PLATE), 'j', BlocksTAR.MITHRILLIUM_JAR);
+		addShapedArcaneRecipe("seal", "TAR_SEAL", 75, AspectUtil.primals(1), new ItemStack(BlocksTAR.SEAL, 2), " g ", "gwg", " g ", 'g', "nuggetGold", 'w', new ItemStack(Blocks.WOOL, 1, OreDictionary.WILDCARD_VALUE));
+		addShapedArcaneRecipe("twilight_totem", "TAR_TOTEMS@2", 50, new AspectList().add(Aspect.ENTROPY, 1).add(Aspect.AIR, 1), new ItemStack(BlocksTAR.TWILIGHT_TOTEM), "sws", "wcw", "sws", 's', BlocksTC.taintLog, 'w', ItemsTC.fabric, 'c', new NBTRespectfulIngredient(AspectUtil.crystalEssence(Aspect.FLUX)));
+		addShapedArcaneRecipe("dawn_totem", "TAR_TOTEMS", 50, new AspectList().add(Aspect.ORDER, 1).add(Aspect.AIR, 1), new ItemStack(BlocksTAR.DAWN_TOTEM), "sws", "wcw", "sws", 's', BlocksTC.plankSilverwood, 'w', new NBTRespectfulIngredient(AspectUtil.crystalEssence(Aspect.AURA)), 'c', BlocksTC.shimmerleaf);
+		addShapedArcaneRecipe("seal_globe", "TAR_SEAL_GLOBE", 100, AspectUtil.primals(1), new ItemStack(ItemsTAR.SEAL_GLOBE), "ggg", "grg", "lcl", 'g', "blockGlass", 'r', ItemsTC.visResonator, 'l', "ingotGold", 'c', new NBTRespectfulIngredient(crystalEssence(KnowledgeTAR.IMPERIUM)));
 		
 		for(Aspect a : Aspect.aspects.values())
 		{
@@ -122,7 +144,6 @@ public class RecipesTAR extends RecipeRegistry
 	private void crucible()
 	{
 		addCrucibleRecipe("crystal_water", "TAR_CRYSTAL_WATER", FluidUtil.getFilledBucket(new FluidStack(FluidsTAR.CRYSTAL_WATER, Fluid.BUCKET_VOLUME)), new ItemStack(Items.WATER_BUCKET), new AspectList().add(Aspect.CRYSTAL, 10).add(Aspect.DESIRE, 4).add(Aspect.EXCHANGE, 6));
-		addCrucibleRecipe("puriflower", "TAR_PURIFLOWER", new ItemStack(BlocksTAR.PURIFLOWER), new ItemStack(BlocksTC.vishroom), new AspectList().add(Aspect.PLANT, 20).add(Aspect.AURA, 10).add(Aspect.MAGIC, 5));
 	}
 	
 	private void multiblock()

@@ -15,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import thaumcraft.api.aspects.Aspect;
@@ -91,11 +92,13 @@ public class TileSeal extends TileSyncableTickable implements ITileDroppable
 			slots[index].set(null);
 		else
 			slots[index].set(aspect.getTag());
-		dirty = true;
 		
+		dirty = true;
 		if(instance != null)
 			instance.onSealBreak();
 		instance = null;
+		optInstNBT = null;
+		combination = null;
 	}
 	
 	@Override
@@ -136,5 +139,11 @@ public class TileSeal extends TileSyncableTickable implements ITileDroppable
 			if(combination != oldCombo)
 				instance = SealManager.makeInstance(this, combination, null);
 		}
+	}
+	
+	@Override
+	public AxisAlignedBB getRenderBoundingBox()
+	{
+		return super.getRenderBoundingBox().grow(4);
 	}
 }

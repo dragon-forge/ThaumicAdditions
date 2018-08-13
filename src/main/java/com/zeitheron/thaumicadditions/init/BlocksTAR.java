@@ -1,5 +1,6 @@
 package com.zeitheron.thaumicadditions.init;
 
+import com.zeitheron.thaumicadditions.api.utils.IOcasionalPositionedEvent;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractEssentiaJar;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractSmelter;
 import com.zeitheron.thaumicadditions.blocks.BlockAspectCombiner;
@@ -14,6 +15,7 @@ import com.zeitheron.thaumicadditions.blocks.BlockEntitySummoner;
 import com.zeitheron.thaumicadditions.blocks.BlockGrowthChamber;
 import com.zeitheron.thaumicadditions.blocks.BlockPuriflower;
 import com.zeitheron.thaumicadditions.blocks.BlockSeal;
+import com.zeitheron.thaumicadditions.blocks.BlockTotem;
 import com.zeitheron.thaumicadditions.tiles.jars.TileAdaminiteJar;
 import com.zeitheron.thaumicadditions.tiles.jars.TileBrassJar;
 import com.zeitheron.thaumicadditions.tiles.jars.TileEldritchJar;
@@ -37,6 +39,9 @@ public class BlocksTAR
 	public static final BlockEntitySummoner ENTITY_SUMMONER = new BlockEntitySummoner();
 	public static final BlockPuriflower PURIFLOWER = new BlockPuriflower();
 	public static final BlockCrystal CRYSTAL_BLOCK = new BlockCrystal();
+	
+	public static final BlockTotem DAWN_TOTEM = new BlockTotem("dawn", IOcasionalPositionedEvent.DAWN);
+	public static final BlockTotem TWILIGHT_TOTEM = new BlockTotem("twilight", IOcasionalPositionedEvent.TWILIGHT);
 	
 	public static final BlockGrowthChamber GROWTH_CHAMBER = new BlockGrowthChamber();
 	public static final BlockSeal SEAL = new BlockSeal();

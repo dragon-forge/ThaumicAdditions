@@ -14,9 +14,10 @@ public class ItemsTAR
 	public static final ItemMaterial MITHRILLIUM_INGOT = new ItemMaterial("mithrillium_ingot", "ingotMithrillium");
 	public static final ItemMaterial ADAMINITE_INGOT = new ItemMaterial("adaminite_ingot", "ingotAdaminite");
 	public static final ItemMaterial MITHMINITE_INGOT = new ItemMaterial("mithminite_ingot", "ingotMithminite");
-	public static final ItemMaterial MITHRILLIUM_PLATE = new ItemMaterial("mithrillium_plate");
-	public static final ItemMaterial ADAMINITE_PLATE = new ItemMaterial("adaminite_plate");
-	public static final ItemMaterial MITHMINITE_PLATE = new ItemMaterial("mithminite_plate");
+	public static final ItemMaterial MITHRILLIUM_PLATE = new ItemMaterial("mithrillium_plate", "plateMithrillium");
+	public static final ItemMaterial ADAMINITE_PLATE = new ItemMaterial("adaminite_plate", "plateAdaminite");
+	public static final ItemMaterial MITHMINITE_PLATE = new ItemMaterial("mithminite_plate", "plateMithminite");
+	public static final ItemMaterial SEAL_GLOBE = new ItemMaterial("seal_globe");
 	public static final ItemMaterial ZEITH_SCALES = new ItemZeithScale();
 	public static final ItemSaltEssence SALT_ESSENCE = new ItemSaltEssence();
 	public static final ItemDNASample ENTITY_CELL = new ItemDNASample();

@@ -2,12 +2,12 @@ package com.zeitheron.thaumicadditions.init;
 
 import java.util.function.Function;
 
+import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.api.seals.SealCombination;
 import com.zeitheron.thaumicadditions.api.seals.SealInstance;
 import com.zeitheron.thaumicadditions.api.seals.SealManager;
 import com.zeitheron.thaumicadditions.seals.earth.SealTillSoil;
-import com.zeitheron.thaumicadditions.seals.magic.SealMagicBoost;
 import com.zeitheron.thaumicadditions.seals.magic.SealPortal;
 import com.zeitheron.thaumicadditions.seals.water.SealWaterHydrate;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
@@ -22,9 +22,8 @@ public class SealsTAR
 	{
 		TAReconstructed.LOG.info("Registering seals...");
 		
-		register(new SealCombination(Aspect.WATER, null, null), seal -> new SealWaterHydrate(seal));
-		register(new SealCombination(Aspect.EARTH, Aspect.EARTH, Aspect.EARTH), seal -> new SealTillSoil(seal));
-		register(new SealMagicBoost.MagicBoostSealCombination(), seal -> new SealMagicBoost(seal));
+		register(new SealCombination(Aspect.WATER, null, null).withDescriptionKey("seal." + InfoTAR.MOD_ID + ":fertilesoil"), seal -> new SealWaterHydrate(seal));
+		register(new SealCombination(Aspect.EARTH, Aspect.EARTH, Aspect.EARTH).withDescriptionKey("seal." + InfoTAR.MOD_ID + ":createsoil"), seal -> new SealTillSoil(seal));
 		register(new SealPortal.PortalSealCombination(), seal -> new SealPortal(seal));
 		
 		TAReconstructed.LOG.info("-Registered " + seals + " seals.");

@@ -51,7 +51,7 @@ public class GuiGrowthChamber extends GuiContainer
 			float rotY = (System.currentTimeMillis() % 7200L) / 20F;
 			
 			GL11.glPushMatrix();
-			GL11.glTranslated(63 + 18, 24, 250F);
+			GL11.glTranslated(63 + 18, 27, 250F);
 			VirtualWorldRenderer.renderVirtualWorld(world, mc, new Rectangle(0, 0, 56, 56), 135, rotY, 2000F);
 			GL11.glPopMatrix();
 		}

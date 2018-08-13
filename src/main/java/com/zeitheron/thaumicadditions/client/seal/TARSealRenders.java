@@ -11,10 +11,10 @@ import com.zeitheron.hammercore.client.utils.RenderBlocks;
 import com.zeitheron.hammercore.client.utils.UtilsFX;
 import com.zeitheron.hammercore.client.utils.texture.TextureAtlasSpriteFull;
 import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.config.ConfigsTAR;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
-import com.zeitheron.thaumicadditions.proxy.ClientProxy;
 import com.zeitheron.thaumicadditions.seals.magic.SealPortal;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
 
@@ -56,10 +56,10 @@ public class TARSealRenders
 		
 		float size = (portal.holeSize + Math.min(Math.max(-partialTicks, portal.targetHoleSize - portal.holeSize), partialTicks)) / 5F;
 		
-		GL11.glDisable(2896);
-		
 		if(portal.holeSize <= 0)
 			return;
+		
+		GlStateManager.disableLighting();
 		
 		if(portal.txRender == null)
 			portal.txRender = new PortalRenderer();
@@ -89,7 +89,7 @@ public class TARSealRenders
 			GL11.glRotated(seal.orientation == EnumFacing.WEST ? 270 : seal.orientation == EnumFacing.EAST ? 90 : seal.orientation == EnumFacing.NORTH ? 0 : 180, 0, 0, 1);
 			GL11.glRotated(180, 0, 1, 0);
 			
-			GL11.glTranslated(-.5, -.5, -.5);
+			GL11.glTranslated(-.5, -.5, -.6);
 			
 			GL11.glBegin(7);
 			{
@@ -114,19 +114,32 @@ public class TARSealRenders
 		
 		UtilsFX.bindTexture(InfoTAR.MOD_ID, "textures/misc/portal" + (portal.viewer != null && pr != null && ConfigsTAR.portalGfx ? "2" : "") + ".png");
 		GL11.glDepthMask(false);
-		GL11.glEnable(3042);
+		// GL11.glEnable(3042);
 		GlStateManager.enableTexture2D();
 		
 		int count = 6;
 		for(int i = 0; i < count; ++i)
 		{
+			if(i == 3)
+			{
+				Aspect a = seal.getSymbol(2);
+				if(a != null)
+				{
+					ColorHelper.gl(255 << 24 | a.getColor());
+					UtilsFX.bindTexture(InfoTAR.MOD_ID, "textures/misc/portal2_nc.png");
+				}
+			} else if(i == 4)
+			{
+				UtilsFX.bindTexture(InfoTAR.MOD_ID, "textures/misc/portal2.png");
+				GlStateManager.color(1, 1, 1);
+			}
+			
 			double ascale = i / 5D;
 			float scale = (float) (size + ascale);
 			GL11.glPushMatrix();
 			GL11.glPushMatrix();
 			GL11.glTranslated(0, .13, -.04 - i / 100D);
 			GL11.glScaled(size, size, size);
-			GL11.glColor4f(1, 1, 1, 1F);
 			
 			GL11.glBlendFunc(770, i % 2 == 0 ? 1 : 771);
 			
@@ -165,8 +178,8 @@ public class TARSealRenders
 		}
 		
 		GL11.glDepthMask(true);
-		GL11.glEnable(2896);
 		GL11.glBlendFunc(770, 771);
+		GlStateManager.enableLighting();
 	}
 	
 	public static void renderStandart(TileSeal seal, double x, double y, double z, float partialTicks, int index)
@@ -198,7 +211,7 @@ public class TARSealRenders
 		if(rotates)
 			GL11.glRotated((seal.ticksExisted + partialTicks) * speed % 360D * mult, 0, 0, 1);
 		GL11.glTranslated(-.5, -.5, -.5);
-		Minecraft.getMinecraft().getTextureManager().bindTexture(tex);
+		UtilsFX.bindTexture(tex);
 		Tessellator.getInstance().draw();
 		GL11.glPopMatrix();
 	}
@@ -238,14 +251,15 @@ public class TARSealRenders
 				int heightBackup = mc.displayHeight;
 				int clouds = settings.clouds;
 				
-				mc.renderGlobal = ClientProxy.RG;
+				int size = 512;
+				
 				mc.setRenderViewEntity(portal.viewer);
 				settings.thirdPersonView = 0;
 				settings.hideGUI = true;
 				settings.mipmapLevels = 3;
 				settings.clouds = 0;
-				mc.displayWidth = 512;
-				mc.displayHeight = 512;
+				mc.displayWidth = size;
+				mc.displayHeight = size;
 				
 				if(mc.world != null)
 					try
@@ -253,12 +267,12 @@ public class TARSealRenders
 						mc.entityRenderer.renderWorld(event.renderTickTime, 0L);
 					} catch(Throwable err)
 					{
+						err.printStackTrace();
 					}
 				
 				GlStateManager.bindTexture(pr.portalTexture);
-				GL11.glCopyTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, 0, 0, 512, 512, 0);
+				GL11.glCopyTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, 0, 0, size, size, 0);
 				
-				mc.renderGlobal = renderBackup;
 				mc.setRenderViewEntity(entityBackup);
 				settings.fovSetting = fovBackup;
 				settings.thirdPersonView = thirdPersonBackup;

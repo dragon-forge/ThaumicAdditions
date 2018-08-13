@@ -1,0 +1,9 @@
+{
+    "parent": "thaumadditions:block/orientable",
+    "textures": {
+        "top": "thaumcraft:blocks/metal_brass",
+        "front": "thaumadditions:blocks/growth_chamber_front",
+        "side": "thaumadditions:blocks/growth_chamber_side",
+		"down": "thaumcraft:blocks/metal_thaumium"
+    }
+}

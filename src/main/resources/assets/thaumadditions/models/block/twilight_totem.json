@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "east": "thaumadditions:blocks/totems/twilight/0",
+		"west": "thaumadditions:blocks/totems/twilight/1",
+		"south": "thaumadditions:blocks/totems/twilight/2",
+		"north": "thaumadditions:blocks/totems/twilight/3",
+		"up": "thaumadditions:blocks/totems/twilight/4",
+		"down": "thaumadditions:blocks/totems/twilight/5",
+		"particle": "thaumadditions:blocks/totems/twilight/0"
+    }
+}

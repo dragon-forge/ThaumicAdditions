@@ -7,10 +7,13 @@ import com.zeitheron.hammercore.HammerCore;
 import com.zeitheron.hammercore.api.ITileBlock;
 import com.zeitheron.hammercore.net.HCNet;
 import com.zeitheron.hammercore.utils.EnumRotation;
+import com.zeitheron.hammercore.utils.NBTUtils;
+import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.hammercore.utils.WorldLocation;
 import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.hammercore.utils.color.ColorNamePicker;
 import com.zeitheron.thaumicadditions.InfoTAR;
+import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.api.seals.SealInstance;
 import com.zeitheron.thaumicadditions.api.seals.SealManager;
 import com.zeitheron.thaumicadditions.blocks.def.BlockRendered;
@@ -19,6 +22,7 @@ import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -28,9 +32,12 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -40,6 +47,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.Constants.NBT;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.Aspect;
@@ -49,11 +60,12 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 {
 	public static final AxisAlignedBB[] SEAL_BOUNDS = { new AxisAlignedBB(5 / 16D, 0, 5 / 16D, 11 / 16D, 1 / 16D, 11 / 16D), new AxisAlignedBB(5 / 16D, 14 / 16D, 5 / 16D, 11 / 16D, 1, 11 / 16D), new AxisAlignedBB(5 / 16D, 5 / 16D, 0, 11 / 16D, 11 / 16D, 1 / 16D), new AxisAlignedBB(5 / 16D, 5 / 16D, 14 / 16D, 11 / 16D, 11 / 16D, 1), new AxisAlignedBB(0, 5 / 16D, 5 / 16D, 1 / 16D, 11 / 16D, 11 / 16D), new AxisAlignedBB(14 / 16D, 5 / 16D, 5 / 16D, 1, 11 / 16D, 11 / 16D) };
 	
-	private static final int[] RGBs = new int[] { 255, 255, 255 };
+	private static final int[] RGBs = new int[] { 255, 0, 0 };
 	
 	public BlockSeal()
 	{
 		super(Material.ROCK);
+		MinecraftForge.EVENT_BUS.register(this);
 		setTranslationKey("seal");
 		setHarvestLevel("pickaxe", -1);
 		setHardness(0);
@@ -73,7 +85,7 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 		if(rgb.length >= 3)
 			col = "#" + Integer.toHexString(rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 		String name = ColorNamePicker.getColorNameFromRgb(rgb[0], rgb[1], rgb[2]);
-		tooltip.add(I18n.format(getTranslationKey() + ".desc").replace("$col", advanced.isAdvanced() ? name + " (" + col.toUpperCase() + ")" : name));
+		tooltip.add(I18n.format(getTranslationKey() + ".desc").replace("@COLOR", advanced.isAdvanced() ? name + " (" + col.toUpperCase() + ")" : name));
 	}
 	
 	@Override
@@ -203,6 +215,15 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		TileSeal seal = WorldUtil.cast(worldIn.getTileEntity(pos), TileSeal.class);
+		
+		if(seal != null && !playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getItem() == ItemsTAR.SEAL_GLOBE)
+		{
+			TAReconstructed.proxy.viewSeal(seal);
+			if(!worldIn.isRemote)
+				HammerCore.audioProxy.playSoundAt(worldIn, InfoTAR.MOD_ID + ":rune_set", pos, .5F, 1F, SoundCategory.PLAYERS);
+			return true;
+		}
+		
 		if(seal != null && !worldIn.isRemote)
 		{
 			ItemStack stack = playerIn.getHeldItem(hand);
@@ -273,5 +294,37 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 		if(tile != null && tile.instance != null)
 			tile.instance.onEntityCollisionWithSeal(worldIn, pos, state, entityIn);
 		super.onEntityCollision(worldIn, pos, state, entityIn);
+	}
+	
+	@SubscribeEvent
+	public void interact(PlayerInteractEvent e)
+	{
+		EntityPlayer player = e.getEntityPlayer();
+		EnumHand hand = e.getHand();
+		ItemStack held = player.getHeldItem(hand);
+		BlockPos pos = e.getPos();
+		
+		if(!held.isEmpty() && held.getItem() == Item.getItemFromBlock(this))
+		{
+			ItemStack copy  = held.copy();
+			copy.setCount(1);
+			
+			IBlockState state = player.world.getBlockState(pos);
+			if(state.getBlock() == Blocks.CAULDRON)
+			{
+				int fill = state.getValue(BlockCauldron.LEVEL);
+				if(fill > 0 && copy.hasTagCompound() && copy.getTagCompound().hasKey("RGB", NBT.TAG_INT_ARRAY))
+				{
+					held.shrink(1);
+					player.world.setBlockState(pos, state.withProperty(BlockCauldron.LEVEL, fill - 1), 3);
+					NBTUtils.removeTagFromItemStack(copy, "RGB");
+					SoundUtil.playSoundEffect(player.world, "item.bucket.fill", pos, .5F, 1F, SoundCategory.PLAYERS);
+					if(!player.inventory.addItemStackToInventory(copy) && !player.world.isRemote)
+						WorldUtil.spawnItemStack(player.world, player.posX, player.posY, player.posZ, copy);
+					e.setCancellationResult(EnumActionResult.SUCCESS);
+					e.setCanceled(true);
+				}
+			}
+		}
 	}
 }

@@ -3,6 +3,7 @@ package com.zeitheron.thaumicadditions.proxy;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.proxy.fx.FXHandler;
+import com.zeitheron.thaumicadditions.tiles.TileSeal;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -59,5 +60,9 @@ public class CommonProxy
 	public int getItemColor(ItemStack stack, int layer)
 	{
 		return 0xFFFFFF;
+	}
+	
+	public void viewSeal(TileSeal tile)
+	{
 	}
 }
