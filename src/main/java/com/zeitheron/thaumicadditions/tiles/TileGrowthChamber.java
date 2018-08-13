@@ -132,7 +132,7 @@ public class TileGrowthChamber extends TileSyncableTickable implements IEssentia
 			ItemStack is = AspectUtil.crystalEssence(AspectUtil.getAspectFromCrystalBlockStack(growthInventory.getStackInSlot(0)));
 			is.setCount(1);
 			growthInventory.setInventorySlotContents(1, is);
-		} else if(!growthInventory.getStackInSlot(1).isEmpty() && growthInventory.getStackInSlot(1).getItem() == BlocksTAR.CRYSTAL_BLOCK.getItemBlock())
+		} else if(!growthInventory.getStackInSlot(1).isEmpty() && growthInventory.getStackInSlot(1).getItem() == ItemsTC.crystalEssence)
 		{
 			ItemStack is = growthInventory.getStackInSlot(1);
 			if(is.getCount() + 1 <= is.getMaxStackSize())

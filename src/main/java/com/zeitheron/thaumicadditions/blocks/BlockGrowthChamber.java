@@ -2,6 +2,7 @@ package com.zeitheron.thaumicadditions.blocks;
 
 import com.zeitheron.hammercore.internal.GuiManager;
 import com.zeitheron.hammercore.internal.blocks.base.BlockDeviceHC;
+import com.zeitheron.hammercore.internal.blocks.base.IBlockHorizontal;
 import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.tiles.TileGrowthChamber;
 
@@ -14,7 +15,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockGrowthChamber extends BlockDeviceHC<TileGrowthChamber>
+public class BlockGrowthChamber extends BlockDeviceHC<TileGrowthChamber> implements IBlockHorizontal
 {
 	public BlockGrowthChamber()
 	{

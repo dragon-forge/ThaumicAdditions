@@ -27,6 +27,7 @@ import com.zeitheron.thaumicadditions.utils.TP;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.multiplayer.ChunkProviderClient;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -71,6 +72,15 @@ public class SealPortal extends SealInstance
 		public String toString()
 		{
 			return Aspect.MAGIC.getName() + ", " + Aspect.AIR.getName() + ", Any";
+		}
+		
+		@Override
+		public String getDescription(TileSeal seal)
+		{
+			Aspect a;
+			if((a = seal.getSymbol(2)) != null)
+				return I18n.format("seal.thaumadditions:portalb", a.getName());
+			return I18n.format("seal.thaumadditions:portala");
 		}
 	}
 	

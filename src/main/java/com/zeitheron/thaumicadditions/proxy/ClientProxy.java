@@ -21,6 +21,7 @@ import com.zeitheron.thaumicadditions.client.tesr.TESRCrystalCrusher;
 import com.zeitheron.thaumicadditions.client.texture.TextureThaumonomiconBG;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
+import com.zeitheron.thaumicadditions.inventory.gui.GuiSealGlobe;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.proxy.fx.FXHandler;
 import com.zeitheron.thaumicadditions.proxy.fx.FXHandlerClient;
@@ -29,11 +30,11 @@ import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;
 import com.zeitheron.thaumicadditions.tiles.TileAuraDisperser;
 import com.zeitheron.thaumicadditions.tiles.TileCrystalBore;
 import com.zeitheron.thaumicadditions.tiles.TileCrystalCrusher;
+import com.zeitheron.thaumicadditions.tiles.TileSeal;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleBreaking;
-import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -47,8 +48,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.client.fx.ParticleEngine;
 import thaumcraft.client.fx.particles.FXGeneric;
@@ -56,9 +55,6 @@ import thaumcraft.common.blocks.essentia.BlockJarItem;
 
 public class ClientProxy extends CommonProxy
 {
-	public static RenderGlobal RG;
-	private static World lastWorld;
-	
 	@Override
 	public void preInit()
 	{
@@ -84,11 +80,11 @@ public class ClientProxy extends CommonProxy
 			Aspect a;
 			return index == 0 && (a = ItemSealSymbol.getAspect(stack)) != null ? a.getColor() : 0xFFFFFF;
 		}, ItemsTAR.SEAL_SYMBOL);
-		Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, layer) -> 
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, layer) ->
 		{
 			if(layer == 1)
 			{
-				int color = 0xFFFFFF;
+				int color = 0xFF0000;
 				
 				if(stack.hasTagCompound())
 				{
@@ -203,18 +199,6 @@ public class ClientProxy extends CommonProxy
 		return new FXHandlerClient();
 	}
 	
-	@SubscribeEvent
-	public void clientTick(ClientTickEvent evt)
-	{
-		if(RG == null)
-			RG = new RenderGlobal(Minecraft.getMinecraft());
-		
-		if(lastWorld != Minecraft.getMinecraft().world)
-			RG.setWorldAndLoadRenderers(Minecraft.getMinecraft().world);
-		
-		lastWorld = Minecraft.getMinecraft().world;
-	}
-	
 	private static void mapFluid(BlockFluidBase fluidBlock)
 	{
 		final Item item = Item.getItemFromBlock(fluidBlock);
@@ -250,5 +234,11 @@ public class ClientProxy extends CommonProxy
 		if(s == null)
 			s = m.getAtlasSprite(path);
 		return s != null ? s : m.getMissingSprite();
+	}
+	
+	@Override
+	public void viewSeal(TileSeal tile)
+	{
+		Minecraft.getMinecraft().addScheduledTask(() -> Minecraft.getMinecraft().displayGuiScreen(new GuiSealGlobe(tile)));
 	}
 }

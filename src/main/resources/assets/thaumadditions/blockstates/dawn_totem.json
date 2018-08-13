@@ -1,0 +1,23 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "normal": [
+			{ "model": "thaumadditions:dawn_totem" },
+			{ "model": "thaumadditions:dawn_totem", "x": 90 },
+			{ "model": "thaumadditions:dawn_totem", "x": 180 },
+			{ "model": "thaumadditions:dawn_totem", "x": 270 },
+			{ "model": "thaumadditions:dawn_totem", "y": 90 },
+			{ "model": "thaumadditions:dawn_totem", "y": 180 },
+			{ "model": "thaumadditions:dawn_totem", "y": 270 },
+			{ "model": "thaumadditions:dawn_totem", "y": 90, "x": 90 },
+			{ "model": "thaumadditions:dawn_totem", "y": 90, "x": 180 },
+			{ "model": "thaumadditions:dawn_totem", "y": 90, "x": 270 },
+			{ "model": "thaumadditions:dawn_totem", "y": 180, "x": 90 },
+			{ "model": "thaumadditions:dawn_totem", "y": 180, "x": 180 },
+			{ "model": "thaumadditions:dawn_totem", "y": 180, "x": 270 },
+			{ "model": "thaumadditions:dawn_totem", "y": 270, "x": 90 },
+			{ "model": "thaumadditions:dawn_totem", "y": 270, "x": 180 },
+			{ "model": "thaumadditions:dawn_totem", "y": 270, "x": 270 }
+		]
+    }
+}
