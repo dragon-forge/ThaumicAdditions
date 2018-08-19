@@ -4,9 +4,10 @@ import java.util.Objects;
 
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
+import com.zeitheron.thaumicadditions.utils.Foods;
 
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.ItemFood;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,7 +20,7 @@ public class RecipeApplySalt extends Impl<IRecipe> implements IRecipe
 	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn)
 	{
-		ItemFood food = null;
+		Item food = null;
 		NBTTagCompound nbt = null;
 		int foodq = 0;
 		int dmg = 0;
@@ -32,7 +33,7 @@ public class RecipeApplySalt extends Impl<IRecipe> implements IRecipe
 				continue;
 			if(stack.getItem() != ItemsTAR.SALT_ESSENCE)
 			{
-				if(stack.getItem() instanceof ItemFood)
+				if(Foods.isFood(stack.getItem()))
 				{
 					if(food != null)
 					{
@@ -41,7 +42,7 @@ public class RecipeApplySalt extends Impl<IRecipe> implements IRecipe
 						else
 							foodq++;
 					}
-					food = (ItemFood) stack.getItem();
+					food = stack.getItem();
 					dmg = stack.getItemDamage();
 					nbt = stack.getTagCompound();
 					foodq++;
@@ -67,7 +68,7 @@ public class RecipeApplySalt extends Impl<IRecipe> implements IRecipe
 	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv)
 	{
-		ItemFood food = null;
+		Item food = null;
 		NBTTagCompound nbt = null;
 		int foodq = 0;
 		int dmg = 0;
@@ -80,7 +81,7 @@ public class RecipeApplySalt extends Impl<IRecipe> implements IRecipe
 				continue;
 			if(stack.getItem() != ItemsTAR.SALT_ESSENCE)
 			{
-				if(stack.getItem() instanceof ItemFood)
+				if(Foods.isFood(stack.getItem()))
 				{
 					if(food != null)
 					{
@@ -89,7 +90,7 @@ public class RecipeApplySalt extends Impl<IRecipe> implements IRecipe
 						else
 							foodq++;
 					}
-					food = (ItemFood) stack.getItem();
+					food = stack.getItem();
 					dmg = stack.getItemDamage();
 					nbt = stack.getTagCompound();
 					foodq++;

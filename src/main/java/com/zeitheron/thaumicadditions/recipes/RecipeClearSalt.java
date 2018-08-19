@@ -3,10 +3,11 @@ package com.zeitheron.thaumicadditions.recipes;
 import java.util.Objects;
 
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
+import com.zeitheron.thaumicadditions.utils.Foods;
 
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.ItemFood;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,7 +21,7 @@ public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
 	{
 		boolean water = false;
 		
-		ItemFood food = null;
+		Item food = null;
 		NBTTagCompound nbt = null;
 		int foodq = 0;
 		int dmg = 0;
@@ -31,7 +32,7 @@ public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
 			ItemStack stack = inv.getStackInSlot(i);
 			if(stack.isEmpty())
 				continue;
-			if(stack.getItem() instanceof ItemFood)
+			if(Foods.isFood(stack.getItem()))
 			{
 				if(food != null)
 				{
@@ -40,7 +41,7 @@ public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
 					else
 						foodq++;
 				}
-				food = (ItemFood) stack.getItem();
+				food = stack.getItem();
 				dmg = stack.getItemDamage();
 				nbt = stack.getTagCompound();
 				hasAspects = EdibleAspect.getSalt(stack).visSize() > 0;
@@ -62,7 +63,7 @@ public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
 	{
 		boolean water = false;
 		
-		ItemFood food = null;
+		Item food = null;
 		NBTTagCompound nbt = null;
 		int foodq = 0;
 		int dmg = 0;
@@ -73,7 +74,7 @@ public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
 			ItemStack stack = inv.getStackInSlot(i);
 			if(stack.isEmpty())
 				continue;
-			if(stack.getItem() instanceof ItemFood)
+			if(Foods.isFood(stack.getItem()))
 			{
 				if(food != null)
 				{
@@ -82,7 +83,7 @@ public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
 					else
 						foodq++;
 				}
-				food = (ItemFood) stack.getItem();
+				food = stack.getItem();
 				dmg = stack.getItemDamage();
 				nbt = stack.getTagCompound();
 				hasAspects = EdibleAspect.getSalt(stack).visSize() > 0;

@@ -1,0 +1,21 @@
+{
+    "textures": {
+        "particle": "thaumadditions:blocks/cake_side",
+        "bottom": "thaumadditions:blocks/cake_bottom",
+        "top": "thaumadditions:blocks/cake_top",
+        "side": "thaumadditions:blocks/cake_side"
+    },
+    "elements": [
+        {   "from": [ 1, 0, 1 ],
+            "to": [ 15, 8, 15 ],
+            "faces": {
+                "down":  { "texture": "#bottom", "cullface": "down" },
+                "up":    { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west":  { "texture": "#side" },
+                "east":  { "texture": "#side" }
+            }
+        }
+    ]
+}

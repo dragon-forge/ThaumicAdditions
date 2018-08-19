@@ -1,6 +1,7 @@
 package com.zeitheron.thaumicadditions.init;
 
 import com.zeitheron.thaumicadditions.items.ItemDNASample;
+import com.zeitheron.thaumicadditions.items.ItemKnowledgeTome;
 import com.zeitheron.thaumicadditions.items.ItemMaterial;
 import com.zeitheron.thaumicadditions.items.ItemSaltEssence;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
@@ -23,4 +24,5 @@ public class ItemsTAR
 	public static final ItemDNASample ENTITY_CELL = new ItemDNASample();
 	public static final ItemRechargeCharm RECHARGE_CHARM = new ItemRechargeCharm();
 	public static final ItemSealSymbol SEAL_SYMBOL = new ItemSealSymbol();
+	public static final ItemKnowledgeTome KNOWLEDGE_TOME = new ItemKnowledgeTome();
 }

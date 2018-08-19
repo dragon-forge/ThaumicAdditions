@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.zeitheron.thaumicadditions.api.AttributesTAR;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
+import com.zeitheron.thaumicadditions.utils.Foods;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSound;
@@ -100,7 +101,7 @@ public class ClientChainReactor
 		ItemStack stack = e.getItemStack();
 		
 		AspectList salt;
-		if(!stack.isEmpty() && stack.getItem() instanceof ItemFood && (salt = EdibleAspect.getSalt(stack)).visSize() > 0)
+		if(!stack.isEmpty() && Foods.isFood(stack.getItem()) && (salt = EdibleAspect.getSalt(stack)).visSize() > 0)
 		{
 			e.getToolTip().add("Vis: " + salt.visSize() + "/" + EdibleAspect.MAX_ESSENTIA);
 			for(Aspect a : salt.getAspectsSortedByName())

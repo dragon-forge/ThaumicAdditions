@@ -3,6 +3,7 @@ package com.zeitheron.thaumicadditions.init;
 import com.zeitheron.thaumicadditions.api.utils.IOcasionalPositionedEvent;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractEssentiaJar;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractSmelter;
+import com.zeitheron.thaumicadditions.blocks.BlockArcaneCake;
 import com.zeitheron.thaumicadditions.blocks.BlockAspectCombiner;
 import com.zeitheron.thaumicadditions.blocks.BlockAuraCharger;
 import com.zeitheron.thaumicadditions.blocks.BlockAuraDisperser;
@@ -39,6 +40,8 @@ public class BlocksTAR
 	public static final BlockEntitySummoner ENTITY_SUMMONER = new BlockEntitySummoner();
 	public static final BlockPuriflower PURIFLOWER = new BlockPuriflower();
 	public static final BlockCrystal CRYSTAL_BLOCK = new BlockCrystal();
+	
+	public static final BlockArcaneCake CAKE = new BlockArcaneCake();
 	
 	public static final BlockTotem DAWN_TOTEM = new BlockTotem("dawn", IOcasionalPositionedEvent.DAWN);
 	public static final BlockTotem TWILIGHT_TOTEM = new BlockTotem("twilight", IOcasionalPositionedEvent.TWILIGHT);
