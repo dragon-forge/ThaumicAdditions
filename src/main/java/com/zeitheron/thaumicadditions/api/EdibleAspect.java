@@ -5,15 +5,14 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.BiFunction;
 
-import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.init.KnowledgeTAR;
 import com.zeitheron.thaumicadditions.init.PotionsTAR;
+import com.zeitheron.thaumicadditions.utils.Foods;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -25,10 +24,10 @@ import net.minecraftforge.common.util.Constants.NBT;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
-import thaumcraft.api.capabilities.IPlayerWarp;
-import thaumcraft.api.capabilities.ThaumcraftCapabilities;
 import thaumcraft.api.capabilities.IPlayerKnowledge.EnumKnowledgeType;
+import thaumcraft.api.capabilities.IPlayerWarp;
 import thaumcraft.api.capabilities.IPlayerWarp.EnumWarpType;
+import thaumcraft.api.capabilities.ThaumcraftCapabilities;
 import thaumcraft.api.potions.PotionFluxTaint;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchCategory;
@@ -90,7 +89,7 @@ public class EdibleAspect
 			{
 				EntityPlayerMP mp = (EntityPlayerMP) player;
 				IPlayerWarp warp = ThaumcraftCapabilities.getWarp(mp);
-				warp.add(EnumWarpType.TEMPORARY, count);
+				warp.add(EnumWarpType.TEMPORARY, (int) Math.ceil(Math.sqrt(count)));
 				warp.sync(mp);
 			}
 			
@@ -176,7 +175,7 @@ public class EdibleAspect
 		
 		if(stack.isEmpty())
 			return stack;
-		if(!(stack.getItem() instanceof ItemFood))
+		if(!Foods.isFood(stack.getItem()))
 			return stack;
 		
 		if(stack.hasTagCompound())
@@ -198,7 +197,7 @@ public class EdibleAspect
 		
 		if(stack.isEmpty())
 			return stack;
-		if(!(stack.getItem() instanceof ItemFood))
+		if(!Foods.isFood(stack.getItem()))
 			return stack;
 		
 		if(!stack.hasTagCompound())

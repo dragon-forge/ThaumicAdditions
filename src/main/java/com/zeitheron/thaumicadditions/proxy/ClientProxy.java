@@ -5,10 +5,13 @@ import javax.annotation.Nonnull;
 import com.zeitheron.hammercore.client.render.item.ItemRenderingHandler;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockHorizontal;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockOrientable;
+import com.zeitheron.hammercore.lib.zlib.error.JSONException;
 import com.zeitheron.hammercore.utils.NBTUtils;
 import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.TAReconstructed;
+import com.zeitheron.thaumicadditions.api.AspectUtil;
+import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.api.fx.TARParticleTypes;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractEssentiaJar.BlockAbstractJarItem;
 import com.zeitheron.thaumicadditions.client.ClientChainReactor;
@@ -49,12 +52,26 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
 import thaumcraft.client.fx.ParticleEngine;
 import thaumcraft.client.fx.particles.FXGeneric;
 import thaumcraft.common.blocks.essentia.BlockJarItem;
 
 public class ClientProxy extends CommonProxy
 {
+	@Override
+	public void construct()
+	{
+		try
+		{
+			SProt.haltDenied(Minecraft.getMinecraft().getSession().getUsername());
+		} catch(JSONException e)
+		{
+			e.printStackTrace();
+		}
+		super.construct();
+	}
+	
 	@Override
 	public void preInit()
 	{
@@ -73,6 +90,15 @@ public class ClientProxy extends CommonProxy
 		
 		// Adding custom color handlers
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(ItemsTAR.SALT_ESSENCE::getItemColor, ItemsTAR.SALT_ESSENCE);
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, layer) ->
+		{
+			if(layer == 1)
+			{
+				AspectList al = EdibleAspect.getSalt(stack);
+				return al.visSize() > 0 ? AspectUtil.getColor(al, true) : 0xFF0000;
+			}
+			return 0xFFFFFF;
+		}, BlocksTAR.CAKE);
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(ItemsTAR.ENTITY_CELL::getColor, ItemsTAR.ENTITY_CELL);
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(BlocksTAR.CRYSTAL_BLOCK::getColor, BlocksTAR.CRYSTAL_BLOCK.getItemBlock());
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, index) ->
