@@ -4,8 +4,10 @@ import com.zeitheron.hammercore.net.IPacket;
 import com.zeitheron.hammercore.net.PacketContext;
 import com.zeitheron.hammercore.net.internal.PacketTeleportPlayer;
 import com.zeitheron.thaumicadditions.utils.TP;
+import com.zeitheron.thaumicadditions.utils.ThaumicScheduler;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.debug.DebugRenderer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
@@ -36,7 +38,8 @@ public class PacketTP implements IPacket
 	@SideOnly(Side.CLIENT)
 	public IPacket executeOnClient(PacketContext net)
 	{
-		TP.teleport(Minecraft.getMinecraft().player, target.x, target.y, target.z);
+		if(TP.teleport(Minecraft.getMinecraft().player, target.x, target.y, target.z) > 100.)
+			ThaumicScheduler.schedule(5, Minecraft.getMinecraft().renderGlobal::loadRenderers);
 		return new PacketTeleportPlayer().withTarget(target);
 	}
 }
