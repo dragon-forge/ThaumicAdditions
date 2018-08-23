@@ -4,6 +4,7 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.EXTFramebufferObject;
 import org.lwjgl.opengl.GL11;
 
+import com.zeitheron.hammercore.client.utils.texture.TexLocUploader;
 import com.zeitheron.thaumicadditions.config.ConfigsTAR;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
 
@@ -183,6 +184,7 @@ public class PortalRenderer
 		try
 		{
 			int newTextureId = GL11.glGenTextures();
+			TexLocUploader.cleanCallbacks.add(() -> GL11.glDeleteTextures(newTextureId));
 			GlStateManager.bindTexture(newTextureId);
 			int quality = 512;
 			GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, quality, quality, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, BufferUtils.createByteBuffer(3 * quality * quality));
@@ -191,7 +193,7 @@ public class PortalRenderer
 			portalTexture = newTextureId;
 		} catch(IllegalStateException e)
 		{
-			System.out.println("[LT] Error found with see-through portals. Disabling them this session.");
+			System.out.println("[TAR] Error found with see-through portals. Disabling them this session.");
 			ConfigsTAR.portalGfx = false;
 		}
 	}

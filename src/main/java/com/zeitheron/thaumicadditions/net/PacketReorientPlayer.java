@@ -2,6 +2,7 @@ package com.zeitheron.thaumicadditions.net;
 
 import com.zeitheron.hammercore.net.IPacket;
 import com.zeitheron.hammercore.net.PacketContext;
+import com.zeitheron.thaumicadditions.utils.ThaumicScheduler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
@@ -33,7 +34,7 @@ public class PacketReorientPlayer implements IPacket
 	@SideOnly(Side.CLIENT)
 	public IPacket executeOnClient(PacketContext net)
 	{
-		Minecraft.getMinecraft().player.rotationYaw = yaw;
+		ThaumicScheduler.schedule(5, () -> Minecraft.getMinecraft().player.rotationYaw = yaw);
 		return null;
 	}
 }

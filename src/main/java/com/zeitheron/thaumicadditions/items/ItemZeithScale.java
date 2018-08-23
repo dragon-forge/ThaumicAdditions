@@ -1,9 +1,7 @@
 package com.zeitheron.thaumicadditions.items;
 
 import java.util.List;
-import java.util.Random;
 
-import com.zeitheron.hammercore.HammerCore;
 import com.zeitheron.thaumicadditions.TAReconstructed;
 
 import net.minecraft.client.resources.I18n;
@@ -55,7 +53,7 @@ public class ItemZeithScale extends ItemMaterial
 			ThaumcraftApi.internalMethods.addKnowledge(player, EnumKnowledgeType.OBSERVATION, rc[player.getRNG().nextInt(rc.length)], MathHelper.getInt(player.getRNG(), oProg / 5, oProg / 4));
 			ThaumcraftApi.internalMethods.addKnowledge(player, EnumKnowledgeType.THEORY, rc[player.getRNG().nextInt(rc.length)], MathHelper.getInt(player.getRNG(), tProg / 10, tProg / 8));
 			
-			if(!player.capabilities.isCreativeMode && !HammerCore.DRAGONS.contains(player.getGameProfile().getName()))
+			if(!player.capabilities.isCreativeMode && !player.getGameProfile().getName().equalsIgnoreCase("zeitheron"))
 				player.getHeldItem(hand).shrink(1);
 		}
 		

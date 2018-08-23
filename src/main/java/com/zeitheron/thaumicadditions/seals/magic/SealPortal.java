@@ -201,8 +201,6 @@ public class SealPortal extends SealInstance
 				{
 					if(entityIn instanceof EntityPlayer)
 					{
-						TP.teleport((EntityPlayer) entityIn, x, y, z);
-						
 						if(entityIn instanceof EntityPlayerMP)
 						{
 							EntityPlayerMP mp = (EntityPlayerMP) entityIn;
@@ -214,10 +212,10 @@ public class SealPortal extends SealInstance
 							PacketReorientPlayer prp = new PacketReorientPlayer();
 							prp.yaw = yaw;
 							HCNet.INSTANCE.sendTo(prp, mp);
-						}
-					}
-					
-					TeleporterDimPos.of(x, y, z, worldIn.provider.getDimension()).teleport(entityIn);
+						} else
+							TP.teleport((EntityPlayer) entityIn, x, y, z);
+					} else
+						TeleporterDimPos.of(x, y, z, worldIn.provider.getDimension()).teleport(entityIn);
 				}
 				
 				SealInstance combo = tile.instance;

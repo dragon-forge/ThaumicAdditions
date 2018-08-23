@@ -5,11 +5,11 @@ import com.zeitheron.hammercore.event.FoodEatenEvent;
 import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
+import com.zeitheron.thaumicadditions.utils.Foods;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
@@ -33,7 +33,7 @@ public class LivingEventsTAR
 			EntityPlayerMP mp = (EntityPlayerMP) e.getEntityPlayer();
 			ItemStack item = e.getOriginStack();
 			AspectList al;
-			if(!item.isEmpty() && item.getItem() instanceof ItemFood && (al = EdibleAspect.getSalt(item)).visSize() > 0)
+			if(!item.isEmpty() && Foods.isFood(item.getItem()) && (al = EdibleAspect.getSalt(item)).visSize() > 0)
 				EdibleAspect.execute(mp, al);
 		}
 	}
@@ -92,9 +92,9 @@ public class LivingEventsTAR
 		if(el instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) el;
-			if(mp.getGameProfile().getName().equals("Zeitheron"))
+			if(mp.getGameProfile().getName().equalsIgnoreCase("zeitheron"))
 			{
-				int scales = 1 + mp.world.rand.nextInt(4);
+				int scales = 1 + mp.world.rand.nextInt(6);
 				EntityItem ei = mp.dropItem(new ItemStack(ItemsTAR.ZEITH_SCALES, scales), true, false);
 				ei.motionX *= .2;
 				ei.motionZ *= .2;
