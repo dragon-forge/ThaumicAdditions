@@ -1,4 +1,4 @@
-# Thaumic Additions Russian Translation (by Zeitheron and Hesperus)
+# Thaumic Additions Russian Translation (by Zeitheron, American and Hesperus)
 
 itemGroup.thaumadditions=Thaumic Additions: Reconstructed
 tc.research_category.THAUMADDITIONS=Thaumic Additions
@@ -246,9 +246,9 @@ seal.thaumadditions:portala=Эта печать создает портал, с�
 seal.thaumadditions:portalb=Эта печать создает портал, сквозь который вы можете пройти. В настоящее время привязан к сети %s.
 seal.thaumadditions:fertilesoil=Эта печать увлажняет пашню вокруг.
 seal.thaumadditions:createsoil=Эта печать впахивает землю.
-seal.thaumadditions:bonemealcrops=This seal slowly fertilizes crops in a medium area.
-seal.thaumadditions:harvestcrops1=This seal harvests crops in a medium area.
-seal.thaumadditions:harvestcrops2=This seal harvests and re-plants crops in a medium area.
-seal.thaumadditions:pickupitems=This seal picks up items in a medium area.
+seal.thaumadditions:bonemealcrops=Эта печать удобряет посевы в средней области.
+seal.thaumadditions:harvestcrops1=Эта печать собирает посевы в средней области.
+seal.thaumadditions:harvestcrops2=Эта печать собирает и пересаживает посевы в средней области.
+seal.thaumadditions:pickupitems=Эта печать подбирает предметы в средней области.
 
 #########
