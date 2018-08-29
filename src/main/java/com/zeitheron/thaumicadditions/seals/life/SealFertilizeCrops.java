@@ -79,9 +79,7 @@ public class SealFertilizeCrops extends SealInstance
 			
 			if(rand.nextInt(100) < 5)
 				AuraHelper.polluteAura(seal.getWorld(), seal.getPos(), .1F, true);
-			
-			int left = 7 - l.getMeta();
-			l.setMeta(l.getMeta() + rand.nextInt(left + 1));
+				
 			// HCNetwork.manager.sendToAllAround(new PacketFXWisp2(pos.x, pos.y,
 			// pos.z, end.x, end.y, end.z, .5F, 2), loc.getPointWithRad(48));
 			
