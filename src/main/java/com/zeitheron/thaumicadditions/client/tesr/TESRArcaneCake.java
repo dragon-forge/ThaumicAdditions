@@ -11,6 +11,8 @@ import com.zeitheron.hammercore.client.utils.texture.TextureAtlasSpriteFull;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.tiles.TileArcaneCake;
 
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.EnumFacing;
@@ -25,6 +27,8 @@ public class TESRArcaneCake extends TESR<TileArcaneCake>
 	@Override
 	public void renderTileEntityAt(TileArcaneCake te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		GlStateManager.blendFunc(771, 1);
+		
 		SimpleBlockRendering sbr = RenderBlocks.forMod(InfoTAR.MOD_ID).simpleRenderer;
 		UtilsFX.bindTexture(cakeTop);
 		sbr.begin();
@@ -40,5 +44,7 @@ public class TESRArcaneCake extends TESR<TileArcaneCake>
 			sbr.drawBlock(x, y, z);
 		}
 		Tessellator.getInstance().draw();
+		
+		GlStateManager.enableLighting();
 	}
 }

@@ -12,6 +12,9 @@ import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
 
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.GlStateManager.DestFactor;
+import net.minecraft.client.renderer.GlStateManager.SourceFactor;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -31,12 +34,18 @@ public class TESRSeal extends TESR<TileSeal>
 		GL11.glRotated(90, 1, 0, 0);
 		GL11.glTranslated(0, -2 / 16D, 0);
 		mc.getRenderItem().renderItem(te.stack.get(), TransformType.GROUND);
+		
+		GlStateManager.enableAlpha();
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(SourceFactor.SRC_ALPHA, DestFactor.ONE_MINUS_DST_ALPHA);
+		
 		for(int i = 0; i < 3; ++i)
 		{
 			Aspect ss = te.getSymbol(i);
 			if(ss != null)
 				ItemSealSymbol.renderSymbol(ss, te, 0, 0, 0, partialTicks, i);
 		}
+		
 		bb: if(te.combination != null)
 		{
 			Method render = null;
