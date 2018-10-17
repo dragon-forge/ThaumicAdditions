@@ -229,6 +229,8 @@ public class TileEntitySummoner extends TileSyncableTickable implements IAspectC
 	
 	public boolean canSpawn()
 	{
+		if(world.getRedstonePowerFromNeighbors(pos) > 0)
+			return false;
 		return !sample.isEmpty() && sample.getItem() == ItemsTAR.ENTITY_CELL && sample.hasTagCompound() && sample.getTagCompound().hasKey("Entity", NBT.TAG_COMPOUND);
 	}
 	

@@ -172,6 +172,7 @@ public class KnowledgeTAR
 		appendAspects(new ItemStack(Blocks.PISTON), new AspectList().add(FLUCTUS, 10).add(VENTUS, 10));
 		appendAspects(new ItemStack(BlocksTC.logGreatwood), new AspectList().add(Aspect.MAGIC, 10));
 		appendAspects(new ItemStack(ItemsTAR.ZEITH_SCALES), new AspectList().add(Aspect.MIND, 15).add(DRACO, 15).add(Aspect.LIFE, 15).add(CAELES, 2).add(Aspect.AURA, 20));
+		appendAspects(new ItemStack(Items.SKULL, 1, 5), new AspectList().add(DRACO, 30));
 		
 		for(Aspect a : Aspect.aspects.values())
 			CommonInternals.objectTags.put(CommonInternals.generateUniqueItemstackId(AspectUtil.crystalBlock(a)), new AspectList().add(a, 6).add(Aspect.MAGIC, 2));
