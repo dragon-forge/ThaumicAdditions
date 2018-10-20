@@ -87,6 +87,12 @@ public class ResearchStageBuilder
 		return this;
 	}
 	
+	public ResearchStageBuilder setResearchIcons(String... research)
+	{
+		entry.setResearchIcon(research);
+		return this;
+	}
+	
 	public ResearchStage build()
 	{
 		if(entry == null)
