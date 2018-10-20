@@ -63,7 +63,11 @@ public class ItemDNASample extends Item
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
-		RayTraceResult r = playerIn.rayTrace(RayTracer.getBlockReachDistance(playerIn), 1);
+		double reach = RayTracer.getBlockReachDistance(playerIn);
+		Vec3d vec3d = playerIn.getPositionEyes(1);
+		Vec3d vec3d1 = playerIn.getLook(1);
+		Vec3d vec3d2 = vec3d.add(vec3d1.x * reach, vec3d1.y * reach, vec3d1.z * reach);
+		RayTraceResult r = worldIn.rayTraceBlocks(vec3d, vec3d2, false, false, true);
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		
 		if(!worldIn.isRemote && playerIn.isSneaking())
@@ -73,33 +77,34 @@ public class ItemDNASample extends Item
 				stack.getTagCompound().removeTag("Entity");
 				HCNet.swingArm(playerIn, handIn);
 			}
-		} else spawn: if(!worldIn.isRemote && r != null && r.typeOfHit == Type.BLOCK && stack.hasTagCompound() && stack.getTagCompound().hasKey("Entity", NBT.TAG_COMPOUND))
-		{
-			NBTTagCompound nbttagcompound = stack.getTagCompound().getCompoundTag("Entity").getCompoundTag("Data");
-			BlockPos pos = r.getBlockPos().offset(r.sideHit);
-			World world = worldIn;
-			
-			nbttagcompound.setString("id", stack.getTagCompound().getCompoundTag("Entity").getString("Id"));
-			UUID uuid = UUID.randomUUID();
-			nbttagcompound.setString("UUID", uuid.toString());
-			NBTTagList nbttaglist = nbttagcompound.getTagList("Pos", 6);
-			double d0 = (double) pos.getX() + .5;
-			double d1 = (double) (pos.getY() + .5);
-			double d2 = (double) pos.getZ() + .5;
-			Entity entity = AnvilChunkLoader.readWorldEntityPos(nbttagcompound, world, d0, d1, d2, false);
-			if(entity == null)
-				break spawn;
-			entity.setUniqueId(uuid);
-			WorldServer ws = WorldUtil.cast(world, WorldServer.class);
-			for(int k = 0; k < 16 && ws != null && ws.getEntityFromUuid(entity.getUniqueID()) != null; ++k)
-				entity.setUniqueId(UUID.randomUUID());
-			EntityLiving entityliving = entity instanceof EntityLiving ? (EntityLiving) entity : null;
-			entity.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, world.rand.nextFloat() * 360.0F, 0.0F);
-			AnvilChunkLoader.spawnEntity(entity, world);
-			SoundUtil.playSoundEffect(world, SoundsTC.poof.getRegistryName().toString(), pos, 1F, 1F, SoundCategory.PLAYERS);
-			stack.getTagCompound().removeTag("Entity");
-			HCNet.swingArm(playerIn, handIn);
-		}
+		} else
+			spawn: if(!worldIn.isRemote && r != null && r.typeOfHit == Type.BLOCK && stack.hasTagCompound() && stack.getTagCompound().hasKey("Entity", NBT.TAG_COMPOUND))
+			{
+				NBTTagCompound nbttagcompound = stack.getTagCompound().getCompoundTag("Entity").getCompoundTag("Data");
+				BlockPos pos = r.getBlockPos().offset(r.sideHit);
+				World world = worldIn;
+				
+				nbttagcompound.setString("id", stack.getTagCompound().getCompoundTag("Entity").getString("Id"));
+				UUID uuid = UUID.randomUUID();
+				nbttagcompound.setString("UUID", uuid.toString());
+				NBTTagList nbttaglist = nbttagcompound.getTagList("Pos", 6);
+				double d0 = (double) pos.getX() + .5;
+				double d1 = (double) (pos.getY() + .5);
+				double d2 = (double) pos.getZ() + .5;
+				Entity entity = AnvilChunkLoader.readWorldEntityPos(nbttagcompound, world, d0, d1, d2, false);
+				if(entity == null)
+					break spawn;
+				entity.setUniqueId(uuid);
+				WorldServer ws = WorldUtil.cast(world, WorldServer.class);
+				for(int k = 0; k < 16 && ws != null && ws.getEntityFromUuid(entity.getUniqueID()) != null; ++k)
+					entity.setUniqueId(UUID.randomUUID());
+				EntityLiving entityliving = entity instanceof EntityLiving ? (EntityLiving) entity : null;
+				entity.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, world.rand.nextFloat() * 360.0F, 0.0F);
+				AnvilChunkLoader.spawnEntity(entity, world);
+				SoundUtil.playSoundEffect(world, SoundsTC.poof.getRegistryName().toString(), pos, 1F, 1F, SoundCategory.PLAYERS);
+				stack.getTagCompound().removeTag("Entity");
+				HCNet.swingArm(playerIn, handIn);
+			}
 		
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
@@ -173,8 +178,7 @@ public class ItemDNASample extends Item
 				SoundUtil.playSoundEffect(player.world, SoundsTC.poof.getRegistryName().toString(), player.getPosition(), 1F, 1F, SoundCategory.PLAYERS);
 				entity.setDead();
 				return true;
-			}
-			else
+			} else
 			{
 				TextComponentTranslation tct = new TextComponentTranslation("status." + InfoTAR.MOD_ID + ":dna_unpickable" + (entity instanceof EntityLivingBase ? "" : ".1"));
 				tct.getStyle().setColor(TextFormatting.DARK_RED);

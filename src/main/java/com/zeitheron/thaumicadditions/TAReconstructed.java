@@ -42,7 +42,7 @@ import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchCategory;
 import thaumcraft.common.entities.monster.EntityPech;
 
-@Mod(modid = InfoTAR.MOD_ID, name = InfoTAR.MOD_NAME, version = InfoTAR.MOD_VERSION, certificateFingerprint = "4d7b29cd19124e986da685107d16ce4b49bc0a97", dependencies = "required-after:hammercore;required-after:thaumcraft@[6.1.BETA21,);before:iceandfire", updateJSON = "https://pastebin.com/raw/G6DJNXqg")
+@Mod(modid = InfoTAR.MOD_ID, name = InfoTAR.MOD_NAME, version = InfoTAR.MOD_VERSION, certificateFingerprint = "4d7b29cd19124e986da685107d16ce4b49bc0a97", dependencies = "required-after:hammercore;required-after:thaumcraft@[6.1.BETA26,);before:iceandfire", updateJSON = "https://pastebin.com/raw/G6DJNXqg")
 public class TAReconstructed
 {
 	public static final Logger LOG = LogManager.getLogger(InfoTAR.MOD_ID);
@@ -116,6 +116,7 @@ public class TAReconstructed
 		proxy.postInit();
 		KnowledgeTAR.init.call();
 		KnowledgeTAR.insertAspects.call();
+		RecipesTAR.postInit.call();
 	}
 	
 	@SubscribeEvent

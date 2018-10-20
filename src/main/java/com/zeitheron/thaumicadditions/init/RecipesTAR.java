@@ -41,6 +41,7 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.IArcaneRecipe;
+import thaumcraft.api.crafting.IThaumcraftRecipe;
 import thaumcraft.api.crafting.InfusionRecipe;
 import thaumcraft.api.crafting.ShapedArcaneRecipe;
 import thaumcraft.api.items.ItemsTC;
@@ -56,11 +57,12 @@ public class RecipesTAR extends RecipeRegistry
 	
 	public static final Map<Item, List<ResourceLocation>> FAKE_RECIPE_MAP = new HashMap<>();
 	
-	public static OnetimeCaller init;
+	public static OnetimeCaller init, postInit;
 	private static RecipesTAR instance;
 	{
 		instance = this;
 		init = new OnetimeCaller(this::init);
+		postInit = new OnetimeCaller(this::postInit);
 	}
 	
 	private void init()
@@ -69,6 +71,11 @@ public class RecipesTAR extends RecipeRegistry
 		arcaneCrafting();
 		crucible();
 		multiblock();
+	}
+	
+	private void postInit()
+	{
+		postAspects();
 	}
 	
 	@Override
@@ -92,9 +99,9 @@ public class RecipesTAR extends RecipeRegistry
 	
 	private void infusing()
 	{
-		addInfusionRecipe("mithrillium_ingot", new ItemStack(ItemsTAR.MITHRILLIUM_INGOT, 2), "TAR_MITHRILLIUM", 5, new ItemStack(ItemsTC.ingots, 1, 1), new AspectList().add(Aspect.CRYSTAL, 30).add(Aspect.ENERGY, 15).add(Aspect.ELDRITCH, 10).add(Aspect.METAL, 30).add(Aspect.MAGIC, 10), new ItemStack(ItemsTC.amber), new ItemStack(ItemsTC.alumentum), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.fabric), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.amber), new ItemStack(ItemsTC.alumentum), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.fabric), new ItemStack(ItemsTC.salisMundus));
-		addInfusionRecipe("adaminite_ingot", new ItemStack(ItemsTAR.ADAMINITE_INGOT, 1), "TAR_ADAMINITE", 10, new ItemStack(ItemsTAR.MITHRILLIUM_INGOT), new AspectList().add(Aspect.LIFE, 100).add(Aspect.ALCHEMY, 30).add(Aspect.EXCHANGE, 40).add(Aspect.METAL, 40).add(Aspect.SOUL, 120).add(Aspect.MAGIC, 100).add(KnowledgeTAR.DRACO, 20).add(KnowledgeTAR.INFERNUM, 100).add(KnowledgeTAR.VISUM, 20), new ItemStack(Items.NETHER_STAR), new ItemStack(ItemsTC.fabric), new ItemStack(ItemsTC.primordialPearl), new ItemStack(Items.NETHER_STAR));
-		addInfusionRecipe("mithminite_ingot", new ItemStack(ItemsTAR.MITHMINITE_INGOT, 3), "TAR_MITHMINITE", 8, new ItemStack(ItemsTAR.ADAMINITE_INGOT), new AspectList().add(KnowledgeTAR.CAELES, 10).add(Aspect.METAL, 60).add(Aspect.LIFE, 90).add(Aspect.MAGIC, 120), new ItemStack(ItemsTAR.MITHRILLIUM_INGOT), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTAR.MITHRILLIUM_INGOT), new ItemStack(ItemsTC.quicksilver));
+		addInfusionRecipe("mithrillium_ingot", new ItemStack(ItemsTAR.MITHRILLIUM_INGOT), "TAR_MITHRILLIUM", 5, new ItemStack(ItemsTC.ingots, 1, 1), new AspectList().add(Aspect.CRYSTAL, 30).add(Aspect.ENERGY, 15).add(Aspect.ELDRITCH, 10).add(Aspect.METAL, 30).add(Aspect.MAGIC, 10), new ItemStack(ItemsTC.amber), new ItemStack(ItemsTC.alumentum), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.fabric), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.amber), new ItemStack(ItemsTC.alumentum), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.fabric), new ItemStack(ItemsTC.salisMundus));
+		addInfusionRecipe("adaminite_ingot", new ItemStack(ItemsTAR.ADAMINITE_INGOT), "TAR_ADAMINITE", 10, new ItemStack(ItemsTAR.MITHRILLIUM_INGOT), new AspectList().add(Aspect.LIFE, 100).add(Aspect.ALCHEMY, 30).add(Aspect.EXCHANGE, 40).add(Aspect.METAL, 40).add(Aspect.SOUL, 120).add(Aspect.MAGIC, 100).add(KnowledgeTAR.DRACO, 20).add(KnowledgeTAR.INFERNUM, 100).add(KnowledgeTAR.VISUM, 20), new ItemStack(Items.NETHER_STAR), new ItemStack(ItemsTC.fabric), new ItemStack(ItemsTC.primordialPearl), new ItemStack(Items.NETHER_STAR));
+		addInfusionRecipe("mithminite_ingot", new ItemStack(ItemsTAR.MITHMINITE_INGOT), "TAR_MITHMINITE", 8, new ItemStack(ItemsTAR.ADAMINITE_INGOT), new AspectList().add(KnowledgeTAR.CAELES, 10).add(Aspect.METAL, 60).add(Aspect.LIFE, 90).add(Aspect.MAGIC, 120), new ItemStack(ItemsTAR.MITHRILLIUM_INGOT), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTAR.MITHRILLIUM_INGOT), new ItemStack(ItemsTC.quicksilver));
 		addInfusionRecipe("mithminite_jar", new ItemStack(BlocksTAR.MITHMINITE_JAR), "TAR_MITHMINITE_JAR", 7, new ItemStack(BlocksTAR.ADAMINITE_JAR), new AspectList().add(KnowledgeTAR.CAELES, 16).add(Aspect.ALCHEMY, 32).add(Aspect.EXCHANGE, 10).add(Aspect.WATER, 40).add(Aspect.VOID, 30), new ItemStack(ItemsTAR.MITHMINITE_INGOT), new ItemStack(ItemsTC.amber), new ItemStack(ItemsTC.alumentum), new ItemStack(BlocksTC.jarVoid));
 		addInfusionRecipe("aspect_combiner", new ItemStack(BlocksTAR.ASPECT_COMBINER), "TAR_ASPECT_COMBINER", 6, new ItemStack(BlocksTC.centrifuge), new AspectList().add(Aspect.EXCHANGE, 16).add(Aspect.ENTROPY, 30).add(Aspect.ALCHEMY, 20).add(Aspect.MECHANISM, 15), new ItemStack(ItemsTAR.MITHRILLIUM_NUGGET), new ItemStack(ItemsTAR.MITHRILLIUM_NUGGET), new ItemStack(ItemsTAR.MITHRILLIUM_NUGGET), new ItemStack(ItemsTC.mechanismComplex), crystalEssence(Aspect.EXCHANGE), new ItemStack(ItemsTC.filter), new ItemStack(ItemsTC.plate, 1, 0), new ItemStack(ItemsTC.alumentum));
 		addInfusionRecipe("aura_charger", new ItemStack(BlocksTAR.AURA_CHARGER), "TAR_AURA_CHARGER", 8, new ItemStack(BlocksTAR.ASPECT_COMBINER), new AspectList().add(TileAuraCharger.AURA, 20).add(Aspect.MAGIC, 20).add(Aspect.ENERGY, 40), crystalEssence(TileAuraCharger.AURA), new ItemStack(ItemsTAR.ADAMINITE_NUGGET), new ItemStack(ItemsTAR.ADAMINITE_NUGGET), new ItemStack(ItemsTC.mechanismComplex), new ItemStack(ItemsTAR.ADAMINITE_NUGGET), new ItemStack(ItemsTAR.ADAMINITE_NUGGET));
@@ -144,6 +151,18 @@ public class RecipesTAR extends RecipeRegistry
 		}
 		
 		ThaumcraftApi.addFakeCraftingRecipe(crystalBlockRecipeIDFake, crystalBlockRecipes);
+	}
+	
+	private void postAspects()
+	{
+		IThaumcraftRecipe hedge_gunpowder = ThaumcraftApi.getCraftingRecipes().get(new ResourceLocation("thaumcraft:hedge_gunpowder"));
+		if(hedge_gunpowder instanceof CrucibleRecipe)
+		{
+			CrucibleRecipe rec = (CrucibleRecipe) hedge_gunpowder;
+			AspectList catal = rec.getAspects();
+			if(catal.getAmount(KnowledgeTAR.EXITIUM) <= 0)
+				catal.add(KnowledgeTAR.EXITIUM, 10);
+		}
 	}
 	
 	private void crucible()
