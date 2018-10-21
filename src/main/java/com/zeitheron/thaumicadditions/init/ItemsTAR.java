@@ -6,6 +6,7 @@ import com.zeitheron.thaumicadditions.items.ItemMaterial;
 import com.zeitheron.thaumicadditions.items.ItemSaltEssence;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.items.ItemZeithScale;
+import com.zeitheron.thaumicadditions.items.baubles.ItemFragnantPendant;
 import com.zeitheron.thaumicadditions.items.baubles.ItemRechargeCharm;
 
 public class ItemsTAR
@@ -19,10 +20,12 @@ public class ItemsTAR
 	public static final ItemMaterial ADAMINITE_PLATE = new ItemMaterial("adaminite_plate", "plateAdaminite");
 	public static final ItemMaterial MITHMINITE_PLATE = new ItemMaterial("mithminite_plate", "plateMithminite");
 	public static final ItemMaterial SEAL_GLOBE = new ItemMaterial("seal_globe");
+	public static final ItemMaterial ODOUR_POWDER = new ItemMaterial("odour_powder");
 	public static final ItemMaterial ZEITH_SCALES = new ItemZeithScale();
 	public static final ItemSaltEssence SALT_ESSENCE = new ItemSaltEssence();
 	public static final ItemDNASample ENTITY_CELL = new ItemDNASample();
 	public static final ItemRechargeCharm RECHARGE_CHARM = new ItemRechargeCharm();
 	public static final ItemSealSymbol SEAL_SYMBOL = new ItemSealSymbol();
 	public static final ItemKnowledgeTome KNOWLEDGE_TOME = new ItemKnowledgeTome();
+	public static final ItemFragnantPendant FRAGNANT_PENDANT = new ItemFragnantPendant();
 }

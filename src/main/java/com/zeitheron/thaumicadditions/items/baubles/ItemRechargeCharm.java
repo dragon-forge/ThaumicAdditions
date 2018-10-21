@@ -73,21 +73,17 @@ public class ItemRechargeCharm extends Item implements IBauble, IRenderBauble
 		}
 	}
 	
-	ResourceLocation tex = new ResourceLocation("thaumcraft", "textures/items/curiosity_band_worn.png");
-	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onPlayerBaubleRender(ItemStack stack, EntityPlayer player, RenderType type, float partialTicks)
 	{
 		if(type == RenderType.BODY)
 		{
-			tex = new ResourceLocation(InfoTAR.MOD_ID, "textures/models/recharge_charm.png");
-			
 			boolean armor = !player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).isEmpty();
 			Helper.rotateIfSneaking(player);
 			Helper.translateToChest();
 			Helper.defaultTransforms();
-			Minecraft.getMinecraft().renderEngine.bindTexture(this.tex);
+			com.zeitheron.hammercore.client.utils.UtilsFX.bindTexture(InfoTAR.MOD_ID, "textures/models/recharge_charm.png");
 			GlStateManager.rotate(180, 0, 1, 0);
 			GlStateManager.translate(-.25, -2.5 / 16D, armor ? -1 / 16D : 1 / 16D);
 			GlStateManager.color(1, 1, 1);

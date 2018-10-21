@@ -1,5 +1,6 @@
 package com.zeitheron.thaumicadditions.client.seal;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +14,7 @@ import com.zeitheron.hammercore.client.utils.texture.TextureAtlasSpriteFull;
 import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
+import com.zeitheron.thaumicadditions.client.util.GLDownloader;
 import com.zeitheron.thaumicadditions.config.ConfigsTAR;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.seals.magic.SealPortal;
@@ -42,6 +44,8 @@ public class TARSealRenders
 	}
 	
 	public static List<SealPortal> rendered = new ArrayList<>();
+	
+	public static SealPortal saveRender;
 	
 	public static void renderNone(TileSeal seal, double x, double y, double z, float partialTicks)
 	{
@@ -91,7 +95,7 @@ public class TARSealRenders
 			
 			GL11.glTranslated(-.5, -.5, -.6);
 			
-			GL11.glBegin(7);
+			GL11.glBegin(GL11.GL_QUADS);
 			{
 				GL11.glTexCoord2d(0, 0);
 				GL11.glVertex3d(0, 0, 0);
@@ -229,6 +233,9 @@ public class TARSealRenders
 		
 		PortalRenderer.renderRecursion++;
 		
+		if(saveRender != null)
+			rendered.add(saveRender);
+		
 		if(PortalRenderer.renderRecursion < 2)
 			for(int i = 0; i < rendered.size(); ++i)
 			{
@@ -239,6 +246,8 @@ public class TARSealRenders
 					continue;
 				if(portal.holeSize <= 0)
 					continue;
+				
+				boolean save = saveRender == portal;
 				
 				GameSettings settings = mc.gameSettings;
 				RenderGlobal renderBackup = mc.renderGlobal;
@@ -272,6 +281,10 @@ public class TARSealRenders
 				
 				GlStateManager.bindTexture(pr.portalTexture);
 				GL11.glCopyTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, 0, 0, size, size, 0);
+				if(save)
+				{
+					pr.texture = GLDownloader.toByteBuffer(pr.portalTexture);
+				}
 				
 				mc.setRenderViewEntity(entityBackup);
 				settings.fovSetting = fovBackup;
@@ -285,5 +298,6 @@ public class TARSealRenders
 		
 		--PortalRenderer.renderRecursion;
 		rendered.clear();
+		saveRender = null;
 	}
 }

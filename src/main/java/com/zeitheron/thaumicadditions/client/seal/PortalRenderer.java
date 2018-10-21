@@ -1,5 +1,7 @@
 package com.zeitheron.thaumicadditions.client.seal;
 
+import java.nio.ByteBuffer;
+
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.EXTFramebufferObject;
 import org.lwjgl.opengl.GL11;
@@ -174,8 +176,9 @@ public class PortalRenderer
 	}
 	
 	public int portalTexture;
-	
 	public boolean doRender = false;
+	
+	public ByteBuffer texture;
 	
 	public PortalRenderer()
 	{

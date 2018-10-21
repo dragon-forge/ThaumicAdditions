@@ -141,6 +141,7 @@ public class RecipesTAR extends RecipeRegistry
 		addShapedArcaneRecipe("dawn_totem", "TAR_TOTEMS", 50, new AspectList().add(Aspect.ORDER, 1).add(Aspect.AIR, 1), new ItemStack(BlocksTAR.DAWN_TOTEM), "sws", "wcw", "sws", 's', BlocksTC.plankSilverwood, 'w', new NBTRespectfulIngredient(AspectUtil.crystalEssence(Aspect.AURA)), 'c', BlocksTC.shimmerleaf);
 		addShapedArcaneRecipe("seal_globe", "TAR_SEAL_GLOBE", 100, AspectUtil.primals(1), new ItemStack(ItemsTAR.SEAL_GLOBE), "ggg", "grg", "lcl", 'g', "blockGlass", 'r', ItemsTC.visResonator, 'l', "ingotGold", 'c', new NBTRespectfulIngredient(crystalEssence(KnowledgeTAR.IMPERIUM)));
 		addShapedArcaneRecipe("knowledge_tome", "TAR_KNOWLEDGE_TOME", 100, AspectUtil.primals(1), new ItemStack(ItemsTAR.KNOWLEDGE_TOME), "s", "c", "t", 's', new ItemStack(ItemsTC.scribingTools, 1, OreDictionary.WILDCARD_VALUE), 'c', new ItemStack(ItemsTC.curio, 1, 1), 't', new ItemStack(ItemsTC.thaumonomicon));
+		addShapedArcaneRecipe("fragnant_pendant", "TAR_FRAGNANT_PENDANT", 50, AspectUtil.primals(1), new ItemStack(ItemsTAR.FRAGNANT_PENDANT), " f ", "saf", "mp ", 'f', new ItemStack(ItemsTC.filter), 's', new ItemStack(ItemsTC.salisMundus), 'a', new ItemStack(ItemsTC.baubles, 1, 4), 'm', new ItemStack(ItemsTC.amber), 'p', new ItemStack(ItemsTAR.ODOUR_POWDER));
 		
 		for(Aspect a : Aspect.aspects.values())
 		{
@@ -168,6 +169,7 @@ public class RecipesTAR extends RecipeRegistry
 	private void crucible()
 	{
 		addCrucibleRecipe("crystal_water", "TAR_CRYSTAL_WATER", FluidUtil.getFilledBucket(new FluidStack(FluidsTAR.CRYSTAL_WATER, Fluid.BUCKET_VOLUME)), new ItemStack(Items.WATER_BUCKET), new AspectList().add(Aspect.CRYSTAL, 10).add(Aspect.DESIRE, 4).add(Aspect.EXCHANGE, 6));
+		addCrucibleRecipe("odour_powder", "TAR_FRAGNANT_PENDANT", new ItemStack(ItemsTAR.ODOUR_POWDER, 4), new ItemStack(ItemsTC.bathSalts), new AspectList().add(Aspect.ORDER, 10).add(KnowledgeTAR.EXITIUM, 5).add(KnowledgeTAR.VENTUS, 5));
 	}
 	
 	private void multiblock()
