@@ -39,7 +39,7 @@ public class PacketTP implements IPacket
 	public IPacket executeOnClient(PacketContext net)
 	{
 		if(TP.teleport(Minecraft.getMinecraft().player, target.x, target.y, target.z) > 100.)
-			ThaumicScheduler.schedule(5, Minecraft.getMinecraft().renderGlobal::loadRenderers);
+			ThaumicScheduler.schedule(15, Minecraft.getMinecraft().renderGlobal::loadRenderers);
 		return new PacketTeleportPlayer().withTarget(target);
 	}
 }

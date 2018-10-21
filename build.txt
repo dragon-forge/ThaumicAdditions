@@ -15,6 +15,6 @@ trusted_build=false
 mod_id=thaumadds
 mod_id_fancy=ThaumicAdditions
 mod_name=Thaumic Additions: Reconstructed
-mod_version=6r
+mod_version=10r
 cf_project=232564
 release_type=release
