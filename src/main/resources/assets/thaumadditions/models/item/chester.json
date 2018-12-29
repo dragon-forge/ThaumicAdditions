@@ -1,0 +1,24 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"0": "thaumadditions:items/chester/front",
+		"1": "thaumadditions:items/chester/side",
+		"2": "thaumadditions:items/chester/top",
+		"3": "thaumadditions:items/chester/bottom"
+	},
+	"elements": [
+		{
+			"name": "Cube",
+			"from": [ 1.0, 0.0, 1.0 ], 
+			"to": [ 15.0, 14.0, 15.0 ], 
+			"faces": {
+				"north": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+				"east": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+				"south": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+				"west": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+				"up": { "texture": "#2", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+				"down": { "texture": "#3", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+			}
+		}
+	]
+}

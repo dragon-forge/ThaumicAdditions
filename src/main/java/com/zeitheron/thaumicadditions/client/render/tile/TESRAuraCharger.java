@@ -1,4 +1,4 @@
-package com.zeitheron.thaumicadditions.client.tesr;
+package com.zeitheron.thaumicadditions.client.render.tile;
 
 import org.lwjgl.opengl.GL11;
 

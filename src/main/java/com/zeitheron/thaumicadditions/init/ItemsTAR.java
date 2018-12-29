@@ -1,5 +1,7 @@
 package com.zeitheron.thaumicadditions.init;
 
+import com.zeitheron.thaumicadditions.items.ItemBoneEye;
+import com.zeitheron.thaumicadditions.items.ItemChester;
 import com.zeitheron.thaumicadditions.items.ItemDNASample;
 import com.zeitheron.thaumicadditions.items.ItemKnowledgeTome;
 import com.zeitheron.thaumicadditions.items.ItemMaterial;
@@ -28,4 +30,6 @@ public class ItemsTAR
 	public static final ItemSealSymbol SEAL_SYMBOL = new ItemSealSymbol();
 	public static final ItemKnowledgeTome KNOWLEDGE_TOME = new ItemKnowledgeTome();
 	public static final ItemFragnantPendant FRAGNANT_PENDANT = new ItemFragnantPendant();
+	public static final ItemChester CHESTER = new ItemChester();
+	public static final ItemBoneEye BONE_EYE = new ItemBoneEye();
 }

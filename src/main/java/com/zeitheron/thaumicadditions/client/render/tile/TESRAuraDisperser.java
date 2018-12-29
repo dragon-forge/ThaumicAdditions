@@ -1,4 +1,4 @@
-package com.zeitheron.thaumicadditions.client.tesr;
+package com.zeitheron.thaumicadditions.client.render.tile;
 
 import com.zeitheron.hammercore.client.render.tesr.TESR;
 import com.zeitheron.thaumicadditions.tiles.TileAuraDisperser;

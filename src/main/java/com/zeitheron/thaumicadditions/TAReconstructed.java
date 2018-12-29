@@ -1,14 +1,18 @@
 package com.zeitheron.thaumicadditions;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.zeitheron.hammercore.HammerCore;
 import com.zeitheron.hammercore.internal.SimpleRegistration;
+import com.zeitheron.hammercore.mod.ModuleLister;
 import com.zeitheron.hammercore.utils.HammerCoreUtils;
 import com.zeitheron.thaumicadditions.api.AttributesTAR;
+import com.zeitheron.thaumicadditions.compat.ITARC;
+import com.zeitheron.thaumicadditions.entity.EntityChester;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.FluidsTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
@@ -35,6 +39,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.internal.WeightedRandomLoot;
@@ -57,6 +62,8 @@ public class TAReconstructed
 	
 	public static ResearchCategory RES_CAT;
 	
+	public static List<ITARC> arcs;
+	
 	@EventHandler
 	public void certificateViolation(FMLFingerprintViolationEvent e)
 	{
@@ -77,7 +84,8 @@ public class TAReconstructed
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e)
 	{
-		tab = HammerCoreUtils.createStaticIconCreativeTab(InfoTAR.MOD_ID, new ItemStack(ItemsTAR.MITHMINITE_INGOT));
+		tab = HammerCoreUtils.createStaticIconCreativeTab(InfoTAR.MOD_ID, new ItemStack(ItemsTAR.SEAL_GLOBE));
+		arcs = ModuleLister.createModules(ITARC.class, null, e.getAsmData());
 		
 		FluidsTAR.init.call();
 		MinecraftForge.EVENT_BUS.register(this);
@@ -94,12 +102,16 @@ public class TAReconstructed
 		
 		KnowledgeTAR.clInit.call();
 		
+		EntityRegistry.registerModEntity(new ResourceLocation(InfoTAR.MOD_ID, "chester"), EntityChester.class, InfoTAR.MOD_ID + ".chester", 0, instance, 256, 1, true);
+		
 		proxy.preInit();
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent e)
 	{
+		for(ITARC a : arcs)
+			a.init();
 		proxy.init();
 		RES_CAT = ResearchCategories.registerCategory("THAUMADDITIONS", "UNLOCKINFUSION", new AspectList().add(Aspect.ALCHEMY, 30).add(Aspect.FLUX, 10).add(Aspect.MAGIC, 10).add(Aspect.LIFE, 5).add(Aspect.AVERSION, 5).add(Aspect.DESIRE, 5).add(Aspect.WATER, 5), new ResourceLocation(InfoTAR.MOD_ID, "textures/gui/thaumonomicon_icon.png"), CommonProxy.TEXTURE_THAUMONOMICON_BG, new ResourceLocation(InfoTAR.MOD_ID, "textures/gui/gui_research_back_over.png"));
 		RecipesTAR.init.call();

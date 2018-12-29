@@ -85,6 +85,8 @@ item.thaumadditions:knowledge_tome.desc1=Хранит знания %s
 item.thaumadditions:knowledge_tome.desc2=Сохранено в %s
 item.thaumadditions:odour_powder.name=Ароматная пудра
 item.thaumadditions:fragnant_pendant.name=Ароматный кулон
+item.thaumadditions:chester.name=Честер
+item.thaumadditions:bone_eye.name=Костеглаз
 
 #########
 
@@ -97,6 +99,11 @@ status.thaumadditions:dna_unpickable.1=Это неживой объект!
 gui.thaumadditions:null=Нет
 gui.thaumadditions:knowledge_tome.store=Знания сохранены! Вы владеете %s изучениями, %s из них выполнены.
 gui.thaumadditions:knowledge_tome.restore=Теперь вы знаете всё, что знал %s в %s.
+chat.thaumadditions:chester.stay=Честер останеться здесь.
+chat.thaumadditions:chester.follow=Честер будет следовать за вами.
+chat.thaumadditions:chester.not_master=Вы не мой хозяин.
+entity.thaumadditions.chester.name=Честер
+entity.thaumadditions.chester=Честер
 
 #################
 
@@ -239,6 +246,10 @@ research_stage.thaumadditions:knowledge_tome.2_noreuse=Пустой Таумон
 research_name.thaumadditions:fragnant_pendant=Постоянно здравомыслящий!
 research_stage.thaumadditions:fragnant_pendant.1=Мои нынешние способы борьбы с искажением, управляющим моим умом, просты: искупаться в очищающей жидкости. Этот эффект длится некоторое время. Но что, если я пойду в долгое путешествие? Мне нужно что-то по-лучше...
 research_stage.thaumadditions:fragnant_pendant.2=Из того, что я вижу, я могу сделать причудливый амулет в кулон, который при ношении испускает очищающий аромат, рассеивая ароматную пудру. Я думаю, что этот способ намного лучше, и я могу идти туда, куда хочу!
+
+research_name.thaumadditions:chester=Честер
+research_stage.thaumadditions:chester.1=Since I travel a lot, keeping my inventory relatively empty is bloody hard. It might be interesting to animate my hungry chest and program it in a way that he will follow me...
+research_stage.thaumadditions:chester.2=Seems like greatwood and thaumium isn't enough. But adding morphic resonator and zombie brains seem to imbue the chest with cognitive abilities. Add some aspects and I get what I was expecting - Chester. It seems that I will need some kind of tool, attuning it to thaumium seems a rather good idea. Bone-eye that is, it will work perfectly for what it was invented for.
 
 ############
 

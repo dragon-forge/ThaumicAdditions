@@ -16,12 +16,15 @@ import com.zeitheron.thaumicadditions.api.fx.TARParticleTypes;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractEssentiaJar.BlockAbstractJarItem;
 import com.zeitheron.thaumicadditions.client.ClientChainReactor;
 import com.zeitheron.thaumicadditions.client.isr.ItemRenderJar;
-import com.zeitheron.thaumicadditions.client.tesr.TESRAspectCombiner;
-import com.zeitheron.thaumicadditions.client.tesr.TESRAuraCharger;
-import com.zeitheron.thaumicadditions.client.tesr.TESRAuraDisperser;
-import com.zeitheron.thaumicadditions.client.tesr.TESRCrystalBore;
-import com.zeitheron.thaumicadditions.client.tesr.TESRCrystalCrusher;
+import com.zeitheron.thaumicadditions.client.render.entity.RenderEntityChester;
+import com.zeitheron.thaumicadditions.client.render.tile.TESRAspectCombiner;
+import com.zeitheron.thaumicadditions.client.render.tile.TESRAuraCharger;
+import com.zeitheron.thaumicadditions.client.render.tile.TESRAuraDisperser;
+import com.zeitheron.thaumicadditions.client.render.tile.TESRCrystalBore;
+import com.zeitheron.thaumicadditions.client.render.tile.TESRCrystalCrusher;
 import com.zeitheron.thaumicadditions.client.texture.TextureThaumonomiconBG;
+import com.zeitheron.thaumicadditions.compat.ITARC;
+import com.zeitheron.thaumicadditions.entity.EntityChester;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.inventory.gui.GuiSealGlobe;
@@ -51,6 +54,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.client.fx.ParticleEngine;
@@ -78,12 +82,17 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomStateMapper(BlocksTAR.CRYSTAL_WATER, new StateMap.Builder().ignore(BlockFluidBase.LEVEL).build());
 		ModelLoader.setCustomStateMapper(BlocksTAR.ASPECT_COMBINER, new StateMap.Builder().ignore(IBlockHorizontal.FACING).build());
 		ModelLoader.setCustomStateMapper(BlocksTAR.CRYSTAL_BORE, new StateMap.Builder().ignore(IBlockOrientable.FACING).build());
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityChester.class, RenderEntityChester.FACTORY);
 	}
 	
 	@Override
 	public void init()
 	{
 		MinecraftForge.EVENT_BUS.register(ClientChainReactor.REACTOR);
+		
+		for(ITARC a : TAReconstructed.arcs)
+			a.initClient();
 		
 		// Assign custom texture
 		Minecraft.getMinecraft().getTextureManager().loadTickableTexture(TEXTURE_THAUMONOMICON_BG, new TextureThaumonomiconBG());

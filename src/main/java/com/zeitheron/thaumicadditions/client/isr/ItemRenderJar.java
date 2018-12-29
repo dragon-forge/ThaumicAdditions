@@ -7,7 +7,7 @@ import com.zeitheron.hammercore.client.utils.RenderBlocks;
 import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractEssentiaJar.BlockAbstractJarItem;
-import com.zeitheron.thaumicadditions.client.tesr.TESRAbstractJar;
+import com.zeitheron.thaumicadditions.client.render.tile.TESRAbstractJar;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
