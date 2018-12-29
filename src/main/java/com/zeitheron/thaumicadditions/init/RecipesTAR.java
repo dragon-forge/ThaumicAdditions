@@ -113,6 +113,7 @@ public class RecipesTAR extends RecipeRegistry
 		addInfusionRecipe("puriflower", new ItemStack(BlocksTAR.PURIFLOWER), "TAR_PURIFLOWER", 2, new ItemStack(BlocksTAR.DAWN_TOTEM), new AspectList().add(Aspect.AURA, 10).add(KnowledgeTAR.IMPERIUM, 15).add(Aspect.ORDER, 30).add(Aspect.PLANT, 60), BlocksTC.shimmerleaf, BlocksTC.vishroom, crystalEssence(Aspect.PLANT), BlocksTC.vishroom);
 		addInfusionRecipe("growth_chamber", new ItemStack(BlocksTAR.GROWTH_CHAMBER), "TAR_GROWTH_CHAMBER", 3, BlocksTAR.CRYSTAL_BLOCK, new AspectList().add(Aspect.ORDER, 20).add(Aspect.MECHANISM, 15).add(KnowledgeTAR.IMPERIUM, 10), ItemsTC.amber, new ItemStack(ItemsTC.plate, 1, 2), ItemsTC.morphicResonator, new ItemStack(ItemsTC.plate, 1, 2), ItemsTC.visResonator, new ItemStack(ItemsTC.plate, 1, 2), ItemsTC.mechanismComplex, new ItemStack(ItemsTC.plate, 1, 2));
 		addInfusionRecipe("arcane_cake", new ItemStack(BlocksTAR.CAKE), "TAR_CAKE", 5, new ItemStack(Items.CAKE), new AspectList().add(Aspect.LIFE, 20).add(Aspect.DESIRE, 30).add(Aspect.MAGIC, 15).add(KnowledgeTAR.VENTUS, 10), new ItemStack(ItemsTC.primordialPearl), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.salisMundus), AspectUtil.crystalEssence(KnowledgeTAR.IMPERIUM));
+		addInfusionRecipe("chester", new ItemStack(ItemsTAR.CHESTER), "TAR_CHESTER", 2, new ItemStack(BlocksTC.hungryChest), new AspectList().add(KnowledgeTAR.IMPERIUM, 80).add(Aspect.LIFE, 40).add(Aspect.VOID, 20).add(Aspect.MECHANISM, 10), new ItemStack(BlocksTC.plankGreatwood), "ingotThaumium", new ItemStack(BlocksTC.plankGreatwood), new ItemStack(ItemsTC.brain), new ItemStack(BlocksTC.plankGreatwood), new ItemStack(ItemsTC.morphicResonator), new ItemStack(BlocksTC.plankGreatwood), "ingotThaumium");
 		
 		for(Aspect a : Aspect.aspects.values())
 		{
@@ -142,6 +143,7 @@ public class RecipesTAR extends RecipeRegistry
 		addShapedArcaneRecipe("seal_globe", "TAR_SEAL_GLOBE", 100, AspectUtil.primals(1), new ItemStack(ItemsTAR.SEAL_GLOBE), "ggg", "grg", "lcl", 'g', "blockGlass", 'r', ItemsTC.visResonator, 'l', "ingotGold", 'c', new NBTRespectfulIngredient(crystalEssence(KnowledgeTAR.IMPERIUM)));
 		addShapedArcaneRecipe("knowledge_tome", "TAR_KNOWLEDGE_TOME", 100, AspectUtil.primals(1), new ItemStack(ItemsTAR.KNOWLEDGE_TOME), "s", "c", "t", 's', new ItemStack(ItemsTC.scribingTools, 1, OreDictionary.WILDCARD_VALUE), 'c', new ItemStack(ItemsTC.curio, 1, 1), 't', new ItemStack(ItemsTC.thaumonomicon));
 		addShapedArcaneRecipe("fragnant_pendant", "TAR_FRAGNANT_PENDANT", 50, AspectUtil.primals(1), new ItemStack(ItemsTAR.FRAGNANT_PENDANT), " f ", "saf", "mp ", 'f', new ItemStack(ItemsTC.filter), 's', new ItemStack(ItemsTC.salisMundus), 'a', new ItemStack(ItemsTC.baubles, 1, 4), 'm', new ItemStack(ItemsTC.amber), 'p', new ItemStack(ItemsTAR.ODOUR_POWDER));
+		addShapedArcaneRecipe("bone_eye", "TAR_CHESTER", 100, new AspectList().add(Aspect.ORDER, 1).add(Aspect.AIR, 1), new ItemStack(ItemsTAR.BONE_EYE), " b ", " eb", "t  ", 'b', Items.QUARTZ, 'e', Items.SPIDER_EYE, 't', "ingotThaumium");
 		
 		for(Aspect a : Aspect.aspects.values())
 		{

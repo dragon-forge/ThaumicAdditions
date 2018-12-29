@@ -17,8 +17,8 @@ buildscript {
 }
 
 plugins {
-    id 'com.matthewprenger.cursegradle' version '1.0.8'
-	id 'se.bjurr.gitchangelog.git-changelog-gradle-plugin' version '1.50'
+    id 'com.matthewprenger.cursegradle' version '1.1.0'
+	id 'se.bjurr.gitchangelog.git-changelog-gradle-plugin' version '1.56'
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -74,6 +74,7 @@ repositories {
 
 dependencies {
 	deobfCompile "hammer-core:HammerCore-${config.minecraft_version}:${config.hc_version}:deobf"
+	deobfCompile "visuals:Visuals-${config.minecraft_version}:2r:deobf"
 	deobfCompile "mcp.mobius.waila:Hwyla:1.8.24-B39_1.12"
 	deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
 	
