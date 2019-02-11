@@ -154,6 +154,10 @@ curseforge {
 		addArtifact(srcJar) {
 		  displayName = "[${config.minecraft_version}] ${config.mod_name} (Sources) - ${config.mod_version}"
 		}
+		relations {
+            requiredLibrary 'Hammer-Core'
+			optionalLibrary 'Visuals'
+        }
 	}
 }
 

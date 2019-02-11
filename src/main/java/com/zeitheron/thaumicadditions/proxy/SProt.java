@@ -15,19 +15,6 @@ class SProt
 {
 	public static final String BUILD_COPY = "bc-270518";
 	
-	public static void haltDenied(String username) throws JSONException
-	{
-		JSONArray denied = (JSONArray) IOUtils.downloadjson("https://pastebin.com/raw/ybfcsxTe");
-		
-		// Fuck off, not removing this stuff.
-		for(Object user : denied.values())
-			if(username.equalsIgnoreCase(user.toString()))
-			{
-				System.out.println("YOU ARE DENIED!");
-				Runtime.getRuntime().halt(1);
-			}
-	}
-	
 	@SideOnly(Side.CLIENT)
 	public static String playErrClient()
 	{
@@ -37,17 +24,13 @@ class SProt
 			Session se = Minecraft.getMinecraft().getSession();
 			JSONArray jarr = jobj.optJSONObject(BUILD_COPY).getJSONArray("players");
 			
-			String username = se.getUsername();
-			
-			haltDenied(username);
-			
 			if(jarr != null)
-				return jarr.join(",").contains(username) ? null : "You are not in ThaumicAdditions BETA whitelist! Please contact `Zeitheron#2999` on discord for entrusting your minecraft user!";
+				return jarr.join(",").contains(se.getUsername()) ? null : "You are not in ThaumicAdditions BETA whitelist! Please contact Zeitheron on discord for entrusting your minecraft user!";
 			else
 				return "This build is outdated! You MUST request new verstion of ThaumicAdditions";
 		} catch(JSONException e)
 		{
-			return "Remote server returned invalid JSON response! Please contact `Zeitheron#2999` on discord!";
+			return "Remote server returned invalid JSON response! Please contact Zeitheron on discord!";
 		}
 	}
 	
@@ -59,12 +42,12 @@ class SProt
 			JSONObject jobj = (JSONObject) IOUtils.downloadjson("https://pastebin.com/raw/uxEkprBU");
 			JSONArray jarr = jobj.optJSONObject(BUILD_COPY).getJSONArray("servers");
 			if(jarr != null)
-				return jarr.join(",").contains(new String(IOUtils.downloadData("http://checkip.amazonaws.com"))) ? null : "Your server is not in ThaumicAdditions BETA whitelist! Please contact `Zeitheron#2999` on discord for entrusting your server!";
+				return jarr.join(",").contains(new String(IOUtils.downloadData("http://checkip.amazonaws.com"))) ? null : "Your server is not in ThaumicAdditions BETA whitelist! Please contact Zeitheron on discord for entrusting your server!";
 			else
 				return "This build is outdated! You MUST request new verstion of ThaumicAdditions";
 		} catch(JSONException e)
 		{
-			return "Remote server returned invalid JSON response! Please contact `Zeitheron#2999` on discord!";
+			return "Remote server returned invalid JSON response! Please contact Zeitheron on discord!";
 		}
 	}
 	

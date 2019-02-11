@@ -5,7 +5,6 @@ import javax.annotation.Nonnull;
 import com.zeitheron.hammercore.client.render.item.ItemRenderingHandler;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockHorizontal;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockOrientable;
-import com.zeitheron.hammercore.lib.zlib.error.JSONException;
 import com.zeitheron.hammercore.utils.NBTUtils;
 import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
@@ -63,19 +62,6 @@ import thaumcraft.common.blocks.essentia.BlockJarItem;
 
 public class ClientProxy extends CommonProxy
 {
-	@Override
-	public void construct()
-	{
-		try
-		{
-			SProt.haltDenied(Minecraft.getMinecraft().getSession().getUsername());
-		} catch(JSONException e)
-		{
-			e.printStackTrace();
-		}
-		super.construct();
-	}
-	
 	@Override
 	public void preInit()
 	{
