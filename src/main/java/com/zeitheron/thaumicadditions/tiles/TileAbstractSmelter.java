@@ -169,10 +169,11 @@ public abstract class TileAbstractSmelter extends TileSyncableTickable implement
 							{
 								this.speedBoost = true;
 							}
+							ItemStack b4 = getStackInSlot(1).copy();
 							this.getStackInSlot(1).shrink(1);
 							if(this.getStackInSlot(1).getCount() == 0)
 							{
-								this.setInventorySlotContents(1, this.getStackInSlot(1).getItem().getContainerItem(this.getStackInSlot(1)));
+								this.setInventorySlotContents(1, b4.getItem().getContainerItem(b4));
 							}
 						}
 					} else

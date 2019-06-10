@@ -108,11 +108,7 @@ public class ItemKnowledgeTome extends Item
 					String k = tag.getString("K");
 					ResearchEntry re = ResearchCategories.getResearch(k);
 					if(tag.getBoolean("C") && re != null && re.getStages() != null)
-					{
 						CommandThaumcraft.giveRecursiveResearch(playerIn, k);
-						if(playerIn instanceof EntityPlayerMP)
-							ThaumcraftCapabilities.getKnowledge(playerIn).sync((EntityPlayerMP) playerIn);
-					}
 				}
 				
 				if(playerIn instanceof EntityPlayerMP)
