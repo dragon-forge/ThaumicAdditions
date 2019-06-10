@@ -73,7 +73,7 @@ repositories {
 }
 
 dependencies {
-	deobfCompile "hammer-core:HammerCore-${config.minecraft_version}:${config.hc_version}:deobf"
+	deobfCompile "hammer-lib:HammerCore-${config.minecraft_version}:${config.hc_version}:deobf"
 	deobfCompile "visuals:Visuals-${config.minecraft_version}:2r:deobf"
 	deobfCompile "mcp.mobius.waila:Hwyla:1.8.24-B39_1.12"
 	deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
@@ -155,7 +155,7 @@ curseforge {
 		  displayName = "[${config.minecraft_version}] ${config.mod_name} (Sources) - ${config.mod_version}"
 		}
 		relations {
-            requiredLibrary 'Hammer-Core'
+            requiredLibrary 'Hammer-Lib'
 			optionalLibrary 'Visuals'
         }
 	}

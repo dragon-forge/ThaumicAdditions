@@ -19,6 +19,7 @@ import com.zeitheron.thaumicadditions.api.ResearchAddendumBuilder;
 import com.zeitheron.thaumicadditions.api.ResearchEntryBuilder;
 import com.zeitheron.thaumicadditions.api.ResearchStageBuilder;
 import com.zeitheron.thaumicadditions.config.ConfigsTAR;
+import com.zeitheron.thaumicadditions.items.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;
 
 import net.minecraft.init.Blocks;
@@ -143,6 +144,8 @@ public class KnowledgeTAR
 		new REB().setBaseInfo("TAR_MITHRILLIUM_JAR", "mithrillium_jar", 4, -1, new ItemStack(BlocksTAR.MITHRILLIUM_JAR)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":mithrillium_jar.1").setRequiredCraft(new ItemStack(BlocksTAR.ELDRITCH_JAR), new ItemStack(ItemsTAR.MITHRILLIUM_PLATE)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ALCHEMY"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":mithrillium_jar.2").setRecipes(InfoTAR.MOD_ID + ":mithrillium_jar").build()).setParents("TAR_ELDRITCH_JAR", "TAR_MITHRILLIUM").buildAndRegister();
 		new REB().setBaseInfo("TAR_ADAMINITE_JAR", "adaminite_jar", 4, -3, new ItemStack(BlocksTAR.ADAMINITE_JAR)).setMeta(EnumResearchMeta.HEX, EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":adaminite_jar.1").setRequiredCraft(new ItemStack(BlocksTAR.MITHRILLIUM_JAR), new ItemStack(ItemsTAR.ADAMINITE_PLATE)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ALCHEMY"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":adaminite_jar.2").setRequiredCraft(new ItemStack(BlocksTAR.ADAMINITE_JAR)).setRecipes(InfoTAR.MOD_ID + ":adaminite_jar").build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":adaminite_jar.3").setRecipes(InfoTAR.MOD_ID + ":adaminite_jar").build()).setParents("TAR_MITHRILLIUM_JAR", "TAR_ADAMINITE").buildAndRegister();
 		new REB().setBaseInfo("TAR_MITHMINITE_JAR", "mithminite_jar", 4, -5, new ItemStack(BlocksTAR.MITHMINITE_JAR)).setMeta(EnumResearchMeta.HEX, EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":mithminite_jar.1").setRequiredCraft(new ItemStack(BlocksTAR.ADAMINITE_JAR), new ItemStack(ItemsTAR.MITHMINITE_PLATE)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ALCHEMY"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":mithminite_jar.2").setRecipes(InfoTAR.MOD_ID + ":mithminite_jar").build()).setParents("TAR_ADAMINITE_JAR", "TAR_MITHMINITE").buildAndRegister();
+		
+		new REB().setBaseInfo("TAR_VIS_SEEDS", "vis_seeds", -5, 1, ItemVisSeeds.create(DRACO, 1)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":vis_seeds.1").setKnow(new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("ALCHEMY"), 1), new Knowledge(EnumKnowledgeType.THEORY, TAReconstructed.RES_CAT, 1)).setConsumedItems(new ItemStack(Items.WHEAT_SEEDS)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":vis_seeds.2").setRecipes(RecipesTAR.visSeedsRecipeIDFake).build()).setParents("TAR_THAUMADDS").buildAndRegister();
 	}
 	
 	private static void $insertAspects()

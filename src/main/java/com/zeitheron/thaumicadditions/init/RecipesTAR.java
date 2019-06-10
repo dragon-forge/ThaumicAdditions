@@ -17,6 +17,7 @@ import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.api.blueprint.BlueprintBuilder;
 import com.zeitheron.thaumicadditions.config.ConfigsTAR;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
+import com.zeitheron.thaumicadditions.items.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.recipes.RecipeApplySalt;
 import com.zeitheron.thaumicadditions.recipes.RecipeClearSalt;
 import com.zeitheron.thaumicadditions.recipes.RecipeMixSalts;
@@ -52,6 +53,9 @@ public class RecipesTAR extends RecipeRegistry
 {
 	public static final ResourceLocation crystalBlockRecipeIDFake = new ResourceLocation(InfoTAR.MOD_ID, "crystal_block_recipes_all");
 	public static final List<ResourceLocation> crystalBlockRecipes = new ArrayList<>();
+	
+	public static final ResourceLocation visSeedsRecipeIDFake = new ResourceLocation(InfoTAR.MOD_ID, "vis_seeds_recipes_all");
+	public static final List<ResourceLocation> visSeedsRecipes = new ArrayList<>();
 	
 	public static final ResourceLocation sealSymbolRecipeIDFake = new ResourceLocation(InfoTAR.MOD_ID, "seal_symbol_recipes_all");
 	public static final List<ResourceLocation> sealSymbolRecipes = new ArrayList<>();
@@ -174,6 +178,16 @@ public class RecipesTAR extends RecipeRegistry
 	{
 		addCrucibleRecipe("crystal_water", "TAR_CRYSTAL_WATER", FluidUtil.getFilledBucket(new FluidStack(FluidsTAR.CRYSTAL_WATER, Fluid.BUCKET_VOLUME)), new ItemStack(Items.WATER_BUCKET), new AspectList().add(Aspect.CRYSTAL, 10).add(Aspect.DESIRE, 4).add(Aspect.EXCHANGE, 6));
 		addCrucibleRecipe("odour_powder", "TAR_FRAGNANT_PENDANT", new ItemStack(ItemsTAR.ODOUR_POWDER, 4), new ItemStack(ItemsTC.bathSalts), new AspectList().add(Aspect.ORDER, 10).add(KnowledgeTAR.EXITIUM, 5).add(KnowledgeTAR.VENTUS, 5));
+		
+		for(Aspect a : Aspect.aspects.values())
+		{
+			CrucibleRecipe cr = new CrucibleRecipe("TAR_VIS_SEEDS", ItemVisSeeds.create(a, 1), new ItemStack(Items.WHEAT_SEEDS), new AspectList().add(Aspect.PLANT, 10).add(a, 20));
+			ResourceLocation loc = new ResourceLocation(InfoTAR.MOD_ID, a.getTag() + "_vis_seed");
+			visSeedsRecipes.add(loc);
+			ThaumcraftApi.addCrucibleRecipe(loc, cr);
+		}
+		
+		ThaumcraftApi.addFakeCraftingRecipe(visSeedsRecipeIDFake, visSeedsRecipes);
 	}
 	
 	private void multiblock()
@@ -222,7 +236,7 @@ public class RecipesTAR extends RecipeRegistry
 	}
 	
 	@Override
-	protected void recipe(IRecipe recipe)
+	protected IRecipe recipe(IRecipe recipe)
 	{
 		super.recipe(recipe);
 		Item it = recipe.getRecipeOutput().getItem();
@@ -232,6 +246,7 @@ public class RecipesTAR extends RecipeRegistry
 		if(!locs.contains(recipe.getRegistryName()))
 			locs.add(recipe.getRegistryName());
 		ThaumcraftApi.addFakeCraftingRecipe(recipe.getRegistryName(), recipe);
+		return recipe;
 	}
 	
 	public static String[] getFakeRecipesFor(Item it)

@@ -7,6 +7,8 @@ import com.zeitheron.thaumicadditions.items.ItemKnowledgeTome;
 import com.zeitheron.thaumicadditions.items.ItemMaterial;
 import com.zeitheron.thaumicadditions.items.ItemSaltEssence;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
+import com.zeitheron.thaumicadditions.items.ItemVisPod;
+import com.zeitheron.thaumicadditions.items.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.items.ItemZeithScale;
 import com.zeitheron.thaumicadditions.items.baubles.ItemFragnantPendant;
 import com.zeitheron.thaumicadditions.items.baubles.ItemRechargeCharm;
@@ -32,4 +34,6 @@ public class ItemsTAR
 	public static final ItemFragnantPendant FRAGNANT_PENDANT = new ItemFragnantPendant();
 	public static final ItemChester CHESTER = new ItemChester();
 	public static final ItemBoneEye BONE_EYE = new ItemBoneEye();
+	public static final ItemVisPod VIS_POD = new ItemVisPod();
+	public static final ItemVisSeeds VIS_SEEDS = new ItemVisSeeds();
 }
