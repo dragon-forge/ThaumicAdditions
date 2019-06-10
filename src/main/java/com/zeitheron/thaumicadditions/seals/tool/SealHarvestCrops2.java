@@ -10,6 +10,7 @@ import com.zeitheron.thaumicadditions.tiles.TileSeal;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.NonNullList;
@@ -89,10 +90,19 @@ public class SealHarvestCrops2 extends SealInstance
 						}
 				}
 				
+				TileEntity te = l.getTile();
+				
 				l.destroyBlock(false);
 				
 				if(state != null)
+				{
 					l.setState(state, 3);
+					if(te != null)
+					{
+						te.validate();
+						l.setTile(te);
+					}
+				}
 				
 				for(ItemStack i : drops)
 					if(!i.isEmpty())

@@ -28,6 +28,8 @@ import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.inventory.gui.GuiSealGlobe;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
+import com.zeitheron.thaumicadditions.items.ItemVisPod;
+import com.zeitheron.thaumicadditions.items.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.proxy.fx.FXHandler;
 import com.zeitheron.thaumicadditions.proxy.fx.FXHandlerClient;
 import com.zeitheron.thaumicadditions.tiles.TileAspectCombiner;
@@ -85,6 +87,8 @@ public class ClientProxy extends CommonProxy
 		
 		// Adding custom color handlers
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(ItemsTAR.SALT_ESSENCE::getItemColor, ItemsTAR.SALT_ESSENCE);
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(ItemVisPod::getColor, ItemsTAR.VIS_POD);
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(ItemVisSeeds::getColor, ItemsTAR.VIS_SEEDS);
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, layer) ->
 		{
 			if(layer == 1)
@@ -120,6 +124,7 @@ public class ClientProxy extends CommonProxy
 			return 0xFFFFFF;
 		}, Item.getItemFromBlock(BlocksTAR.SEAL));
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(BlocksTAR.CRYSTAL_BLOCK::getColor, BlocksTAR.CRYSTAL_BLOCK);
+		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(BlocksTAR.VIS_CROPS::getColor, BlocksTAR.VIS_CROPS);
 		
 		// Add custom TESRs
 		

@@ -27,7 +27,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 import thaumcraft.api.capabilities.IPlayerKnowledge;
 import thaumcraft.api.capabilities.ThaumcraftCapabilities;
+import thaumcraft.api.research.ResearchCategories;
+import thaumcraft.api.research.ResearchEntry;
 import thaumcraft.client.fx.FXDispatcher;
+import thaumcraft.common.lib.CommandThaumcraft;
 
 public class ItemKnowledgeTome extends Item
 {
@@ -44,7 +47,7 @@ public class ItemKnowledgeTome extends Item
 	{
 		if(held.hasTagCompound() && held.getTagCompound().hasKey("KnowledgeOwner") && held.getTagCompound().hasKey("Knowledge"))
 		{
-			tooltip.add(I18n.format(getTranslationKey() + ".desc1", held.getTagCompound().getString("KnowledgeOwner")));
+			tooltip.add(I18n.format(getTranslationKey() + ".desc1", held.getTagCompound().getString("KnowledgeOwner"), held.getTagCompound().getTagList("Knowledge", NBT.TAG_COMPOUND).tagCount()));
 			tooltip.add(I18n.format(getTranslationKey() + ".desc2", held.getTagCompound().getString("KnowledgeTimestamp")));
 		}
 	}
@@ -71,13 +74,16 @@ public class ItemKnowledgeTome extends Item
 				
 				know.getResearchList().stream().forEach(k ->
 				{
-					NBTTagCompound tag = new NBTTagCompound();
-					tag.setString("K", k);
-					tag.setByte("S", (byte) know.getResearchStage(k));
-					known.appendTag(tag);
-					if(know.isResearchComplete(k))
+					ResearchEntry re;
+					if((re = ResearchCategories.getResearch(k)) != null && re.getStages() != null && know.isResearchComplete(k))
+					{
+						NBTTagCompound tag = new NBTTagCompound();
+						tag.setString("K", k);
+						tag.setBoolean("C", true);
+						known.appendTag(tag);
 						complete.add(k);
-					research.add(k);
+						research.add(k);
+					}
 				});
 				
 				nbt.setString("KnowledgeOwner", playerIn.getGameProfile().getName());
@@ -100,7 +106,13 @@ public class ItemKnowledgeTome extends Item
 				{
 					NBTTagCompound tag = list.getCompoundTagAt(i);
 					String k = tag.getString("K");
-					know.setResearchStage(k, Math.max(know.getResearchStage(k), tag.getByte("S")));
+					ResearchEntry re = ResearchCategories.getResearch(k);
+					if(tag.getBoolean("C") && re != null && re.getStages() != null)
+					{
+						CommandThaumcraft.giveRecursiveResearch(playerIn, k);
+						if(playerIn instanceof EntityPlayerMP)
+							ThaumcraftCapabilities.getKnowledge(playerIn).sync((EntityPlayerMP) playerIn);
+					}
 				}
 				
 				if(playerIn instanceof EntityPlayerMP)
