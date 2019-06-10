@@ -1,0 +1,277 @@
+# Thaumic Additions German Translation (by Legondas)
+
+itemGroup.thaumadditions=Thaumische Ergänzungen: Rekonstruiert
+tc.research_category.THAUMADDITIONS=Thaumische Ergänzungen
+tc.aspect.fluctus=Welle, Wogen
+tc.aspect.sonus=Ton, Lärm
+tc.aspect.exitium=Zerstörung, Schaden
+tc.aspect.caeles=Gott, Superkraft
+tc.aspect.draco=Drache
+tc.aspect.infernum=Hölle, Dämonen
+tc.aspect.ventus=Luft, Wind
+tc.aspect.visum=Blick, Sehen
+tc.aspect.imperium=Kontrolle, Manipulation
+
+##BLOCKS##
+
+tile.thaumadditions:crafting_furnace.name=Herstellungsofen
+tile.thaumadditions:mithrillium_smelter.name=Mithrill Essentia-Schmelze
+tile.thaumadditions:mithminite_smelter.name=Mithminit Essentia-Schmelze
+tile.thaumadditions:adaminite_smelter.name=Adaminit Essentia-Schmelze
+tile.thaumadditions:aspect_combiner.name=Essentia Kombinator
+tile.thaumadditions:aura_charger.name=Aura-Ladegerät
+tile.thaumadditions:crystal_crusher.name=Kristall-Brecher
+tile.thaumadditions:aura_disperser.name=Aura Verteiler
+tile.thaumadditions:crystal_bore.name=Kristallbohrer
+tile.thaumadditions:entity_summoner.name=Wesensbeschwörer
+tile.thaumadditions:puriflower.name=Reinheitsblume
+tile.thaumadditions:crystal_block.name=@ASPECT Kristallblock
+tile.thaumadditions:jar_brass.name=Messing-Versiegeltes Glas
+tile.thaumadditions:jar_thaumium.name=Thaumiumverstärktes Glas
+tile.thaumadditions:jar_eldritch.name=Leeren-Verstärktes Glas
+tile.thaumadditions:jar_mithrillium.name=Mithrill-Verstärktes Glas
+tile.thaumadditions:jar_adaminite.name=Adaminit-Verstärktes Glas
+tile.thaumadditions:jar_mithminite.name=Mithminit Glas
+tile.thaumadditions:growth_chamber.name=Kristallzüchtungskammer
+tile.thaumadditions:dawn_totem.name=Totem der Morgenröte
+tile.thaumadditions:twilight_totem.name=Totem der Abenddämmerung
+tile.thaumadditions:dusk_totem.name=Totem of Dusk [NYI]
+tile.thaumadditions:seal.name=Arkanes Siegel
+tile.thaumadditions:seal.desc=Farbe: @COLOR
+tile.thaumadditions:cake.name=Arkaner Kuchen
+
+##########
+
+
+
+##FLUIDS##
+
+fluid.thaumadditions:crystal_water=Kristallwasser
+
+##########
+
+
+
+##POTIONS##
+
+potion.thaumadditions:sonus=Geräuschempfindlichkeit
+
+##########
+
+
+
+##ITEMS##
+
+item.thaumadditions:mithrillium_nugget.name=Mithrill Nugget
+item.thaumadditions:adaminite_nugget.name=Adaminit Nugget
+item.thaumadditions:mithrillium_ingot.name=Mithrill Barren
+item.thaumadditions:adaminite_ingot.name=Adaminit Barren
+item.thaumadditions:mithminite_ingot.name=Mithminit Barren
+item.thaumadditions:mithrillium_plate.name=Mithrill Plate
+item.thaumadditions:adaminite_plate.name=Adaminit Plate
+item.thaumadditions:mithminite_plate.name=Mithminit Plate
+item.thaumadditions:salt_essence.name=Vis Salz
+item.thaumadditions:zeith_scale.name=Zeitherons Neugier
+item.thaumadditions:zeith_scale.tip=Gegenstand Mythischen Ausmaßes
+item.thaumadditions:dna_sample.name=Wesenszelle
+item.thaumadditions:dna_sample.blank=Leer
+item.thaumadditions:dna_sample.entity=Wesen
+item.thaumadditions:recharge_charm.name=Auflade Zauber
+item.thaumadditions:recharge_charm.tooltip0=NOCH kein Rezept/Forschung!
+item.thaumadditions:seal_symbol.name=Siegelsymbol: @ASPECT
+item.thaumadditions:seal_globe.name=Siegelkugel
+item.thaumadditions:knowledge_tome.name=Foliant des Teilens
+item.thaumadditions:knowledge_tome.desc1=Speichert das Wissen von %s's (%,d discoveries)
+item.thaumadditions:knowledge_tome.desc2=Gespeichert bei % s
+item.thaumadditions:odour_powder.name=Geruchspulver
+item.thaumadditions:fragnant_pendant.name=Fragnant Pendant
+item.thaumadditions:chester.name=Chester
+item.thaumadditions:bone_eye.name=Knochenauge
+item.thaumadditions:vis_pod.name=%s Vis Pod
+item.thaumadditions:vis_seeds.name=%s Vis Seeds
+
+#########
+
+
+
+##MISC MESSAGES##
+
+status.thaumadditions:dna_unpickable=Dieses Wesen ist zu stark, um eine Probe zu nehmen!
+status.thaumadditions:dna_unpickable.1=Dies ist ein unbelebtes Objekt!
+gui.thaumadditions:null=Nichts
+gui.thaumadditions:knowledge_tome.store=Wissen gespeichert! Sie besitzen %s Erkenntnisse, %s davon sind vollständig.
+gui.thaumadditions:knowledge_tome.restore=Jetzt wissen Sie alles, was %s von %s wusste
+chat.thaumadditions:chester.stay=Der Chester wird hier bleiben.
+chat.thaumadditions:chester.follow=Der Chester wird dir folgen.
+chat.thaumadditions:chester.not_master=Du bist nicht mein Meister.
+entity.thaumadditions.chester.name=Chester
+entity.thaumadditions.chester=Chester
+
+#################
+
+
+
+##RESEARCH##
+
+research.!FluxRift.text=Scanne einen Fluxriss
+research.!TARShimmerleaf.text=Erforsche Shimmerblatt
+
+research_name.thaumadditions:thaumadds=Thaumische Ergänzungen
+research_stage.thaumadditions:thaumadds.1=Ich habe eine sehr seltsame Theorie, die mir auf meiner thaumischen Reise zu helfen scheint. Es scheint, dass ich später offensichtliche Dinge finden werde, an die ich ohne diese seltsame Beobachtung nicht einmal denken kann ...
+research_stage.thaumadditions:thaumadds.2=Ich werde Folgendes notieren: Thaumische Ergänzungen ist eine magische Erweiterung meiner Fähigkeiten, die mir in vielerlei Hinsicht helfen wird. Wie habe ich das nochmal gefunden?
+
+research_name.thaumadditions:essence_salt=Vis Salze
+research_stage.thaumadditions:essence_salt.1=Ich habe mich immer gefragt, wie Vis-Kristalle schmecken ... Wenn man bedenkt, dass Kristalle zerbrechlich sind, können sie eventuell leicht zu Salz zerkleinert werden? Nach meiner Theorie kann dies nur funktionieren ...
+research_stage.thaumadditions:essence_salt.2=Gah! Das Salz, das ich gerade mit meinen Händen gemacht habe, war so instabil, dass es irgendwie verschwunden ist ?! Möglicherweise muss ich es noch einmal versuchen. Dafür muss ich von einer hohen Stelle auf einen Kristall springen, der auf den Boden gefallen ist.
+research_stage.thaumadditions:essence_salt.3=Hm ... Dieses Salz ist irgendwie viel stabiler. Und ich denke, jedes Kristallsalz schmeckt anders! Könnte ich sie auf mein Essen anwenden, wenn ich bedenke, dass Aspekte magische Kräfte enthalten?<LINE>Ich werde festhalten, wie man sie bekommt: Springe von einem hohen Ort auf einen heruntergefallenen Vis-Kristall.
+
+research_name.thaumadditions:mithrillium=Mithrill Metall
+research_stage.thaumadditions:mithrillium.1=Ich glaube, ich habe eine Verbesserung für Leermetall gefunden. Dieses neue Metall regeneriert sich nicht nur schneller, es scheint auch mit hohen thaumischen Schwingungen zu pulsieren. Ich sollte mehr experimentieren. Ich weiß, dass dieses Metall es wert ist.
+research_stage.thaumadditions:mithrillium.2=Huh! Dieses seltsame neue Metall ist sehr ungewöhnlich, selbst wenn man versteht, wie Leermetall funktioniert! Das Buch spricht seinen Namen als "Mithrill Metall" aus ... Ich denke, dass es ein gutes Material sein könnte, um mein arkanes Zubehör zu verbessern. Aber was genau kann ich damit machen?
+
+research_name.thaumadditions:mithminite=Mithminit Metall
+research_stage.thaumadditions:mithminite.1=Adaminit hat sich als sehr starkes Metall erwiesen und kann verrückte Dinge wie Adaminit-Schmelzöfen produzieren. Aber ich denke, es zeigt nicht, seine gesamte Kraft. Ich habe eine Idee, das zu lösen. Ich kann versuchen, es mit ein paar Stücken Mithrill und ein paar Tropfen Quecksilber zu verschmelzen.
+research_stage.thaumadditions:mithminite.2=Mein Experiment war ein Erfolg! Ich habe ein neues Metall hergestellt, das Adaminit ist, aber ich kann sein volles Potenzial offenbaren. Hm ... Was soll ich damit entdecken?
+
+research_name.thaumadditions:adaminite=Adaminit Metall
+research_stage.thaumadditions:adaminite.1=Mithrill Metall ist eine sehr seltsame Substanz, aber ich bin mir sicher, dass sie noch weiter verbessert werden könnte. Ich werde versuchen zu experimentieren und vielleicht werde ich in der Lage sein zu wissen, was das beste ist.
+research_stage.thaumadditions:adaminite.2=Meine Experimente waren erfolgreich! Das Buch nennt diese neue Kreation "Adaminit". Ich werde verrückt. Ich habe von Ichor gehört, dem Blut der Götter, aber ich denke, dass dieses Metall viel besser als Ichor ist, selbst wenn es irgendwo auf dieser Welt existiert.
+
+research_name.thaumadditions:mithrillium_smelter=Mithrill Essentia-Schmelze
+research_stage.thaumadditions:mithrillium_smelter.1=Ich habe eine Theorie über die Verwendung von Mithrillium zur Aufwertung meiner Leermetall Essentia-Schmelze. Ich denke, dass dieses Upgrade weniger Essentia verlieren wird als die Leermetallschmelze (etwa 5% Verlust).
+research_stage.thaumadditions:mithrillium_smelter.2=Das war es auf jeden Fall wert! Mithrillium-Metall scheint die Masse an Ort und Stelle zu halten und alles verlustfrei umzuwandeln.
+
+research_name.thaumadditions:adaminite_smelter=Adaminit Essentia-Schmelze
+research_stage.thaumadditions:adaminite_smelter.1=Der Mithrill Schmelzofen ist definitiv bereits die beste Schmelze. Aber vielleicht könnte ich es extra Essentia aus der Masse extrahieren lassen? Ich muss noch ein bisschen mehr damit experimentieren.
+research_stage.thaumadditions:adaminite_smelter.2=Ja! Adaminit scheint gut und effizient zu funktionieren! Die Adaminit Essentia-Schmelze hat eine Chance von  20% das Essentia zu erhöhen. Dies bedeutet, dass ich möglicherweise weniger schmelzen muss.
+
+research_name.thaumadditions:mithminite_smelter=Mithmini Essentia-Schmelze
+research_stage.thaumadditions:mithminite_smelter.1=Ich möchte die Qualität der Adaminitschmelze verbessern, sie schneller machen und häufiger zusätzliche Essentien produzieren. Ich weiß, dass Mithminit helfen kann und ich muss sicherstellen, dass ich richtig denke. Mit einem kleinen Experiment.
+research_stage.thaumadditions:mithminite_smelter.2=Diese neue Schmelze mag zu teuer sein, aber ich habe sie für "spezielle" Fälle entdeckt. Ich werde jedoch ein Lesezeichen auf das Rezept der Schmelze setzen.
+
+research_name.thaumadditions:brass_jar=Messing-Versiegeltes Glas
+research_stage.thaumadditions:brass_jar.1=Versiegelte Gläser sind hübsch und groß, aber sie beinhalten nur zweihundertfünfzig Essentia. Ich kann eine leichte Steigerung erzielen, indem ich es mit Messing verbessere.
+research_stage.thaumadditions:brass_jar.2=Ich habs geschafft! Messing-Versiegelte Gläser halten ein bisschen mehr. Es ist kein bedeutendes Upgrade, aber ich bin mir sicher, dass dies noch weiter verbessert werden kann.
+
+research_name.thaumadditions:thaumium_jar=Thaumiumverstärkte Gläser
+research_stage.thaumadditions:thaumium_jar.1=Messing ist zwar schön und gut und es vergrößert das Glas ein wenig, aber ich brauche einen viel größeren Speicher und ich muss mehr Experimente machen. Vielleicht mit Thaumium?
+research_stage.thaumadditions:thaumium_jar.2=Lief wie am Schnürchen! Thaumium-Verstärkte Gläser sind eine etwas bedeutendere Erhöhung der Lagerfähigkeit. Das Buch sagt, dass dieses neue Glas ungefähr dreihundertfünfzig Essentien enthalten kann. Mir gefällt eigentlich, wohin das jetzt geht!
+
+research_name.thaumadditions:eldritch_jar=Leeren-Verstärkte Gläser
+research_stage.thaumadditions:eldritch_jar.1=Thaumium ist vielleicht eine gute Wahl, um flüssige Essentien kompakter zu lagern, aber ich denke, das reicht möglicherweise nicht aus. Ich muss mit Leermetall experimentieren. Wer weiß schon was passieren wird?
+research_stage.thaumadditions:eldritch_jar.2=Die Struktur der Leermetallplatte scheint den Speicher auf fünfhundert zu erweitern! Ich stelle mir diese Gläser in meinem Labor vor ... Aber sie werden jetzt ein bisschen teuer, oder?
+
+research_name.thaumadditions:mithrillium_jar=Mithrillium-Verstärkte Gläser
+research_stage.thaumadditions:mithrillium_jar.1=Leermetall war eine gute Wahl, um große Mengen Essentia aufzubewahren, aber die Zeit ist gekommen. Ich brauche wieder eine bessere Aufbewahrung! Ich erinnere mich daran, dass Mithrill ein sehr gutes Metall ist und ich erinnere mich definitiv daran, dass es besser ist als Leermetall. Ich muss das weiter studieren ...
+research_stage.thaumadditions:mithrillium_jar.2=Das Aufrüsten eines Leermetall Glases zu einem Mithrill Glass war definitiv einige Zeit und Mühe wert. In diesem neuen Baby stecken Tausend Essentien, was es so unglaublich macht wie Urperlen! Ich kann mir einfach nicht vorstellen, wie dicht die Essentia an einem so kleinen Ort aufbewahrt wird!
+
+research_name.thaumadditions:adaminite_jar=Adaminit-Verstärkte Gläser
+research_stage.thaumadditions:adaminite_jar.1=Dieses Mithrillium-Upgrade war sehr wundervoll, aber ich denke, dass Adaminit Essentia besser halten kann als alles, was ich derzeit kenne. Dies kann eine schlechte und auch teure Idee sein, da dies eine Menge Kämpfe erfordern kann.
+research_stage.thaumadditions:adaminite_jar.2=Adaminit ist etwas ganz Besonderes! Ich denke, dass dieses Gefäß zweitausend Punkte Essentia enthalten kann, was dies zu einem sehr dichten Punkt im Raum macht.
+research_stage.thaumadditions:adaminite_jar.3=Ich höre jemanden namens Zeitheron, einen der Schöpfer, der diese Welt aufgebaut hat. Er flüstert, dass dieses Glas zu dicht ist und unter bestimmten Umständen instabil ist: "Ich halte es nicht für eine gute Wahl, es vollständig mit Flux zu füllen ...". Ich kann auch hören, dass er sehr überrascht ist, dass ich es geschafft habe, da dies eine schwierige Herausforderung war.
+
+research_name.thaumadditions:mithminite_jar=Mithminit Gläser
+research_stage.thaumadditions:mithminite_jar.1=Jetzt, da ich weiß, dass Adaminit mit Mithrillium und etwas Quecksilber gerweckt werden kann, muss ich möglicherweise wissen, ob ich mir Mithminit Gläser leisten kann.
+research_stage.thaumadditions:mithminite_jar.2=Meine Theorie ist wahr, Adaminit Gläser können unter Verwendung eines komplexen Infusionsprozesses mit Mithminit-Legierung erweckt werden. Dieses neue (und ich hoffe, das letzte) Glas enthält viertausend Essentia, doppelt so viel wie Adaminit Gläser. Mir ist auch aufgefallen, dass dieses Glas überschüssige Essentia zerstört, die in es  rein fließen. Dies ist möglicherweise eine sehr gute Verbesserung für meine alten Leermetall Gläser UND es explodiert nicht durch Überfüllung mit Flux.
+
+research_name.thaumadditions:aspect_combiner=Essentia Kombination
+research_stage.thaumadditions:aspect_combiner.1=Ich habe mich immer gefragt, ob ich rückgängig machen kann, was eine Zentrifuge macht. Wenn das möglich ist, könnte ich mich viel einfacher auf die komplexe Arkane Infusion vorbereiten!
+research_stage.thaumadditions:aspect_combiner.2=Ich habe mit Essentia Zentrifugen, Mithrill und einer Phiole Permutatio experimentiert und habe wirklich einen Weg gefunden, zwei Aspekte zu mischen, um einen neuen Aspekt zu schaffen. Ich nenne das Alchemistische Aspekt Kombination
+
+research_name.thaumadditions:aura_charger=Aura-Ladegerät
+research_stage.thaumadditions:aura_charger.1=Ich habe mich immer gefragt, ob ich die Aura mit Alchemie und Infusionskraft auffüllen kann. Ich brauche einen Auram-Aspekt und einen Essentia Kombinator, um damit zu experimentieren.
+research_stage.thaumadditions:aura_charger.2=Aura Charger ist ein erstaunliches Gerät, der das Vis in der Aura wiederherstellt und auf fast das Dreifache des Grundwerts der Aura auffüllt. Dieses Gerät verwendet Auram Essentia, um 10 vis in der Umgebung wiederherzustellen.
+
+research_name.thaumadditions:crystal_crusher=Kristallbrecher
+research_stage.thaumadditions:crystal_crusher.1=Ich habe mich gefragt, ob das Zerkleinern von Kristallen automatisiert werden kann. Ich bin es leid, auf einen Kristall zu springen, um ihn in Salz zu zerbrechen. Ich werde einige Mechanismen zum Experimentieren brauchen.
+research_stage.thaumadditions:crystal_crusher.2=Ich habe versehentlich den einfachen arkanen Mechanismus zerbrochen, aber ich glaube, ich weiß, wie es geht! Ich muss einen komplexen arkanen Mechanismus mit allen Urkristallen, ein paar Thaumiumplatten, arkanen Steinplatten und etwas ... Salz auffüllen. Es benutzt Machina aus nahegelegenen Gläsern, um zu funktionieren.
+
+research_name.thaumadditions:aura_disperser=Aura Verteiler
+research_stage.thaumadditions:aura_disperser.1=Das Verwenden von Salz mit Lebensmitteln ist sehr nützlich, aber ich möchte dies möglichst auf einen Bereich von Kreaturen anwenden, vielleicht auf meine Farm. Ich würde gerne mehr darüber erfahren ...
+research_stage.thaumadditions:aura_disperser.2=Der Aura Verteiler ist eine Maschine, die Vis-Salze verwendet und diese auf eine kleine Fläche aufträgt, auf die sie gerichtet ist. Kann für viele Zwecke gut sein, wie Bauernhöfe, Mob Farmen, Fallen und andere Dinge.
+
+research_name.thaumadditions:crystal_bore=Kristallbohrer
+research_stage.thaumadditions:crystal_bore.1=Ich muss Kristalle abbauen, ohne sie zu zerstören und ich sehe noch keine Möglichkeiten, dies zu tun ... Und ich muss es auch automatisieren, wenn möglich. Ich werde weiter etwas Golemantik studieren, um das besser zu verstehen.
+research_stage.thaumadditions:crystal_bore.2=Ich habe ein neues Gerät entdeckt: Den Kristallbohrer! Er ist in der Lage, davor befindliche Kristalle zu geringen Kosten in der nahen Aura abzubauen. Er kann per Redstone-Signal deaktiviert werden und Gegenstände an die anliegende Kiste an der Rückseite ausgeben.
+
+research_name.thaumadditions:crystal_water=Flüssigkristall
+research_stage.thaumadditions:crystal_water.1=Meine Theorie ist, dass ich dem Wasser einige Aspekte hinzufügen könnte, damit es auf irgendeine Weise auf Kristalle reagiert.
+research_stage.thaumadditions:crystal_water.2=Kristallwasser kann das Wachstum von Kristallen beschleunigen, die von acht Blöcken dieser Flüssigkeit umgeben sind. Jedes Mal, wenn ein Kristall wächst, KANN er das Wasser verbrauchen. Ich werde eine der zu bauenden Strukturen mit einem Lesezeichen versehen.
+
+research_name.thaumadditions:enchanted_golden_apple=Verzauberter goldener Apfel
+research_stage.thaumadditions:enchanted_golden_apple.1=Legenden besagen, dass alte Dungeons manchmal super verzauberte goldene Äpfel enthalten. Ich denke, dass Thaumaturgie eine Möglichkeit bieten kann, diesen Apfel mit Desiderium herzustellen.
+research_stage.thaumadditions:enchanted_golden_apple.2=Überraschenderweise ist der verzauberte goldene Apfel nicht so teuer wie die Legenden sagen, wahrscheinlich, weil ich es anders gemacht habe. Ich brauche etwas Desiderium und ein paar goldene Blöcke, um einen normalen goldenen Apfel zu verzaubern.
+
+research_name.thaumadditions:mob_summoning=Kreaturen Schöpfung
+research_stage.thaumadditions:mob_summoning.1=Ich habe eine Theorie der Kreaturen Schöpfung, die Vis und eine vierte Dimension beinhaltet. Ich muss einen Mob einfangen, um ihn als "Probe" oder Vorlage zu verwenden.
+research_stage.thaumadditions:mob_summoning.2=Ich mache langsam Fortschritte in dieser Studie. Ich denke, jetzt, wo ich Mobs einfangen kann, muss ich sie irgendwie neu erstellen.
+research_stage.thaumadditions:mob_summoning.3=Ich fand heraus, wie man Kreaturen, welche ich mithilfe von Wesenszellen fangen kann, mithilfe einer Probe beschwört. Jetzt muss ich einen Thaumiumblock mit ein paar Gegenständen und einer Menge Aspekten füllen.
+
+research_name.thaumadditions:puriflower=Reinheitsblume
+research_stage.thaumadditions:puriflower.1=Ich experimentierte mit Vispilzen und wie nutzlos sie sind, nur um eine Verwendung dafür zu finden. Vielleicht kann ich es in Kombination mit Schimmerblättern oder Totems der Morgenröte zur Aura-Reinigung verwenden, da Vispilze eine mächtige Quelle für Vis zu sein scheinen.
+research_stage.thaumadditions:puriflower.2=Infundiert man ein Totem mit Vispilzen, Schimmerblättern und macht das alles lebendig, zusammen mit Auram, Herba, Imperium und Ordo, entsteht eine ganz andere Pflanze: Die Reinheitspflanze. Sie hat eine ganz besondere Fähigkeit: Sie absorbiert langsam das Flux aus der Aura. Ich werde jedoch anmerken: Sie absorbiert Flux ein bisschen langsamer als Totems, aber wenn sie dies tun, ist die Menge des aufgenommenen Flux viel höher und es schlägt nicht fehl. Wenn ich viele davon platziere, ist es kein Problem, mit Flux umzugehen und Fluxrisse treten entweder viel seltener oder gar nicht auf!
+
+research_name.thaumadditions:crystal_block=Kristallblöcke
+research_stage.thaumadditions:crystal_block.1=Ich dachte über eine Möglichkeit nach, Kristalle als dekorative Blöcke in meinem Haus zu platzieren. Möglicherweise muss ich eine arkane Werkbank verwenden, um Vis richtig zu kanalisieren.
+research_stage.thaumadditions:crystal_block.2=Meine Anhaltspunkte waren wahr! Durch das Kanalisieren von Vis in 9 Kristalle kann eine Form erzeugt werden, die einem Kristall ähnelt.
+
+research_name.thaumadditions:growth_chamber=Kristallzüchtungskammer
+research_stage.thaumadditions:growth_chamber.1=Das Züchten von Kristallen war mein Traum. Es hat sich als möglich erwiesen, Kristalle zu züchten, aber ich weiß, dass dies nicht der effizienteste und schnellste Weg ist. Ich muss einige Dinge tun und die Eigenschaft des Kristallblocks untersuchen und vielleicht finde ich etwas Neues ...
+research_stage.thaumadditions:growth_chamber.2=Na sicher! Ich habe es geschafft, ein ganz besonderes Gerät zu entwickeln, mit dem jeder Kristall, auch der im Tiegel von mir hergestellte, leicht nachgebildet werden kann. Ich muss nur die Wachstumskammer an einer mit Vis gesättigten Stelle platzieren, dann Kristalle zusammenfügen, um einen Kristallcluster zu erzeugen, dann die Kammer mit dem Cluster versehen und ihm ein Vis vom gleichen Typ geben. Dann beginnt die Kammer, die Aura abzubauen und einen Kristall zu produzieren.
+
+research_name.thaumadditions:seal=Arkane Siegel
+research_stage.thaumadditions:seal.1=Ich denke an eine Art arkane Basis, die es erlaubt, Golems auf eine Art und Weise zu ersetzen. Ich nur weiter darüber nachdenken, wie das geht.
+research_stage.thaumadditions:seal.2=Gold mit Wolle scheint gut genug für das zu sein, was ich in Zukunft tun werde. Jetzt brauche ich nur noch etwas das magisch genug ist, um dieses Siegel anzubringen. Scheint, als hätte es ungefähr drei Steckplätze für alles, was ich daran anbringen werde.
+
+research_name.thaumadditions:seal_symbols=Siegel-Symbolik
+research_stage.thaumadditions:seal_symbols.1=Dieses Siegel scheint mit einigermaßen runden Gegenständen zu funktionieren... Jetzt überlege ich mir, in diesem Setup Vis-Kristalle zusammen mit etwas Gold zu verwenden ... vielleicht?
+research_stage.thaumadditions:seal_symbols.2=In Ordung! Scheint, als wäre ich auf dem richtigen Weg. Glaube ich. Die Verwendung von Vis-Kristall, um die magischen Kräfte des Kristalls zu kanalisieren, und Gold, um es auf das Siegel zu fokussieren, scheinen zum Siegeldesign zu passen. Und ich denke, die Anzahl der möglichen Kombinationen ist überwältigend, aber ich denke, dass die meisten von ihnen sinnlos sind.
+
+research_name.thaumadditions:totems=Totemantik
+research_stage.thaumadditions:totems.1=Ich denke, dass Fluxrisse Flux aus meiner Aura langsam absorbieren. Ich bin möglicherweise in der Lage, mich mit der anderen Dimension zu verbinden, in die sie es bringen um es irgendwie zurückzubringen. Ich weiß nicht warum, aber warum nicht?
+research_stage.thaumadditions:totems.2=Nachdem ich den Riss besser erforscht habe, gelang es mir, eine schwächere Version davon zu erstellen, die den Flux aus den anderen Dimensionen mit einer sehr langsamen zurückbringt. Ich denke, dass die Verbindung von sich aus instabil ist, daher kann es selten zu großen Flux Depots kommen. Das Buch nennt dieses Phänomen "Zwielicht Totem" <LINE>Dies ist jedoch nicht das, was ich brauche. Möglicherweise muss ich die Eigenschaften vom Schimmerblatt noch etwas genauer untersuchen.
+research_stage.thaumadditions:totems.3=Ja, meine Theorie war richtig. Schimmerblätter können zu etwas vielversprechenderen verbessert werden. Das Ergebnis ist das neue Totem der Morgendämmerung. Ich denke, es verhält sich wie ein Riss, aber meistens ist es stabil und zuverlässig.
+
+research_name.thaumadditions:seal_globe=Siegelkugel
+research_stage.thaumadditions:seal_globe.1=Siegel sind großartig und alles, aber ich muss wissen, was das Setup auf dem Siegel tut. Ich denke, ein Visresonator hat einen Hinweis darauf, was ich brauche.
+research_stage.thaumadditions:seal_globe.2=Ich habe etwas Magie auf einen Visresonator angewendet und jetzt ist es einem Globus ähnlich. Dieses Ding kann mir sagen, was das Siegel tut.
+
+research_name.thaumadditions:arcane_cake=Arkaner Kuchen
+research_stage.thaumadditions:arcane_cake.1=Ich habe mich gefragt, welche natürlichen Fähigkeiten Kuchen besitzt und wie ich sie verbessern kann. Ich könnte auf etwas stoßen, das mein Problem mit dem Essen ein für alle Mal lösen kann.
+research_stage.thaumadditions:arcane_cake.2=Ich denke, ich kann den Kuchen mit etwas Urmagie langsam selbst regenerieren lassen. Nicht nur das, ich kann auch etwas Vis Salz auftragen, aber es scheint sich in Vis Zucker zu verwandeln, wenn ich das tue.
+
+research_name.thaumadditions:knowledge_tome=Foliant des Teilens
+research_stage.thaumadditions:knowledge_tome.1=Etwas sehr Nützliches, wenn ich mit meinen Freunden spiele, ist eine Art Buch, in dem alles gespeichert ist, was ich kenne. Ich werde diese Idee etwas weiterentwickeln müssen.
+research_stage.thaumadditions:knowledge_tome.2=Ein leeres Thaumonomikon dient als perfekte Basis, um mein gesamtes Wissen nieder zu schreiben. Es scheint nicht nur weiter zu expandieren, wenn ich mehr aufschreibe, sondern es bleibt auch so kompakt.
+research_stage.thaumadditions:knowledge_tome.2_noreuse=Ein leeres Thaumonomikon dient als perfekte Basis, um mein gesamtes Wissen zu schreiben. Es scheint nicht nur weiter zu expandieren, wenn ich mehr aufschreibe, sondern es bleibt auch so kompakt. Obwohl ich vermute, dass, nachdem jemand es gelesen hat, das Buch im Handumdrehen aus der Existenz verschwinden würde. Eigentlich eine sehr traurige Tatsache.
+
+research_name.thaumadditions:fragnant_pendant=Geistig Gesund unterwegs!
+research_stage.thaumadditions:fragnant_pendant.1=Meine derzeitige Art, gegen Warp zu kämpfen, ist ganz einfach: Nehmen Sie ein Bad in Reinigungsflüssigkeit. Dieser Effekt hält eine Weile an. Aber was ist, wenn ich auf eine Reise gehe? Ich brauche etwas mehr ...
+research_stage.thaumadditions:fragnant_pendant.2=Aus dem, was ich sehe, kann ich ein ausgefallenes Amulett zu einem Anhänger machen, der beim Tragen ein desinfizierendes Aroma abgibt, indem er Geruchspulver verteilt. Ich denke, dass dieser Weg viel besser ist und ich kann gehen, wohin ich will!
+
+research_name.thaumadditions:chester=Chester
+research_stage.thaumadditions:chester.1=Da ich viel reise, ist es verdammt schwer, mein Inventar relativ leer zu halten. Es könnte interessant sein, meine hungrige Kiste zum Leben zu erwecken und so zu programmieren, dass er mir folgt ...
+research_stage.thaumadditions:chester.2=Es scheint, als ob Großholz und Thaumium nicht genug sind. Aber das Hinzufügen von Morphresonator und Zombie-Gehirnen scheint die Kiste mit kognitiven Fähigkeiten zu erfüllen. Fügt man einige Aspekte hinzu bekomme ich, was ich erwartet hatte - Chester. Es scheint, dass ich eine Art Werkzeug brauchen werde. Es scheint eine gute Idee zu sein, es auf Thaumium abzustimmen. Das heißt, es funktioniert perfekt für das, wofür es erfunden wurde.
+
+research_name.thaumadditions:vis_seeds=Growing Essentia
+research_stage.thaumadditions:vis_seeds.1=Any thaumaturge while performing magic needs essentia of some kind. In most cases however said essentia needs to be obtained from physical objects like items. I will take it a step further and try to fuse a mundane wheat seed with magic...
+research_stage.thaumadditions:vis_seeds.2=Crucible seems to do the job. Throwing seeds with some herba and a bit more other essentia of any kind seem to infuse wheat seed and change it's genes. This makes it much harder to get more plantables after gathering one, but this is definitely something that may come in use for farming rare essentia.
+
+############
+
+
+
+##SEALS##
+
+seal.thaumadditions:none=Dieses Siegel scheint nichts zu tun.
+seal.thaumadditions:unconfigured=Dieses Siegel macht etwas, aber der Autor der "%s" hat nicht angegeben, was. Melde dich bei %s!
+seal.thaumadditions:portala=Dieses Siegel schafft ein Portal, durch das Sie reisen können.
+seal.thaumadditions:portalb=Dieses Siegel schafft ein Portal, durch das Sie reisen können. Derzeit an %s Netzwerk gebunden.
+seal.thaumadditions:fertilesoil=Dieses Siegel hydratisiert Ackerland in der Nähe.
+seal.thaumadditions:createsoil=Dieses Siegel wandelt Erde in der Nähe in Ackerland um.
+seal.thaumadditions:bonemealcrops=Dieses Siegel düngt langsam Pflanzen in einem mittleren Gebiet.
+seal.thaumadditions:harvestcrops1=Dieses Siegel erntet Pflanzen in einem mittleren Bereich.
+seal.thaumadditions:harvestcrops2=Dieses Siegel erntet und pflanzt Pflanzen in einem mittleren Bereich.
+seal.thaumadditions:pickupitems=Dieses Siegel nimmt Gegenstände in einem mittleren Bereich auf.
+
+#########
