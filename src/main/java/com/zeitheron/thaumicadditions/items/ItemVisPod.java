@@ -2,12 +2,12 @@ package com.zeitheron.thaumicadditions.items;
 
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.util.Constants.NBT;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -59,7 +59,7 @@ public class ItemVisPod extends Item implements IEssentiaContainerItem
 			if(a != null)
 				an = a.getName();
 		}
-		return I18n.format(this.getUnlocalizedNameInefficiently(stack) + ".name", an).trim();
+		return I18n.translateToLocalFormatted(this.getUnlocalizedNameInefficiently(stack) + ".name", an).trim();
 	}
 	
 	@Override
