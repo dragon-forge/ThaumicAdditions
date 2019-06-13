@@ -13,6 +13,7 @@ import com.zeitheron.thaumicadditions.blocks.BlockCrystalBore;
 import com.zeitheron.thaumicadditions.blocks.BlockCrystalCrusher;
 import com.zeitheron.thaumicadditions.blocks.BlockCrystalWater;
 import com.zeitheron.thaumicadditions.blocks.BlockEntitySummoner;
+import com.zeitheron.thaumicadditions.blocks.BlockFluxConcentrator;
 import com.zeitheron.thaumicadditions.blocks.BlockGrowthChamber;
 import com.zeitheron.thaumicadditions.blocks.BlockPuriflower;
 import com.zeitheron.thaumicadditions.blocks.BlockSeal;
@@ -41,6 +42,8 @@ public class BlocksTAR
 	public static final BlockEntitySummoner ENTITY_SUMMONER = new BlockEntitySummoner();
 	public static final BlockPuriflower PURIFLOWER = new BlockPuriflower();
 	public static final BlockCrystal CRYSTAL_BLOCK = new BlockCrystal();
+	
+	public static final BlockFluxConcentrator FLUX_CONCENTRATOR = new BlockFluxConcentrator();
 	
 	public static final BlockArcaneCake CAKE = new BlockArcaneCake();
 	

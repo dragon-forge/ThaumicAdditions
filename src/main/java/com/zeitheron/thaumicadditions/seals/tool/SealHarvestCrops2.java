@@ -2,22 +2,29 @@ package com.zeitheron.thaumicadditions.seals.tool;
 
 import java.util.Random;
 
+import com.mojang.authlib.GameProfile;
 import com.zeitheron.hammercore.utils.WorldLocation;
 import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.api.seals.SealInstance;
+import com.zeitheron.thaumicadditions.api.seals.SealManager;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.common.util.FakePlayerFactory;
 import thaumcraft.api.aura.AuraHelper;
 
 public class SealHarvestCrops2 extends SealInstance
@@ -30,7 +37,7 @@ public class SealHarvestCrops2 extends SealInstance
 	@Override
 	public void tick()
 	{
-		if(!seal.atTickRate(40))
+		if(!seal.atTickRate(20))
 			return;
 		
 		WorldLocation loc = seal.getLocation();
@@ -72,9 +79,16 @@ public class SealHarvestCrops2 extends SealInstance
 			{
 				drps = l;
 				
-				IBlockState state = null;
-				NonNullList<ItemStack> drops = NonNullList.create();
+				WorldServer server = WorldUtil.cast(l.getWorld(), WorldServer.class);
+				GameProfile owner = new GameProfile(null, seal.placer.get());
+				FakePlayer player = FakePlayerFactory.get(server, owner);
 				
+				player.setLocationAndAngles(seal.getPos().getX(), -255, seal.getPos().getZ(), 0, 0);
+				
+				NonNullList<ItemStack> drops = NonNullList.create();
+				ItemStack seed = ItemStack.EMPTY;
+				
+				SealManager.CROP_SEAL_DROP_GET.set(true);
 				int attempts = 20;
 				glob: while(--attempts > 0)
 				{
@@ -83,26 +97,24 @@ public class SealHarvestCrops2 extends SealInstance
 					for(ItemStack i : drops)
 						if(i.getItem() instanceof IPlantable)
 						{
-							IPlantable plant = (IPlantable) i.getItem();
-							state = plant.getPlant(l.getWorld(), l.getPos());
-							i.shrink(1);
+							seed = i.splitStack(1);
 							break glob;
 						}
 				}
+				SealManager.CROP_SEAL_DROP_GET.set(false);
 				
-				TileEntity te = l.getTile();
-				
-				l.destroyBlock(false);
-				
-				if(state != null)
 				{
-					l.setState(state, 3);
-					if(te != null)
-					{
-						te.validate();
-						l.setTile(te);
-					}
+					IBlockState state = l.getState();
+					Block block = l.getBlock();
+					server.playEvent(2001, l.getPos(), Block.getStateId(state));
+					boolean flag = l.getBlock().removedByPlayer(state, server, l.getPos(), player, false);
+					if(flag)
+						block.onPlayerDestroy(server, l.getPos(), state);
 				}
+				
+				player.setHeldItem(EnumHand.MAIN_HAND, seed);
+				
+				seed.onItemUse(player, server, l.getPos().down(), EnumHand.MAIN_HAND, EnumFacing.UP, .5F, 1, .5F);
 				
 				for(ItemStack i : drops)
 					if(!i.isEmpty())

@@ -25,6 +25,7 @@ import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.CommandEvent;
@@ -111,7 +112,7 @@ public class KnowledgeTAR
 		new REB().setBaseInfo("TAR_SEAL_SYMBOLS", "seal_symbols", -2, -7, new ItemStack(ItemsTAR.SEAL_SYMBOL)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":seal_symbols.1").setKnow(new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("ARTIFICE"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":seal_symbols.2").setRecipes(RecipesTAR.sealSymbolRecipeIDFake).build()).setParents("TAR_SEAL").setMeta(EnumResearchMeta.HIDDEN).buildAndRegister();
 		new REB().setBaseInfo("TAR_SEAL_GLOBE", "seal_globe", -1, -5, new ItemStack(ItemsTAR.SEAL_GLOBE)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":seal_globe.1").setRequiredCraft(new ItemStack(ItemsTC.visResonator)).setKnow(new Knowledge(EnumKnowledgeType.THEORY, TAReconstructed.RES_CAT, 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":seal_globe.2").setRecipes(InfoTAR.MOD_ID + ":seal_globe").build()).setParents("TAR_SEAL_SYMBOLS").setMeta(EnumResearchMeta.HIDDEN, EnumResearchMeta.HEX).buildAndRegister();
 		
-		new REB().setBaseInfo("TAR_CRYSTAL_BORE", "crystal_bore", 3, 0, new ItemStack(BlocksTAR.CRYSTAL_BORE)).setMeta(EnumResearchMeta.SPIKY).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_bore.1").setConsumedItems(new ItemStack(ItemsTC.crystalEssence)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ALCHEMY"), 1), new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("GOLEMANCY"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_bore.2").setRecipes(InfoTAR.MOD_ID + ":crystal_bore").build()).setParents("TAR_THAUMADDS").buildAndRegister();
+		new REB().setBaseInfo("TAR_CRYSTAL_BORE", "crystal_bore", 3, 1, new ItemStack(BlocksTAR.CRYSTAL_BORE)).setMeta(EnumResearchMeta.SPIKY).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_bore.1").setConsumedItems(new ItemStack(ItemsTC.crystalEssence)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ALCHEMY"), 1), new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("GOLEMANCY"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_bore.2").setRecipes(InfoTAR.MOD_ID + ":crystal_bore").build()).setParents("TAR_THAUMADDS").buildAndRegister();
 		new REB().setBaseInfo("TAR_CRYSTAL_WATER", "crystal_water", -1, 1, FluidUtil.getFilledBucket(new FluidStack(FluidsTAR.CRYSTAL_WATER, Fluid.BUCKET_VOLUME))).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_water.1").setConsumedItems(new ItemStack(ItemsTC.crystalEssence), new ItemStack(Items.WATER_BUCKET)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ALCHEMY"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_water.2").setRecipes(InfoTAR.MOD_ID + ":crystal_water", InfoTAR.MOD_ID + ":mb.crystal_acceleration").build()).setParents("TAR_THAUMADDS").buildAndRegister();
 		new REB().setBaseInfo("TAR_ENCHANTED_GOLDEN_APPLE", "enchanted_golden_apple", -2, 1, new ItemStack(Items.GOLDEN_APPLE, 1, 1)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":enchanted_golden_apple.1").setConsumedItems(new ItemStack(Items.GOLDEN_APPLE), AspectUtil.crystalEssence(Aspect.DESIRE)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ALCHEMY"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":enchanted_golden_apple.2").setRecipes(InfoTAR.MOD_ID + ":enchanted_golden_apple").build()).setParents("TAR_THAUMADDS").buildAndRegister();
 		new REB().setBaseInfo("TAR_FRAGNANT_PENDANT", "fragnant_pendant", -4, 1, new ItemStack(ItemsTAR.FRAGNANT_PENDANT)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":fragnant_pendant.1").setRequiredCraft(new ItemStack(ItemsTC.bathSalts), new ItemStack(ItemsTC.baubles, 1, 4)).setKnow(new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("ALCHEMY"), 1), new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ELDRITCH"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":fragnant_pendant.2").setRecipes(InfoTAR.MOD_ID + ":odour_powder", InfoTAR.MOD_ID + ":fragnant_pendant").build()).setParents("TAR_THAUMADDS", "BATHSALTS").buildAndRegister();
@@ -146,6 +147,8 @@ public class KnowledgeTAR
 		new REB().setBaseInfo("TAR_MITHMINITE_JAR", "mithminite_jar", 4, -5, new ItemStack(BlocksTAR.MITHMINITE_JAR)).setMeta(EnumResearchMeta.HEX, EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":mithminite_jar.1").setRequiredCraft(new ItemStack(BlocksTAR.ADAMINITE_JAR), new ItemStack(ItemsTAR.MITHMINITE_PLATE)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ALCHEMY"), 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":mithminite_jar.2").setRecipes(InfoTAR.MOD_ID + ":mithminite_jar").build()).setParents("TAR_ADAMINITE_JAR", "TAR_MITHMINITE").buildAndRegister();
 		
 		new REB().setBaseInfo("TAR_VIS_SEEDS", "vis_seeds", -5, 1, ItemVisSeeds.create(DRACO, 1)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":vis_seeds.1").setKnow(new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("ALCHEMY"), 1), new Knowledge(EnumKnowledgeType.THEORY, TAReconstructed.RES_CAT, 1)).setConsumedItems(new ItemStack(Items.WHEAT_SEEDS)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":vis_seeds.2").setRecipes(RecipesTAR.visSeedsRecipeIDFake).build()).setParents("TAR_THAUMADDS").buildAndRegister();
+		
+		new REB().setBaseInfo("TAR_FLUX_CONCENTRATOR", "flux_concentrator", 5, 1, new ItemStack(BlocksTAR.FLUX_CONCENTRATOR)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":flux_concentrator.1").setKnow(new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("ARTIFICE"), 1), new Knowledge(EnumKnowledgeType.THEORY, TAReconstructed.RES_CAT, 1)).setConsumedItems(AspectUtil.crystalEssence(Aspect.FLUX)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":flux_concentrator.2").setRecipes(InfoTAR.MOD_ID + ":flux_concentrator").build()).setParents("TAR_THAUMADDS").buildAndRegister();
 	}
 	
 	private static void $insertAspects()
@@ -181,9 +184,17 @@ public class KnowledgeTAR
 		appendAspects(new ItemStack(ItemsTAR.ZEITH_SCALES), new AspectList().add(Aspect.MIND, 15).add(DRACO, 15).add(Aspect.LIFE, 15).add(CAELES, 2).add(Aspect.AURA, 20));
 		appendAspects(new ItemStack(Items.SKULL, 1, 5), new AspectList().add(DRACO, 30));
 		appendAspects(new ItemStack(Items.FEATHER), new AspectList().add(VENTUS, 5));
+		appendAspects(new ItemStack(Items.ROTTEN_FLESH), new AspectList().add(Aspect.DEATH, 2));
 		
 		for(Aspect a : Aspect.aspects.values())
 			CommonInternals.objectTags.put(CommonInternals.generateUniqueItemstackId(AspectUtil.crystalBlock(a)), new AspectList().add(a, 6).add(Aspect.MAGIC, 2));
+		
+		// Add sonus to music discs
+		ForgeRegistries.ITEMS.getValuesCollection().forEach(i ->
+		{
+			if(i instanceof ItemRecord)
+				appendAspects(new ItemStack(i), new AspectList().add(SONUS, 20));
+		});
 		
 		String prefix = addIfPresent("thaumictinkerer:ichor", new AspectList().add(CAELES, 5), "");
 		prefix = addIfPresent("thaumictinkerer:ichorium", new AspectList().add(CAELES, 8), prefix);

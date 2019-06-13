@@ -1,6 +1,6 @@
 #Project info
 author=Zeitheron
-start_git_commit=74d8304702f241ca09a48c1a10315fdee8272074
+start_git_commit=665f93ddafa33ad64b85fb51fe9b7da3b5f05761
 git_commit=https://gitlab.com/DragonForge/ThaumicAdditions/commit/{{hash}}
 
 #Runtime info

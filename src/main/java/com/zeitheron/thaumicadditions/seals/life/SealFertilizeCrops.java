@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.zeitheron.hammercore.utils.WorldLocation;
 import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.thaumicadditions.api.seals.ISealFertilizable;
 import com.zeitheron.thaumicadditions.api.seals.SealInstance;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
 
@@ -57,16 +58,20 @@ public class SealFertilizeCrops extends SealInstance
 		int rad = 5;
 		int tries = 20;
 		
-		int driest = 7;
 		WorldLocation drps = null;
 		
 		while(tries-- > 0)
 		{
-			WorldLocation l = new WorldLocation(loc.getWorld(), center0.add(rand.nextInt(rad) - rand.nextInt(rad), rand.nextInt(3) - rand.nextInt(3), rand.nextInt(rad) - rand.nextInt(rad)));
+			WorldLocation l = new WorldLocation(loc.getWorld(), center0.add(rand.nextInt(rad) - rand.nextInt(rad), -1 - rand.nextInt(2), rand.nextInt(rad) - rand.nextInt(rad)));
 			
 			IGrowable grow = WorldUtil.cast(l.getBlock(), IGrowable.class);
+			ISealFertilizable fertilizable = WorldUtil.cast(l.getBlock(), ISealFertilizable.class);
 			
-			if(!l.getWorld().isRemote && grow != null && grow.canUseBonemeal(l.getWorld(), rand, l.getPos(), l.getState()) && ItemDye.applyBonemeal(new ItemStack(Items.DYE, 1, 15), l.getWorld(), l.getPos()))
+			if(!l.getWorld().isRemote && fertilizable != null && fertilizable.fertilize(l.getWorld(), l.getPos()))
+			{
+				drps = l;
+				break;
+			} else if(!l.getWorld().isRemote && grow != null && grow.canUseBonemeal(l.getWorld(), rand, l.getPos(), l.getState()) && ItemDye.applyBonemeal(new ItemStack(Items.DYE, 1, 15), l.getWorld(), l.getPos()))
 			{
 				drps = l;
 				break;

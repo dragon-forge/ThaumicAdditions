@@ -23,6 +23,8 @@ public class ItemsTAR
 	public static final ItemMaterial MITHRILLIUM_PLATE = new ItemMaterial("mithrillium_plate", "plateMithrillium");
 	public static final ItemMaterial ADAMINITE_PLATE = new ItemMaterial("adaminite_plate", "plateAdaminite");
 	public static final ItemMaterial MITHMINITE_PLATE = new ItemMaterial("mithminite_plate", "plateMithminite");
+	public static final ItemMaterial ADAMINITE_FABRIC = new ItemMaterial("adaminite_fabric");
+	public static final ItemMaterial MITHMINITE_FABRIC = new ItemMaterial("mithminite_fabric");
 	public static final ItemMaterial SEAL_GLOBE = new ItemMaterial("seal_globe");
 	public static final ItemMaterial ODOUR_POWDER = new ItemMaterial("odour_powder");
 	public static final ItemMaterial ZEITH_SCALES = new ItemZeithScale();

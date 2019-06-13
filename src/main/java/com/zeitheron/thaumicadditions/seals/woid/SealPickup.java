@@ -60,9 +60,9 @@ public class SealPickup extends SealInstance
 		
 		for(EntityItem ei : drops)
 		{
-			double moveX = ThaumicMath.cap((pos.x - ei.posX) / 40D, .0025);
-			double moveY = ThaumicMath.cap((pos.y - ei.posY) / 40D, .0025);
-			double moveZ = ThaumicMath.cap((pos.z - ei.posZ) / 40D, .0025);
+			double moveX = ThaumicMath.cap((pos.x - ei.posX) / 30D, .0025);
+			double moveY = ThaumicMath.cap((pos.y - ei.posY) / 30D, .0025);
+			double moveZ = ThaumicMath.cap((pos.z - ei.posZ) / 30D, .0025);
 			
 			ei.setNoGravity(true);
 			
