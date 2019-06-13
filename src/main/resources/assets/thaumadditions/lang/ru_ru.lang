@@ -93,6 +93,10 @@ item.thaumadditions:bone_eye.name=Костеглаз
 item.thaumadditions:vis_pod.name=Стручок вис: %s
 item.thaumadditions:vis_seeds.name=Семена вис: %s
 item.thaumadditions:vis_scribing_tools.name=Вис-письменные принадлежности
+item.thaumadditions:mithminite_hood.name=Мифминитовый капюшон
+item.thaumadditions:mithminite_robe.name=Мифминитовая роба
+item.thaumadditions:mithminite_belt.name=Мифминитовый пояс
+item.thaumadditions:mithminite_boots.name=Мифминитовые ботинки
 
 #########
 

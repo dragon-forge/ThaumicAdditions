@@ -20,6 +20,7 @@ import com.zeitheron.thaumicadditions.init.KnowledgeTAR;
 import com.zeitheron.thaumicadditions.init.PotionsTAR;
 import com.zeitheron.thaumicadditions.init.RecipesTAR;
 import com.zeitheron.thaumicadditions.init.SealsTAR;
+import com.zeitheron.thaumicadditions.misc.theorycraft.CardThaumicAdditions;
 import com.zeitheron.thaumicadditions.proxy.CommonProxy;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -45,6 +46,7 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.internal.WeightedRandomLoot;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchCategory;
+import thaumcraft.api.research.theorycraft.TheorycraftManager;
 import thaumcraft.common.entities.monster.EntityPech;
 
 @Mod(modid = InfoTAR.MOD_ID, name = InfoTAR.MOD_NAME, version = InfoTAR.MOD_VERSION, certificateFingerprint = "4d7b29cd19124e986da685107d16ce4b49bc0a97", dependencies = "required-after:hammercore;required-after:thaumcraft@[6.1.BETA26,);before:iceandfire", updateJSON = "https://pastebin.com/raw/G6DJNXqg")
@@ -120,6 +122,8 @@ public class TAReconstructed
 		
 		WeightedRandomLoot.lootBagRare.add(new WeightedRandomLoot(new ItemStack(ItemsTAR.ZEITH_SCALES), 1));
 		EntityPech.tradeInventory.get(2).add(Arrays.asList(5, new ItemStack(ItemsTAR.ZEITH_SCALES)));
+		
+		TheorycraftManager.registerCard(CardThaumicAdditions.class);
 	}
 	
 	@EventHandler

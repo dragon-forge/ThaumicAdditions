@@ -156,6 +156,9 @@ public class RecipesTAR extends RecipeRegistry
 		addShapedArcaneRecipe("knowledge_tome", "TAR_KNOWLEDGE_TOME", 100, AspectUtil.primals(1), new ItemStack(ItemsTAR.KNOWLEDGE_TOME), "s", "c", "t", 's', new ItemStack(ItemsTC.scribingTools, 1, OreDictionary.WILDCARD_VALUE), 'c', new ItemStack(ItemsTC.curio, 1, 1), 't', new ItemStack(ItemsTC.thaumonomicon));
 		addShapedArcaneRecipe("fragnant_pendant", "TAR_FRAGNANT_PENDANT", 50, AspectUtil.primals(1), new ItemStack(ItemsTAR.FRAGNANT_PENDANT), " f ", "saf", "mp ", 'f', new ItemStack(ItemsTC.filter), 's', new ItemStack(ItemsTC.salisMundus), 'a', new ItemStack(ItemsTC.baubles, 1, 4), 'm', new ItemStack(ItemsTC.amber), 'p', new ItemStack(ItemsTAR.ODOUR_POWDER));
 		addShapedArcaneRecipe("bone_eye", "TAR_CHESTER", 100, new AspectList().add(Aspect.ORDER, 1).add(Aspect.AIR, 1), new ItemStack(ItemsTAR.BONE_EYE), " b ", " eb", "t  ", 'b', Items.QUARTZ, 'e', Items.SPIDER_EYE, 't', "ingotThaumium");
+		addShapedArcaneRecipe("vis_scribing_tools", "TAR_VIS_SCRIBING_TOOLS", 200, AspectUtil.primals(1), new ItemStack(ItemsTAR.VIS_SCRIBING_TOOLS), " v ", "vtg", " ga", 'v', AspectUtil.crystalEssence(Aspect.MAGIC), 't', new ItemStack(ItemsTC.scribingTools), 'g', "blockGlass", 'a', AspectUtil.phial(Aspect.AURA));
+		addShapedArcaneRecipe("adaminite_fabric", "TAR_ADAMINITE_FABRIC", 200, AspectUtil.primals(4), new ItemStack(ItemsTAR.ADAMINITE_FABRIC, 2), "fff", "faf", "fff", 'f', new ItemStack(ItemsTC.fabric), 'a', new ItemStack(ItemsTAR.ADAMINITE_INGOT));
+		addShapedArcaneRecipe("mithminite_fabric", "TAR_MITHMINITE_FABRIC", 400, AspectUtil.primals(8), new ItemStack(ItemsTAR.MITHMINITE_FABRIC, 2), " a ", "ama", " a ", 'm', new ItemStack(ItemsTAR.MITHMINITE_INGOT), 'a', new ItemStack(ItemsTAR.ADAMINITE_FABRIC));
 		
 		for(Aspect a : Aspect.aspects.values())
 		{
