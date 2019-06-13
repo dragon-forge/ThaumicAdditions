@@ -41,18 +41,12 @@ public class BlocksTAR
 	public static final BlockCrystalBore CRYSTAL_BORE = new BlockCrystalBore();
 	public static final BlockEntitySummoner ENTITY_SUMMONER = new BlockEntitySummoner();
 	public static final BlockPuriflower PURIFLOWER = new BlockPuriflower();
-	public static final BlockCrystal CRYSTAL_BLOCK = new BlockCrystal();
-	
 	public static final BlockFluxConcentrator FLUX_CONCENTRATOR = new BlockFluxConcentrator();
-	
 	public static final BlockArcaneCake CAKE = new BlockArcaneCake();
-	
 	public static final BlockTotem DAWN_TOTEM = new BlockTotem("dawn", IOcasionalPositionedEvent.DAWN);
 	public static final BlockTotem TWILIGHT_TOTEM = new BlockTotem("twilight", IOcasionalPositionedEvent.TWILIGHT);
-	
 	public static final BlockGrowthChamber GROWTH_CHAMBER = new BlockGrowthChamber();
 	public static final BlockSeal SEAL = new BlockSeal();
-	
 	public static final BlockVisCrop VIS_CROPS = new BlockVisCrop();
 	
 	public static final BlockAbstractEssentiaJar<TileBrassJar> BRASS_JAR = new BlockAbstractEssentiaJar<>(TileBrassJar.class, 275, "jar_brass");
@@ -61,4 +55,6 @@ public class BlocksTAR
 	public static final BlockAbstractEssentiaJar<TileMithrilliumJar> MITHRILLIUM_JAR = new BlockAbstractEssentiaJar<>(TileMithrilliumJar.class, 1000, "jar_mithrillium");
 	public static final BlockAbstractEssentiaJar<TileAdaminiteJar> ADAMINITE_JAR = new BlockAbstractEssentiaJar<>(TileAdaminiteJar.class, 2000, "jar_adaminite");
 	public static final BlockAbstractEssentiaJar<TileMithminiteJar> MITHMINITE_JAR = new BlockAbstractEssentiaJar<>(TileMithminiteJar.class, 4000, "jar_mithminite");
+	
+	public static final BlockCrystal CRYSTAL_BLOCK = new BlockCrystal();
 }

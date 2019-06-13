@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.zeitheron.hammercore.tile.TileSyncableTickable;
+import com.zeitheron.hammercore.utils.FrictionRotator;
 import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.api.RecipesFluxConcentrator;
 import com.zeitheron.thaumicadditions.utils.BlockSideHelper;
@@ -41,9 +42,16 @@ public class TileFluxConcentrator extends TileSyncableTickable implements IAspec
 	
 	Map<BlockPos, IBlockState> cache = new HashMap<>();
 	
+	public final FrictionRotator valve = new FrictionRotator();
+	{
+		valve.friction = .1F;
+	}
+	
 	@Override
 	public void tick()
 	{
+		valve.update();
+		
 		if(fuel <= 10 && vitium > 0)
 		{
 			--vitium;
@@ -77,18 +85,29 @@ public class TileFluxConcentrator extends TileSyncableTickable implements IAspec
 			}
 		}
 		
-		if(getLocation().getRedstone() > 0)
-		{
-			fluxed.clear();
-			return;
-		}
-		
 		if(world.isRemote && fuel > 0 && !fluxed.isEmpty())
+		{
+			valve.speedup(.25F);
 			for(int i = 0; i < Math.min(fluxed.size() / 2, 5); ++i)
 			{
 				BlockPos sel = fluxed.get(getRNG().nextInt(fluxed.size()));
 				FXDispatcher.INSTANCE.drawTaintParticles(sel.getX() + getRNG().nextFloat(), sel.getY() + getRNG().nextFloat(), sel.getZ() + getRNG().nextFloat(), (getRNG().nextFloat() - getRNG().nextFloat()) / 10F, (getRNG().nextFloat() - getRNG().nextFloat()) / 10F, (getRNG().nextFloat() - getRNG().nextFloat()) / 10F, 0.75F);
 			}
+		}
+		
+		if(getLocation().getRedstone() > 0)
+		{
+			if(!world.isRemote && !fluxed.isEmpty() && atTickRate(5))
+			{
+				BlockPos furthest = fluxed.get(0);
+				for(BlockPos pos : fluxed)
+					if(pos.distanceSq(getPos()) > furthest.distanceSq(getPos()))
+						furthest = pos;
+				fluxed.remove(furthest);
+				sendChangesToNearby();
+			}
+			return;
+		}
 		
 		if(!world.isRemote && !fluxed.isEmpty() && atTickRate(600) && getRNG().nextBoolean())
 		{

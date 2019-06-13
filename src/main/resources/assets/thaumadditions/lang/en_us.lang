@@ -93,6 +93,10 @@ item.thaumadditions:vis_seeds.name=%s Vis Seeds
 item.thaumadditions:adaminite_fabric.name=Adaminite Fabric
 item.thaumadditions:mithminite_fabric.name=Mithminite Fabric
 item.thaumadditions:vis_scribing_tools.name=Vis Scribing Tools
+item.thaumadditions:mithminite_hood.name=Mithminite Hood
+item.thaumadditions:mithminite_robe.name=Mithminite Robe
+item.thaumadditions:mithminite_belt.name=Mithminite Belt
+item.thaumadditions:mithminite_boots.name=Mithminite Boots
 
 #########
 
