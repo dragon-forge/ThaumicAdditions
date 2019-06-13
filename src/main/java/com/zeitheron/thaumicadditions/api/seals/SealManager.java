@@ -17,6 +17,8 @@ public class SealManager
 	private static final List<SealCombination> combinations = new ArrayList<>();
 	private static final Map<SealCombination, Function<TileSeal, SealInstance>> instances = new HashMap<>();
 	
+	public static ThreadLocal<Boolean> CROP_SEAL_DROP_GET = ThreadLocal.withInitial(() -> false);
+	
 	public static SealCombination getCombination(TileSeal seal)
 	{
 		for(int i = 0; i < combinations.size(); ++i)

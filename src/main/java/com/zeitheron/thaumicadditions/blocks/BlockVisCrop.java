@@ -6,6 +6,8 @@ import com.zeitheron.hammercore.api.INoItemBlock;
 import com.zeitheron.hammercore.api.ITileBlock;
 import com.zeitheron.hammercore.tile.TileSyncable;
 import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.thaumicadditions.api.seals.ISealFertilizable;
+import com.zeitheron.thaumicadditions.api.seals.SealManager;
 import com.zeitheron.thaumicadditions.items.ItemVisPod;
 import com.zeitheron.thaumicadditions.items.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.tiles.TileVisCrop;
@@ -14,6 +16,8 @@ import net.minecraft.block.BlockCrops;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -28,9 +32,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.items.ItemsTC;
+import thaumcraft.client.fx.FXDispatcher;
 import thaumcraft.common.items.tools.ItemElementalHoe;
 
-public class BlockVisCrop extends BlockCrops implements INoItemBlock, ITileBlock<TileVisCrop>
+public class BlockVisCrop extends BlockCrops implements INoItemBlock, ITileBlock<TileVisCrop>, ISealFertilizable
 {
 	public static final PropertyInteger AGE_5 = PropertyInteger.create("age", 0, 4);
 	
@@ -52,28 +57,26 @@ public class BlockVisCrop extends BlockCrops implements INoItemBlock, ITileBlock
 	@Override
 	public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
 	{
-		Aspect asp = aspectContainer.get();
-		aspectContainer.set(null);
+		TileVisCrop tvc = WorldUtil.cast(world.getTileEntity(pos), TileVisCrop.class);
+		Aspect asp = tvc != null ? tvc.getAspect() : aspectContainer.get();
+		if(tvc == null)
+			aspectContainer.set(null);
 		
 		if(asp == null)
 			return;
 		
+		drops.add(ItemVisSeeds.create(asp, 1));
+		
 		Random rand = world instanceof World ? ((World) world).rand : RANDOM;
 		
-		int count = rand.nextInt(3);
-		for(int i = 0; i < count; i++)
-			if(isMaxAge(state))
-				drops.add(ItemVisPod.create(asp, 1));
-			else
-				drops.add(ItemVisSeeds.create(asp, 1));
-			
-		int age = getAge(state);
-		if(age >= getMaxAge())
+		if(isMaxAge(state))
 		{
-			boolean atl = false;
-			for(int i = 0; i < 2; ++i)
-				if(rand.nextInt(25) == 0 || !atl)
-					atl = drops.add(ItemVisSeeds.create(asp, 1));
+			int count = 1 + rand.nextInt(2);
+			for(int i = 0; i < count; i++)
+				drops.add(ItemVisPod.create(asp, 1));
+			for(int i = 0; i < Math.min(4, 1 + fortune); ++i)
+				if(rand.nextInt(20) == 0)
+					drops.add(ItemVisSeeds.create(asp, 1));
 		}
 	}
 	
@@ -84,25 +87,31 @@ public class BlockVisCrop extends BlockCrops implements INoItemBlock, ITileBlock
 		
 		if(!held.isEmpty() && held.getItem() == ItemsTC.elementalHoe)
 		{
-			TileEntity tvc = worldIn.getTileEntity(pos);
+			int i = this.getAge(state) + 1 + worldIn.rand.nextInt(2);
+			int j = this.getMaxAge();
+			if(i > j)
+			{
+				i = j;
+				return true;
+			}
 			
 			if(!worldIn.isRemote)
 			{
-				int i = this.getAge(state) + 1 + worldIn.rand.nextInt(2);
-		        int j = this.getMaxAge();
-
-		        if (i > j)
-		        {
-		            i = j;
-		        }
-
-		        worldIn.setBlockState(pos, this.withAge(i), 2);
-			}
+				TileEntity tvc = worldIn.getTileEntity(pos);
+				
+				worldIn.setBlockState(pos, this.withAge(i), 2);
+				
+				worldIn.removeTileEntity(pos);
+				tvc.validate();
+				worldIn.setTileEntity(pos, tvc);
+				((TileSyncable) tvc).sendChangesToNearby();
+				
+				worldIn.playBroadcastSound(2005, pos, 0);
+				playerIn.getHeldItem(hand).damageItem(3, playerIn);
+			} else
+				FXDispatcher.INSTANCE.drawBlockMistParticles(pos, 4259648);
 			
-			worldIn.removeTileEntity(pos);
-			tvc.validate();
-			worldIn.setTileEntity(pos, tvc);
-			((TileSyncable) tvc).sendChangesToNearby();
+			return true;
 		}
 		
 		return false;
@@ -114,6 +123,26 @@ public class BlockVisCrop extends BlockCrops implements INoItemBlock, ITileBlock
 		if(tcb != null && tcb.getAspect() != null)
 			return tcb.getAspect().getColor();
 		return 0xFFFFFF;
+	}
+	
+	@Override
+	public boolean fertilize(World world, BlockPos pos)
+	{
+		IBlockState state = world.getBlockState(pos);
+		TileEntity tvc = world.getTileEntity(pos);
+		
+		int a = getAge(state);
+		int na = Math.min(getMaxAge(), a + 1 + world.rand.nextInt(2));
+		
+		if(na != a)
+		{
+			world.setBlockState(pos, withAge(na), 2);
+			world.removeTileEntity(pos);
+			tvc.validate();
+			world.setTileEntity(pos, tvc);
+		}
+		
+		return na != a;
 	}
 	
 	@Override

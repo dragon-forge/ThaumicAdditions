@@ -14,6 +14,7 @@ import com.zeitheron.hammercore.utils.recipes.helper.RecipeRegistry;
 import com.zeitheron.hammercore.utils.recipes.helper.RegisterRecipes;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
+import com.zeitheron.thaumicadditions.api.RecipesFluxConcentrator;
 import com.zeitheron.thaumicadditions.api.blueprint.BlueprintBuilder;
 import com.zeitheron.thaumicadditions.config.ConfigsTAR;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
@@ -76,6 +77,9 @@ public class RecipesTAR extends RecipeRegistry
 		arcaneCrafting();
 		crucible();
 		multiblock();
+		
+		RecipesFluxConcentrator.handle(Blocks.BROWN_MUSHROOM.getDefaultState(), RecipesFluxConcentrator.output(BlocksTC.vishroom.getDefaultState()));
+		RecipesFluxConcentrator.handle(Blocks.RED_MUSHROOM.getDefaultState(), RecipesFluxConcentrator.output(BlocksTC.vishroom.getDefaultState()));
 	}
 	
 	private void postInit()
@@ -117,6 +121,8 @@ public class RecipesTAR extends RecipeRegistry
 		addInfusionRecipe("mob_summoner", new ItemStack(BlocksTAR.ENTITY_SUMMONER), "TAR_MOB_SUMMONING", 5, new ItemStack(BlocksTC.metalBlockThaumium), new AspectList().add(KnowledgeTAR.DRACO, 10).add(KnowledgeTAR.IMPERIUM, 50).add(KnowledgeTAR.EXITIUM, 10).add(Aspect.LIFE, 15).add(Aspect.SOUL, 20).add(Aspect.MAN, 30).add(Aspect.BEAST, 25).add(KnowledgeTAR.INFERNUM, 100), new ItemStack(ItemsTAR.ENTITY_CELL), new ItemStack(ItemsTC.mechanismSimple), new ItemStack(ItemsTC.filter), new ItemStack(ItemsTC.alumentum), "nitor", new ItemStack(BlocksTAR.TWILIGHT_TOTEM));
 		addInfusionRecipe("puriflower", new ItemStack(BlocksTAR.PURIFLOWER), "TAR_PURIFLOWER", 2, new ItemStack(BlocksTAR.DAWN_TOTEM), new AspectList().add(Aspect.AURA, 10).add(KnowledgeTAR.IMPERIUM, 15).add(Aspect.ORDER, 30).add(Aspect.PLANT, 60), BlocksTC.shimmerleaf, BlocksTC.vishroom, crystalEssence(Aspect.PLANT), BlocksTC.vishroom);
 		addInfusionRecipe("growth_chamber", new ItemStack(BlocksTAR.GROWTH_CHAMBER), "TAR_GROWTH_CHAMBER", 3, BlocksTAR.CRYSTAL_BLOCK, new AspectList().add(Aspect.ORDER, 20).add(Aspect.MECHANISM, 15).add(KnowledgeTAR.IMPERIUM, 10), ItemsTC.amber, new ItemStack(ItemsTC.plate, 1, 2), ItemsTC.morphicResonator, new ItemStack(ItemsTC.plate, 1, 2), ItemsTC.visResonator, new ItemStack(ItemsTC.plate, 1, 2), ItemsTC.mechanismComplex, new ItemStack(ItemsTC.plate, 1, 2));
+		
+		addInfusionRecipe("flux_concentrator", new ItemStack(BlocksTAR.FLUX_CONCENTRATOR), "TAR_FLUX_CONCENTRATOR", 2, new ItemStack(ItemsTC.mechanismComplex), new AspectList().add(Aspect.FLUX, 100).add(Aspect.EXCHANGE, 50), new ItemStack(ItemsTC.filter), new ItemStack(ItemsTC.quicksilver), new ItemStack(BlocksTC.bellows), new ItemStack(ItemsTC.quicksilver));
 		
 		addInfusionRecipe("arcane_cake", new ItemStack(BlocksTAR.CAKE), "TAR_CAKE", 5, new ItemStack(Items.CAKE), new AspectList().add(Aspect.LIFE, 20).add(Aspect.DESIRE, 30).add(Aspect.MAGIC, 15).add(KnowledgeTAR.VENTUS, 10), new ItemStack(ItemsTC.primordialPearl), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.salisMundus), AspectUtil.crystalEssence(KnowledgeTAR.IMPERIUM));
 		addInfusionRecipe("chester", new ItemStack(ItemsTAR.CHESTER), "TAR_CHESTER", 2, new ItemStack(BlocksTC.hungryChest), new AspectList().add(KnowledgeTAR.IMPERIUM, 80).add(Aspect.LIFE, 40).add(Aspect.VOID, 20).add(Aspect.MECHANISM, 10), new ItemStack(BlocksTC.plankGreatwood), "ingotThaumium", new ItemStack(BlocksTC.plankGreatwood), new ItemStack(ItemsTC.brain), new ItemStack(BlocksTC.plankGreatwood), new ItemStack(ItemsTC.morphicResonator), new ItemStack(BlocksTC.plankGreatwood), "ingotThaumium");

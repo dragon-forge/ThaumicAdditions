@@ -21,6 +21,7 @@ import com.zeitheron.thaumicadditions.client.render.tile.TESRAuraCharger;
 import com.zeitheron.thaumicadditions.client.render.tile.TESRAuraDisperser;
 import com.zeitheron.thaumicadditions.client.render.tile.TESRCrystalBore;
 import com.zeitheron.thaumicadditions.client.render.tile.TESRCrystalCrusher;
+import com.zeitheron.thaumicadditions.client.render.tile.TESRFluxConcentrator;
 import com.zeitheron.thaumicadditions.client.texture.TextureThaumonomiconBG;
 import com.zeitheron.thaumicadditions.compat.ITARC;
 import com.zeitheron.thaumicadditions.entity.EntityChester;
@@ -37,6 +38,7 @@ import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;
 import com.zeitheron.thaumicadditions.tiles.TileAuraDisperser;
 import com.zeitheron.thaumicadditions.tiles.TileCrystalBore;
 import com.zeitheron.thaumicadditions.tiles.TileCrystalCrusher;
+import com.zeitheron.thaumicadditions.tiles.TileFluxConcentrator;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
 
 import net.minecraft.block.state.IBlockState;
@@ -151,6 +153,11 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalBore.class, crybo);
 		ItemRenderingHandler.INSTANCE.setItemRender(Item.getItemFromBlock(BlocksTAR.CRYSTAL_BORE), crybo);
 		Minecraft.getMinecraft().getRenderItem().registerItem(Item.getItemFromBlock(BlocksTAR.CRYSTAL_BORE), 0, "chest");
+		
+		TESRFluxConcentrator fc = new TESRFluxConcentrator();
+		ClientRegistry.bindTileEntitySpecialRenderer(TileFluxConcentrator.class, fc);
+		ItemRenderingHandler.INSTANCE.setItemRender(Item.getItemFromBlock(BlocksTAR.FLUX_CONCENTRATOR), fc);
+		Minecraft.getMinecraft().getRenderItem().registerItem(Item.getItemFromBlock(BlocksTAR.FLUX_CONCENTRATOR), 0, "chest");
 		
 		{
 			ModelResourceLocation cryloc = new ModelResourceLocation(BlocksTAR.CRYSTAL_BLOCK.getRegistryName(), "normal");

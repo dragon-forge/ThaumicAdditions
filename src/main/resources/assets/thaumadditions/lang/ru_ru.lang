@@ -1,4 +1,4 @@
-# Thaumic Additions Russian Translation (by Zeitheron, American and Hesperus)
+# Thaumic Additions Russian Translation (by Zeitheron, American, Hesperus and ItsFLamb)
 
 itemGroup.thaumadditions=Thaumic Additions: Reconstructed
 tc.research_category.THAUMADDITIONS=Thaumic Additions
@@ -39,6 +39,9 @@ tile.thaumadditions:dusk_totem.name=Totem of Dusk [NYI] - перевод не н
 tile.thaumadditions:seal.name=Волшебная печать
 tile.thaumadditions:seal.desc=Цвет: @COLOR
 tile.thaumadditions:cake.name=Волшебный торт
+item.thaumadditions:adaminite_fabric.name=Адаминитовая ткань
+item.thaumadditions:mithminite_fabric.name=Мифминитовая ткань
+tile.thaumadditions:flux_concentrator.name=Концентратор выбросов
 
 ##########
 
@@ -72,7 +75,7 @@ item.thaumadditions:adaminite_plate.name=Адаминитовая пластин
 item.thaumadditions:mithminite_plate.name=Мифминитовая пластина
 item.thaumadditions:salt_essence.name=Соль вис
 item.thaumadditions:zeith_scale.name=Странность Зейта
-item.thaumadditions:zeith_scale.tip=Выпадает из мистического дракона
+item.thaumadditions:zeith_scale.tip=Выпадает из мистического фурри
 item.thaumadditions:dna_sample.name=Ячейка существа
 item.thaumadditions:dna_sample.blank=Пусто
 item.thaumadditions:dna_sample.entity=Существо
@@ -256,6 +259,10 @@ research_stage.thaumadditions:chester.2=Seems like greatwood and thaumium isn't 
 research_name.thaumadditions:vis_seeds=Growing Essentia
 research_stage.thaumadditions:vis_seeds.1=Any thaumaturge while performing magic needs essentia of some kind. In most cases however said essentia needs to be obtained from physical objects like items. I will take it a step further and try to fuse a mundane wheat seed with magic...
 research_stage.thaumadditions:vis_seeds.2=Crucible seems to do the job. Throwing seeds with some herba and a bit more other essentia of any kind seem to infuse wheat seed and change it's genes. This makes it much harder to get more plantables after gathering one, but this is definitely something that may come in use for farming rare essentia.
+
+research_name.thaumadditions:flux_concentrator=Flux Concentrator
+research_stage.thaumadditions:flux_concentrator.1=Some plants that I've found in world seem to be imbued with magic. For example, Vishroom. Sometimes one may need a lot of these rare mushrooms. I need to study gaseous flux; perhaps this may give me some hints?
+research_stage.thaumadditions:flux_concentrator.2=To make gaseous flux I need a machine called "Flux Concentrator". Seems like it needs to be supplied with §5Vitium§r essentia from one side, and using it's bellows it will spit the gaseous flux from the opposite side. It's pressure is enough to travel around sixteen blocks from the concentrator.
 
 ############
 
