@@ -14,7 +14,6 @@ import org.lwjgl.opengl.GL11;
 import com.zeitheron.hammercore.client.render.shader.ShaderProgram;
 import com.zeitheron.hammercore.client.render.shader.impl.ShaderEnderField;
 import com.zeitheron.hammercore.client.utils.UtilsFX;
-import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.api.AttributesTAR;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
@@ -27,17 +26,16 @@ import net.minecraft.client.audio.PositionedSound;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.entity.RenderEntity;
-import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.profiler.Profiler;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -53,6 +51,7 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.client.fx.ParticleEngine;
 import thaumcraft.client.fx.particles.FXGeneric;
 import thaumcraft.client.fx.particles.ParticleHooksTAR;
+import thaumcraft.common.lib.utils.Utils;
 
 public class ClientChainReactor
 {
@@ -99,13 +98,19 @@ public class ClientChainReactor
 		ItemStack head;
 		if(world != null && player != null && !(head = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD)).isEmpty() && head.getItem() instanceof ItemMithminiteDress)
 		{
+			Profiler prof = Minecraft.getMinecraft().profiler;
+			prof.startSection("sounding_figure_ores");
+			
 			Field particles = ParticleEngine.class.getDeclaredFields()[2];
 			particles.setAccessible(true);
 			try
 			{
 				HashMap<Integer, ArrayList<Particle>>[] ps = (HashMap<Integer, ArrayList<Particle>>[]) particles.get(null);
 				
+				int pss = sounding.size();
+				
 				sounding.clear();
+				
 				for(HashMap<Integer, ArrayList<Particle>> effects : ps)
 				{
 					ArrayList<Particle> listParticles = effects.get(world.provider.getDimension());
@@ -120,12 +125,37 @@ public class ClientChainReactor
 							}
 						}
 				}
+				
+				if(pss != sounding.size())
+				{
+					excludesRAJ.clear();
+					
+					prof.startSection("render");
+					for(int i = 0; i < sounding.size(); ++i)
+					{
+						Particle s = sounding.get(i);
+						renderAllAdjacent(world, new BlockPos(s.posX, s.posY, s.posZ), null, null);
+					}
+					prof.endStartSection("sort");
+					excludesRAJ.sort((a, b) ->
+					{
+						double da = a.distanceSq(TileEntityRendererDispatcher.staticPlayerX, TileEntityRendererDispatcher.staticPlayerY, TileEntityRendererDispatcher.staticPlayerZ) * 100;
+						double db = b.distanceSq(TileEntityRendererDispatcher.staticPlayerX, TileEntityRendererDispatcher.staticPlayerY, TileEntityRendererDispatcher.staticPlayerZ) * 100;
+						return (int) (db - da);
+					});
+					prof.endSection();
+				}
 			} catch(IllegalArgumentException | IllegalAccessException e1)
 			{
 				e1.printStackTrace();
 			}
+			
+			prof.endSection();
 		} else
+		{
 			sounding.clear();
+			excludesRAJ.clear();
+		}
 	}
 	
 	/**
@@ -180,52 +210,51 @@ public class ClientChainReactor
 		EntityPlayer player = Minecraft.getMinecraft().player;
 		if(player == null)
 			return;
+		Profiler prof = Minecraft.getMinecraft().profiler;
+		prof.startSection("sounding_render_ores");
 		BlockRendererDispatcher brd = Minecraft.getMinecraft().getBlockRendererDispatcher();
-		
+		BufferBuilder bb = Tessellator.getInstance().getBuffer();
+		World world = Minecraft.getMinecraft().world;
+		BlockPos origin = excludesRAJ.isEmpty() ? BlockPos.ORIGIN : excludesRAJ.get(0);
 		GlStateManager.pushMatrix();
 		GlStateManager.enableBlend();
 		GlStateManager.translate(-TileEntityRendererDispatcher.staticPlayerX, -TileEntityRendererDispatcher.staticPlayerY, -TileEntityRendererDispatcher.staticPlayerZ);
-		
+		GlStateManager.translate(origin.getX(), origin.getY(), origin.getZ());
 		UtilsFX.bindTexture("minecraft", "textures/entity/end_portal.png");
 		if(ShaderEnderField.endShader == null)
 			ShaderEnderField.reloadShader();
 		ShaderEnderField.endShader.freeBindShader();
 		ARBShaderObjects.glUniform4fARB(ShaderEnderField.endShader.getUniformLoc("color"), 0.044F, 0.036F, 0.063F, .2F);
-		
 		GlStateManager.disableDepth();
-		BufferBuilder bb = Tessellator.getInstance().getBuffer();
-		World world = Minecraft.getMinecraft().world;
-		excludesRAJ.clear();
+		
 		bb.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-		for(int i = 0; i < sounding.size(); ++i)
+		int c = excludesRAJ.size();
+		for(int i = 0; i < c; ++i)
 		{
-			Particle s = sounding.get(i);
-			renderAllAdjacent(world, new BlockPos(s.posX, s.posY, s.posZ), bb, brd);
+			BlockPos pos = excludesRAJ.get(i);
+			IBlockState state = world.getBlockState(pos).getActualState(world, pos);
+			IBakedModel model = brd.getModelForState(state);
+			state = state.getBlock().getExtendedState(state, world, pos);
+			brd.getBlockModelRenderer().renderModel(world, model, state, pos.subtract(origin), bb, true);
 		}
-		excludesRAJ.sort((a, b) ->
-		{
-			double da = a.distanceSq(TileEntityRendererDispatcher.staticPlayerX, TileEntityRendererDispatcher.staticPlayerY, TileEntityRendererDispatcher.staticPlayerZ) * 100;
-			double db = b.distanceSq(TileEntityRendererDispatcher.staticPlayerX, TileEntityRendererDispatcher.staticPlayerY, TileEntityRendererDispatcher.staticPlayerZ) * 100;
-			return (int) (db - da);
-		});
-		for(BlockPos pos : excludesRAJ)
-			brd.renderBlock(world.getBlockState(pos), pos, world, bb);
 		Tessellator.getInstance().draw();
+		
 		ShaderProgram.unbindShader();
 		GlStateManager.enableDepth();
 		GlStateManager.popMatrix();
+		prof.endSection();
 	}
 	
 	private void renderAllAdjacent(World world, BlockPos pos, BufferBuilder bb, BlockRendererDispatcher brd)
 	{
-		if(excludesRAJ.contains(pos) || excludesRAJ.size() >= 1024)
+		if(excludesRAJ.size() >= 8192 || excludesRAJ.contains(pos) || !Utils.isOreBlock(world, pos))
 			return;
 		excludesRAJ.add(pos);
 		Block block = world.getBlockState(pos).getBlock();
 		for(EnumFacing face : EnumFacing.VALUES)
 		{
 			BlockPos rem = pos.offset(face);
-			if(block == world.getBlockState(rem).getBlock())
+			if(block == world.getBlockState(rem).getBlock() && !excludesRAJ.contains(rem))
 				renderAllAdjacent(world, rem, bb, brd);
 		}
 	}
