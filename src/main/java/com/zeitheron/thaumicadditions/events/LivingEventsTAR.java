@@ -3,18 +3,25 @@ package com.zeitheron.thaumicadditions.events;
 import com.zeitheron.hammercore.annotations.MCFBus;
 import com.zeitheron.hammercore.event.FoodEatenEvent;
 import com.zeitheron.hammercore.utils.SoundUtil;
+import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
+import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
 import com.zeitheron.thaumicadditions.utils.Foods;
 
+import net.minecraft.block.BlockStairs.EnumHalf;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import thaumcraft.api.aspects.AspectList;
@@ -99,6 +106,24 @@ public class LivingEventsTAR
 				ei.motionX *= .2;
 				ei.motionZ *= .2;
 			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void pickupXP(PlayerPickupXpEvent e)
+	{
+		EntityPlayerMP mp = WorldUtil.cast(e.getEntityPlayer(), EntityPlayerMP.class);
+		if(mp != null && !mp.world.isRemote && e.getOrb() != null)
+		{
+			int xp = e.getOrb().getXpValue();
+			ItemStack stack = mp.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+			if(!stack.isEmpty() && stack.getItem() instanceof ItemMithminiteDress)
+				for(EnumHand hand : EnumHand.values())
+				{
+					ItemStack held = mp.getHeldItem(hand);
+					if(!held.isEmpty() && held.getItem().isDamageable() && held.getItem().isDamaged(held))
+						held.setItemDamage(Math.max(0, held.getItemDamage() - xp));
+				}
 		}
 	}
 }

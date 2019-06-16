@@ -71,9 +71,13 @@ public class SealFertilizeCrops extends SealInstance
 			{
 				drps = l;
 				break;
-			} else if(!l.getWorld().isRemote && grow != null && grow.canUseBonemeal(l.getWorld(), rand, l.getPos(), l.getState()) && ItemDye.applyBonemeal(new ItemStack(Items.DYE, 1, 15), l.getWorld(), l.getPos()))
+			} else if(!l.getWorld().isRemote && grow != null)
 			{
-				drps = l;
+				ItemStack meal = new ItemStack(Items.DYE, 1, 15);
+				if(grow.canUseBonemeal(l.getWorld(), rand, l.getPos(), l.getState()) && ItemDye.applyBonemeal(meal, l.getWorld(), l.getPos()))
+					drps = l;
+				if(!meal.isEmpty())
+					l.getBlock().updateTick(l.getWorld(), l.getPos(), l.getState(), rand);
 				break;
 			}
 		}
