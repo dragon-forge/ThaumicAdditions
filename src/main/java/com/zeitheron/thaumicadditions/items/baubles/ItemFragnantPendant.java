@@ -26,6 +26,7 @@ public class ItemFragnantPendant extends Item implements IBauble, IRenderBauble,
 	public ItemFragnantPendant()
 	{
 		setTranslationKey("fragnant_pendant");
+		setMaxStackSize(1);
 	}
 	
 	@Override

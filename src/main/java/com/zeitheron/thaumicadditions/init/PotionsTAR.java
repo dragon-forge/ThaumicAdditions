@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 import com.zeitheron.hammercore.utils.OnetimeCaller;
+import com.zeitheron.thaumicadditions.effect.PotionSanityChecker;
 import com.zeitheron.thaumicadditions.effect.PotionSoundSensivity;
 
 import net.minecraft.potion.Potion;
@@ -13,6 +14,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class PotionsTAR
 {
 	public static final PotionSoundSensivity SOUND_SENSIVITY = new PotionSoundSensivity();
+	public static final PotionSanityChecker SANITY_CHECKER = new PotionSanityChecker();
 	
 	public static final OnetimeCaller register = new OnetimeCaller(PotionsTAR::$register);
 	private static void $register()

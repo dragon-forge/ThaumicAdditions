@@ -56,7 +56,7 @@ public class SealHarvestCrops1 extends SealInstance
 		if(to.getAxis() == Axis.Y)
 			center0 = loc.getPos().offset(to, to == EnumFacing.UP ? 2 : 4);
 		int rad = 5;
-		int tries = 40;
+		int tries = 50;
 		
 		int driest = 7;
 		WorldLocation drps = null;

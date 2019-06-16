@@ -30,23 +30,6 @@ public class BlockFluxConcentrator extends BlockDeviceHC<TileFluxConcentrator> i
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
-	{
-		EnumFacing face = WorldUtil.getFacing(state);
-		
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-	{
-		EnumFacing face = WorldUtil.getFacing(stateIn);
-		
-//		if(face == EnumFacing.DOWN)
-//			FXDispatcher.INSTANCE.sparkle(pos.getX() + 4 / 16F, pos.getY() + 4 / 16F, pos.getZ() + 4 / 16F, 1F, 1F, 1F);
-	}
-	
-	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
