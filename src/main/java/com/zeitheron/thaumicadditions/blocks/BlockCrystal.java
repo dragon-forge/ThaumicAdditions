@@ -23,8 +23,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.crafting.IInfusionStabiliser;
+import thaumcraft.api.crafting.IInfusionStabiliserExt;
 
-public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements IBlockOrientable, IInfusionStabiliser, IItemBlock
+public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements IBlockOrientable, IInfusionStabiliserExt, IItemBlock
 {
 	public final ItemCrystalBlock itemBlock = new ItemCrystalBlock();
 	
@@ -88,6 +89,12 @@ public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements IBl
 	public boolean canStabaliseInfusion(World worldIn, BlockPos pos)
 	{
 		return true;
+	}
+	
+	@Override
+	public float getStabilizationAmount(World world, BlockPos pos)
+	{
+		return .015F;
 	}
 	
 	@Override

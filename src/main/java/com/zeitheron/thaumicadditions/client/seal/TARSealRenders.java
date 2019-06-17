@@ -148,7 +148,8 @@ public class TARSealRenders
 			GL11.glBlendFunc(770, i % 2 == 0 ? 1 : 771);
 			
 			float sx = scale, sy = scale;
-			double rotation = (seal.getWorld().getWorldTime() + partialTicks + i * scale * 14) % 360D;
+			double rotation = (seal.getWorld().getTotalWorldTime() + partialTicks + i * scale * 14) % 360D;
+			
 			if(i % 2 == 0)
 				rotation = 360 - rotation;
 			double rot = Math.toRadians(rotation);

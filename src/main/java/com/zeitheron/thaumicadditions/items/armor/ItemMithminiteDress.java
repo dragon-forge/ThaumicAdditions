@@ -1,9 +1,12 @@
 package com.zeitheron.thaumicadditions.items.armor;
 
+import java.util.UUID;
+
+import com.google.common.collect.Multimap;
 import com.zeitheron.hammercore.net.HCNet;
 import com.zeitheron.hammercore.raytracer.RayTracer;
-import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.InfoTAR;
+import com.zeitheron.thaumicadditions.events.LivingEventsTAR;
 import com.zeitheron.thaumicadditions.init.PotionsTAR;
 import com.zeitheron.thaumicadditions.items.baubles.ItemFragnantPendant;
 import com.zeitheron.thaumicadditions.net.PacketRemovePotionEffect;
@@ -12,6 +15,7 @@ import com.zeitheron.thaumicadditions.utils.ThaumicHelper;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
@@ -40,11 +44,8 @@ public class ItemMithminiteDress extends ItemArmor implements IVisDiscountGear, 
 	}
 	
 	@Override
-	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
+	public void onArmorTick(World world, EntityPlayer mp, ItemStack itemStack)
 	{
-		EntityPlayerMP mp = WorldUtil.cast(player, EntityPlayerMP.class);
-		if(mp == null || world.isRemote)
-			return;
 		switch(armorType)
 		{
 		case HEAD:
@@ -68,37 +69,86 @@ public class ItemMithminiteDress extends ItemArmor implements IVisDiscountGear, 
 				}
 				if(nightVision)
 					mp.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 299, 0, true, false));
-				else
-					if(mp.isPotionActive(MobEffects.NIGHT_VISION))
-					{
-						mp.removeActivePotionEffect(MobEffects.NIGHT_VISION);
-						HCNet.INSTANCE.sendTo(new PacketRemovePotionEffect(MobEffects.NIGHT_VISION), mp);
-					}
+				else if(mp.isPotionActive(MobEffects.NIGHT_VISION))
+				{
+					mp.removeActivePotionEffect(MobEffects.NIGHT_VISION);
+					if(mp instanceof EntityPlayerMP && !world.isRemote)
+						HCNet.INSTANCE.sendTo(new PacketRemovePotionEffect(MobEffects.NIGHT_VISION), (EntityPlayerMP) mp);
+				}
 			}
 		}
 		break;
 	
 		case CHEST:
 		{
-			
+			mp.getEntityData().setBoolean("TAR_Flight", true);
+			if(mp.isBurning())
+			{
+				mp.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 119, 0, true, false));
+				mp.extinguish();
+			}
 		}
 		break;
 	
 		case LEGS:
 		{
-			
+			mp.getEntityData().setInteger("TAR_LockFOV", 5);
 		}
 		break;
 	
 		case FEET:
 		{
-			
+			if(!mp.capabilities.isFlying && mp.moveForward > 0.0f)
+			{
+				if(mp.world.isRemote && !mp.isSneaking())
+				{
+					if(!LivingEventsTAR.prevStep.containsKey(mp.getEntityId()))
+						LivingEventsTAR.prevStep.put(mp.getEntityId(), Float.valueOf(mp.stepHeight));
+					mp.stepHeight = 1.0f;
+				}
+				if(mp.onGround)
+				{
+					float bonus = 0.06f;
+					if(mp.isInWater())
+						bonus /= 2.0f;
+					mp.moveRelative(0.0f, 0.0f, bonus, 1.0f);
+				} else
+				{
+					if(mp.isInWater())
+						mp.moveRelative(0.0f, 0.0f, 0.03f, 1.0f);
+					mp.jumpMovementFactor = 0.05f;
+				}
+			}
 		}
 		break;
 	
 		default:
 		break;
 		}
+	}
+	
+	@Override
+	public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack)
+	{
+		Multimap<String, AttributeModifier> map = super.getAttributeModifiers(slot, stack);
+		if(slot == armorType)
+		{
+			if(slot == EntityEquipmentSlot.HEAD)
+			{
+				map.put("generic.luck", new AttributeModifier(UUID.fromString("de9fc7ce-b49f-21d8-a3db-8ecb26505405"), "TAR_MHEAD_LUCK", 1, 1));
+			} else if(slot == EntityEquipmentSlot.CHEST)
+			{
+				map.put("generic.maxHealth", new AttributeModifier(UUID.fromString("6d9fc7ce-b49f-41d8-93db-8ecb26505405"), "TAR_MCHEST_HP", 20, 0));
+			} else if(slot == EntityEquipmentSlot.LEGS)
+			{
+				map.put("generic.movementSpeed", new AttributeModifier(UUID.fromString("6e9fc7ce-b49b-21d8-a3da-8ecb26505423"), "TAR_MHEAD_LUCK", 1, 1));
+				map.put("generic.flyingSpeed", new AttributeModifier(UUID.fromString("6e9fc7ce-b49b-46f6-a3da-8ecb26505423"), "TAR_MHEAD_LUCK", 1, 1));
+			} else if(slot == EntityEquipmentSlot.FEET)
+			{
+				
+			}
+		}
+		return map;
 	}
 	
 	@Override

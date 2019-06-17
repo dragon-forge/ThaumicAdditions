@@ -13,7 +13,7 @@ import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.api.fx.TARParticleTypes;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractEssentiaJar.BlockAbstractJarItem;
-import com.zeitheron.thaumicadditions.client.ClientChainReactor;
+import com.zeitheron.thaumicadditions.client.ClientEventReactor;
 import com.zeitheron.thaumicadditions.client.isr.ItemRenderJar;
 import com.zeitheron.thaumicadditions.client.render.entity.RenderEntityChester;
 import com.zeitheron.thaumicadditions.client.render.tile.TESRAspectCombiner;
@@ -54,6 +54,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -74,12 +75,14 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomStateMapper(BlocksTAR.CRYSTAL_BORE, new StateMap.Builder().ignore(IBlockOrientable.FACING).build());
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityChester.class, RenderEntityChester.FACTORY);
+		
+		OBJLoader.INSTANCE.addDomain(InfoTAR.MOD_ID);
 	}
 	
 	@Override
 	public void init()
 	{
-		MinecraftForge.EVENT_BUS.register(ClientChainReactor.REACTOR);
+		MinecraftForge.EVENT_BUS.register(ClientEventReactor.REACTOR);
 		
 		for(ITARC a : TAReconstructed.arcs)
 			a.initClient();

@@ -1,5 +1,7 @@
 package com.zeitheron.thaumicadditions.events;
 
+import java.util.HashMap;
+
 import com.zeitheron.hammercore.annotations.MCFBus;
 import com.zeitheron.hammercore.event.FoodEatenEvent;
 import com.zeitheron.hammercore.utils.SoundUtil;
@@ -9,29 +11,65 @@ import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
 import com.zeitheron.thaumicadditions.utils.Foods;
 
-import net.minecraft.block.BlockStairs.EnumHalf;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
+import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.capabilities.ThaumcraftCapabilities;
 import thaumcraft.api.items.ItemsTC;
+import thaumcraft.api.items.RechargeHelper;
 import thaumcraft.common.lib.SoundsTC;
 
 @MCFBus
 public class LivingEventsTAR
 {
+	public static HashMap<Integer, Float> prevStep = new HashMap();
+	
+	@SubscribeEvent
+	public void playerTick(PlayerTickEvent e)
+	{
+		if(e.phase != Phase.END)
+			return;
+		NBTTagCompound nbt = e.player.getEntityData();
+		if(nbt.getBoolean("TAR_Flight"))
+		{
+			e.player.capabilities.allowFlying = true;
+			nbt.setBoolean("TAR_Flight", false);
+		} else if(nbt.hasKey("TAR_Flight"))
+		{
+			e.player.capabilities.allowFlying = false;
+			e.player.capabilities.isFlying = false;
+			nbt.removeTag("TAR_Flight");
+		}
+		if(nbt.getInteger("TAR_LockFOV") > 0)
+		{
+			int nl;
+			nbt.setInteger("TAR_LockFOV", nl = nbt.getInteger("TAR_LockFOV") - 1);
+			if(nl == 0)
+				nbt.removeTag("TAR_LockFOV");
+		}
+		handleSpeedMods(e.player);
+	}
+	
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void foodEaten(FoodEatenEvent e)
 	{
@@ -124,6 +162,49 @@ public class LivingEventsTAR
 					if(!held.isEmpty() && held.getItem().isDamageable() && held.getItem().isDamaged(held))
 						held.setItemDamage(Math.max(0, held.getItemDamage() - xp));
 				}
+		}
+	}
+	
+	@SubscribeEvent
+	public void fall(LivingFallEvent e)
+	{
+		ItemStack boots = e.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.FEET);
+		if(!boots.isEmpty() && boots.getItem() instanceof ItemMithminiteDress)
+		{
+			e.setDamageMultiplier(0);
+			e.setCanceled(true);
+		}
+	}
+	
+	@SubscribeEvent
+	public void hurt(LivingHurtEvent e)
+	{
+		DamageSource ds = e.getSource();
+		if(ds != null && ds.isFireDamage())
+		{
+			ItemStack chest = e.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+			if(!chest.isEmpty() && chest.getItem() instanceof ItemMithminiteDress)
+			{
+				e.setCanceled(true);
+				e.getEntityLiving().addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 119, 0, true, false));
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void playerJumps(LivingJumpEvent event)
+	{
+		ItemStack is;
+		if(event.getEntity() instanceof EntityPlayer && ((EntityPlayer) event.getEntity()).getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemMithminiteDress)
+			event.getEntityLiving().motionY += 0.2750000059604645;
+	}
+	
+	private static void handleSpeedMods(EntityPlayer player)
+	{
+		if(player.world.isRemote && (player.isSneaking() || !((player.getItemStackFromSlot(EntityEquipmentSlot.FEET)).getItem() instanceof ItemMithminiteDress)) && prevStep.containsKey(player.getEntityId()))
+		{
+			player.stepHeight = prevStep.get(player.getEntityId()).floatValue();
+			prevStep.remove(player.getEntityId());
 		}
 	}
 }
