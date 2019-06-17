@@ -97,6 +97,11 @@ item.thaumadditions:mithminite_hood.name=Мифминитовый капюшон
 item.thaumadditions:mithminite_robe.name=Мифминитовая роба
 item.thaumadditions:mithminite_belt.name=Мифминитовый пояс
 item.thaumadditions:mithminite_boots.name=Мифминитовые ботинки
+item.thaumadditions:adaminite_hood.name=Адаминитовый капюшон
+item.thaumadditions:adaminite_robe.name=Адаминитовая роба
+item.thaumadditions:adaminite_belt.name=Адаминитовый пояс
+item.thaumadditions:adaminite_boots.name=Адаминитовые ботинки
+item.thaumadditions:mithrillium_resonator.name=Мифриллиумный резонатор
 
 #########
 

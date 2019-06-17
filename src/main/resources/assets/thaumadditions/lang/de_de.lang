@@ -97,6 +97,11 @@ item.thaumadditions:mithminite_hood.name=Mithminite Hood
 item.thaumadditions:mithminite_robe.name=Mithminite Robe
 item.thaumadditions:mithminite_belt.name=Mithminite Belt
 item.thaumadditions:mithminite_boots.name=Mithminite Boots
+item.thaumadditions:adaminite_hood.name=Adaminite Hood
+item.thaumadditions:adaminite_robe.name=Adaminite Robe
+item.thaumadditions:adaminite_belt.name=Adaminite Belt
+item.thaumadditions:adaminite_boots.name=Adaminite Boots
+item.thaumadditions:mithrillium_resonator.name=Mithrillium Resonator
 
 #########
 
