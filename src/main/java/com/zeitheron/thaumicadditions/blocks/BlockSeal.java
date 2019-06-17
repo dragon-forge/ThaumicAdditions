@@ -68,8 +68,8 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 		MinecraftForge.EVENT_BUS.register(this);
 		setTranslationKey("seal");
 		setHarvestLevel("pickaxe", -1);
-		setHardness(0);
-		setResistance(0);
+		setHardness(1);
+		setResistance(1);
 	}
 	
 	@Override

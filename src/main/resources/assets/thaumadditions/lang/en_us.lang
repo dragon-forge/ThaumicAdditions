@@ -102,6 +102,9 @@ item.thaumadditions:adaminite_robe.name=Adaminite Robe
 item.thaumadditions:adaminite_belt.name=Adaminite Belt
 item.thaumadditions:adaminite_boots.name=Adaminite Boots
 item.thaumadditions:mithrillium_resonator.name=Mithrillium Resonator
+item.thaumadditions:levitation_device.name=Flight Device
+item.thaumadditions:void_thaumometer.name=Void Thaumometer
+item.thaumadditions:wormhole_mirror.name=Wormhole Mirror
 
 #########
 
@@ -291,7 +294,27 @@ research_stage.thaumadditions:mithminite_fabric.2=Okay, this time I got same amo
 
 research_name.thaumadditions:mithminite_hood=Mithminite Hood
 research_stage.thaumadditions:mithminite_hood.1=I'm thinking of upgrading my adaminite helmet with the new mithminite cloth. Seems like infusion would help me.
-research_stage.thaumadditions:mithminite_hood.2=Woah, the infusion I need to do to get mithminite hood is pretty complex, it seems. I was able to infuse few useful things into the helmet, so it has a few 'abilities': Water breathing, night vision, sanity checker, fragrant pendant... and... Tool repairer! No more do I need this silly mending enchantment, my helmet is going to repair any tools in my hand when I pickup experience.
+research_stage.thaumadditions:mithminite_hood.2=Woah, the infusion I need to do to get mithminite hood is pretty complex, it seems. I was able to infuse few useful things into the helmet, so it has a few 'abilities': Water breathing, night vision, sanity checker, fragrant pendant... and... Tool repairer! No more do I need this silly mending enchantment, my helmet is going to repair any tools in my hand when I pickup experience. Seems like looking at the seal with this hood on I can see what the seal does...
+
+research_name.thaumadditions:mithminite_robe=Mithminite Robe
+research_stage.thaumadditions:mithminite_robe.1=Perhaps it's the time to upgrade adaminite robe... I wonder what can I fuse with it and how it could be improved with mithminite fabric?
+research_stage.thaumadditions:mithminite_robe.2=Mithminite Robe seems to be infused with life and a few other aspects hence it has a few awesome abilities: Flight, Additional Health, Movement Speed, Fire Resistance.
+
+research_name.thaumadditions:mithminite_belt=Mithminite Belt
+research_stage.thaumadditions:mithminite_belt.1=I suppose my belt can be upgraded as well... I don't think that I will be able to put much things into it, but it will do the trick, still.
+research_stage.thaumadditions:mithminite_belt.2=And... yeah, this piece is not as powerful as some of it's mithminite alternatives, but it is still there, and I suppose it has a better vis discount, also giving me fast speed.
+
+research_name.thaumadditions:mithminite_boots=Mithminite Boots
+research_stage.thaumadditions:mithminite_boots.1=My final part of armor would be boots... Why not to combine it with Boots of the Traveller? I don't really have any other ideas of what can be added to them.
+research_stage.thaumadditions:mithminite_boots.2=Great! I think that my Boots of the Traveller fused within mithminite boots seem to work without need to be constantly recharged.
+
+research_name.thaumadditions:void_thaumometer=Void Thaumometer
+research_stage.thaumadditions:void_thaumometer.1=After discovering the power of flux rifts, making void metal and going a bit insane I think I might finally be able to know more about flux rifts...
+research_stage.thaumadditions:void_thaumometer.2=Noted! Flux rifts have a stability that can be measured by how much void metal reacts to them. So if I replace golden frame from my thaumometer with void metal, it should do the trick...
+
+research_name.thaumadditions:wormhole_mirror=Wormhole Mirror
+research_stage.thaumadditions:wormhole_mirror.1=I was wondering how I could stabilize and expand the thin connection between magic mirrors, so I could pass through them... Studying void metal does bring some hints, but I need a bit of additional thinking...
+research_stage.thaumadditions:wormhole_mirror.2=Okay, I have found a way... using a... 'wormhole'? Whatever that is, I really want to test it out, but then I think I'm going crazy... Using a thaumometer, a bit of void plates onto the hand mirror seem to get me a Wormhole Mirror... Though, how does it work?
 
 ############
 
