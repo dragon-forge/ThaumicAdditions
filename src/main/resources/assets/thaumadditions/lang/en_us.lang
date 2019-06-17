@@ -143,7 +143,7 @@ research_stage.thaumadditions:essence_salt.3=Hm... This salt is much more stable
 
 research_name.thaumadditions:mithrillium=Mithrillium Metal
 research_stage.thaumadditions:mithrillium.1=I think I've found an improvement to Void Metal. This new metal not only restores itself faster, it seems to pulsate with high thaumic vibes. I should experiment more, I know that this metal is worth it.
-research_stage.thaumadditions:mithrillium.2=Huh! This strange new metal is very unusual, even understanding how void metal works! The book pronounces it's name as "Mithrillium Metal"... I think that it may be a good material to improve my arcane setup. But what exactly can I do with it?
+research_stage.thaumadditions:mithrillium.2=Huh! This strange new metal is very unusual, even understanding how void metal works! The book pronounces it's name as "Mithrillium Metal"... I think that it may be a good material to improve my arcane setup. But what exactly can I do with it? Seems like upgrading morphic resonator is easy with it. I am going to bookmark the recipe, perhaps I'll need it in the future?
 
 research_name.thaumadditions:mithminite=Mithminite Metal
 research_stage.thaumadditions:mithminite.1=Adaminite has proven to be a very powerful metal and it is capable of crazy  things such as Adaminite Smeltery. But I think it doesn't reveal it's powers at max. I have an idea about solving that; I may try to fuse it with couple pieces of mithrillium and few drops of quicksilver.
@@ -280,6 +280,18 @@ research_stage.thaumadditions:flux_concentrator.2=To make gaseous flux I need a 
 research_name.thaumadditions:vis_scribing_tools=Vis Scribing Tools
 research_stage.thaumadditions:vis_scribing_tools.1=Sometimes the most annoying thing while I do is scribing tools suddenly running out of ink. This is so frustrating! Next time I'm going to need a bigger and better tools...
 research_stage.thaumadditions:vis_scribing_tools.2=Seems like tuning mundane scribing tools with crystals of praecantatio and a little bit of auram essentia in small glass capsule did a fascinating job! Vis Scribing Tools seem to be rechargable on a §lRecharge Pedestal§r, and these tools hold for a little longer.
+
+research_name.thaumadditions:adaminite_fabric=Adaminite Fabric
+research_stage.thaumadditions:adaminite_fabric.1=Adaminite metal can be very soft, hard or even dissolving. What would happen if I mix it with enchanted fabric?..
+research_stage.thaumadditions:adaminite_fabric.2=The result seems to be pretty inefficient. From eight fabric I got only two, but this new cloth is very flexible. It is also a pretty good material for wearing - so soft, and seems unbreakable.
+
+research_name.thaumadditions:mithminite_fabric=Mithminite Fabric
+research_stage.thaumadditions:mithminite_fabric.1=After getting mithminite, I wonder how my adaminite fabric can be further upgraded. Maybe try mixing it with new mithminite metal?
+research_stage.thaumadditions:mithminite_fabric.2=Okay, this time I got same amount of mithminite fabric from less adaminite one. It doesn't seem like I could make myself a wearing from it... that easily, at least... I need to study this phenomen a bit more.
+
+research_name.thaumadditions:mithminite_hood=Mithminite Hood
+research_stage.thaumadditions:mithminite_hood.1=I'm thinking of upgrading my adaminite helmet with the new mithminite cloth. Seems like infusion would help me.
+research_stage.thaumadditions:mithminite_hood.2=Woah, the infusion I need to do to get mithminite hood is pretty complex, it seems. I was able to infuse few useful things into the helmet, so it has a few 'abilities': Water breathing, night vision, sanity checker, fragrant pendant... and... Tool repairer! No more do I need this silly mending enchantment, my helmet is going to repair any tools in my hand when I pickup experience.
 
 ############
 

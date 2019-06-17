@@ -39,8 +39,6 @@ tile.thaumadditions:dusk_totem.name=Totem of Dusk [NYI] - перевод не н
 tile.thaumadditions:seal.name=Волшебная печать
 tile.thaumadditions:seal.desc=Цвет: @COLOR
 tile.thaumadditions:cake.name=Волшебный торт
-item.thaumadditions:adaminite_fabric.name=Адаминитовая ткань
-item.thaumadditions:mithminite_fabric.name=Мифминитовая ткань
 tile.thaumadditions:flux_concentrator.name=Концентратор выбросов
 
 ##########
@@ -92,6 +90,8 @@ item.thaumadditions:chester.name=Честер
 item.thaumadditions:bone_eye.name=Костеглаз
 item.thaumadditions:vis_pod.name=Стручок вис: %s
 item.thaumadditions:vis_seeds.name=Семена вис: %s
+item.thaumadditions:adaminite_fabric.name=Адаминитовая ткань
+item.thaumadditions:mithminite_fabric.name=Мифминитовая ткань
 item.thaumadditions:vis_scribing_tools.name=Вис-письменные принадлежности
 item.thaumadditions:mithminite_hood.name=Мифминитовый капюшон
 item.thaumadditions:mithminite_robe.name=Мифминитовая роба
@@ -140,7 +140,7 @@ research_stage.thaumadditions:essence_salt.3=Хм, каким-то образо�
 
 research_name.thaumadditions:mithrillium=Мифриллиумовый метал
 research_stage.thaumadditions:mithrillium.1=Думаю, я нашел способ улучшить Пустотный металл. Этот металл не только восстанавливает себя быстрее, но кажется и пульсирует с высокими таумическими вибрациями. Мне стоит провести больше экспериментов, я знаю, этот металл стоит этого.
-research_stage.thaumadditions:mithrillium.2=Ух! Этот странный, новый металл очень необычный, даже понимая, как пустотный металл работает! Книга называет его «Мифриллиумным металлом». Думаю, он может быть полезен для улучшения моих магических инструментов. Но что именно я могу делать с ним?
+research_stage.thaumadditions:mithrillium.2=Ух! Этот странный, новый металл очень необычный, даже понимая, как пустотный металл работает! Книга называет его «Мифриллиумным металлом». Думаю, он может быть полезен для улучшения моих магических инструментов. Но что именно я могу делать с ним? Кажется, что с его помощью можно легко улучшить морфический резонатор. Я создам закладку на рецепт, возможно он мне понадобиться в будущем?
 
 research_name.thaumadditions:mithminite=Мифминитовый метал
 research_stage.thaumadditions:mithminite.1=Адаминит зарекомендовал себя как очень мощный металл, и он способен на сумасшедшие вещи, такие как использование его для создания Адаминитовой Плавильни Эссенций. Но мне кажется, что она - это не все на что он способен. У меня есть идея как я могу решить эту проблему! Я могу попытаться соединить его с парой кусочков мифриллиума и несколькими каплями ртути.
@@ -266,17 +266,25 @@ research_name.thaumadditions:chester=Честер
 research_stage.thaumadditions:chester.1=Since I travel a lot, keeping my inventory relatively empty is bloody hard. It might be interesting to animate my hungry chest and program it in a way that he will follow me...
 research_stage.thaumadditions:chester.2=Seems like greatwood and thaumium isn't enough. But adding morphic resonator and zombie brains seem to imbue the chest with cognitive abilities. Add some aspects and I get what I was expecting - Chester. It seems that I will need some kind of tool, attuning it to thaumium seems a rather good idea. Bone-eye that is, it will work perfectly for what it was invented for.
 
-research_name.thaumadditions:vis_seeds=Growing Essentia
+research_name.thaumadditions:vis_seeds=Выращивание эссенции
 research_stage.thaumadditions:vis_seeds.1=Any thaumaturge while performing magic needs essentia of some kind. In most cases however said essentia needs to be obtained from physical objects like items. I will take it a step further and try to fuse a mundane wheat seed with magic...
 research_stage.thaumadditions:vis_seeds.2=Crucible seems to do the job. Throwing seeds with some herba and a bit more other essentia of any kind seem to infuse wheat seed and change it's genes. This makes it much harder to get more plantables after gathering one, but this is definitely something that may come in use for farming rare essentia.
 
-research_name.thaumadditions:flux_concentrator=Flux Concentrator
+research_name.thaumadditions:flux_concentrator=Концентратор выбросов
 research_stage.thaumadditions:flux_concentrator.1=Some plants that I've found in world seem to be imbued with magic. For example, Vishroom. Sometimes one may need a lot of these rare mushrooms. I need to study gaseous flux; perhaps this may give me some hints?
 research_stage.thaumadditions:flux_concentrator.2=To make gaseous flux I need a machine called "Flux Concentrator". Seems like it needs to be supplied with §5Vitium§r essentia from one side, and using it's bellows it will spit the gaseous flux from the opposite side. It's pressure is enough to travel around sixteen blocks from the concentrator.
 
-research_name.thaumadditions:vis_scribing_tools=Vis Scribing Tools
+research_name.thaumadditions:vis_scribing_tools=Вис-письменные принадлежности
 research_stage.thaumadditions:vis_scribing_tools.1=Sometimes the most annoying thing while I do is scribing tools suddenly running out of ink. This is so frustrating! Next time I'm going to need a bigger and better tools...
 research_stage.thaumadditions:vis_scribing_tools.2=Seems like tuning mundane scribing tools with crystals of praecantatio and a little bit of auram essentia in small glass capsule did a fascinating job! Vis Scribing Tools seem to be rechargable on a §lRecharge Pedestal§r, and these tools hold for a little longer.
+
+research_name.thaumadditions:adaminite_fabric=Адаминитовая ткань
+research_stage.thaumadditions:adaminite_fabric.1=Adaminite metal can be very soft, hard or even dissolving. What would happen if I mix it with enchanted fabric?..
+research_stage.thaumadditions:adaminite_fabric.2=The result seems to be pretty inefficient. From eight fabric I got only two, but this new cloth is very flexible. It is also a pretty good material for wearing - so soft, and seems unbreakable.
+
+research_name.thaumadditions:mithminite_fabric=Мифминитовая ткань
+research_stage.thaumadditions:mithminite_fabric.1=After getting mithminite, I wonder how my adaminite fabric can be further upgraded. Maybe try mixing it with new mithminite metal?
+research_stage.thaumadditions:mithminite_fabric.2=Okay, this time I got same amount of mithminite fabric from less adaminite one. It doesn't seem like I could make myself a wearing from it... that easily, at least... I need to study this phenomen a bit more.
 
 ############
 

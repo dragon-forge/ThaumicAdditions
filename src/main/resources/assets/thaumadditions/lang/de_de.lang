@@ -140,7 +140,7 @@ research_stage.thaumadditions:essence_salt.3=Hm ... Dieses Salz ist irgendwie vi
 
 research_name.thaumadditions:mithrillium=Mithrill Metall
 research_stage.thaumadditions:mithrillium.1=Ich glaube, ich habe eine Verbesserung für Leermetall gefunden. Dieses neue Metall regeneriert sich nicht nur schneller, es scheint auch mit hohen thaumischen Schwingungen zu pulsieren. Ich sollte mehr experimentieren. Ich weiß, dass dieses Metall es wert ist.
-research_stage.thaumadditions:mithrillium.2=Huh! Dieses seltsame neue Metall ist sehr ungewöhnlich, selbst wenn man versteht, wie Leermetall funktioniert! Das Buch spricht seinen Namen als "Mithrill Metall" aus ... Ich denke, dass es ein gutes Material sein könnte, um mein arkanes Zubehör zu verbessern. Aber was genau kann ich damit machen?
+research_stage.thaumadditions:mithrillium.2=Huh! Dieses seltsame neue Metall ist sehr ungewöhnlich, selbst wenn man versteht, wie Leermetall funktioniert! Das Buch spricht seinen Namen als "Mithrill Metall" aus ... Ich denke, dass es ein gutes Material sein könnte, um mein arkanes Zubehör zu verbessern. Aber was genau kann ich damit machen? Seems like upgrading morphic resonator is easy with it. I am going to bookmark the recipe, perhaps I'll need it in the future?
 
 research_name.thaumadditions:mithminite=Mithminit Metall
 research_stage.thaumadditions:mithminite.1=Adaminit hat sich als sehr starkes Metall erwiesen und kann verrückte Dinge wie Adaminit-Schmelzöfen produzieren. Aber ich denke, es zeigt nicht, seine gesamte Kraft. Ich habe eine Idee, das zu lösen. Ich kann versuchen, es mit ein paar Stücken Mithrill und ein paar Tropfen Quecksilber zu verschmelzen.
@@ -277,6 +277,14 @@ research_stage.thaumadditions:flux_concentrator.2=To make gaseous flux I need a 
 research_name.thaumadditions:vis_scribing_tools=Vis Scribing Tools
 research_stage.thaumadditions:vis_scribing_tools.1=Sometimes the most annoying thing while I do is scribing tools suddenly running out of ink. This is so frustrating! Next time I'm going to need a bigger and better tools...
 research_stage.thaumadditions:vis_scribing_tools.2=Seems like tuning mundane scribing tools with crystals of praecantatio and a little bit of auram essentia in small glass capsule did a fascinating job! Vis Scribing Tools seem to be rechargable on a §lRecharge Pedestal§r, and these tools hold for a little longer.
+
+research_name.thaumadditions:adaminite_fabric=Adaminite Fabric
+research_stage.thaumadditions:adaminite_fabric.1=Adaminite metal can be very soft, hard or even dissolving. What would happen if I mix it with enchanted fabric?..
+research_stage.thaumadditions:adaminite_fabric.2=The result seems to be pretty inefficient. From eight fabric I got only two, but this new cloth is very flexible. It is also a pretty good material for wearing - so soft, and seems unbreakable.
+
+research_name.thaumadditions:mithminite_fabric=Mithminite Fabric
+research_stage.thaumadditions:mithminite_fabric.1=After getting mithminite, I wonder how my adaminite fabric can be further upgraded. Maybe try mixing it with new mithminite metal?
+research_stage.thaumadditions:mithminite_fabric.2=Okay, this time I got same amount of mithminite fabric from less adaminite one. It doesn't seem like I could make myself a wearing from it... that easily, at least... I need to study this phenomen a bit more.
 
 ############
 
