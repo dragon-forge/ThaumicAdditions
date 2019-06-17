@@ -132,6 +132,9 @@ entity.thaumadditions.chester=Честер
 research.!FluxRift.text=Изучите разлом пространства
 research.!TARShimmerleaf.text=Изучите мерцающий лист
 
+card.thaumadditions:base.name=Thaumic Additions
+card.thaumadditions:base.text=Вы изучаете необычные объекты вокруг вас. Вы получаете от %,d до %,d очков прогресса в категории §lThaumic Additions§r и берёте дополнительную карту.
+
 research_name.thaumadditions:thaumadds=Thaumic Additions
 research_stage.thaumadditions:thaumadds.1=Я нашел очень странную теорию, которая, кажется, хочет помагать мне в моем путешествии. Кажется, я буду находить очевидные вещи постепенно, о которых я и не мог подумать без этого наблюдения...
 research_stage.thaumadditions:thaumadds.2=Я это запишу: Thaumic Additions - это магическое разширение к моим способностям, которе хочет помочь мне во многих перспективах. И как я нашел это?
