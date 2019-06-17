@@ -53,7 +53,7 @@ public class ItemWormholeMirror extends Item implements IRechargable
 				TileMirror tmr = (TileMirror) tm;
 				if(tmr.linked)
 				{
-					WorldUtil.teleportPlayer((EntityPlayerMP) player, tmr.linkDim, tmr.linkX + .5, tmr.linkY, tmr.linkZ + .5);
+					WorldUtil.teleportPlayer((EntityPlayerMP) player, tmr.linkDim, tmr.linkX + .5, tmr.linkY - .8F, tmr.linkZ + .5);
 					
 					WorldServer ws = WorldUtil.cast(world, WorldServer.class);
 					if(ws != null)
@@ -72,7 +72,7 @@ public class ItemWormholeMirror extends Item implements IRechargable
 				TileMirrorEssentia tmr = (TileMirrorEssentia) tm;
 				if(tmr.linked)
 				{
-					WorldUtil.teleportPlayer((EntityPlayerMP) player, tmr.linkDim, tmr.linkX + .5, tmr.linkY, tmr.linkZ + .5);
+					WorldUtil.teleportPlayer((EntityPlayerMP) player, tmr.linkDim, tmr.linkX + .5, tmr.linkY - .8F, tmr.linkZ + .5);
 					
 					WorldServer ws = WorldUtil.cast(world, WorldServer.class);
 					if(ws != null)
