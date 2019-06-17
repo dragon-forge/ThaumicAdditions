@@ -132,6 +132,9 @@ entity.thaumadditions.chester=Chester
 research.!FluxRift.text=Scanne einen Fluxriss
 research.!TARShimmerleaf.text=Erforsche Shimmerblatt
 
+card.thaumadditions:base.name=Thaumic Additions
+card.thaumadditions:base.text=You study unusual objects around you. Gain from %,d to %,d §lThaumic Additions§r and 1 bonus draw.
+
 research_name.thaumadditions:thaumadds=Thaumische Ergänzungen
 research_stage.thaumadditions:thaumadds.1=Ich habe eine sehr seltsame Theorie, die mir auf meiner thaumischen Reise zu helfen scheint. Es scheint, dass ich später offensichtliche Dinge finden werde, an die ich ohne diese seltsame Beobachtung nicht einmal denken kann ...
 research_stage.thaumadditions:thaumadds.2=Ich werde Folgendes notieren: Thaumische Ergänzungen ist eine magische Erweiterung meiner Fähigkeiten, die mir in vielerlei Hinsicht helfen wird. Wie habe ich das nochmal gefunden?
