@@ -106,6 +106,7 @@ item.thaumadditions:levitation_device.name=Flight Device
 item.thaumadditions:void_thaumometer.name=Void Thaumometer
 item.thaumadditions:wormhole_mirror.name=Wormhole Mirror
 item.thaumadditions:void_elemental_hoe.name=Void Hoe of Growth
+item.thaumadditions:phantom_ink_phial.name=Phial of Phantom Ink
 
 #########
 
@@ -123,6 +124,8 @@ chat.thaumadditions:chester.follow=The Chester will follow  you.
 chat.thaumadditions:chester.not_master=You are not my master.
 entity.thaumadditions.chester.name=Chester
 entity.thaumadditions.chester=Chester
+tooltip.thaumadditions:vis=Vis: %,d / %,d
+tooltip.thaumadditions:phantom=Phantom
 
 #################
 

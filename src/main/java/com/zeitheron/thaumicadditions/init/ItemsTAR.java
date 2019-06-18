@@ -37,6 +37,7 @@ public class ItemsTAR
 	public static final ItemMaterial LEVITATION_DEVICE = new ItemMaterial("levitation_device");
 	public static final ItemMaterial SEAL_GLOBE = new ItemMaterial("seal_globe");
 	public static final ItemMaterial ODOUR_POWDER = new ItemMaterial("odour_powder");
+	public static final ItemMaterial PHANTOM_INK_PHIAL = new ItemMaterial("phantom_ink_phial");
 	public static final ItemMaterial ZEITH_SCALES = new ItemZeithScale();
 	public static final ItemChester CHESTER = new ItemChester();
 	public static final ItemKnowledgeTome KNOWLEDGE_TOME = new ItemKnowledgeTome();

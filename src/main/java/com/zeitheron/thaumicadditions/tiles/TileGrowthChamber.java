@@ -343,8 +343,8 @@ public class TileGrowthChamber extends TileSyncableTickable implements IEssentia
 				{
 					float deg = ticksExisted * 12 + i * (360F / rays);
 					float rad = (float) Math.toRadians(deg);
-					float sin = MathHelper.sin(rad);
-					float cos = MathHelper.cos(rad);
+					float sin = (float) Math.sin(rad);
+					float cos = (float) Math.cos(rad);
 					visSparkle(pos.getX() + .5F + cos * getRNG().nextFloat() * 6, pos.getY() + 1.5F + getRNG().nextFloat() * 4, pos.getZ() + .5F + sin * getRNG().nextFloat() * 6, pos.getX() + cos * .3F + .5F, pos.getY() + .5F, pos.getZ() + sin * .3F + .5F, Aspect.AURA.getColor());
 				}
 		return false;

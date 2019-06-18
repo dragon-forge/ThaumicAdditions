@@ -19,10 +19,12 @@ import com.zeitheron.thaumicadditions.api.blueprint.BlueprintBuilder;
 import com.zeitheron.thaumicadditions.config.ConfigsTAR;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.items.ItemVisSeeds;
+import com.zeitheron.thaumicadditions.recipes.RecipeApplyPhantomInk;
 import com.zeitheron.thaumicadditions.recipes.RecipeApplySalt;
 import com.zeitheron.thaumicadditions.recipes.RecipeClearSalt;
 import com.zeitheron.thaumicadditions.recipes.RecipeMixSalts;
 import com.zeitheron.thaumicadditions.recipes.RecipePaintSeal;
+import com.zeitheron.thaumicadditions.recipes.RecipeRemovePhantomInk;
 import com.zeitheron.thaumicadditions.recipes.ingr.NBTRespectfulIngredient;
 import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;
 
@@ -105,6 +107,8 @@ public class RecipesTAR extends RecipeRegistry
 		recipe(new RecipeApplySalt().setRegistryName(new ResourceLocation(getMod(), "essence_salt.apply")));
 		recipe(new RecipeClearSalt().setRegistryName(new ResourceLocation(getMod(), "essence_salt.remove")));
 		recipe(new RecipePaintSeal());
+		recipe(new RecipeApplyPhantomInk().setRegistryName(new ResourceLocation(getMod(), "phantom_ink.apply")));
+		recipe(new RecipeRemovePhantomInk().setRegistryName(new ResourceLocation(getMod(), "phantom_ink.remove")));
 	}
 	
 	private void infusing()
@@ -133,7 +137,7 @@ public class RecipesTAR extends RecipeRegistry
 		addInfusionRecipe("mithminite_hood", new ItemStack(ItemsTAR.MITHMINITE_HOOD), "TAR_MITHMINITE_HOOD", 10, new ItemStack(ItemsTAR.ADAMINITE_HOOD), new AspectList().add(Aspect.PROTECT, 200).add(KnowledgeTAR.VISUM, 250).add(Aspect.FLUX, 150).add(Aspect.LIGHT, 200).add(Aspect.WATER, 250).add(Aspect.MIND, 250).add(KnowledgeTAR.CAELES, 75), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(BlocksTC.jarBrain), new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR), new ItemStack(Blocks.SEA_LANTERN), new ItemStack(ItemsTAR.FRAGNANT_PENDANT), new ItemStack(ItemsTAR.SEAL_GLOBE), new ItemStack(BlocksTC.lampArcane), new ItemStack(ItemsTC.sanityChecker));
 		addInfusionRecipe("mithminite_robe", new ItemStack(ItemsTAR.MITHMINITE_ROBE), "TAR_MITHMINITE_ROBE", 10, new ItemStack(ItemsTAR.ADAMINITE_ROBE), new AspectList().add(Aspect.PROTECT, 200).add(Aspect.LIFE, 250).add(Aspect.FLUX, 150).add(KnowledgeTAR.VENTUS, 200).add(Aspect.FIRE, 250).add(KnowledgeTAR.CAELES, 75), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR), new ItemStack(ItemsTAR.LEVITATION_DEVICE), new ItemStack(Items.GOLDEN_APPLE, 1, 1), new ItemStack(ItemsTC.modules, 1, 1));
 		addInfusionRecipe("mithminite_belt", new ItemStack(ItemsTAR.MITHMINITE_BELT), "TAR_MITHMINITE_BELT", 10, new ItemStack(ItemsTAR.ADAMINITE_BELT), new AspectList().add(Aspect.PROTECT, 200).add(KnowledgeTAR.FLUCTUS, 250).add(Aspect.FLUX, 150).add(KnowledgeTAR.VENTUS, 200).add(KnowledgeTAR.CAELES, 75), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR), new ItemStack(ItemsTAR.LEVITATION_DEVICE));
-		addInfusionRecipe("mithminite_boots", new ItemStack(ItemsTAR.MITHMINITE_BOOTS), "TAR_MITHMINITE_BOOTS", 10, new ItemStack(ItemsTAR.ADAMINITE_BOOTS), new AspectList().add(Aspect.PROTECT,  200).add(Aspect.AIR, 250).add(Aspect.FLUX, 150).add(KnowledgeTAR.FLUCTUS, 200).add(KnowledgeTAR.CAELES, 75), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR), new ItemStack(ItemsTC.travellerBoots));
+		addInfusionRecipe("mithminite_boots", new ItemStack(ItemsTAR.MITHMINITE_BOOTS), "TAR_MITHMINITE_BOOTS", 10, new ItemStack(ItemsTAR.ADAMINITE_BOOTS), new AspectList().add(Aspect.PROTECT, 200).add(Aspect.AIR, 250).add(Aspect.FLUX, 150).add(KnowledgeTAR.FLUCTUS, 200).add(KnowledgeTAR.CAELES, 75), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR), new ItemStack(ItemsTC.travellerBoots));
 		
 		for(Aspect a : Aspect.aspects.values())
 		{
@@ -201,6 +205,7 @@ public class RecipesTAR extends RecipeRegistry
 	{
 		addCrucibleRecipe("crystal_water", "TAR_CRYSTAL_WATER", FluidUtil.getFilledBucket(new FluidStack(FluidsTAR.CRYSTAL_WATER, Fluid.BUCKET_VOLUME)), new ItemStack(Items.WATER_BUCKET), new AspectList().add(Aspect.CRYSTAL, 10).add(Aspect.DESIRE, 4).add(Aspect.EXCHANGE, 6));
 		addCrucibleRecipe("odour_powder", "TAR_FRAGNANT_PENDANT", new ItemStack(ItemsTAR.ODOUR_POWDER, 4), new ItemStack(ItemsTC.bathSalts), new AspectList().add(Aspect.ORDER, 10).add(KnowledgeTAR.EXITIUM, 5).add(KnowledgeTAR.VENTUS, 5));
+		addCrucibleRecipe("phantom_ink_phial", "TAR_THAUMADDS", new ItemStack(ItemsTAR.PHANTOM_INK_PHIAL), new ItemStack(ItemsTC.phial), new AspectList().add(KnowledgeTAR.VISUM, 10).add(Aspect.ELDRITCH, 20));
 		
 		for(Aspect a : Aspect.aspects.values())
 		{

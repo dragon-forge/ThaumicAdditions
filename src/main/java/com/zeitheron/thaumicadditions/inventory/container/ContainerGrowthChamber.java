@@ -1,6 +1,7 @@
 package com.zeitheron.thaumicadditions.inventory.container;
 
 import com.zeitheron.hammercore.client.gui.impl.container.ItemTransferHelper.TransferableContainer;
+import com.zeitheron.hammercore.client.gui.impl.container.SlotScaled;
 import com.zeitheron.thaumicadditions.tiles.TileGrowthChamber;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,7 +33,7 @@ public class ContainerGrowthChamber extends TransferableContainer<TileGrowthCham
 			}
 		});
 		
-		addSlotToContainer(new Slot(t.growthInventory, 1, 135, 30));
+		addSlotToContainer(new SlotScaled(t.growthInventory, 1, 131, 26, 24, 24));
 	}
 	
 	@Override

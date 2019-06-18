@@ -1,10 +1,12 @@
-package com.zeitheron.thaumicadditions.client;
+package com.zeitheron.thaumicadditions.events;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.lwjgl.opengl.ARBShaderObjects;
 import org.lwjgl.opengl.GL11;
@@ -37,19 +39,21 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -67,9 +71,7 @@ import thaumcraft.client.fx.ParticleEngine;
 import thaumcraft.client.fx.particles.FXGeneric;
 import thaumcraft.client.fx.particles.ParticleHooksTAR;
 import thaumcraft.client.lib.events.HudHandlerHookTAR;
-import thaumcraft.client.lib.events.RenderEventHandler;
 import thaumcraft.common.entities.EntityFluxRift;
-import thaumcraft.common.items.baubles.ItemVoidseerCharm;
 import thaumcraft.common.lib.utils.Utils;
 
 public class ClientEventReactor
@@ -150,9 +152,8 @@ public class ClientEventReactor
 					});
 					prof.endSection();
 				}
-			} catch(IllegalArgumentException | IllegalAccessException e1)
+			} catch(IllegalArgumentException | IllegalAccessException | ConcurrentModificationException e1)
 			{
-				e1.printStackTrace();
 			}
 			
 			prof.endSection();
@@ -216,10 +217,13 @@ public class ClientEventReactor
 		AspectList salt;
 		if(!stack.isEmpty() && Foods.isFood(stack.getItem()) && (salt = EdibleAspect.getSalt(stack)).visSize() > 0)
 		{
-			e.getToolTip().add("Vis: " + salt.visSize() + "/" + EdibleAspect.MAX_ESSENTIA);
+			e.getToolTip().add(I18n.format("tooltip." + InfoTAR.MOD_ID + ":vis", salt.visSize(), EdibleAspect.MAX_ESSENTIA));
 			for(Aspect a : salt.getAspectsSortedByName())
 				e.getToolTip().add(a.getName() + " x" + salt.getAmount(a));
 		}
+		
+		if(stack.getItem() instanceof ItemArmor && stack.hasTagCompound() && stack.getTagCompound().getBoolean("TAR_PHANTOM"))
+			e.getToolTip().add(TextFormatting.DARK_AQUA + I18n.format("tooltip." + InfoTAR.MOD_ID + ":phantom"));
 	}
 	
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -315,7 +319,35 @@ public class ClientEventReactor
 		}
 	}
 	
-	@SideOnly(value = Side.CLIENT)
+	private Map<EntityEquipmentSlot, ItemStack> armor = new HashMap<>();
+	
+	@SubscribeEvent(priority = EventPriority.LOWEST)
+	public void preRenderPlayer(RenderPlayerEvent.Pre e)
+	{
+		EntityPlayer player = e.getEntityPlayer();
+		for(EntityEquipmentSlot s : EntityEquipmentSlot.values())
+			if(s.getSlotIndex() != 0 && s.getSlotIndex() != 5)
+			{
+				ItemStack stack = player.getItemStackFromSlot(s);
+				if(!stack.isEmpty() && stack.hasTagCompound() && stack.getTagCompound().getBoolean("TAR_PHANTOM"))
+				{
+					player.inventory.armorInventory.set(s.getIndex(), ItemStack.EMPTY);
+					armor.put(s, stack);
+				}
+			}
+	}
+	
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public void postRenderPlayer(RenderPlayerEvent.Post e)
+	{
+		EntityPlayer player = e.getEntityPlayer();
+		for(EntityEquipmentSlot s : EntityEquipmentSlot.values())
+			if(s.getSlotIndex() != 0 && s.getSlotIndex() != 5 && armor.containsKey(s))
+			{
+				player.inventory.armorInventory.set(s.getIndex(), armor.remove(s));
+			}
+	}
+	
 	@SubscribeEvent
 	public void renderTick(TickEvent.RenderTickEvent event)
 	{
