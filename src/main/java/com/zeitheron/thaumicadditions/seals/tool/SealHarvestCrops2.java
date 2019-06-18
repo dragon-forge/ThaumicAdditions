@@ -37,7 +37,7 @@ public class SealHarvestCrops2 extends SealInstance
 	@Override
 	public void tick()
 	{
-		if(!seal.atTickRate(20))
+		if(!seal.atTickRate(10))
 			return;
 		
 		WorldLocation loc = seal.getLocation();

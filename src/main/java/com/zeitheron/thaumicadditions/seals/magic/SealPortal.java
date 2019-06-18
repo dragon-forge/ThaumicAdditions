@@ -307,6 +307,9 @@ public class SealPortal extends SealInstance
 	@Override
 	public void tick()
 	{
+		if(seal.getLocation().getRedstone() > 0)
+			cooldown = 2;
+		
 		if(cooldown > 0)
 		{
 			--cooldown;

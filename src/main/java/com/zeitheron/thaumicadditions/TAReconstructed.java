@@ -1,5 +1,7 @@
 package com.zeitheron.thaumicadditions;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import com.zeitheron.hammercore.HammerCore;
 import com.zeitheron.hammercore.internal.SimpleRegistration;
 import com.zeitheron.hammercore.mod.ModuleLister;
+import com.zeitheron.hammercore.utils.FinalFieldHelper;
 import com.zeitheron.hammercore.utils.HammerCoreUtils;
 import com.zeitheron.thaumicadditions.api.AttributesTAR;
 import com.zeitheron.thaumicadditions.compat.ITARC;
@@ -142,6 +145,27 @@ public class TAReconstructed
 		{
 			EntityPlayer p = (EntityPlayer) e.getEntity();
 			p.getAttributeMap().registerAttribute(AttributesTAR.SOUND_SENSIVITY);
+		}
+	}
+	
+	static Field registryNameIMPL;
+	
+	public static void resetRegistryName(net.minecraftforge.registries.IForgeRegistryEntry.Impl<?> impl)
+	{
+		if(registryNameIMPL == null)
+			registryNameIMPL = net.minecraftforge.registries.IForgeRegistryEntry.Impl.class.getDeclaredFields()[2];
+		try
+		{
+			if(Modifier.isFinal(registryNameIMPL.getModifiers()))
+				FinalFieldHelper.setFinalField(registryNameIMPL, impl, null);
+			else
+			{
+				registryNameIMPL.setAccessible(true);
+				registryNameIMPL.set(impl, null);
+			}
+		} catch(ReflectiveOperationException e)
+		{
+			e.printStackTrace();
 		}
 	}
 }

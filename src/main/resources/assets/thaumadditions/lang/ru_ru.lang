@@ -105,6 +105,7 @@ item.thaumadditions:mithrillium_resonator.name=Мифриллиумный рез
 item.thaumadditions:levitation_device.name=Устройство полёта
 item.thaumadditions:void_thaumometer.name=Пустотный таумометр
 item.thaumadditions:wormhole_mirror.name=Зеркало червоточины
+item.thaumadditions:void_elemental_hoe.name=Пустотная мотыга роста
 
 #########
 
@@ -315,6 +316,10 @@ research_stage.thaumadditions:void_thaumometer.2=Noted! Flux rifts have a stabil
 research_name.thaumadditions:wormhole_mirror=Зеркало червоточины
 research_stage.thaumadditions:wormhole_mirror.1=I was wondering how I could stabilize and expand the thin connection between magic mirrors, so I could pass through them... Studying void metal does bring some hints, but I need a bit of additional thinking...
 research_stage.thaumadditions:wormhole_mirror.2=Okay, I have found a way to expand connections between magic mirrors... using a... 'wormhole'? Whatever that is, I really want to test it out, but then I think I'm going crazy... Using a thaumometer (as a connection catcher), a bit of void plates onto the hand mirror seem to get me a Wormhole Mirror... Though, how does it work? Perhaps I should use it on a bound mirror?..
+
+research_name.thaumadditions:void_elemental_hoe=Void Hoe of Growth
+research_stage.thaumadditions:void_elemental_hoe.1=Researching void metal have hinted me at just how much void metal can restore by itself. What would happen if I upgrade my hoe of growth with it?
+research_stage.thaumadditions:void_elemental_hoe.2=I wasn't able to attach void metal to the hoe, but I think that with some primordial energy it might be quite possible. "Void Hoe of Growth" is essentially the same as my Hoe of Growth, but it also restores itself using a little help from aura.
 
 ############
 

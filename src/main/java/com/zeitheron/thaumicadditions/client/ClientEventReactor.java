@@ -17,8 +17,8 @@ import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.AttributesTAR;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
-import com.zeitheron.thaumicadditions.items.ItemVoidThaumometer;
 import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
+import com.zeitheron.thaumicadditions.items.tools.ItemVoidThaumometer;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
 import com.zeitheron.thaumicadditions.utils.Foods;
 

@@ -1,5 +1,6 @@
 package com.zeitheron.thaumicadditions.items.armor;
 
+import java.util.HashSet;
 import java.util.UUID;
 
 import com.google.common.collect.Multimap;
@@ -23,6 +24,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
@@ -46,6 +48,21 @@ public class ItemMithminiteDress extends ItemArmor implements IVisDiscountGear, 
 	@Override
 	public void onArmorTick(World world, EntityPlayer mp, ItemStack itemStack)
 	{
+		ItemStack tmp;
+		boolean headWorn = !(tmp = mp.getItemStackFromSlot(EntityEquipmentSlot.HEAD)).isEmpty() && tmp.getItem() instanceof ItemMithminiteDress;
+		boolean bodyWorn = !(tmp = mp.getItemStackFromSlot(EntityEquipmentSlot.CHEST)).isEmpty() && tmp.getItem() instanceof ItemMithminiteDress;
+		boolean beltWorn = !(tmp = mp.getItemStackFromSlot(EntityEquipmentSlot.LEGS)).isEmpty() && tmp.getItem() instanceof ItemMithminiteDress;
+		boolean bootsWorn = !(tmp = mp.getItemStackFromSlot(EntityEquipmentSlot.FEET)).isEmpty() && tmp.getItem() instanceof ItemMithminiteDress;
+		boolean fullSet = headWorn && bodyWorn && beltWorn && bootsWorn;
+		
+		if(fullSet)
+		{
+			if(mp.ticksExisted % 20 == 0)
+				for(Potion p : new HashSet<>(mp.getActivePotionMap().keySet()))
+					if(p.isBadEffect())
+						mp.removePotionEffect(p);
+		}
+		
 		switch(armorType)
 		{
 		case HEAD:
@@ -55,7 +72,8 @@ public class ItemMithminiteDress extends ItemArmor implements IVisDiscountGear, 
 				mp.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 31, 0, true, false));
 			if(!mp.isPotionActive(PotionWarpWard.instance) && mp.ticksExisted % 40 == 0 && ItemFragnantPendant.ODOUR_POWDER.canConsume(mp.inventory))
 			{
-				ItemFragnantPendant.ODOUR_POWDER.consume(mp.inventory);
+				if(world.rand.nextBoolean())
+					ItemFragnantPendant.ODOUR_POWDER.consume(mp.inventory);
 				ThaumicHelper.applyWarpWard(mp);
 			}
 			if(mp.ticksExisted % 10 == 0)

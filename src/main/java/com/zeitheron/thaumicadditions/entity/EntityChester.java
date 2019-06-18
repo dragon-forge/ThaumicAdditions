@@ -13,7 +13,7 @@ import com.zeitheron.hammercore.utils.inventory.InventoryDummy;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.inventory.container.ContainerChester;
-import com.zeitheron.thaumicadditions.items.ItemBoneEye;
+import com.zeitheron.thaumicadditions.items.tools.ItemBoneEye;
 import com.zeitheron.thaumicadditions.net.PacketSyncEntity;
 import com.zeitheron.thaumicadditions.net.PacketSyncTrunk;
 
