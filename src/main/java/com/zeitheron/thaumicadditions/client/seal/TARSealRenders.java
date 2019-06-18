@@ -16,6 +16,7 @@ import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.client.util.GLDownloader;
 import com.zeitheron.thaumicadditions.config.ConfigsTAR;
+import com.zeitheron.thaumicadditions.entity.EntitySealViewer;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.seals.magic.SealPortal;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
@@ -28,6 +29,7 @@ import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -189,6 +191,9 @@ public class TARSealRenders
 	
 	public static void renderStandart(TileSeal seal, double x, double y, double z, float partialTicks, int index)
 	{
+		if(seal.getLocation().getRedstone() > 0)
+			partialTicks = 0;
+		
 		Aspect symb = seal.getSymbol(index);
 		int color = ItemSealSymbol.getColorMultiplier(symb, seal, index);
 		boolean rotates = ItemSealSymbol.doesRotate(symb, seal, index);
@@ -214,7 +219,12 @@ public class TARSealRenders
 		GL11.glTranslated(.5, .5, .5);
 		GL11.glRotated(index * 120 * mult, 0, 0, 1);
 		if(rotates)
+		{
+			float f = (float) ((seal.ticksExisted + partialTicks) * (speed * 20) % 360D);
+			f = (float) ((Math.sin(Math.toRadians(f)) + 1) / 2F);
+			GlStateManager.translate(0, 0, f * -.01F);
 			GL11.glRotated((seal.ticksExisted + partialTicks) * speed % 360D * mult, 0, 0, 1);
+		}
 		GL11.glTranslated(-.5, -.5, -.5);
 		UtilsFX.bindTexture(tex);
 		Tessellator.getInstance().draw();
@@ -263,7 +273,8 @@ public class TARSealRenders
 				
 				int size = 512;
 				
-				mc.setRenderViewEntity(portal.viewer);
+				EntitySealViewer esv = portal.viewer;
+				mc.setRenderViewEntity(esv);
 				settings.thirdPersonView = 0;
 				settings.hideGUI = true;
 				settings.mipmapLevels = 3;

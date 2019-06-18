@@ -1,4 +1,4 @@
-package com.zeitheron.thaumicadditions.items;
+package com.zeitheron.thaumicadditions.items.tools;
 
 import net.minecraft.item.Item;
 

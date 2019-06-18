@@ -85,7 +85,7 @@ public class BlockVisCrop extends BlockCrops implements INoItemBlock, ITileBlock
 	{
 		ItemStack held = playerIn.getHeldItem(hand);
 		
-		if(!held.isEmpty() && held.getItem() == ItemsTC.elementalHoe)
+		if(!held.isEmpty() && held.getItem() instanceof ItemElementalHoe)
 		{
 			int i = this.getAge(state) + 1 + worldIn.rand.nextInt(2);
 			int j = this.getMaxAge();

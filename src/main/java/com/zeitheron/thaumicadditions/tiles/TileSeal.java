@@ -107,6 +107,9 @@ public class TileSeal extends TileSyncableTickable implements ITileDroppable
 		if(getLocation().getBlock() == BlocksTAR.SEAL)
 			orientation = getLocation().getState().getValue(EnumRotation.EFACING);
 		
+		if(getLocation().getRedstone() > 0)
+			--ticksExisted;
+		
 		if(dirty)
 		{
 			SealCombination oldCombo = combination;

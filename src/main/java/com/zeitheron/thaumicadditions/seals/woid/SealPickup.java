@@ -60,9 +60,9 @@ public class SealPickup extends SealInstance
 		
 		for(EntityItem ei : drops)
 		{
-			double moveX = ThaumicMath.cap((pos.x - ei.posX) / 30D, .0025);
-			double moveY = ThaumicMath.cap((pos.y - ei.posY) / 30D, .0025);
-			double moveZ = ThaumicMath.cap((pos.z - ei.posZ) / 30D, .0025);
+			double moveX = ThaumicMath.cap((pos.x - ei.posX) / 30D, .025);
+			double moveY = ThaumicMath.cap((pos.y - ei.posY) / 30D, .025);
+			double moveZ = ThaumicMath.cap((pos.z - ei.posZ) / 30D, .025);
 			
 			ei.setNoGravity(true);
 			
@@ -75,7 +75,7 @@ public class SealPickup extends SealInstance
 	@Override
 	public void onEntityCollisionWithSeal(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
-		if(entityIn instanceof EntityItem)
+		if(entityIn instanceof EntityItem && seal.getLocation().getRedstone() <= 0)
 		{
 			BlockPos rock = seal.getPos().offset(seal.orientation.getOpposite());
 			

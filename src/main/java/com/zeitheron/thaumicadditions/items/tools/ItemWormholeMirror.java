@@ -1,4 +1,4 @@
-package com.zeitheron.thaumicadditions.items;
+package com.zeitheron.thaumicadditions.items.tools;
 
 import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.hammercore.utils.WorldUtil;
@@ -25,6 +25,7 @@ import thaumcraft.api.items.IRechargable;
 import thaumcraft.api.items.RechargeHelper;
 import thaumcraft.common.blocks.IBlockFacing;
 import thaumcraft.common.blocks.devices.BlockMirror;
+import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.utils.BlockUtils;
 import thaumcraft.common.tiles.devices.TileMirror;
 import thaumcraft.common.tiles.devices.TileMirrorEssentia;
@@ -79,15 +80,26 @@ public class ItemWormholeMirror extends Item implements IRechargable
 									state = rws.getBlockState(pos2.down());
 									boolean air = rws.isAirBlock(pos2.down());
 									WorldUtil.teleportPlayer((EntityPlayerMP) player, tmr.linkDim, tmr.linkX + .5, tmr.linkY - .8F + (!air && state.getBlock().isCollidable() ? 1 : 0), tmr.linkZ + .5);
+									float yaw = 0;
+									if(face == EnumFacing.SOUTH)
+										yaw = 0;
+									if(face == EnumFacing.NORTH)
+										yaw = 180;
+									if(face == EnumFacing.WEST)
+										yaw = 90;
+									if(face == EnumFacing.EAST)
+										yaw = -90;
+									((EntityPlayerMP) player).connection.setPlayerLocation(player.posX, player.posY, player.posZ, yaw, 0);
 								}
 							}
 							
 							SoundUtil.playSoundEffect(rws, SoundEvents.ENTITY_ENDERMEN_TELEPORT.getRegistryName().toString(), pos2, 1F, .8F + rws.rand.nextFloat() * .4F, SoundCategory.PLAYERS);
 						}
 					}
-				}
-				
-				RechargeHelper.consumeCharge(mirror, player, 5);
+					
+					RechargeHelper.consumeCharge(mirror, player, 5);
+				} else
+					SoundUtil.playSoundEffect(world, SoundsTC.jar.getRegistryName().toString(), player.getPosition(), 1F, .9F + world.rand.nextFloat() * .2F, SoundCategory.PLAYERS);
 			}
 			if(tm != null && tm instanceof TileMirrorEssentia && player instanceof EntityPlayerMP)
 			{
@@ -115,15 +127,26 @@ public class ItemWormholeMirror extends Item implements IRechargable
 									state = rws.getBlockState(pos2.down());
 									boolean air = rws.isAirBlock(pos2.down());
 									WorldUtil.teleportPlayer((EntityPlayerMP) player, tmr.linkDim, tmr.linkX + .5, tmr.linkY - .8F + (!air && state.getBlock().isCollidable() ? 1 : 0), tmr.linkZ + .5);
+									float yaw = 0;
+									if(face == EnumFacing.SOUTH)
+										yaw = 0;
+									if(face == EnumFacing.NORTH)
+										yaw = 180;
+									if(face == EnumFacing.WEST)
+										yaw = 90;
+									if(face == EnumFacing.EAST)
+										yaw = -90;
+									((EntityPlayerMP) player).connection.setPlayerLocation(player.posX, player.posY, player.posZ, yaw, 0);
 								}
 							}
 							
 							SoundUtil.playSoundEffect(rws, SoundEvents.ENTITY_ENDERMEN_TELEPORT.getRegistryName().toString(), pos2, 1F, .8F + rws.rand.nextFloat() * .4F, SoundCategory.PLAYERS);
 						}
 					}
-				}
-				
-				RechargeHelper.consumeCharge(mirror, player, 5);
+					
+					RechargeHelper.consumeCharge(mirror, player, 5);
+				} else
+					SoundUtil.playSoundEffect(world, SoundsTC.jar.getRegistryName().toString(), player.getPosition(), 1F, .9F + world.rand.nextFloat() * .2F, SoundCategory.PLAYERS);
 			}
 			return EnumActionResult.PASS;
 		}
@@ -139,6 +162,6 @@ public class ItemWormholeMirror extends Item implements IRechargable
 	@Override
 	public EnumChargeDisplay showInHud(ItemStack var1, EntityLivingBase var2)
 	{
-		return EnumChargeDisplay.PERIODIC;
+		return EnumChargeDisplay.NORMAL;
 	}
 }
