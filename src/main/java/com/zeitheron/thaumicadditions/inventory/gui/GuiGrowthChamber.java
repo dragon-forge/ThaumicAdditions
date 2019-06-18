@@ -3,6 +3,7 @@ package com.zeitheron.thaumicadditions.inventory.gui;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.Rectangle;
 
+import com.zeitheron.hammercore.client.gui.GuiWTFMojang;
 import com.zeitheron.hammercore.client.render.world.VirtualWorld;
 import com.zeitheron.hammercore.client.render.world.VirtualWorldRenderer;
 import com.zeitheron.hammercore.client.utils.RenderUtil;
@@ -21,7 +22,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import thaumcraft.api.aspects.Aspect;
 
-public class GuiGrowthChamber extends GuiContainer
+public class GuiGrowthChamber extends GuiWTFMojang<ContainerGrowthChamber>
 {
 	public TileGrowthChamber tile;
 	

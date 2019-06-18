@@ -25,20 +25,6 @@ public class GuiCraftingFurnace extends GuiContainer
 		super(new ContainerCraftingFurnace(player, tile));
 	}
 	
-	DynGuiTex tex;
-	
-	@Override
-	public void initGui()
-	{
-		super.initGui();
-		
-		GuiTexBakery b = GuiTexBakery.start();
-		b.body(0, 0, xSize, ySize);
-		for(Slot s : inventorySlots.inventorySlots)
-			b.slot(s.xPos - 1, s.yPos - 1);
-		tex = b.bake();
-	}
-	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
@@ -48,7 +34,8 @@ public class GuiCraftingFurnace extends GuiContainer
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
-		tex.render(guiLeft, guiTop);
+		UtilsFX.bindTexture(InfoTAR.MOD_ID, "textures/gui/crafting_furnace.png");
+		RenderUtil.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		UtilsFX.bindTexture("textures/gui/def_widgets.png");

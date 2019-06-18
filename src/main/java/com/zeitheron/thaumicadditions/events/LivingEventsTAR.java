@@ -36,7 +36,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.capabilities.ThaumcraftCapabilities;
 import thaumcraft.api.items.ItemsTC;
-import thaumcraft.api.items.RechargeHelper;
 import thaumcraft.common.lib.SoundsTC;
 
 @MCFBus

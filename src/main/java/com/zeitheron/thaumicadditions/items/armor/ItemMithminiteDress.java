@@ -83,7 +83,7 @@ public class ItemMithminiteDress extends ItemArmor implements IVisDiscountGear, 
 				{
 					RayTraceResult rtr = RayTracer.retrace(mp, 12);
 					if(rtr != null && rtr.typeOfHit == Type.BLOCK)
-						nightVision = world.getLightBrightness(rtr.getBlockPos().offset(rtr.sideHit)) * 16F < 7F;
+						nightVision = world.getLightBrightness(rtr.getBlockPos().offset(rtr.sideHit)) * 16F < 3F;
 				}
 				if(nightVision)
 					mp.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 299, 0, true, false));

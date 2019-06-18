@@ -39,7 +39,8 @@ public class TESRArcaneCake extends TESR<TileArcaneCake>
 			sbr.enableFace(EnumFacing.UP);
 			sbr.setColor(EnumFacing.UP, 255 << 24 | te.getRGB());
 			AxisAlignedBB aabb = te.getWorld().getBlockState(te.getPos()).getCollisionBoundingBox(te.getWorld(), te.getPos());
-			sbr.setRenderBounds(aabb.offset(0, .01 / 16D, 0));
+			if(aabb != null) // Fix random crash with tessellation
+				sbr.setRenderBounds(aabb.offset(0, .01 / 16D, 0));
 			
 			sbr.drawBlock(x, y, z);
 		}
