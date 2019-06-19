@@ -1,0 +1,9 @@
+{
+	"variants": {
+		"variant=v00": { "model": "thaumadditions:crafting_furnace" },
+		"variant=v01": { "model": "thaumadditions:crafting_furnace", "y": 90 },
+		"variant=v02":  { "model": "thaumadditions:crafting_furnace", "y": 180 },
+        "variant=v03":  { "model": "thaumadditions:crafting_furnace", "y": 270 },
+        "variant=v04":  { "model": "thaumadditions:crafting_furnace" }
+	}
+}
