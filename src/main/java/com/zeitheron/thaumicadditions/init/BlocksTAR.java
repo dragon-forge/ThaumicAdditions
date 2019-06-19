@@ -7,6 +7,7 @@ import com.zeitheron.thaumicadditions.blocks.BlockArcaneCake;
 import com.zeitheron.thaumicadditions.blocks.BlockAspectCombiner;
 import com.zeitheron.thaumicadditions.blocks.BlockAuraCharger;
 import com.zeitheron.thaumicadditions.blocks.BlockAuraDisperser;
+import com.zeitheron.thaumicadditions.blocks.BlockAuraTotem;
 import com.zeitheron.thaumicadditions.blocks.BlockCraftingFurnace;
 import com.zeitheron.thaumicadditions.blocks.BlockCrystal;
 import com.zeitheron.thaumicadditions.blocks.BlockCrystalBore;
@@ -48,6 +49,8 @@ public class BlocksTAR
 	public static final BlockGrowthChamber GROWTH_CHAMBER = new BlockGrowthChamber();
 	public static final BlockSeal SEAL = new BlockSeal();
 	public static final BlockVisCrop VIS_CROPS = new BlockVisCrop();
+	
+//	public static final BlockAuraTotem AURA_TOTEM = new BlockAuraTotem();
 	
 	public static final BlockAbstractEssentiaJar<TileBrassJar> BRASS_JAR = new BlockAbstractEssentiaJar<>(TileBrassJar.class, 275, "jar_brass");
 	public static final BlockAbstractEssentiaJar<TileThaumiumJar> THAUMIUM_JAR = new BlockAbstractEssentiaJar<>(TileThaumiumJar.class, 350, "jar_thaumium");
