@@ -21,8 +21,6 @@ public class ItemVoidElementalHoe extends ItemElementalHoe
 		TAReconstructed.resetRegistryName(this);
 		ConfigItems.ITEM_VARIANT_HOLDERS.remove(this);
 		setTranslationKey("void_elemental_hoe");
-		
-		System.out.println("WTFFFFFF " + getRegistryName() + " " + getTranslationKey());
 	}
 	
 	@Override
