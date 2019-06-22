@@ -13,11 +13,14 @@ import org.lwjgl.opengl.GL11;
 
 import com.zeitheron.hammercore.client.render.shader.ShaderProgram;
 import com.zeitheron.hammercore.client.render.shader.impl.ShaderEnderField;
+import com.zeitheron.hammercore.client.render.world.VirtualWorld;
 import com.zeitheron.hammercore.client.utils.RenderUtil;
 import com.zeitheron.hammercore.client.utils.UtilsFX;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.AttributesTAR;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
+import com.zeitheron.thaumicadditions.client.HudHandlerHookTAR;
+import com.zeitheron.thaumicadditions.client.ParticleHooksTAR;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
 import com.zeitheron.thaumicadditions.items.tools.ItemVoidThaumometer;
@@ -69,8 +72,6 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.client.fx.ParticleEngine;
 import thaumcraft.client.fx.particles.FXGeneric;
-import thaumcraft.client.fx.particles.ParticleHooksTAR;
-import thaumcraft.client.lib.events.HudHandlerHookTAR;
 import thaumcraft.common.entities.EntityFluxRift;
 import thaumcraft.common.lib.utils.Utils;
 
@@ -85,6 +86,8 @@ public class ClientEventReactor
 	
 	WeakReference<TileSeal> seal_MH;
 	int sealHoverTime_MH;
+	
+	final VirtualWorld ores = new VirtualWorld();
 	
 	public static void translatePlayerIrrelative(double x, double y, double z)
 	{
@@ -240,7 +243,7 @@ public class ClientEventReactor
 		BlockPos origin = excludesRAJ.isEmpty() ? BlockPos.ORIGIN : excludesRAJ.get(0);
 		GlStateManager.pushMatrix();
 		GlStateManager.enableBlend();
-		translatePlayerIrrelative(origin.getX(), origin.getY(), origin.getZ());
+		translatePlayerIrrelative(0, 0, 0);
 		UtilsFX.bindTexture("minecraft", "textures/entity/end_portal.png");
 		if(ShaderEnderField.endShader == null)
 			ShaderEnderField.reloadShader();
@@ -256,7 +259,7 @@ public class ClientEventReactor
 			IBlockState state = world.getBlockState(pos).getActualState(world, pos);
 			IBakedModel model = brd.getModelForState(state);
 			state = state.getBlock().getExtendedState(state, world, pos);
-			brd.getBlockModelRenderer().renderModel(world, model, state, pos.subtract(origin), bb, true);
+			brd.getBlockModelRenderer().renderModel(ores, model, state, pos, bb, true);
 		}
 		Tessellator.getInstance().draw();
 		
@@ -467,7 +470,10 @@ public class ClientEventReactor
 		if(excludesRAJ.size() >= 8192 || excludesRAJ.contains(pos) || !Utils.isOreBlock(world, pos))
 			return;
 		excludesRAJ.add(pos);
-		Block block = world.getBlockState(pos).getBlock();
+		IBlockState state = world.getBlockState(pos);
+		Block block = state.getBlock();
+		ores.setBlockState(pos, state);
+		ores.setTileEntity(pos, world.getTileEntity(pos));
 		for(EnumFacing face : EnumFacing.VALUES)
 		{
 			BlockPos rem = pos.offset(face);

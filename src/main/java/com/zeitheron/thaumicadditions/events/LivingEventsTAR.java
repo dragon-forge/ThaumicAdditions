@@ -34,9 +34,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.capabilities.IPlayerKnowledge;
 import thaumcraft.api.capabilities.ThaumcraftCapabilities;
 import thaumcraft.api.items.ItemsTC;
 import thaumcraft.common.lib.SoundsTC;
+import thaumcraft.common.lib.capabilities.PlayerKnowledge;
+import thaumcraft.common.lib.research.ResearchManager;
 
 @MCFBus
 public class LivingEventsTAR
@@ -67,6 +70,9 @@ public class LivingEventsTAR
 				nbt.removeTag("TAR_LockFOV");
 		}
 		handleSpeedMods(e.player);
+		IPlayerKnowledge ipk = ThaumcraftCapabilities.getKnowledge(e.player);
+		if(ipk.isResearchComplete("BASEELDRITCH") && !ipk.isResearchComplete("TAR_ELDRITCH"))
+			ResearchManager.completeResearch(e.player, "TAR_ELDRITCH", true);
 	}
 	
 	@SubscribeEvent(priority = EventPriority.LOWEST)
