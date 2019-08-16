@@ -76,10 +76,10 @@ public class ItemMithminiteDress extends ItemArmor implements IVisDiscountGear, 
 					ItemFragnantPendant.ODOUR_POWDER.consume(mp.inventory);
 				ThaumicHelper.applyWarpWard(mp);
 			}
-			if(mp.ticksExisted % 10 == 0)
+			if(mp.ticksExisted % 10 == 0 && !world.isRemote)
 			{
 				boolean nightVision = world.getLightBrightness(mp.getPosition()) * 16F < 7F;
-				if(!nightVision)
+				if(!nightVision && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("AimNightVision"))
 				{
 					RayTraceResult rtr = RayTracer.retrace(mp, 12);
 					if(rtr != null && rtr.typeOfHit == Type.BLOCK)

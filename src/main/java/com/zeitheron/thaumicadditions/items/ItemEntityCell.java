@@ -13,6 +13,7 @@ import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.ChatTA;
 import com.zeitheron.thaumicadditions.InfoTAR;
+import com.zeitheron.thaumicadditions.config.ConfigsTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 
 import net.minecraft.client.resources.I18n;
@@ -50,11 +51,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.common.lib.SoundsTC;
 
-public class ItemDNASample extends Item
+public class ItemEntityCell extends Item
 {
 	public static final Set<Class<? extends Entity>> SAMPLE_BLACKLIST = new HashSet<>();
 	
-	public ItemDNASample()
+	public ItemEntityCell()
 	{
 		setTranslationKey("dna_sample");
 		setMaxStackSize(1);
@@ -116,7 +117,7 @@ public class ItemDNASample extends Item
 		{
 			items.add(new ItemStack(this));
 			for(EntityEntry e : GameRegistry.findRegistry(EntityEntry.class).getValuesCollection())
-				if(e.getEgg() != null)
+				if(e.getEgg() != null && !ConfigsTAR.entityBlacklist.contains(e.getRegistryName()))
 					items.add(sample(e, null));
 		}
 	}
@@ -159,7 +160,8 @@ public class ItemDNASample extends Item
 		NBTTagCompound nbt = stack.getTagCompound();
 		if(nbt == null)
 			stack.setTagCompound(nbt = new NBTTagCompound());
-		if(!nbt.hasKey("Entity") && !player.world.isRemote)
+		EntityEntry ee = EntityRegistry.getEntry(entity.getClass());
+		if(!nbt.hasKey("Entity") && !player.world.isRemote && ee != null && !ConfigsTAR.entityBlacklist.contains(ee.getRegistryName()))
 		{
 			NBTTagCompound sampled = sampleNBT(null, entity);
 			if(sampled != null && !sampled.isEmpty())

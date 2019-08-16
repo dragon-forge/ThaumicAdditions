@@ -1,7 +1,7 @@
 package com.zeitheron.thaumicadditions.init;
 
 import com.zeitheron.thaumicadditions.items.ItemChester;
-import com.zeitheron.thaumicadditions.items.ItemDNASample;
+import com.zeitheron.thaumicadditions.items.ItemEntityCell;
 import com.zeitheron.thaumicadditions.items.ItemKnowledgeTome;
 import com.zeitheron.thaumicadditions.items.ItemMaterial;
 import com.zeitheron.thaumicadditions.items.ItemSaltEssence;
@@ -69,7 +69,7 @@ public class ItemsTAR
 	
 	// ENTITY-BOUND ITEMS
 	
-	public static final ItemDNASample ENTITY_CELL = new ItemDNASample();
+	public static final ItemEntityCell ENTITY_CELL = new ItemEntityCell();
 	
 	// VIS-BOUND ITEMS
 	
