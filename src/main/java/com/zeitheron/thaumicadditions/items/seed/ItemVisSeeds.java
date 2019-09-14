@@ -1,12 +1,8 @@
-package com.zeitheron.thaumicadditions.items;
+package com.zeitheron.thaumicadditions.items.seed;
 
-import com.zeitheron.hammercore.utils.FinalFieldHelper;
-import com.zeitheron.hammercore.utils.IRegisterListener;
-import com.zeitheron.hammercore.utils.WorldUtil;
-import com.zeitheron.thaumicadditions.TAReconstructed;
+import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
-import com.zeitheron.thaumicadditions.tiles.TileVisCrop;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.state.IBlockState;
@@ -31,7 +27,7 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IEssentiaContainerItem;
 
-public class ItemVisSeeds extends ItemSeeds implements IEssentiaContainerItem, IRegisterListener
+public class ItemVisSeeds extends ItemSeeds implements IEssentiaContainerItem
 {
 	public static final int ASPECT_COUNT = 2;
 	
@@ -41,18 +37,6 @@ public class ItemVisSeeds extends ItemSeeds implements IEssentiaContainerItem, I
 		setTranslationKey("vis_seeds");
 	}
 	
-	public void setCrops()
-	{
-		if(FinalFieldHelper.setStaticFinalField(ItemSeeds.class.getDeclaredFields()[0], BlocksTAR.VIS_CROPS))
-			TAReconstructed.LOG.info("Updated crop to vis crop.");
-	}
-	
-	@Override
-	public void onRegistered()
-	{
-		setCrops();
-	}
-	
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
@@ -60,15 +44,9 @@ public class ItemVisSeeds extends ItemSeeds implements IEssentiaContainerItem, I
 		net.minecraft.block.state.IBlockState state = worldIn.getBlockState(pos);
 		if(facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemstack) && state.getBlock().canSustainPlant(state, worldIn, pos, EnumFacing.UP, this) && worldIn.isAirBlock(pos.up()))
 		{
-			worldIn.setBlockState(pos.up(), BlocksTAR.VIS_CROPS.getDefaultState());
+			Aspect asp = Aspect.getAspect(itemstack.getTagCompound().getString("Aspect"));
 			
-			TileVisCrop tvc = WorldUtil.cast(worldIn.getTileEntity(pos.up()), TileVisCrop.class);
-			
-			if(tvc != null && itemstack.hasTagCompound() && itemstack.getTagCompound().hasKey("Aspect", NBT.TAG_STRING))
-			{
-				Aspect asp = Aspect.getAspect(itemstack.getTagCompound().getString("Aspect"));
-				tvc.setAspect(asp);
-			}
+			worldIn.setBlockState(pos.up(), BlocksTAR.VIS_CROPS.get(asp).getDefaultState());
 			
 			if(player instanceof EntityPlayerMP)
 			{
@@ -92,7 +70,7 @@ public class ItemVisSeeds extends ItemSeeds implements IEssentiaContainerItem, I
 	@Override
 	public IBlockState getPlant(IBlockAccess world, BlockPos pos)
 	{
-		return BlocksTAR.VIS_CROPS.getDefaultState();
+		return BlocksTAR.VIS_CROPS.get(AspectUtil.cycleRandomAspect()).getDefaultState();
 	}
 	
 	public static int getColor(ItemStack stack, int layer)

@@ -58,8 +58,11 @@ public class LivingEventsTAR
 			nbt.setBoolean("TAR_Flight", false);
 		} else if(nbt.hasKey("TAR_Flight"))
 		{
-			e.player.capabilities.allowFlying = false;
-			e.player.capabilities.isFlying = false;
+			if(!e.player.capabilities.isCreativeMode)
+			{
+				e.player.capabilities.allowFlying = false;
+				e.player.capabilities.isFlying = false;
+			}
 			nbt.removeTag("TAR_Flight");
 		}
 		if(nbt.getInteger("TAR_LockFOV") > 0)

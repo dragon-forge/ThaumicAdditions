@@ -1,4 +1,4 @@
-package com.zeitheron.thaumicadditions.blocks;
+package com.zeitheron.thaumicadditions.blocks.plants;
 
 import java.util.Random;
 

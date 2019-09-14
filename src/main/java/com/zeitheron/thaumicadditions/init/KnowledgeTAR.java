@@ -19,7 +19,7 @@ import com.zeitheron.thaumicadditions.api.ResearchAddendumBuilder;
 import com.zeitheron.thaumicadditions.api.ResearchEntryBuilder;
 import com.zeitheron.thaumicadditions.api.ResearchStageBuilder;
 import com.zeitheron.thaumicadditions.config.ConfigsTAR;
-import com.zeitheron.thaumicadditions.items.ItemVisSeeds;
+import com.zeitheron.thaumicadditions.items.seed.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;
 
 import net.minecraft.init.Blocks;
@@ -173,6 +173,8 @@ public class KnowledgeTAR
 		
 		new REB().setBaseInfo("TAR_VOID_THAUMOMETER", "void_thaumometer", 2, 7, new ItemStack(ItemsTAR.VOID_THAUMOMETER)).setMeta(EnumResearchMeta.HIDDEN, EnumResearchMeta.HEX).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":void_thaumometer.1").setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 1), new Knowledge(EnumKnowledgeType.THEORY, R_ELDRITCH, 1)).setWarp(2).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":void_thaumometer.2").setRecipes(InfoTAR.MOD_ID + ":void_thaumometer").build()).setParents("TAR_ELDRITCH").buildAndRegister();
 		new REB().setBaseInfo("TAR_WORMHOLE_MIRROR", "wormhole_mirror", 2, 5, new ItemStack(ItemsTAR.WORMHOLE_MIRROR)).setMeta(EnumResearchMeta.HIDDEN, EnumResearchMeta.SPIKY).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":wormhole_mirror.1").setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 2), new Knowledge(EnumKnowledgeType.THEORY, R_ELDRITCH, 2)).setWarp(3).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":wormhole_mirror.2").setRecipes(InfoTAR.MOD_ID + ":wormhole_mirror").build()).setParents("TAR_VOID_THAUMOMETER", "MIRRORHAND").buildAndRegister();
+		
+		new REB().setBaseInfo("TAR_VOID_CROP", "void_crop", 4, 7, new ItemStack(ItemsTAR.VOID_SEED)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":void_crop.1").setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 1), new Knowledge(EnumKnowledgeType.THEORY, R_ELDRITCH, 1)).setConsumedItems(new ItemStack(ItemsTC.voidSeed, 2)).setWarp(2).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":void_crop.2").setRecipes(InfoTAR.MOD_ID + ":void_crop").build()).setParents("TAR_ELDRITCH").buildAndRegister();
 		
 		new REB().setBaseInfo("TAR_VOID_ELEMENTAL_HOE", "void_elemental_hoe", 2, 9, new ItemStack(ItemsTAR.VOID_ELEMENTAL_HOE)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":void_elemental_hoe.1").setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 1), new Knowledge(EnumKnowledgeType.THEORY, R_ELDRITCH, 1)).setWarp(2).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":void_elemental_hoe.2").setRecipes(InfoTAR.MOD_ID + ":void_elemental_hoe").build()).setParents("TAR_ELDRITCH", "ELEMENTALTOOLS").buildAndRegister();
 	}

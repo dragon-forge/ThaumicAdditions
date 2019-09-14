@@ -41,11 +41,13 @@ public class RecipeApplySalt extends Impl<IRecipe> implements IRecipe
 							return false;
 						else
 							foodq++;
+					} else
+					{
+						food = stack.getItem();
+						dmg = stack.getItemDamage();
+						nbt = stack.getTagCompound();
+						foodq++;
 					}
-					food = stack.getItem();
-					dmg = stack.getItemDamage();
-					nbt = stack.getTagCompound();
-					foodq++;
 				}
 			}
 			AspectList al = ItemsTAR.SALT_ESSENCE.getAspects(stack);
@@ -89,11 +91,13 @@ public class RecipeApplySalt extends Impl<IRecipe> implements IRecipe
 							return ItemStack.EMPTY;
 						else
 							foodq++;
+					} else
+					{
+						food = stack.getItem();
+						dmg = stack.getItemDamage();
+						nbt = stack.getTagCompound();
+						foodq++;
 					}
-					food = stack.getItem();
-					dmg = stack.getItemDamage();
-					nbt = stack.getTagCompound();
-					foodq++;
 				}
 			}
 			AspectList al = ItemsTAR.SALT_ESSENCE.getAspects(stack);

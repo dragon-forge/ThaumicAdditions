@@ -5,6 +5,7 @@ import javax.annotation.Nonnull;
 import com.zeitheron.hammercore.client.render.item.ItemRenderingHandler;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockHorizontal;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockOrientable;
+import com.zeitheron.hammercore.proxy.RenderProxy_Client;
 import com.zeitheron.hammercore.utils.NBTUtils;
 import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
@@ -13,7 +14,9 @@ import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.api.fx.TARParticleTypes;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractEssentiaJar.BlockAbstractJarItem;
+import com.zeitheron.thaumicadditions.blocks.plants.BlockVisCrop;
 import com.zeitheron.thaumicadditions.client.isr.ItemRenderJar;
+import com.zeitheron.thaumicadditions.client.models.baked.BakedCropModel;
 import com.zeitheron.thaumicadditions.client.render.entity.RenderEntityChester;
 import com.zeitheron.thaumicadditions.client.render.tile.TESRAspectCombiner;
 import com.zeitheron.thaumicadditions.client.render.tile.TESRAuraCharger;
@@ -30,7 +33,7 @@ import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.inventory.gui.GuiSealGlobe;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.items.ItemVisPod;
-import com.zeitheron.thaumicadditions.items.ItemVisSeeds;
+import com.zeitheron.thaumicadditions.items.seed.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.proxy.fx.FXHandler;
 import com.zeitheron.thaumicadditions.proxy.fx.FXHandlerClient;
 import com.zeitheron.thaumicadditions.tiles.TileAspectCombiner;
@@ -41,6 +44,7 @@ import com.zeitheron.thaumicadditions.tiles.TileCrystalCrusher;
 import com.zeitheron.thaumicadditions.tiles.TileFluxConcentrator;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleBreaking;
@@ -52,13 +56,16 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.client.fx.ParticleEngine;
@@ -129,7 +136,12 @@ public class ClientProxy extends CommonProxy
 			return 0xFFFFFF;
 		}, Item.getItemFromBlock(BlocksTAR.SEAL));
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(BlocksTAR.CRYSTAL_BLOCK::getColor, BlocksTAR.CRYSTAL_BLOCK);
-		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(BlocksTAR.VIS_CROPS::getColor, BlocksTAR.VIS_CROPS);
+		
+		for(BlockVisCrop blk : BlocksTAR.VIS_CROPS.values())
+		{
+			Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(blk::getColor, blk);
+			blk.getBlockState().getValidStates().forEach(state -> RenderProxy_Client.bakedModelStore.putConstant(state, new BakedCropModel(state)));
+		}
 		
 		// Add custom TESRs
 		
@@ -270,6 +282,17 @@ public class ClientProxy extends CommonProxy
 		if(s == null)
 			s = m.getAtlasSprite(path);
 		return s != null ? s : m.getMissingSprite();
+	}
+	
+	@SubscribeEvent
+	public void textureStitch(TextureStitchEvent.Pre e)
+	{
+		TextureMap txMap = e.getMap();
+		
+		for(String tx0 : BakedCropModel.textures0)
+			txMap.registerSprite(new ResourceLocation(tx0));
+		for(String tx1 : BakedCropModel.textures1)
+			txMap.registerSprite(new ResourceLocation(tx1));
 	}
 	
 	@Override
