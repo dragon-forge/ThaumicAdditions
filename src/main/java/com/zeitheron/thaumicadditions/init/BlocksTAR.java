@@ -1,5 +1,11 @@
 package com.zeitheron.thaumicadditions.init;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.zeitheron.hammercore.internal.SimpleRegistration;
+import com.zeitheron.thaumicadditions.InfoTAR;
+import com.zeitheron.thaumicadditions.api.events.ProvideThaumicAspectsEvent;
 import com.zeitheron.thaumicadditions.api.utils.IOcasionalPositionedEvent;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractEssentiaJar;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractSmelter;
@@ -7,7 +13,6 @@ import com.zeitheron.thaumicadditions.blocks.BlockArcaneCake;
 import com.zeitheron.thaumicadditions.blocks.BlockAspectCombiner;
 import com.zeitheron.thaumicadditions.blocks.BlockAuraCharger;
 import com.zeitheron.thaumicadditions.blocks.BlockAuraDisperser;
-import com.zeitheron.thaumicadditions.blocks.BlockAuraTotem;
 import com.zeitheron.thaumicadditions.blocks.BlockCraftingFurnace;
 import com.zeitheron.thaumicadditions.blocks.BlockCrystal;
 import com.zeitheron.thaumicadditions.blocks.BlockCrystalBore;
@@ -16,16 +21,21 @@ import com.zeitheron.thaumicadditions.blocks.BlockCrystalWater;
 import com.zeitheron.thaumicadditions.blocks.BlockEntitySummoner;
 import com.zeitheron.thaumicadditions.blocks.BlockFluxConcentrator;
 import com.zeitheron.thaumicadditions.blocks.BlockGrowthChamber;
-import com.zeitheron.thaumicadditions.blocks.BlockPuriflower;
 import com.zeitheron.thaumicadditions.blocks.BlockSeal;
 import com.zeitheron.thaumicadditions.blocks.BlockTotem;
-import com.zeitheron.thaumicadditions.blocks.BlockVisCrop;
+import com.zeitheron.thaumicadditions.blocks.plants.BlockPuriflower;
+import com.zeitheron.thaumicadditions.blocks.plants.BlockVisCrop;
+import com.zeitheron.thaumicadditions.blocks.plants.BlockVoidCrop;
 import com.zeitheron.thaumicadditions.tiles.jars.TileAdaminiteJar;
 import com.zeitheron.thaumicadditions.tiles.jars.TileBrassJar;
 import com.zeitheron.thaumicadditions.tiles.jars.TileEldritchJar;
 import com.zeitheron.thaumicadditions.tiles.jars.TileMithminiteJar;
 import com.zeitheron.thaumicadditions.tiles.jars.TileMithrilliumJar;
 import com.zeitheron.thaumicadditions.tiles.jars.TileThaumiumJar;
+
+import net.minecraft.block.Block;
+import net.minecraftforge.common.MinecraftForge;
+import thaumcraft.api.aspects.Aspect;
 
 public class BlocksTAR
 {
@@ -48,9 +58,10 @@ public class BlocksTAR
 	public static final BlockTotem TWILIGHT_TOTEM = new BlockTotem("twilight", IOcasionalPositionedEvent.TWILIGHT);
 	public static final BlockGrowthChamber GROWTH_CHAMBER = new BlockGrowthChamber();
 	public static final BlockSeal SEAL = new BlockSeal();
-	public static final BlockVisCrop VIS_CROPS = new BlockVisCrop();
+	public static final Map<Aspect, BlockVisCrop> VIS_CROPS = new HashMap<>();
+	public static final BlockVoidCrop VOID_CROP = BlockVoidCrop.CROP;
 	
-//	public static final BlockAuraTotem AURA_TOTEM = new BlockAuraTotem();
+	// public static final BlockAuraTotem AURA_TOTEM = new BlockAuraTotem();
 	
 	public static final BlockAbstractEssentiaJar<TileBrassJar> BRASS_JAR = new BlockAbstractEssentiaJar<>(TileBrassJar.class, 275, "jar_brass");
 	public static final BlockAbstractEssentiaJar<TileThaumiumJar> THAUMIUM_JAR = new BlockAbstractEssentiaJar<>(TileThaumiumJar.class, 350, "jar_thaumium");
@@ -60,4 +71,17 @@ public class BlocksTAR
 	public static final BlockAbstractEssentiaJar<TileMithminiteJar> MITHMINITE_JAR = new BlockAbstractEssentiaJar<>(TileMithminiteJar.class, 4000, "jar_mithminite");
 	
 	public static final BlockCrystal CRYSTAL_BLOCK = new BlockCrystal();
+	
+	public static void loadAspectBlocks()
+	{
+		ProvideThaumicAspectsEvent evt = new ProvideThaumicAspectsEvent();
+		MinecraftForge.EVENT_BUS.post(evt);
+		for(Aspect a : evt.getAspects())
+			if(!VIS_CROPS.containsKey(a))
+			{
+				BlockVisCrop block;
+				VIS_CROPS.put(a, block = new BlockVisCrop(a));
+				SimpleRegistration.registerBlock(block, InfoTAR.MOD_ID, null);
+			}
+	}
 }

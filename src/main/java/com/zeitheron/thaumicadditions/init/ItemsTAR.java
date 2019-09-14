@@ -7,12 +7,13 @@ import com.zeitheron.thaumicadditions.items.ItemMaterial;
 import com.zeitheron.thaumicadditions.items.ItemSaltEssence;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.items.ItemVisPod;
-import com.zeitheron.thaumicadditions.items.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.items.ItemZeithScale;
 import com.zeitheron.thaumicadditions.items.armor.ItemAdaminiteDress;
 import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
 import com.zeitheron.thaumicadditions.items.baubles.ItemFragnantPendant;
 import com.zeitheron.thaumicadditions.items.baubles.ItemRechargeCharm;
+import com.zeitheron.thaumicadditions.items.seed.ItemVisSeeds;
+import com.zeitheron.thaumicadditions.items.seed.ItemVoidSeed;
 import com.zeitheron.thaumicadditions.items.tools.ItemBoneEye;
 import com.zeitheron.thaumicadditions.items.tools.ItemVisScribingTools;
 import com.zeitheron.thaumicadditions.items.tools.ItemVoidElementalHoe;
@@ -77,4 +78,8 @@ public class ItemsTAR
 	public static final ItemSealSymbol SEAL_SYMBOL = new ItemSealSymbol();
 	public static final ItemVisPod VIS_POD = new ItemVisPod();
 	public static final ItemVisSeeds VIS_SEEDS = new ItemVisSeeds();
+	
+	// MISC ITEMS
+	
+	public static final ItemVoidSeed VOID_SEED = new ItemVoidSeed();
 }

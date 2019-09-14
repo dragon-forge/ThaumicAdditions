@@ -1,7 +1,0 @@
-{
-    "parent": "thaumadditions:block/vis_crop/2lc",
-    "textures": {
-        "crop": "thaumadditions:blocks/vis_crop/30",
-        "crop2": "thaumadditions:blocks/vis_crop/31"
-    }
-}

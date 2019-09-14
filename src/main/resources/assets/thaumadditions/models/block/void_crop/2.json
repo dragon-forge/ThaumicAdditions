@@ -1,6 +1,6 @@
 {
     "parent": "block/crop",
     "textures": {
-        "crop": "thaumadditions:blocks/vis_crop/10"
+        "crop": "thaumadditions:blocks/void_crop/2"
     }
 }

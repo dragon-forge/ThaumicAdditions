@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"age=0": { "model": "thaumadditions:void_crop/0" },
+		"age=1": { "model": "thaumadditions:void_crop/1" },
+		"age=2":  { "model": "thaumadditions:void_crop/2" },
+		"age=3":  { "model": "thaumadditions:void_crop/3" }
+	}
+}

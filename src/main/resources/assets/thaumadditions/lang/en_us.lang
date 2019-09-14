@@ -107,6 +107,7 @@ item.thaumadditions:void_thaumometer.name=Void Thaumometer
 item.thaumadditions:wormhole_mirror.name=Wormhole Mirror
 item.thaumadditions:void_elemental_hoe.name=Void Hoe of Growth
 item.thaumadditions:phantom_ink_phial.name=Phial of Phantom Ink
+item.thaumadditions:void_seed.name=Void Seed
 
 #########
 
@@ -323,6 +324,10 @@ research_stage.thaumadditions:wormhole_mirror.2=Okay, I have found a way to expa
 research_name.thaumadditions:void_elemental_hoe=Void Hoe of Growth
 research_stage.thaumadditions:void_elemental_hoe.1=Researching void metal have hinted me at just how much void metal can restore by itself. What would happen if I upgrade my hoe of growth with it?
 research_stage.thaumadditions:void_elemental_hoe.2=I wasn't able to attach void metal to the hoe, but I think that with some primordial energy it might be quite possible. "Void Hoe of Growth" is essentially the same as my Hoe of Growth, but it also restores itself using a little help from aura.
+
+research_name.thaumadditions:void_crop=Growing Void
+research_stage.thaumadditions:void_crop.1=Void seeds have a wonderful ability to regenerate. But could this matter be directed to cloning these rare seeds?
+research_stage.thaumadditions:void_crop.2=Infusing void seeds with primordial energies have enabled me to make the seed plantable. I'll need a complex and long infusion process to get it done.
 
 ############
 
