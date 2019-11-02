@@ -9,11 +9,13 @@ import java.util.Map;
 import java.util.Set;
 
 import com.google.common.base.Objects;
+import com.zeitheron.hammercore.api.lighting.ColoredLight;
+import com.zeitheron.hammercore.api.lighting.impl.IGlowingEntity;
 import com.zeitheron.hammercore.net.HCNet;
 import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.hammercore.utils.TeleporterDimPos;
 import com.zeitheron.hammercore.utils.WorldLocation;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.seals.SealCombination;
 import com.zeitheron.thaumicadditions.api.seals.SealInstance;
@@ -47,7 +49,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.Aspect;
 
-public class SealPortal extends SealInstance
+public class SealPortal extends SealInstance implements IGlowingEntity
 {
 	public static class PortalSealCombination extends SealCombination
 	{
@@ -346,12 +348,12 @@ public class SealPortal extends SealInstance
 			// if(!w.isRemote && bound != null)
 			// {
 			// BlockPos rpos = BlockPos.fromLong(bound);
-			// TileSeal seal = WorldUtil.cast(w.getTileEntity(rpos),
+			// TileSeal seal = Cast.cast(w.getTileEntity(rpos),
 			// TileSeal.class);
 			//
 			// if(seal != null)
 			// {
-			// SealPortal portal = WorldUtil.cast(seal.instance,
+			// SealPortal portal = Cast.cast(seal.instance,
 			// SealPortal.class);
 			// ents.addAll(seal.getWorld().getEntitiesWithinAABB(Entity.class,
 			// new AxisAlignedBB(rpos.getX() - spreadNegX, rpos.getY() -
@@ -381,7 +383,7 @@ public class SealPortal extends SealInstance
 		for(int i = 0; i < positions.size(); ++i)
 		{
 			BlockPos rp = BlockPos.fromLong(positions.get(i));
-			TileSeal seal = WorldUtil.cast(w.getTileEntity(rp), TileSeal.class);
+			TileSeal seal = Cast.cast(w.getTileEntity(rp), TileSeal.class);
 			if(seal == null || !(seal.instance instanceof SealPortal))
 				positions.remove(i);
 		}
@@ -420,11 +422,11 @@ public class SealPortal extends SealInstance
 		if(!w.isRemote && bound != null)
 		{
 			BlockPos rpos = BlockPos.fromLong(bound);
-			TileSeal seal = WorldUtil.cast(w.getTileEntity(rpos), TileSeal.class);
+			TileSeal seal = Cast.cast(w.getTileEntity(rpos), TileSeal.class);
 			
 			if(seal != null)
 			{
-				SealPortal portal = WorldUtil.cast(seal.instance, SealPortal.class);
+				SealPortal portal = Cast.cast(seal.instance, SealPortal.class);
 				
 				boolean changed = target == null || seal.stack.get().isItemEqual(target);
 				
@@ -441,11 +443,11 @@ public class SealPortal extends SealInstance
 		{
 			BlockPos rp = BlockPos.fromLong(bound);
 			
-			TileSeal remote = WorldUtil.cast(w.getTileEntity(rp), TileSeal.class);
+			TileSeal remote = Cast.cast(w.getTileEntity(rp), TileSeal.class);
 			
 			if(remote != null && viewer == null)
 			{
-				SealPortal portal = WorldUtil.cast(remote.instance, SealPortal.class);
+				SealPortal portal = Cast.cast(remote.instance, SealPortal.class);
 				if(portal != null)
 					w.spawnEntity(viewer = new EntitySealViewer(w, remote.getPos().getX(), remote.getPos().getY(), remote.getPos().getZ(), remote.orientation));
 			} else
@@ -465,5 +467,12 @@ public class SealPortal extends SealInstance
 			nbt.setLong("Bound", bound);
 		
 		return nbt;
+	}
+	
+	@Override
+	public ColoredLight produceColoredLight(float partialTicks)
+	{
+		float rad = targetHoleSize > 0 ? Math.min(holeSize + partialTicks, 5F) : Math.max(holeSize - partialTicks, 0F);
+		return ColoredLight.builder().pos(seal.getPos()).color(0xCCFFFF, false).radius(rad).build();
 	}
 }

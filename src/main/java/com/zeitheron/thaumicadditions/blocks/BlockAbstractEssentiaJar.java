@@ -5,7 +5,7 @@ import java.util.List;
 import com.zeitheron.hammercore.internal.blocks.IItemBlock;
 import com.zeitheron.hammercore.internal.blocks.base.BlockTileHC;
 import com.zeitheron.hammercore.utils.SoundUtil;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.tiles.TileAbstractJarFillable;
@@ -70,7 +70,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable> extends
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
 	{
-		TileAbstractJarFillable te = WorldUtil.cast(world.getTileEntity(pos), TileAbstractJarFillable.class);
+		TileAbstractJarFillable te = Cast.cast(world.getTileEntity(pos), TileAbstractJarFillable.class);
 		if(te != null)
 		{
 			ItemStack drop = new ItemStack(this, 1);

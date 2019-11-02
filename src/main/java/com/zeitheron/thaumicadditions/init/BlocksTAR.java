@@ -13,7 +13,6 @@ import com.zeitheron.thaumicadditions.blocks.BlockArcaneCake;
 import com.zeitheron.thaumicadditions.blocks.BlockAspectCombiner;
 import com.zeitheron.thaumicadditions.blocks.BlockAuraCharger;
 import com.zeitheron.thaumicadditions.blocks.BlockAuraDisperser;
-import com.zeitheron.thaumicadditions.blocks.BlockCraftingFurnace;
 import com.zeitheron.thaumicadditions.blocks.BlockCrystal;
 import com.zeitheron.thaumicadditions.blocks.BlockCrystalBore;
 import com.zeitheron.thaumicadditions.blocks.BlockCrystalCrusher;
@@ -22,6 +21,7 @@ import com.zeitheron.thaumicadditions.blocks.BlockEntitySummoner;
 import com.zeitheron.thaumicadditions.blocks.BlockFluxConcentrator;
 import com.zeitheron.thaumicadditions.blocks.BlockGrowthChamber;
 import com.zeitheron.thaumicadditions.blocks.BlockSeal;
+import com.zeitheron.thaumicadditions.blocks.BlockShadowEnchanter;
 import com.zeitheron.thaumicadditions.blocks.BlockTotem;
 import com.zeitheron.thaumicadditions.blocks.plants.BlockPuriflower;
 import com.zeitheron.thaumicadditions.blocks.plants.BlockVisCrop;
@@ -33,13 +33,11 @@ import com.zeitheron.thaumicadditions.tiles.jars.TileMithminiteJar;
 import com.zeitheron.thaumicadditions.tiles.jars.TileMithrilliumJar;
 import com.zeitheron.thaumicadditions.tiles.jars.TileThaumiumJar;
 
-import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import thaumcraft.api.aspects.Aspect;
 
 public class BlocksTAR
 {
-	public static final BlockCraftingFurnace CRAFTING_FURNACE = new BlockCraftingFurnace();
 	public static final BlockAbstractSmelter MITHRILLIUM_SMELTER = new BlockAbstractSmelter("mithrillium_smelter", 1F, 20, 1000);
 	public static final BlockAbstractSmelter ADAMINITE_SMELTER = new BlockAbstractSmelter("adaminite_smelter", 1.2F, 15, 2000);
 	public static final BlockAbstractSmelter MITHMINITE_SMELTER = new BlockAbstractSmelter("mithminite_smelter", 1.5F, 10, 4000);
@@ -60,6 +58,8 @@ public class BlocksTAR
 	public static final BlockSeal SEAL = new BlockSeal();
 	public static final Map<Aspect, BlockVisCrop> VIS_CROPS = new HashMap<>();
 	public static final BlockVoidCrop VOID_CROP = BlockVoidCrop.CROP;
+	
+	public static final BlockShadowEnchanter SHADOW_ENCHANTER = new BlockShadowEnchanter();
 	
 	// public static final BlockAuraTotem AURA_TOTEM = new BlockAuraTotem();
 	

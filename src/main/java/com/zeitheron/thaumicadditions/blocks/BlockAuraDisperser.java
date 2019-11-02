@@ -4,7 +4,7 @@ import com.zeitheron.hammercore.internal.GuiManager;
 import com.zeitheron.hammercore.internal.blocks.base.BlockDeviceHC;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockOrientable;
 import com.zeitheron.hammercore.tile.TileSyncable;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.tiles.TileAuraDisperser;
 
 import net.minecraft.block.material.Material;
@@ -27,7 +27,7 @@ public class BlockAuraDisperser extends BlockDeviceHC<TileAuraDisperser> impleme
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		GuiManager.openGui(playerIn, WorldUtil.cast(worldIn.getTileEntity(pos), TileSyncable.class));
+		GuiManager.openGui(playerIn, Cast.cast(worldIn.getTileEntity(pos), TileSyncable.class));
 		return true;
 	}
 	

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.UUID;
 
 import com.zeitheron.hammercore.HammerCore;
-import com.zeitheron.hammercore.internal.Chat;
 import com.zeitheron.hammercore.net.HCNet;
 import com.zeitheron.hammercore.utils.InterItemStack;
 import com.zeitheron.hammercore.utils.ItemInsertionUtil;
@@ -21,7 +20,6 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -46,7 +44,6 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import thaumcraft.api.aura.AuraHelper;
-import thaumcraft.common.items.casters.ItemCaster;
 
 public class EntityChester extends EntityAnimal
 {

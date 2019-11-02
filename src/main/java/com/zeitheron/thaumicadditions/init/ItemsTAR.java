@@ -6,6 +6,7 @@ import com.zeitheron.thaumicadditions.items.ItemKnowledgeTome;
 import com.zeitheron.thaumicadditions.items.ItemMaterial;
 import com.zeitheron.thaumicadditions.items.ItemSaltEssence;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
+import com.zeitheron.thaumicadditions.items.ItemShadowBeamStaff;
 import com.zeitheron.thaumicadditions.items.ItemVisPod;
 import com.zeitheron.thaumicadditions.items.ItemZeithScale;
 import com.zeitheron.thaumicadditions.items.armor.ItemAdaminiteDress;
@@ -42,6 +43,7 @@ public class ItemsTAR
 	public static final ItemMaterial ZEITH_SCALES = new ItemZeithScale();
 	public static final ItemChester CHESTER = new ItemChester();
 	public static final ItemKnowledgeTome KNOWLEDGE_TOME = new ItemKnowledgeTome();
+	public static final ItemShadowBeamStaff SHADOW_BEAM_STAFF = new ItemShadowBeamStaff();
 	
 	// BAUBLES
 	

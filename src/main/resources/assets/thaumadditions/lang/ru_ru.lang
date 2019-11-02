@@ -14,7 +14,6 @@ tc.aspect.imperium=Контроль, Манипуляция
 
 ##BLOCKS##
 
-tile.thaumadditions:crafting_furnace.name=Крафтовая Печь
 tile.thaumadditions:mithrillium_smelter.name=Плавильня из мифриллиума
 tile.thaumadditions:mithminite_smelter.name=Плавильня из мифминита
 tile.thaumadditions:adaminite_smelter.name=Плавильня из адаминита
@@ -40,6 +39,7 @@ tile.thaumadditions:seal.name=Волшебная печать
 tile.thaumadditions:seal.desc=Цвет: @COLOR
 tile.thaumadditions:cake.name=Волшебный торт
 tile.thaumadditions:flux_concentrator.name=Концентратор выбросов
+tile.thaumadditions:shadow_enchanter.name=Теневой стол зачарования
 
 ##########
 
@@ -108,6 +108,7 @@ item.thaumadditions:wormhole_mirror.name=Зеркало червоточины
 item.thaumadditions:void_elemental_hoe.name=Пустотная мотыга роста
 item.thaumadditions:phantom_ink_phial.name=Пузырёк с фантомными чернилами
 item.thaumadditions:void_seed.name=Семя пустоты
+item.thaumadditions:shadow_beam_staff.name=Посох теневого пламени
 
 #########
 

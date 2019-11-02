@@ -3,7 +3,7 @@ package com.zeitheron.thaumicadditions.blocks;
 import com.zeitheron.hammercore.internal.GuiManager;
 import com.zeitheron.hammercore.internal.blocks.base.BlockDeviceHC;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockHorizontal;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.tiles.TileGrowthChamber;
 
 import net.minecraft.block.SoundType;
@@ -27,7 +27,7 @@ public class BlockGrowthChamber extends BlockDeviceHC<TileGrowthChamber> impleme
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		GuiManager.openGui(playerIn, WorldUtil.cast(worldIn.getTileEntity(pos), TileGrowthChamber.class));
+		GuiManager.openGui(playerIn, Cast.cast(worldIn.getTileEntity(pos), TileGrowthChamber.class));
 		return true;
 	}
 }

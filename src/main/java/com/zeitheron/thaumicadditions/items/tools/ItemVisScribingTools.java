@@ -1,7 +1,5 @@
 package com.zeitheron.thaumicadditions.items.tools;
 
-import com.zeitheron.hammercore.utils.color.ColorHelper;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;

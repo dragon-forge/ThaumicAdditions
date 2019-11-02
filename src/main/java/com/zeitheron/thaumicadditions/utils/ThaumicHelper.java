@@ -2,8 +2,8 @@ package com.zeitheron.thaumicadditions.utils;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
-import thaumcraft.api.capabilities.ThaumcraftCapabilities;
 import thaumcraft.api.capabilities.IPlayerWarp.EnumWarpType;
+import thaumcraft.api.capabilities.ThaumcraftCapabilities;
 import thaumcraft.common.lib.potions.PotionWarpWard;
 
 public class ThaumicHelper

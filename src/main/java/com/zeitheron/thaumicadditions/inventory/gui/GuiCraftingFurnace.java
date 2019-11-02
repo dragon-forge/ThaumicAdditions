@@ -5,8 +5,6 @@ import org.lwjgl.opengl.GL11;
 import com.zeitheron.hammercore.client.gui.GuiWidgets;
 import com.zeitheron.hammercore.client.utils.RenderUtil;
 import com.zeitheron.hammercore.client.utils.UtilsFX;
-import com.zeitheron.hammercore.client.utils.texture.gui.DynGuiTex;
-import com.zeitheron.hammercore.client.utils.texture.gui.GuiTexBakery;
 import com.zeitheron.hammercore.client.utils.texture.gui.theme.GuiTheme;
 import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
@@ -16,7 +14,6 @@ import com.zeitheron.thaumicadditions.tiles.TileCraftingFurnace;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Slot;
 
 public class GuiCraftingFurnace extends GuiContainer
 {

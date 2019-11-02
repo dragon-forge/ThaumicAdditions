@@ -9,8 +9,6 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import com.zeitheron.hammercore.api.inconnect.IBlockConnectable;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;

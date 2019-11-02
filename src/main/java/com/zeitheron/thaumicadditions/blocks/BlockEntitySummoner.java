@@ -3,6 +3,7 @@ package com.zeitheron.thaumicadditions.blocks;
 import com.zeitheron.hammercore.internal.blocks.base.BlockDeviceHC;
 import com.zeitheron.hammercore.net.HCNet;
 import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.tiles.TileEntitySummoner;
 
@@ -42,7 +43,7 @@ public class BlockEntitySummoner extends BlockDeviceHC<TileEntitySummoner>
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		TileEntitySummoner s = WorldUtil.cast(worldIn.getTileEntity(pos), TileEntitySummoner.class);
+		TileEntitySummoner s = Cast.cast(worldIn.getTileEntity(pos), TileEntitySummoner.class);
 		if(s != null && hand == EnumHand.MAIN_HAND)
 		{
 			ItemStack hit = playerIn.getHeldItem(hand);

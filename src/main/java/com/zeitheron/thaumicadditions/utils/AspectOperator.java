@@ -1,6 +1,5 @@
 package com.zeitheron.thaumicadditions.utils;
 
-import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.tiles.TileAspectCombiner;
 
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,7 +1,13 @@
 package com.zeitheron.thaumicadditions.proxy;
 
+import java.util.stream.Stream;
+
 import javax.annotation.Nonnull;
 
+import com.google.common.base.Predicates;
+import com.zeitheron.hammercore.api.lighting.ColoredLight;
+import com.zeitheron.hammercore.api.lighting.ColoredLightManager;
+import com.zeitheron.hammercore.api.lighting.LightingBlacklist;
 import com.zeitheron.hammercore.client.render.item.ItemRenderingHandler;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockHorizontal;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockOrientable;
@@ -44,7 +50,6 @@ import com.zeitheron.thaumicadditions.tiles.TileCrystalCrusher;
 import com.zeitheron.thaumicadditions.tiles.TileFluxConcentrator;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleBreaking;
@@ -54,10 +59,12 @@ import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.NoiseGeneratorSimplex;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
@@ -71,9 +78,15 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.client.fx.ParticleEngine;
 import thaumcraft.client.fx.particles.FXGeneric;
 import thaumcraft.common.blocks.essentia.BlockJarItem;
+import thaumcraft.common.tiles.crafting.TileInfusionMatrix;
+import thaumcraft.common.tiles.devices.TileMirror;
+import thaumcraft.common.tiles.devices.TileMirrorEssentia;
+import thaumcraft.common.tiles.misc.TileHole;
 
 public class ClientProxy extends CommonProxy
 {
+	public static final NoiseGeneratorSimplex BASE_SIMPLEX = new NoiseGeneratorSimplex();
+	
 	@Override
 	public void preInit()
 	{
@@ -142,6 +155,30 @@ public class ClientProxy extends CommonProxy
 			Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(blk::getColor, blk);
 			blk.getBlockState().getValidStates().forEach(state -> RenderProxy_Client.bakedModelStore.putConstant(state, new BakedCropModel(state)));
 		}
+		
+		LightingBlacklist.registerShadedTile(TileHole.class);
+		LightingBlacklist.registerShadedTile(TileMirror.class);
+		LightingBlacklist.registerShadedTile(TileMirrorEssentia.class);
+		ColoredLightManager.addGenerator(partialTicks ->
+		{
+			EntityPlayer player = ColoredLightManager.getClientPlayer();
+			if(player != null)
+			{
+				return player.world.tickableTileEntities.stream().filter(Predicates.instanceOf(TileInfusionMatrix.class)).map(te ->
+				{
+					ColoredLight light = null;
+					TileInfusionMatrix im = (TileInfusionMatrix) te;
+					if(im.active)
+					{
+						float mod = im.crafting ? 1F : 0.5F;
+						float rad = (float) (BASE_SIMPLEX.getValue(im.count / 128F, 0) + 1.5F) * 5F;
+						light = ColoredLight.builder().pos(te.getPos()).color(mod * 1F, mod * 0.5F, mod * 1F).radius(rad).build();
+					}
+					return light;
+				});
+			}
+			return Stream.empty();
+		});
 		
 		// Add custom TESRs
 		

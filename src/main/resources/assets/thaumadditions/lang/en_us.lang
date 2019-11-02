@@ -14,7 +14,6 @@ tc.aspect.imperium=Control, Manipulation
 
 ##BLOCKS##
 
-tile.thaumadditions:crafting_furnace.name=Crafting Furnace
 tile.thaumadditions:mithrillium_smelter.name=Mithrillium Smeltery
 tile.thaumadditions:mithminite_smelter.name=Mithminite Smeltery
 tile.thaumadditions:adaminite_smelter.name=Adaminite Smeltery
@@ -40,6 +39,7 @@ tile.thaumadditions:seal.name=Arcane Seal
 tile.thaumadditions:seal.desc=Color: @COLOR
 tile.thaumadditions:cake.name=Arcane Cake
 tile.thaumadditions:flux_concentrator.name=Flux Concentrator
+tile.thaumadditions:shadow_enchanter.name=Shadow Enchanter
 
 ##########
 
@@ -108,6 +108,7 @@ item.thaumadditions:wormhole_mirror.name=Wormhole Mirror
 item.thaumadditions:void_elemental_hoe.name=Void Hoe of Growth
 item.thaumadditions:phantom_ink_phial.name=Phial of Phantom Ink
 item.thaumadditions:void_seed.name=Void Seed
+item.thaumadditions:shadow_beam_staff.name=Shadow Beam Staff
 
 #########
 

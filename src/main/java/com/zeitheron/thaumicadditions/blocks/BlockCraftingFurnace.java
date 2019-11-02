@@ -5,7 +5,7 @@ import java.util.Random;
 import com.zeitheron.hammercore.api.ITileBlock;
 import com.zeitheron.hammercore.internal.GuiManager;
 import com.zeitheron.hammercore.tile.TileSyncable;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.tiles.TileCraftingFurnace;
 
 import net.minecraft.block.Block;
@@ -187,7 +187,7 @@ public class BlockCraftingFurnace extends Block implements ITileBlock<TileCrafti
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		GuiManager.openGui(playerIn, WorldUtil.cast(worldIn.getTileEntity(pos), TileSyncable.class));
+		GuiManager.openGui(playerIn, Cast.cast(worldIn.getTileEntity(pos), TileSyncable.class));
 		return true;
 	}
 	
@@ -205,7 +205,7 @@ public class BlockCraftingFurnace extends Block implements ITileBlock<TileCrafti
 		{
 			tileentity.validate();
 			worldIn.setTileEntity(pos, tileentity);
-			TileSyncable ts = WorldUtil.cast(tileentity, TileSyncable.class);
+			TileSyncable ts = Cast.cast(tileentity, TileSyncable.class);
 			if(ts != null)
 				ts.sync();
 		}
@@ -224,7 +224,7 @@ public class BlockCraftingFurnace extends Block implements ITileBlock<TileCrafti
 		
 		if(stack.hasDisplayName())
 		{
-			TileCraftingFurnace tcf = WorldUtil.cast(worldIn.getTileEntity(pos), TileCraftingFurnace.class);
+			TileCraftingFurnace tcf = Cast.cast(worldIn.getTileEntity(pos), TileCraftingFurnace.class);
 			if(tcf != null)
 				tcf.setCustomInventoryName(stack.getDisplayName());
 		}
@@ -233,7 +233,7 @@ public class BlockCraftingFurnace extends Block implements ITileBlock<TileCrafti
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
-		TileCraftingFurnace tcf = WorldUtil.cast(worldIn.getTileEntity(pos), TileCraftingFurnace.class);
+		TileCraftingFurnace tcf = Cast.cast(worldIn.getTileEntity(pos), TileCraftingFurnace.class);
 		if(tcf != null)
 		{
 			tcf.inv.drop(worldIn, pos);

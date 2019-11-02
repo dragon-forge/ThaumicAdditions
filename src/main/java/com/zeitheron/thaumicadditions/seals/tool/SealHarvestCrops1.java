@@ -3,15 +3,11 @@ package com.zeitheron.thaumicadditions.seals.tool;
 import java.util.Random;
 
 import com.zeitheron.hammercore.utils.WorldLocation;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.api.seals.SealInstance;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
 
 import net.minecraft.block.IGrowable;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemDye;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -65,7 +61,7 @@ public class SealHarvestCrops1 extends SealInstance
 		{
 			WorldLocation l = new WorldLocation(loc.getWorld(), center0.add(rand.nextInt(rad) - rand.nextInt(rad), rand.nextInt(3) - rand.nextInt(3), rand.nextInt(rad) - rand.nextInt(rad)));
 			
-			IGrowable grow = WorldUtil.cast(l.getBlock(), IGrowable.class);
+			IGrowable grow = Cast.cast(l.getBlock(), IGrowable.class);
 			
 			if(!l.getWorld().isRemote && grow != null && !grow.canGrow(l.getWorld(), l.getPos(), l.getState(), l.getWorld().isRemote))
 			{
