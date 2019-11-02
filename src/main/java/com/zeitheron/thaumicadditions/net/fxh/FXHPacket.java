@@ -3,7 +3,7 @@ package com.zeitheron.thaumicadditions.net.fxh;
 import com.zeitheron.hammercore.HammerCore;
 import com.zeitheron.hammercore.net.IPacket;
 import com.zeitheron.hammercore.net.PacketContext;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.tiles.TileAuraDisperser;
 
@@ -53,7 +53,7 @@ public class FXHPacket implements IPacket
 		switch(sub)
 		{
 		case 0:
-			TileAuraDisperser tad = WorldUtil.cast(ep.world.getTileEntity(pos), TileAuraDisperser.class);
+			TileAuraDisperser tad = Cast.cast(ep.world.getTileEntity(pos), TileAuraDisperser.class);
 			if(tad != null)
 				TAReconstructed.proxy.getFX().spawnAuraDisperserFX(tad);
 		break;

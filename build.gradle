@@ -75,6 +75,7 @@ repositories {
 dependencies {
 	deobfCompile "hammer-lib:HammerCore-${config.minecraft_version}:${config.hc_version}:deobf"
 	deobfCompile "visuals:Visuals-${config.minecraft_version}:2r:deobf"
+	deobfCompile "colored-lux:ColoredLux-${config.minecraft_version}:8r:deobf"
 	deobfCompile "mcp.mobius.waila:Hwyla:1.8.24-B39_1.12"
 	deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
 	
@@ -156,6 +157,7 @@ curseforge {
 		}
 		relations {
             requiredLibrary 'Hammer-Lib'
+            requiredLibrary 'Thaumcraft'
 			optionalLibrary 'Visuals'
         }
 	}

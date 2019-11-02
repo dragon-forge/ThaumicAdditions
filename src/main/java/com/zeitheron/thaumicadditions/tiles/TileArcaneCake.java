@@ -2,8 +2,6 @@ package com.zeitheron.thaumicadditions.tiles;
 
 import com.zeitheron.hammercore.tile.TileSyncable;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
-import com.zeitheron.thaumicadditions.api.EdibleAspect;
-import com.zeitheron.thaumicadditions.items.ItemSaltEssence;
 
 import net.minecraft.nbt.NBTTagCompound;
 import thaumcraft.api.aspects.AspectList;

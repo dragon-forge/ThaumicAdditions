@@ -5,7 +5,7 @@ import java.util.HashMap;
 import com.zeitheron.hammercore.annotations.MCFBus;
 import com.zeitheron.hammercore.event.FoodEatenEvent;
 import com.zeitheron.hammercore.utils.SoundUtil;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
@@ -38,7 +38,6 @@ import thaumcraft.api.capabilities.IPlayerKnowledge;
 import thaumcraft.api.capabilities.ThaumcraftCapabilities;
 import thaumcraft.api.items.ItemsTC;
 import thaumcraft.common.lib.SoundsTC;
-import thaumcraft.common.lib.capabilities.PlayerKnowledge;
 import thaumcraft.common.lib.research.ResearchManager;
 
 @MCFBus
@@ -158,7 +157,7 @@ public class LivingEventsTAR
 	@SubscribeEvent
 	public void pickupXP(PlayerPickupXpEvent e)
 	{
-		EntityPlayerMP mp = WorldUtil.cast(e.getEntityPlayer(), EntityPlayerMP.class);
+		EntityPlayerMP mp = Cast.cast(e.getEntityPlayer(), EntityPlayerMP.class);
 		if(mp != null && !mp.world.isRemote && e.getOrb() != null)
 		{
 			int xp = e.getOrb().getXpValue();

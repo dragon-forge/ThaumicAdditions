@@ -2,7 +2,7 @@ package com.zeitheron.thaumicadditions;
 
 import com.zeitheron.hammercore.internal.Chat;
 import com.zeitheron.hammercore.internal.Chat.ChatFingerprint;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -17,7 +17,7 @@ public class ChatTA
 		if(player == null)
 			return;
 		
-		EntityPlayerMP mp = WorldUtil.cast(player, EntityPlayerMP.class);
+		EntityPlayerMP mp = Cast.cast(player, EntityPlayerMP.class);
 		
 		if(mp == null && !player.world.isRemote && player.getServer() != null)
 			mp = player.getServer().getPlayerList().getPlayerByUUID(player.getGameProfile().getId());

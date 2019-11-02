@@ -2,6 +2,7 @@ package com.zeitheron.thaumicadditions.items.tools;
 
 import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -24,9 +25,7 @@ import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.items.IRechargable;
 import thaumcraft.api.items.RechargeHelper;
 import thaumcraft.common.blocks.IBlockFacing;
-import thaumcraft.common.blocks.devices.BlockMirror;
 import thaumcraft.common.lib.SoundsTC;
-import thaumcraft.common.lib.utils.BlockUtils;
 import thaumcraft.common.tiles.devices.TileMirror;
 import thaumcraft.common.tiles.devices.TileMirrorEssentia;
 
@@ -61,7 +60,7 @@ public class ItemWormholeMirror extends Item implements IRechargable
 				{
 					WorldUtil.teleportPlayer((EntityPlayerMP) player, tmr.linkDim, tmr.linkX + .5, tmr.linkY - .8F, tmr.linkZ + .5);
 					
-					WorldServer ws = WorldUtil.cast(world, WorldServer.class);
+					WorldServer ws = Cast.cast(world, WorldServer.class);
 					if(ws != null)
 					{
 						SoundUtil.playSoundEffect(ws, SoundEvents.ENTITY_ENDERMEN_TELEPORT.getRegistryName().toString(), tmr.getPos(), 1F, .8F + ws.rand.nextFloat() * .2F, SoundCategory.PLAYERS);
@@ -108,7 +107,7 @@ public class ItemWormholeMirror extends Item implements IRechargable
 				{
 					WorldUtil.teleportPlayer((EntityPlayerMP) player, tmr.linkDim, tmr.linkX + .5, tmr.linkY - .8F, tmr.linkZ + .5);
 					
-					WorldServer ws = WorldUtil.cast(world, WorldServer.class);
+					WorldServer ws = Cast.cast(world, WorldServer.class);
 					if(ws != null)
 					{
 						SoundUtil.playSoundEffect(ws, SoundEvents.ENTITY_ENDERMEN_TELEPORT.getRegistryName().toString(), tmr.getPos(), 1F, .8F + ws.rand.nextFloat() * .2F, SoundCategory.PLAYERS);

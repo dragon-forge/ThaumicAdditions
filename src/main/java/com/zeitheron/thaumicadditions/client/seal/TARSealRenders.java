@@ -1,6 +1,5 @@
 package com.zeitheron.thaumicadditions.client.seal;
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +10,7 @@ import com.zeitheron.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.zeitheron.hammercore.client.utils.RenderBlocks;
 import com.zeitheron.hammercore.client.utils.UtilsFX;
 import com.zeitheron.hammercore.client.utils.texture.TextureAtlasSpriteFull;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.client.util.GLDownloader;
@@ -29,7 +28,6 @@ import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -56,7 +54,7 @@ public class TARSealRenders
 	
 	public static void renderPortal(TileSeal seal, double x, double y, double z, float partialTicks)
 	{
-		SealPortal portal = WorldUtil.cast(seal.instance, SealPortal.class);
+		SealPortal portal = Cast.cast(seal.instance, SealPortal.class);
 		if(portal == null)
 			return;
 		
@@ -252,7 +250,7 @@ public class TARSealRenders
 			{
 				SealPortal portal = rendered.get(i);
 				TileSeal rr = portal.seal;
-				PortalRenderer pr = WorldUtil.cast(portal.txRender, PortalRenderer.class);
+				PortalRenderer pr = Cast.cast(portal.txRender, PortalRenderer.class);
 				if(pr == null)
 					continue;
 				if(portal.holeSize <= 0)

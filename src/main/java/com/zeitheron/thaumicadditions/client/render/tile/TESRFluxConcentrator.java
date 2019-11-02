@@ -10,7 +10,6 @@ import com.zeitheron.thaumicadditions.tiles.TileFluxConcentrator;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.EnumFacing.Axis;
 
 public class TESRFluxConcentrator extends TESR<TileFluxConcentrator>
 {

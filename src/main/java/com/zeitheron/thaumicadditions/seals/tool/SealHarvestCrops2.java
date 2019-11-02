@@ -5,6 +5,7 @@ import java.util.Random;
 import com.mojang.authlib.GameProfile;
 import com.zeitheron.hammercore.utils.WorldLocation;
 import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.api.seals.SealInstance;
 import com.zeitheron.thaumicadditions.api.seals.SealManager;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
@@ -13,10 +14,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumFacing.Axis;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -73,13 +73,13 @@ public class SealHarvestCrops2 extends SealInstance
 		{
 			WorldLocation l = new WorldLocation(loc.getWorld(), center0.add(rand.nextInt(rad) - rand.nextInt(rad), rand.nextInt(3) - rand.nextInt(3), rand.nextInt(rad) - rand.nextInt(rad)));
 			
-			IGrowable grow = WorldUtil.cast(l.getBlock(), IGrowable.class);
+			IGrowable grow = Cast.cast(l.getBlock(), IGrowable.class);
 			
 			if(!l.getWorld().isRemote && grow != null && !grow.canGrow(l.getWorld(), l.getPos(), l.getState(), l.getWorld().isRemote))
 			{
 				drps = l;
 				
-				WorldServer server = WorldUtil.cast(l.getWorld(), WorldServer.class);
+				WorldServer server = Cast.cast(l.getWorld(), WorldServer.class);
 				GameProfile owner = new GameProfile(null, seal.placer.get());
 				FakePlayer player = FakePlayerFactory.get(server, owner);
 				

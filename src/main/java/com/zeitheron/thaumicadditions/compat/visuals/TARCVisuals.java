@@ -3,18 +3,14 @@ package com.zeitheron.thaumicadditions.compat.visuals;
 import java.util.Iterator;
 import java.util.Random;
 
-import com.zeitheron.hammercore.client.render.shader.ShaderProgram;
-import com.zeitheron.hammercore.client.render.shader.impl.ShaderEnderField;
 import com.zeitheron.hammercore.client.utils.UtilsFX;
 import com.zeitheron.hammercore.mod.ModuleLoader;
 import com.zeitheron.hammercore.utils.ItemStackUtil;
 import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.client.render.entity.RenderEntityChester;
 import com.zeitheron.thaumicadditions.compat.ITARC;
-import com.zeitheron.visuals.Visuals;
 import com.zeitheron.visuals.client.tesr.TESRChestModified;
 import com.zeitheron.visuals.client.tex.TextureTransformer;
-import com.zeitheron.visuals.proxy.ClientProxy;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;

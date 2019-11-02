@@ -28,6 +28,7 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
 import thaumcraft.api.aura.AuraHelper;
+import thaumcraft.api.damagesource.DamageSourceThaumcraft;
 import thaumcraft.api.potions.PotionVisExhaust;
 import thaumcraft.client.fx.FXDispatcher;
 
@@ -184,6 +185,8 @@ public class TileFluxConcentrator extends TileSyncableTickable implements IAspec
 				if(fluxed.contains(elb.getPosition()))
 				{
 					elb.addPotionEffect(new PotionEffect(PotionVisExhaust.instance, 219));
+					if(atTickRate(30))
+						elb.attackEntityFrom(DamageSourceThaumcraft.dissolve, 1F);
 					if(fuel >= 5)
 						fuel -= 5;
 				}

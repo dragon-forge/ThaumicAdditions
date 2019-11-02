@@ -8,6 +8,7 @@ import com.zeitheron.hammercore.internal.blocks.base.IBlockEnableable;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockHorizontal;
 import com.zeitheron.hammercore.tile.TileSyncable;
 import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.tiles.TileAbstractSmelter;
 import com.zeitheron.thaumicadditions.tiles.TileSmelterImpl;
 
@@ -73,7 +74,7 @@ public class BlockAbstractSmelter extends BlockDeviceHC<TileSmelterImpl> impleme
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos pos2)
 	{
-		TileSmelter te = WorldUtil.cast(worldIn.getTileEntity(pos), TileSmelter.class);
+		TileSmelter te = Cast.cast(worldIn.getTileEntity(pos), TileSmelter.class);
 		if(te != null)
 			te.checkNeighbours();
 	}
@@ -81,7 +82,7 @@ public class BlockAbstractSmelter extends BlockDeviceHC<TileSmelterImpl> impleme
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		GuiManager.openGui(player, WorldUtil.cast(world.getTileEntity(pos), TileSyncable.class));
+		GuiManager.openGui(player, Cast.cast(world.getTileEntity(pos), TileSyncable.class));
 		return true;
 	}
 	
@@ -106,7 +107,7 @@ public class BlockAbstractSmelter extends BlockDeviceHC<TileSmelterImpl> impleme
 	@Override
 	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
 	{
-		IInventory te = WorldUtil.cast(world.getTileEntity(pos), IInventory.class);
+		IInventory te = Cast.cast(world.getTileEntity(pos), IInventory.class);
 		if(te != null)
 			return Container.calcRedstoneFromInventory(te);
 		return 0;
@@ -130,7 +131,7 @@ public class BlockAbstractSmelter extends BlockDeviceHC<TileSmelterImpl> impleme
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
-		TileAbstractSmelter tileentity = WorldUtil.cast(worldIn.getTileEntity(pos), TileAbstractSmelter.class);
+		TileAbstractSmelter tileentity = Cast.cast(worldIn.getTileEntity(pos), TileAbstractSmelter.class);
 		if(tileentity != null && !worldIn.isRemote && tileentity.vis > 0)
 		{
 			int ess = tileentity.vis;

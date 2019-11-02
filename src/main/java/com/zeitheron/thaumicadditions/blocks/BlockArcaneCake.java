@@ -3,7 +3,7 @@ package com.zeitheron.thaumicadditions.blocks;
 import java.util.Random;
 
 import com.zeitheron.hammercore.api.ITileBlock;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.config.ConfigsTAR;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
@@ -45,7 +45,7 @@ public class BlockArcaneCake extends BlockCake implements ITileBlock<TileArcaneC
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
-		TileArcaneCake tile = WorldUtil.cast(worldIn.getTileEntity(pos), TileArcaneCake.class);
+		TileArcaneCake tile = Cast.cast(worldIn.getTileEntity(pos), TileArcaneCake.class);
 		if(tile == null)
 		{
 			tile = new TileArcaneCake();
@@ -63,7 +63,7 @@ public class BlockArcaneCake extends BlockCake implements ITileBlock<TileArcaneC
 			int bites = state.getValue(BITES);
 			if(bites > 0)
 			{
-				TileArcaneCake cake = WorldUtil.cast(worldIn.getTileEntity(pos), TileArcaneCake.class);
+				TileArcaneCake cake = Cast.cast(worldIn.getTileEntity(pos), TileArcaneCake.class);
 				worldIn.setBlockState(pos, state.withProperty(BITES, bites - 1), 3);
 				if(cake != null)
 				{
@@ -85,7 +85,7 @@ public class BlockArcaneCake extends BlockCake implements ITileBlock<TileArcaneC
 		player.getFoodStats().addStats(4, 1F);
 		int i = state.getValue(BITES);
 		
-		TileArcaneCake cake = WorldUtil.cast(worldIn.getTileEntity(pos), TileArcaneCake.class);
+		TileArcaneCake cake = Cast.cast(worldIn.getTileEntity(pos), TileArcaneCake.class);
 		
 		if(cake != null)
 			EdibleAspect.execute(player, cake.aspects);

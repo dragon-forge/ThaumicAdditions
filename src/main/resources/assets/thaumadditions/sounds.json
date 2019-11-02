@@ -2,5 +2,6 @@
 	"rune_set": { "sounds": [ "thaumadditions:rune_set" ] },
 	"popen": { "sounds": [ "thaumadditions:popen" ] },
 	"fizz": { "sounds": [ "thaumadditions:fizz" ] },
-	"pclose": { "sounds": [ "thaumadditions:pclose" ] }
+	"pclose": { "sounds": [ "thaumadditions:pclose" ] },
+	"shadow_beam": { "sounds": [ "thaumadditions:shadow_beam" ] }
 }

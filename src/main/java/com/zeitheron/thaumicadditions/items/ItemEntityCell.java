@@ -11,6 +11,7 @@ import com.zeitheron.hammercore.net.HCNet;
 import com.zeitheron.hammercore.raytracer.RayTracer;
 import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.ChatTA;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.config.ConfigsTAR;
@@ -96,7 +97,7 @@ public class ItemEntityCell extends Item
 				if(entity == null)
 					break spawn;
 				entity.setUniqueId(uuid);
-				WorldServer ws = WorldUtil.cast(world, WorldServer.class);
+				WorldServer ws = Cast.cast(world, WorldServer.class);
 				for(int k = 0; k < 16 && ws != null && ws.getEntityFromUuid(entity.getUniqueID()) != null; ++k)
 					entity.setUniqueId(UUID.randomUUID());
 				EntityLiving entityliving = entity instanceof EntityLiving ? (EntityLiving) entity : null;

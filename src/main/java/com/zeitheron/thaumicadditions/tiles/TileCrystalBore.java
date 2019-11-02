@@ -19,8 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import thaumcraft.client.fx.FXDispatcher;
 import thaumcraft.common.blocks.world.ore.BlockCrystal;
 import thaumcraft.common.lib.SoundsTC;
-import thaumcraft.common.lib.utils.BlockStateUtils;
-import thaumcraft.common.tiles.devices.TileStabilizer;
 import thaumcraft.common.world.aura.AuraHandler;
 
 public class TileCrystalBore extends TileSyncableTickable

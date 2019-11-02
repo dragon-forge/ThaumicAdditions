@@ -1,11 +1,14 @@
 package com.zeitheron.thaumicadditions.tiles;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.zeitheron.hammercore.tile.ITileDroppable;
 import com.zeitheron.hammercore.tile.TileSyncableTickable;
 import com.zeitheron.hammercore.utils.FrictionRotator;
 import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 
@@ -43,6 +46,8 @@ public class TileEntitySummoner extends TileSyncableTickable implements IAspectC
 	public int cooldown = 0;
 	private Entity cachedEntity;
 	
+	public final List<Entity> entities = new ArrayList<>();
+	
 	public final FrictionRotator rotator = new FrictionRotator();
 	
 	@SideOnly(Side.CLIENT)
@@ -79,6 +84,8 @@ public class TileEntitySummoner extends TileSyncableTickable implements IAspectC
 	{
 		rotator.friction = .25F;
 		rotator.update();
+		
+		entities.removeIf(e -> e.isDead);
 		
 		if(cooldown > 0)
 			--cooldown;
@@ -135,7 +142,7 @@ public class TileEntitySummoner extends TileSyncableTickable implements IAspectC
 		
 		int spawned = 0;
 		
-		for(int i = 0; i < spawnCount; ++i)
+		for(int i = 0; i < spawnCount && entities.size() < 10; ++i)
 		{
 			NBTTagCompound nbttagcompound = sample.getTagCompound().getCompoundTag("Entity").getCompoundTag("Data");
 			
@@ -164,7 +171,7 @@ public class TileEntitySummoner extends TileSyncableTickable implements IAspectC
 			
 			entity.setUniqueId(uuid);
 			
-			WorldServer ws = WorldUtil.cast(world, WorldServer.class);
+			WorldServer ws = Cast.cast(world, WorldServer.class);
 			for(int k = 0; k < 16 && ws != null && ws.getEntityFromUuid(entity.getUniqueID()) != null; ++k)
 				entity.setUniqueId(UUID.randomUUID());
 			
@@ -182,6 +189,7 @@ public class TileEntitySummoner extends TileSyncableTickable implements IAspectC
 			if(!world.isRemote)
 			{
 				AnvilChunkLoader.spawnEntity(entity, world);
+				entities.add(entity);
 				++spawned;
 			}
 		}

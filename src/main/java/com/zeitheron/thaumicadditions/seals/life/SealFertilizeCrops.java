@@ -3,7 +3,7 @@ package com.zeitheron.thaumicadditions.seals.life;
 import java.util.Random;
 
 import com.zeitheron.hammercore.utils.WorldLocation;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.api.seals.ISealFertilizable;
 import com.zeitheron.thaumicadditions.api.seals.SealInstance;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
@@ -64,8 +64,8 @@ public class SealFertilizeCrops extends SealInstance
 		{
 			WorldLocation l = new WorldLocation(loc.getWorld(), center0.add(rand.nextInt(rad) - rand.nextInt(rad), -1 - rand.nextInt(2), rand.nextInt(rad) - rand.nextInt(rad)));
 			
-			IGrowable grow = WorldUtil.cast(l.getBlock(), IGrowable.class);
-			ISealFertilizable fertilizable = WorldUtil.cast(l.getBlock(), ISealFertilizable.class);
+			IGrowable grow = Cast.cast(l.getBlock(), IGrowable.class);
+			ISealFertilizable fertilizable = Cast.cast(l.getBlock(), ISealFertilizable.class);
 			
 			if(!l.getWorld().isRemote && fertilizable != null && fertilizable.fertilize(l.getWorld(), l.getPos()))
 			{

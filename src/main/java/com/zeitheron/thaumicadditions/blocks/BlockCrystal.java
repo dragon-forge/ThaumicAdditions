@@ -3,7 +3,7 @@ package com.zeitheron.thaumicadditions.blocks;
 import com.zeitheron.hammercore.internal.blocks.IItemBlock;
 import com.zeitheron.hammercore.internal.blocks.base.BlockDeviceHC;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockOrientable;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.tiles.TileCrystalBlock;
 
@@ -22,7 +22,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.crafting.IInfusionStabiliser;
 import thaumcraft.api.crafting.IInfusionStabiliserExt;
 
 public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements IBlockOrientable, IInfusionStabiliserExt, IItemBlock
@@ -36,7 +35,7 @@ public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements IBl
 	
 	public int getColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex)
 	{
-		TileCrystalBlock tcb = WorldUtil.cast(worldIn.getTileEntity(pos), TileCrystalBlock.class);
+		TileCrystalBlock tcb = Cast.cast(worldIn.getTileEntity(pos), TileCrystalBlock.class);
 		if(tcb != null)
 			return tcb.getAspect().getColor();
 		return 0xFFFFFF;
@@ -69,7 +68,7 @@ public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements IBl
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
-		TileCrystalBlock tcb = WorldUtil.cast(worldIn.getTileEntity(pos), TileCrystalBlock.class);
+		TileCrystalBlock tcb = Cast.cast(worldIn.getTileEntity(pos), TileCrystalBlock.class);
 		if(tcb == null)
 			tcb = new TileCrystalBlock();
 		tcb.setAspect(AspectUtil.getAspectFromCrystalBlockStack(stack));
@@ -81,7 +80,7 @@ public class BlockCrystal extends BlockDeviceHC<TileCrystalBlock> implements IBl
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
 	{
-		TileCrystalBlock tcb = WorldUtil.cast(world.getTileEntity(pos), TileCrystalBlock.class);
+		TileCrystalBlock tcb = Cast.cast(world.getTileEntity(pos), TileCrystalBlock.class);
 		return tcb != null ? AspectUtil.crystalBlock(tcb.getAspect()) : super.getPickBlock(state, target, world, pos, player);
 	}
 	

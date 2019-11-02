@@ -1,34 +1,20 @@
 package com.zeitheron.thaumicadditions.items.armor;
 
-import com.zeitheron.hammercore.net.HCNet;
-import com.zeitheron.hammercore.raytracer.RayTracer;
-import com.zeitheron.hammercore.utils.WorldUtil;
 import com.zeitheron.thaumicadditions.InfoTAR;
-import com.zeitheron.thaumicadditions.init.PotionsTAR;
-import com.zeitheron.thaumicadditions.items.baubles.ItemFragnantPendant;
-import com.zeitheron.thaumicadditions.net.PacketRemovePotionEffect;
-import com.zeitheron.thaumicadditions.utils.ThaumicHelper;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.RayTraceResult.Type;
-import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.items.IGoggles;
 import thaumcraft.api.items.IVisDiscountGear;
-import thaumcraft.common.lib.potions.PotionWarpWard;
 
 public class ItemAdaminiteDress extends ItemArmor implements IVisDiscountGear, IGoggles
 {

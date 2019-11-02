@@ -1,7 +1,5 @@
 package com.zeitheron.thaumicadditions.client.render.tile;
 
-import org.lwjgl.opengl.GL11;
-
 import com.zeitheron.hammercore.annotations.AtTESR;
 import com.zeitheron.hammercore.client.render.tesr.TESR;
 import com.zeitheron.hammercore.client.render.vertex.SimpleBlockRendering;
@@ -12,9 +10,7 @@ import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.tiles.TileArcaneCake;
 
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;

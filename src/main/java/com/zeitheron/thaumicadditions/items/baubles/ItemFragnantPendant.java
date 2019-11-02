@@ -2,7 +2,7 @@ package com.zeitheron.thaumicadditions.items.baubles;
 
 import com.zeitheron.hammercore.utils.ConsumableItem;
 import com.zeitheron.hammercore.utils.IRegisterListener;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.utils.ThaumicHelper;
 
@@ -38,7 +38,7 @@ public class ItemFragnantPendant extends Item implements IBauble, IRenderBauble,
 	@Override
 	public void onWornTick(ItemStack stack, EntityLivingBase player)
 	{
-		EntityPlayerMP mp = WorldUtil.cast(player, EntityPlayerMP.class);
+		EntityPlayerMP mp = Cast.cast(player, EntityPlayerMP.class);
 		if(mp != null && !mp.world.isRemote && !mp.isPotionActive(PotionWarpWard.instance) && mp.ticksExisted % 40 == 0 && ODOUR_POWDER.canConsume(mp.inventory))
 		{
 			ODOUR_POWDER.consume(mp.inventory);

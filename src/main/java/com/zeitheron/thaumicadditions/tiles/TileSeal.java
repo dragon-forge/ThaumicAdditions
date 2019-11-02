@@ -1,5 +1,7 @@
 package com.zeitheron.thaumicadditions.tiles;
 
+import com.zeitheron.hammercore.api.lighting.ColoredLight;
+import com.zeitheron.hammercore.api.lighting.impl.IGlowingEntity;
 import com.zeitheron.hammercore.net.props.NetPropertyItemStack;
 import com.zeitheron.hammercore.net.props.NetPropertyString;
 import com.zeitheron.hammercore.tile.ITileDroppable;
@@ -20,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import thaumcraft.api.aspects.Aspect;
 
-public class TileSeal extends TileSyncableTickable implements ITileDroppable
+public class TileSeal extends TileSyncableTickable implements ITileDroppable, IGlowingEntity
 {
 	public final NetPropertyItemStack stack;
 	private final NetPropertyString[] slots = new NetPropertyString[3];
@@ -60,6 +62,12 @@ public class TileSeal extends TileSyncableTickable implements ITileDroppable
 	public Aspect getSymbol(int slot)
 	{
 		return Aspect.getAspect(slots[slot].get());
+	}
+	
+	@Override
+	public ColoredLight produceColoredLight(float partialTicks)
+	{
+		return instance instanceof IGlowingEntity ? ((IGlowingEntity) instance).produceColoredLight(partialTicks) : null;
 	}
 	
 	@Override

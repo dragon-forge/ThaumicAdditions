@@ -3,11 +3,10 @@ package com.zeitheron.thaumicadditions.tiles;
 import java.util.List;
 import java.util.Map;
 
-import com.zeitheron.hammercore.lib.zlib.tuple.TwoTuple;
 import com.zeitheron.hammercore.lib.zlib.utils.IndexedMap;
 import com.zeitheron.hammercore.tile.TileSyncableTickable;
 import com.zeitheron.hammercore.utils.PositionedSearching;
-import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.utils.AspectOperator;
 import com.zeitheron.thaumicadditions.utils.AspectRule;
 
@@ -33,7 +32,7 @@ public class TileAspectFactory extends TileSyncableTickable implements IAspectCo
 	{
 		if(jars == null)
 		{
-			jars = new PositionedSearching<>(pos -> WorldUtil.cast(world.getTileEntity(pos), TileJarFillable.class), te -> te != null && !te.isInvalid(), TileJarFillable.class);
+			jars = new PositionedSearching<>(pos -> Cast.cast(world.getTileEntity(pos), TileJarFillable.class), te -> te != null && !te.isInvalid(), TileJarFillable.class);
 			jars.setCenter(pos);
 			jars.setRadius(8, 3, 8);
 		}

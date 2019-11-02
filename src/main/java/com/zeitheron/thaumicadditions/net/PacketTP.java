@@ -7,7 +7,6 @@ import com.zeitheron.thaumicadditions.utils.TP;
 import com.zeitheron.thaumicadditions.utils.ThaumicScheduler;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.debug.DebugRenderer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;

@@ -11,6 +11,7 @@ import com.zeitheron.hammercore.utils.NBTUtils;
 import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.hammercore.utils.WorldLocation;
 import com.zeitheron.hammercore.utils.WorldUtil;
+import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.hammercore.utils.color.ColorNamePicker;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.TAReconstructed;
@@ -202,7 +203,7 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
-		TileSeal ts = WorldUtil.cast(worldIn.getTileEntity(pos), TileSeal.class);
+		TileSeal ts = Cast.cast(worldIn.getTileEntity(pos), TileSeal.class);
 		
 		if(ts != null && ts.orientation != null && !canStay(worldIn, pos, ts.orientation))
 		{
@@ -214,7 +215,7 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		TileSeal seal = WorldUtil.cast(worldIn.getTileEntity(pos), TileSeal.class);
+		TileSeal seal = Cast.cast(worldIn.getTileEntity(pos), TileSeal.class);
 		
 		if(seal != null && !playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getItem() == ItemsTAR.SEAL_GLOBE)
 		{
@@ -275,7 +276,7 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
-		TileSeal seal = WorldUtil.cast(worldIn.getTileEntity(pos), TileSeal.class);
+		TileSeal seal = Cast.cast(worldIn.getTileEntity(pos), TileSeal.class);
 		if(seal == null)
 			worldIn.setTileEntity(pos, seal = new TileSeal());
 		if(seal != null)
@@ -290,7 +291,7 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 	@Override
 	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
-		TileSeal tile = WorldUtil.cast(worldIn.getTileEntity(pos), TileSeal.class);
+		TileSeal tile = Cast.cast(worldIn.getTileEntity(pos), TileSeal.class);
 		if(tile != null && tile.instance != null)
 			tile.instance.onEntityCollisionWithSeal(worldIn, pos, state, entityIn);
 		super.onEntityCollision(worldIn, pos, state, entityIn);
