@@ -1,8 +1,12 @@
 package com.zeitheron.thaumicadditions.proxy;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import javax.annotation.Nonnull;
+
+import org.lwjgl.opengl.GL11;
 
 import com.google.common.base.Predicates;
 import com.zeitheron.hammercore.api.lighting.ColoredLight;
@@ -21,9 +25,11 @@ import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.api.fx.TARParticleTypes;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractEssentiaJar.BlockAbstractJarItem;
 import com.zeitheron.thaumicadditions.blocks.plants.BlockVisCrop;
+import com.zeitheron.thaumicadditions.client.fx.FXColoredDrop;
 import com.zeitheron.thaumicadditions.client.isr.ItemRenderJar;
 import com.zeitheron.thaumicadditions.client.models.baked.BakedCropModel;
 import com.zeitheron.thaumicadditions.client.render.entity.RenderEntityChester;
+import com.zeitheron.thaumicadditions.client.render.entity.RenderEntityEssentiaShot;
 import com.zeitheron.thaumicadditions.client.render.tile.TESRAspectCombiner;
 import com.zeitheron.thaumicadditions.client.render.tile.TESRAuraCharger;
 import com.zeitheron.thaumicadditions.client.render.tile.TESRAuraDisperser;
@@ -33,6 +39,7 @@ import com.zeitheron.thaumicadditions.client.render.tile.TESRFluxConcentrator;
 import com.zeitheron.thaumicadditions.client.texture.TextureThaumonomiconBG;
 import com.zeitheron.thaumicadditions.compat.ITARC;
 import com.zeitheron.thaumicadditions.entity.EntityChester;
+import com.zeitheron.thaumicadditions.entity.EntityEssentiaShot;
 import com.zeitheron.thaumicadditions.events.ClientEventReactor;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
@@ -40,6 +47,9 @@ import com.zeitheron.thaumicadditions.inventory.gui.GuiSealGlobe;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.items.ItemVisPod;
 import com.zeitheron.thaumicadditions.items.seed.ItemVisSeeds;
+import com.zeitheron.thaumicadditions.items.weapons.ItemEssentiaPistol;
+import com.zeitheron.thaumicadditions.items.weapons.ItemShadowBeamStaff;
+import com.zeitheron.thaumicadditions.items.weapons.ItemEssentiaPistol.ItemRendererEssentiaPistol;
 import com.zeitheron.thaumicadditions.proxy.fx.FXHandler;
 import com.zeitheron.thaumicadditions.proxy.fx.FXHandlerClient;
 import com.zeitheron.thaumicadditions.tiles.TileAspectCombiner;
@@ -53,18 +63,22 @@ import com.zeitheron.thaumicadditions.tiles.TileSeal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleBreaking;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.NoiseGeneratorSimplex;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
@@ -94,7 +108,8 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomStateMapper(BlocksTAR.ASPECT_COMBINER, new StateMap.Builder().ignore(IBlockHorizontal.FACING).build());
 		ModelLoader.setCustomStateMapper(BlocksTAR.CRYSTAL_BORE, new StateMap.Builder().ignore(IBlockOrientable.FACING).build());
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityChester.class, RenderEntityChester.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityChester.class, RenderEntityChester::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityEssentiaShot.class, RenderEntityEssentiaShot::new);
 		
 		OBJLoader.INSTANCE.addDomain(InfoTAR.MOD_ID);
 	}
@@ -185,6 +200,7 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileAuraDisperser.class, new TESRAuraDisperser());
 		
 		ItemRenderingHandler.INSTANCE.applyItemRender(new ItemRenderJar(), i -> i instanceof BlockAbstractJarItem || i instanceof BlockJarItem);
+		ItemRenderingHandler.INSTANCE.applyItemRender(new ItemRendererEssentiaPistol(), i -> i instanceof ItemEssentiaPistol);
 		
 		TESRAspectCombiner acom = new TESRAspectCombiner();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileAspectCombiner.class, acom);
@@ -270,6 +286,13 @@ public class ClientProxy extends CommonProxy
 			ParticleEngine.addEffect(worldIn, fb);
 			return null;
 		});
+		
+		Minecraft.getMinecraft().effectRenderer.registerParticle(TARParticleTypes.COLOR_DROP.getParticleID(), (particleID, worldIn, x, y, z, x2, y2, z2, args) ->
+		{
+			if(args.length < 1)
+				return null;
+			return new FXColoredDrop(worldIn, x, y, z, args[0]);
+		});
 	}
 	
 	@Override
@@ -330,6 +353,55 @@ public class ClientProxy extends CommonProxy
 			txMap.registerSprite(new ResourceLocation(tx0));
 		for(String tx1 : BakedCropModel.textures1)
 			txMap.registerSprite(new ResourceLocation(tx1));
+	}
+	
+	private final List<Vec3d> shadowPositions = new ArrayList<>();
+	
+	@SubscribeEvent
+	public void renderLast(RenderWorldLastEvent e)
+	{
+		EntityPlayer player = ColoredLightManager.getClientPlayer();
+		ItemStack mainhand;
+		if(player != null && !(mainhand = player.getHeldItemMainhand()).isEmpty() && mainhand.getItem() instanceof ItemShadowBeamStaff)
+		{
+			shadowPositions.clear();
+			double cx = 0, cy = 0, cz = 0;
+			ItemShadowBeamStaff.recursiveLoop(player, e.getPartialTicks(), shadowPositions, 80);
+			Vec3d v = shadowPositions.get(0);
+			shadowPositions.set(0, new Vec3d(v.x, v.y - 0.5, v.z));
+			
+			if(Minecraft.getMinecraft().gameSettings.thirdPersonView == 0)
+			{
+				GlStateManager.pushMatrix();
+				GlStateManager.translate(-TileEntityRendererDispatcher.staticPlayerX, -TileEntityRendererDispatcher.staticPlayerY, -TileEntityRendererDispatcher.staticPlayerZ);
+				GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
+				float w = GL11.glGetFloat(GL11.GL_LINE_WIDTH);
+				short st = (short) GL11.glGetInteger(GL11.GL_LINE_STIPPLE);
+				GL11.glLineWidth(4F);
+				GL11.glLineStipple(1, (short) 0x2020);
+				GL11.glEnable(GL11.GL_LINE_STIPPLE);
+				GlStateManager.enableBlend();
+				ColorHelper.glColor1ia(0x33FFFFFF);
+				GlStateManager.disableTexture2D();
+				GlStateManager.disableLighting();
+				for(int i = 0; i < shadowPositions.size() - 1; ++i)
+				{
+					Vec3d pos = shadowPositions.get(i);
+					Vec3d pos2 = shadowPositions.get(i + 1);
+					
+					GL11.glBegin(GL11.GL_LINES);
+					GL11.glVertex3d(pos.x - cx, pos.y - cy, pos.z - cz);
+					GL11.glVertex3d(pos2.x - cx, pos2.y - cy, pos2.z - cz);
+					GL11.glEnd();
+				}
+				GL11.glLineWidth(w);
+				GL11.glLineStipple(1, st);
+				GlStateManager.enableLighting();
+				GlStateManager.enableTexture2D();
+				GlStateManager.popMatrix();
+				GL11.glPopAttrib();
+			}
+		}
 	}
 	
 	@Override

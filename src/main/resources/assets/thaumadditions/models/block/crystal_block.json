@@ -1,4 +1,4 @@
-{
+{"__coment": "This is a part of ThaumicAdditions: Reconstructed mod, developed and maintained by DragonForge team. Do not steal!",
     "parent": "block/block",
     "textures": {
 		"particle": "thaumcraft:blocks/crystal"

@@ -19,18 +19,12 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class RenderEntityChester extends RenderLiving<EntityChester>
 {
-	public static class Factory implements IRenderFactory<EntityChester>
-	{
-		@Override
-		public Render<? super EntityChester> createRenderFor(RenderManager manager)
-		{
-			return new RenderEntityChester(manager, new ModelChester());
-		}
-	}
-	
-	public static final Factory FACTORY = new Factory();
-	
 	private final ModelChester trunkModel;
+	
+	public RenderEntityChester(RenderManager renderManager)
+	{
+		this(renderManager, new ModelChester());
+	}
 	
 	protected RenderEntityChester(RenderManager renderManager, ModelChester model)
 	{

@@ -11,11 +11,13 @@ import org.apache.logging.log4j.Logger;
 import com.zeitheron.hammercore.HammerCore;
 import com.zeitheron.hammercore.internal.SimpleRegistration;
 import com.zeitheron.hammercore.mod.ModuleLister;
-import com.zeitheron.hammercore.utils.FinalFieldHelper;
 import com.zeitheron.hammercore.utils.HammerCoreUtils;
+import com.zeitheron.hammercore.utils.ReflectionUtil;
 import com.zeitheron.thaumicadditions.api.AttributesTAR;
+import com.zeitheron.thaumicadditions.api.ShadowEnchantment;
 import com.zeitheron.thaumicadditions.compat.ITARC;
 import com.zeitheron.thaumicadditions.entity.EntityChester;
+import com.zeitheron.thaumicadditions.entity.EntityEssentiaShot;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.FluidsTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
@@ -28,6 +30,7 @@ import com.zeitheron.thaumicadditions.proxy.CommonProxy;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -110,6 +113,7 @@ public class TAReconstructed
 		BlocksTAR.loadAspectBlocks();
 		
 		EntityRegistry.registerModEntity(new ResourceLocation(InfoTAR.MOD_ID, "chester"), EntityChester.class, InfoTAR.MOD_ID + ".chester", 0, instance, 256, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(InfoTAR.MOD_ID, "essentia_shot"), EntityEssentiaShot.class, InfoTAR.MOD_ID + ".essentia_shot", 1, instance, 64, 1, true);
 		
 		proxy.preInit();
 	}
@@ -138,6 +142,7 @@ public class TAReconstructed
 		KnowledgeTAR.init.call();
 		KnowledgeTAR.insertAspects.call();
 		RecipesTAR.postInit.call();
+		setupShadowEnchanting();
 	}
 	
 	@SubscribeEvent
@@ -159,7 +164,7 @@ public class TAReconstructed
 		try
 		{
 			if(Modifier.isFinal(registryNameIMPL.getModifiers()))
-				FinalFieldHelper.setFinalField(registryNameIMPL, impl, null);
+				ReflectionUtil.setFinalField(registryNameIMPL, impl, null);
 			else
 			{
 				registryNameIMPL.setAccessible(true);
@@ -169,5 +174,22 @@ public class TAReconstructed
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public static void setupShadowEnchanting()
+	{
+		ShadowEnchantment.registerEnchantment(Enchantments.UNBREAKING, ShadowEnchantment.aspectBuilder().multiplyByLvl(Aspect.TOOL, 16).multiplyByLvl(Aspect.PROTECT, 4), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/unbreaking.png"), null);
+		ShadowEnchantment.registerEnchantment(Enchantments.THORNS, ShadowEnchantment.aspectBuilder().multiplyByLvl(Aspect.EXCHANGE, 20).multiplyByLvl(Aspect.PROTECT, 6), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/thorns.png"), null);
+		ShadowEnchantment.registerEnchantment(Enchantments.SHARPNESS, ShadowEnchantment.aspectBuilder().multiplyByLvl(Aspect.AVERSION, 20).constant(KnowledgeTAR.EXITIUM, 20), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/sharpness.png"), null);
+		ShadowEnchantment.registerEnchantment(Enchantments.PUNCH, ShadowEnchantment.aspectBuilder().constant(KnowledgeTAR.IMPERIUM, 5).multiplyByLvl(Aspect.EXCHANGE, 12), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/punch.png"), null);
+		ShadowEnchantment.registerEnchantment(Enchantments.PROTECTION, ShadowEnchantment.aspectBuilder().multiplyByLvl(Aspect.PROTECT, 20), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/protection.png"), null);
+		ShadowEnchantment.registerEnchantment(Enchantments.LURE, ShadowEnchantment.aspectBuilder().multiplyByLvl(Aspect.DESIRE, 20), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/lure.png"), null);
+		ShadowEnchantment.registerEnchantment(Enchantments.LOOTING, ShadowEnchantment.aspectBuilder().multiplyByLvl(Aspect.DESIRE, 20).constant(Aspect.EXCHANGE, 10), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/looting.png"), null);
+		ShadowEnchantment.registerEnchantment(Enchantments.KNOCKBACK, ShadowEnchantment.aspectBuilder().multiplyByLvl(KnowledgeTAR.IMPERIUM, 5).multiplyByLvl(Aspect.EXCHANGE, 12), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/knockback.png"), null);
+		ShadowEnchantment.registerEnchantment(Enchantments.INFINITY, ShadowEnchantment.aspectBuilder().constant(KnowledgeTAR.CAELES, 5), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/infinity.png"), null);
+		ShadowEnchantment.registerEnchantment(Enchantments.FORTUNE, ShadowEnchantment.aspectBuilder().constant(KnowledgeTAR.VISUM, 5).multiplyByLvl(Aspect.DESIRE, 20).multiplyByLvl(Aspect.ELDRITCH, 10).multiplyByLvl(Aspect.MIND, 5), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/infinity.png"), null);
+		ShadowEnchantment.registerEnchantment(Enchantments.FIRE_PROTECTION, ShadowEnchantment.aspectBuilder().multiplyByLvl(Aspect.PROTECT, 20).multiplyByLvl(Aspect.FIRE, 10), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/fire_protection.png"), null);
+		ShadowEnchantment.registerEnchantment(Enchantments.FEATHER_FALLING, ShadowEnchantment.aspectBuilder().multiplyByLvl(Aspect.FLIGHT, 20).multiplyByLvl(Aspect.AIR, 10), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/feather_falling.png"), null);
+		ShadowEnchantment.registerEnchantment(Enchantments.BLAST_PROTECTION, ShadowEnchantment.aspectBuilder().multiplyByLvl(Aspect.PROTECT, 20).multiplyByLvl(KnowledgeTAR.EXITIUM, 10), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/blast_protection.png"), null);
 	}
 }
