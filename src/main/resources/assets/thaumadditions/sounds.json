@@ -3,5 +3,6 @@
 	"popen": { "sounds": [ "thaumadditions:popen" ] },
 	"fizz": { "sounds": [ "thaumadditions:fizz" ] },
 	"pclose": { "sounds": [ "thaumadditions:pclose" ] },
-	"shadow_beam": { "sounds": [ "thaumadditions:shadow_beam" ] }
+	"shadow_beam": { "sounds": [ "thaumadditions:shadow_beam" ] },
+	"essentia_pistol_shoot": { "sounds": [ "thaumadditions:essentia_pistol_shoot" ] }
 }

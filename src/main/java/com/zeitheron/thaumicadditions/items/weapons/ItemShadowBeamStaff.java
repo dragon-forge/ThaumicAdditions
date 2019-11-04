@@ -1,4 +1,4 @@
-package com.zeitheron.thaumicadditions.items;
+package com.zeitheron.thaumicadditions.items.weapons;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,9 +9,11 @@ import com.zeitheron.hammercore.net.HCNet;
 import com.zeitheron.hammercore.raytracer.RayTracer;
 import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.hammercore.utils.VecDir;
+import com.zeitheron.hammercore.utils.math.vec.Vector3;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.net.fxh.FXShadowBeamParticle;
 
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,6 +36,19 @@ public class ItemShadowBeamStaff extends Item
 	public ItemShadowBeamStaff()
 	{
 		setTranslationKey("shadow_beam_staff");
+		setMaxStackSize(1);
+	}
+	
+	@Override
+	public boolean isEnchantable(ItemStack stack)
+	{
+		return true;
+	}
+	
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment)
+	{
+		return false;
 	}
 	
 	@Override
@@ -43,7 +58,7 @@ public class ItemShadowBeamStaff extends Item
 		{
 			List<Vec3d> positions = new ArrayList<>();
 			double cx = 0, cy = 0, cz = 0;
-			recursiveLoop(playerIn, positions);
+			recursiveLoop(playerIn, 1F, positions, 80);
 			Vec3d v = positions.get(0);
 			positions.set(0, new Vec3d(v.x, v.y - 0.5, v.z));
 			for(int i = 0; i < positions.size(); ++i)
@@ -74,12 +89,15 @@ public class ItemShadowBeamStaff extends Item
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
 	}
 	
-	public static void recursiveLoop(EntityPlayer player, List<Vec3d> positions)
+	public static void recursiveLoop(EntityPlayer player, float partialTime, List<Vec3d> positions, double distance)
 	{
-		double distance = 80;
-		
-		positions.add(RayTracer.getStartVec(player));
-		RayTraceResult res = RayTracer.retrace(player, distance, false);
+		Vector3 v = new Vector3(player.prevPosX + (player.posX - player.prevPosX) * partialTime, player.prevPosY + (player.posY - player.prevPosY) * partialTime, player.prevPosZ + (player.posZ - player.prevPosZ) * partialTime);
+		v.y += player.getEyeHeight();
+		Vec3d headVec = v.vec3();
+		positions.add(headVec);
+		Vec3d lookVec = player.getLook(1);
+		Vec3d endVec = headVec.add(lookVec.x * distance, lookVec.y * distance, lookVec.z * distance);
+		RayTraceResult res = player.world.rayTraceBlocks(headVec, endVec, false, true, true);
 		if(res != null && res.typeOfHit == Type.BLOCK)
 		{
 			Vec3d end = res.hitVec;
@@ -120,9 +138,6 @@ public class ItemShadowBeamStaff extends Item
 			}
 		} else
 		{
-			Vec3d headVec = RayTracer.getCorrectedHeadVec(player);
-			Vec3d lookVec = player.getLook(1);
-			Vec3d endVec = headVec.add(lookVec.x * distance, lookVec.y * distance, lookVec.z * distance);
 			positions.add(endVec);
 		}
 	}

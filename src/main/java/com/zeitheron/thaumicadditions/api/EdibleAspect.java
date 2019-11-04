@@ -42,6 +42,7 @@ public class EdibleAspect
 	
 	static
 	{
+		addEatCall(Aspect.FIRE, (player, count) -> addPotionEffect(player, MobEffects.FIRE_RESISTANCE, 10 + (count * count), 0));
 		addEatCall(Aspect.WATER, (player, count) -> addPotionEffect(player, MobEffects.WATER_BREATHING, 10 + (count * count), 0));
 		addEatCall(Aspect.TRAP, (player, count) -> addPotionEffect(player, MobEffects.SLOWNESS, 20 + (count * count) * 20, 1));
 		addEatCall(Aspect.SENSES, (player, count) -> addPotionEffect(player, MobEffects.NIGHT_VISION, 400 + count * count, 0));
