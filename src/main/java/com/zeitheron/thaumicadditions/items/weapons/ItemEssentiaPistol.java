@@ -8,15 +8,19 @@ import org.lwjgl.opengl.GL11;
 import com.zeitheron.hammercore.client.render.item.IItemRender;
 import com.zeitheron.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.zeitheron.hammercore.client.utils.RenderBlocks;
+import com.zeitheron.hammercore.internal.GuiManager;
 import com.zeitheron.hammercore.utils.SoundUtil;
+import com.zeitheron.hammercore.utils.WorldLocation;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.api.items.EssentiaJarManager;
 import com.zeitheron.thaumicadditions.api.items.EssentiaJarManager.IJar;
 import com.zeitheron.thaumicadditions.entity.EntityEssentiaShot;
+import com.zeitheron.thaumicadditions.init.GuisTAR;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -46,10 +50,11 @@ public class ItemEssentiaPistol extends Item
 	}
 	
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		int i = stack.hasTagCompound() ? stack.getTagCompound().getInteger("Count") : 1;
-		tooltip.add("Shoot volume: " + String.format("%,d", i));
+		tooltip.add(I18n.format("tooltip.thaumadditions:essentia_pistol.shoot", i));
 		ItemStack jarStack = getJar(stack);
 		IJar jar = EssentiaJarManager.fromStack(jarStack);
 		AspectList list = jar != null ? jar.getEssentia(jarStack) : emptylist;
@@ -62,6 +67,7 @@ public class ItemEssentiaPistol extends Item
 	{
 		if(playerIn.isSneaking())
 		{
+			GuiManager.openGuiCallback(GuisTAR.ESSENTIA_PISTOL, playerIn, new WorldLocation(worldIn, playerIn.getPosition()));
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 		}
 		
@@ -69,7 +75,7 @@ public class ItemEssentiaPistol extends Item
 		ItemStack jarStack = getJar(stack);
 		IJar jar = EssentiaJarManager.fromStack(jarStack);
 		AspectList aspects = jar != null ? jar.getEssentia(jarStack) : emptylist;
-		if(aspects.visSize() > 0)
+		if(aspects != null && aspects.visSize() > 0)
 		{
 			if(!worldIn.isRemote)
 			{
@@ -98,8 +104,11 @@ public class ItemEssentiaPistol extends Item
 				
 				shot.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0, 1.5F, 0F);
 				worldIn.spawnEntity(shot);
-				jar.drain(jarStack, as, amt);
-				setJar(stack, jarStack);
+				if(!playerIn.capabilities.isCreativeMode)
+				{
+					jar.drain(jarStack, as, amt);
+					setJar(stack, jarStack);
+				}
 				SoundUtil.playSoundEffect(worldIn, InfoTAR.MOD_ID + ":essentia_pistol_shoot", playerIn.posX, playerIn.posY, playerIn.posZ, 1F, 1F, SoundCategory.PLAYERS);
 			}
 			playerIn.getCooldownTracker().setCooldown(this, 10);
@@ -136,13 +145,14 @@ public class ItemEssentiaPistol extends Item
 			IJar jar = EssentiaJarManager.fromStack(jarStack);
 			AspectList list = jar != null ? jar.getEssentia(jarStack) : emptylist;
 			
-			if(list.visSize() == 0)
+			if(list == null || list.visSize() == 0)
 				return;
 			
-			float fill = list.visSize() / 512F;
+			float fill = list.visSize() / Math.max(1F, jar.capacity(jarStack));
 			int color = AspectUtil.getColor(list, true);
 			
 			GlStateManager.pushMatrix();
+			GlStateManager.pushAttrib();
 			
 			GlStateManager.disableBlend();
 			GL11.glBlendFunc(770, 771);
@@ -161,6 +171,7 @@ public class ItemEssentiaPistol extends Item
 			GL11.glEnable(2896);
 			GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 			
+			GlStateManager.popAttrib();
 			GlStateManager.popMatrix();
 		}
 	}

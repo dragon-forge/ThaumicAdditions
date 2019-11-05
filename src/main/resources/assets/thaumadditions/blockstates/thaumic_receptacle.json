@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "thaumadditions:thaumic_receptacle" },
+		"facing=south": { "model": "thaumadditions:thaumic_receptacle", "y": 180 },
+		"facing=west":  { "model": "thaumadditions:thaumic_receptacle", "y": 270 },
+		"facing=east":  { "model": "thaumadditions:thaumic_receptacle", "y": 90 }
+	}
+}

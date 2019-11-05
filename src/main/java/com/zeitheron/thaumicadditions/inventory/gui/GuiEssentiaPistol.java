@@ -1,0 +1,99 @@
+package com.zeitheron.thaumicadditions.inventory.gui;
+
+import java.io.IOException;
+
+import com.zeitheron.hammercore.client.gui.GuiWTFMojang;
+import com.zeitheron.hammercore.client.utils.RenderUtil;
+import com.zeitheron.hammercore.client.utils.UtilsFX;
+import com.zeitheron.hammercore.utils.color.ColorHelper;
+import com.zeitheron.thaumicadditions.InfoTAR;
+import com.zeitheron.thaumicadditions.inventory.container.ContainerEssentiaPistol;
+import com.zeitheron.thaumicadditions.tiles.TileGrowthChamber;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.util.math.MathHelper;
+import thaumcraft.common.lib.SoundsTC;
+
+public class GuiEssentiaPistol extends GuiWTFMojang<ContainerEssentiaPistol>
+{
+	public GuiEssentiaPistol(ContainerEssentiaPistol inventorySlotsIn)
+	{
+		super(inventorySlotsIn);
+		xSize = 176;
+		ySize = 192;
+	}
+	
+	@Override
+	public void initGui()
+	{
+		super.initGui();
+	}
+	
+	@Override
+	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+	{
+		partialTicks = mc.getRenderPartialTicks();
+		
+		UtilsFX.bindTexture(InfoTAR.MOD_ID, "textures/gui/essentia_pistol.png");
+		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+		
+		float fill = getContainer().getAmount() / 32F;
+		
+		float hov = mouseX >= guiLeft + 45 && mouseX < guiLeft + 57 && mouseY >= guiTop + 30 && mouseY < guiTop + 80 ? 1F - (mouseY - guiTop - 30) / 50F : -1;
+		
+		drawTexturedModalRect(guiLeft + 45, guiTop + 24, 191, 0, 12, 62);
+		ColorHelper.gl(255 << 24 | MathHelper.hsvToRGB(fill / 3F, 1F, 1F));
+		RenderUtil.drawTexturedModalRect(guiLeft + 47, guiTop + 30 + 50 - fill * 50, 176, 0, 8, fill * 50);
+		RenderUtil.drawTexturedModalRect(guiLeft + 47, guiTop + 30 + 50 - fill * 50, 248, (Minecraft.getMinecraft().player.ticksExisted + partialTicks) % 256, 8, fill * 50);
+		if(hov > 0F)
+		{
+			fill = hov;
+			ColorHelper.gl(30 << 24 | MathHelper.hsvToRGB(fill / 3F, 1F, 1F));
+			RenderUtil.drawTexturedModalRect(guiLeft + 47, guiTop + 30 + 50 - fill * 50, 176, 0, 8, fill * 50);
+			RenderUtil.drawTexturedModalRect(guiLeft + 47, guiTop + 30 + 50 - fill * 50, 248, (Minecraft.getMinecraft().player.ticksExisted + partialTicks) % 256, 8, fill * 50);
+		}
+		ColorHelper.gl(0xFFFFFFFF);
+		
+		if(hov >= 0F)
+		{
+			int amt = Math.round(32 * hov);
+			drawHoveringText(I18n.format("tooltip.thaumadditions:essentia_pistol.shoot", amt), mouseX, mouseY);
+		}
+	}
+	
+	@Override
+	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
+	{
+		float hov = mouseX >= guiLeft + 45 && mouseX < guiLeft + 57 && mouseY >= guiTop + 30 && mouseY < guiTop + 80 ? 1F - (mouseY - guiTop - 30) / 50F : -1;
+		
+		if(hov >= 0F)
+		{
+			int amt = Math.round(32 * hov);
+			this.mc.playerController.sendEnchantPacket(getContainer().windowId, amt);
+			mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundsTC.tool, 1F));
+		}
+		
+		super.mouseClicked(mouseX, mouseY, mouseButton);
+	}
+	
+	@Override
+	protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick)
+	{
+		super.mouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick);
+	}
+	
+	@Override
+	protected void mouseReleased(int mouseX, int mouseY, int state)
+	{
+		super.mouseReleased(mouseX, mouseY, state);
+	}
+	
+	@Override
+	protected void actionPerformed(GuiButton button) throws IOException
+	{
+		super.actionPerformed(button);
+	}
+}

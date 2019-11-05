@@ -40,6 +40,7 @@ tile.thaumadditions:seal.desc=Farbe: @COLOR
 tile.thaumadditions:cake.name=Arkaner Kuchen
 tile.thaumadditions:flux_concentrator.name=Flux Concentrator
 tile.thaumadditions:shadow_enchanter.name=Shadow Enchanter
+tile.thaumadditions:thaumic_receptacle.name=Thaumonomicon Lectern
 
 ##########
 
@@ -129,6 +130,7 @@ entity.thaumadditions.chester.name=Chester
 entity.thaumadditions.chester=Chester
 tooltip.thaumadditions:vis=Vis: %,d / %,d
 tooltip.thaumadditions:phantom=Phantom
+tooltip.thaumadditions:essentia_pistol.shoot=Shoot Volume: %,d Vis
 
 #################
 

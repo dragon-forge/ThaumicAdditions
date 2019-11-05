@@ -40,6 +40,7 @@ tile.thaumadditions:seal.desc=Цвет: @COLOR
 tile.thaumadditions:cake.name=Волшебный торт
 tile.thaumadditions:flux_concentrator.name=Концентратор выбросов
 tile.thaumadditions:shadow_enchanter.name=Теневой стол зачарования
+tile.thaumadditions:thaumic_receptacle.name=Кафедра с таумономиконом
 
 ##########
 
@@ -129,6 +130,7 @@ entity.thaumadditions.chester.name=Честер
 entity.thaumadditions.chester=Честер
 tooltip.thaumadditions:vis=Вис: %,d / %,d
 tooltip.thaumadditions:phantom=Фантомный
+tooltip.thaumadditions:essentia_pistol.shoot=Объём выстрела: %,d Вис
 
 #################
 
