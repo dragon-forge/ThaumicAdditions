@@ -20,6 +20,7 @@ import com.zeitheron.thaumicadditions.entity.EntityChester;
 import com.zeitheron.thaumicadditions.entity.EntityEssentiaShot;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.FluidsTAR;
+import com.zeitheron.thaumicadditions.init.GuisTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.init.KnowledgeTAR;
 import com.zeitheron.thaumicadditions.init.PotionsTAR;
@@ -107,6 +108,7 @@ public class TAReconstructed
 		meta.authorList = HammerCore.AUTHORS;
 		
 		KnowledgeTAR.clInit.call();
+		GuisTAR.register();
 		
 		SimpleRegistration.registerFieldItemsFrom(ItemsTAR.class, InfoTAR.MOD_ID, tab);
 		SimpleRegistration.registerFieldBlocksFrom(BlocksTAR.class, InfoTAR.MOD_ID, tab);

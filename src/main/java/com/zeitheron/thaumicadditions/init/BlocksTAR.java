@@ -22,6 +22,7 @@ import com.zeitheron.thaumicadditions.blocks.BlockFluxConcentrator;
 import com.zeitheron.thaumicadditions.blocks.BlockGrowthChamber;
 import com.zeitheron.thaumicadditions.blocks.BlockSeal;
 import com.zeitheron.thaumicadditions.blocks.BlockShadowEnchanter;
+import com.zeitheron.thaumicadditions.blocks.BlockThaumicReceptacle;
 import com.zeitheron.thaumicadditions.blocks.BlockTotem;
 import com.zeitheron.thaumicadditions.blocks.plants.BlockPuriflower;
 import com.zeitheron.thaumicadditions.blocks.plants.BlockVisCrop;
@@ -58,8 +59,8 @@ public class BlocksTAR
 	public static final BlockSeal SEAL = new BlockSeal();
 	public static final Map<Aspect, BlockVisCrop> VIS_CROPS = new HashMap<>();
 	public static final BlockVoidCrop VOID_CROP = BlockVoidCrop.CROP;
-	
 	public static final BlockShadowEnchanter SHADOW_ENCHANTER = new BlockShadowEnchanter();
+	public static final BlockThaumicReceptacle THAUMIC_RECEPTACLE = new BlockThaumicReceptacle();
 	
 	// public static final BlockAuraTotem AURA_TOTEM = new BlockAuraTotem();
 	

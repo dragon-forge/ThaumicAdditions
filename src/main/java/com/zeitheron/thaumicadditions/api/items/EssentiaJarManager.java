@@ -22,7 +22,8 @@ public class EssentiaJarManager
 	
 	static
 	{
-		registerJar(Item.getItemFromBlock(BlocksTC.jarNormal), stack ->
+		Function<ItemStack, IJar> vanillaJar;
+		registerJar(Item.getItemFromBlock(BlocksTC.jarNormal), vanillaJar = stack ->
 		{
 			BlockJarItem item = Cast.cast(stack.getItem(), BlockJarItem.class);
 			return new IJar()
@@ -62,8 +63,15 @@ public class EssentiaJarManager
 					}
 					return 0;
 				}
+				
+				@Override
+				public int capacity(ItemStack jarStack)
+				{
+					return 250;
+				}
 			};
 		});
+		registerJar(Item.getItemFromBlock(BlocksTC.jarVoid), vanillaJar);
 		
 		ForgeRegistries.ITEMS.getValuesCollection().stream().filter(Predicates.instanceOf(BlockAbstractJarItem.class)).forEach(ji ->
 		{
@@ -108,6 +116,12 @@ public class EssentiaJarManager
 						}
 						return 0;
 					}
+					
+					@Override
+					public int capacity(ItemStack jarStack)
+					{
+						return capacity;
+					}
 				};
 			});
 		});
@@ -138,5 +152,7 @@ public class EssentiaJarManager
 		int drain(ItemStack stack, Aspect aspect, int amount);
 		
 		int fill(ItemStack stack, Aspect aspect, int amount);
+		
+		int capacity(ItemStack jarStack);
 	}
 }
