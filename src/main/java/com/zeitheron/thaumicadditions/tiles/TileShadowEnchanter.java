@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.zeitheron.hammercore.net.HCNet;
+import com.zeitheron.hammercore.tile.ITileDroppable;
 import com.zeitheron.hammercore.tile.TileSyncableTickable;
 import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.hammercore.utils.inventory.InventoryDummy;
-import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.ShadowEnchantment;
 import com.zeitheron.thaumicadditions.inventory.container.ContainerShadowEnchanter;
 import com.zeitheron.thaumicadditions.inventory.gui.GuiShadowEnchanter;
+import com.zeitheron.thaumicadditions.net.PacketShadowFX;
 import com.zeitheron.thaumicadditions.utils.ListHelper;
 
 import net.minecraft.enchantment.Enchantment;
@@ -21,13 +23,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.events.EssentiaHandler;
 
-public class TileShadowEnchanter extends TileSyncableTickable
+public class TileShadowEnchanter extends TileSyncableTickable implements ITileDroppable
 {
 	public final InventoryDummy items = new InventoryDummy(2);
 	
@@ -37,6 +42,8 @@ public class TileShadowEnchanter extends TileSyncableTickable
 	public AspectList pending;
 	public int craftTimer;
 	
+	public int brainCD;
+	
 	@Override
 	public void tick()
 	{
@@ -44,65 +51,89 @@ public class TileShadowEnchanter extends TileSyncableTickable
 		
 		if(infusing && items.getStackInSlot(1).isEmpty())
 		{
-			if(pending == null)
+			if(pending == null || items.getStackInSlot(0).isEmpty())
 			{
-				SoundUtil.playSoundEffect(world, InfoTAR.MOD_ID + ":craftfail", pos, 1F, 1F, SoundCategory.BLOCKS);
+				if(!world.isRemote)
+					SoundUtil.playSoundEffect(world, SoundsTC.craftfail.getRegistryName().toString(), pos, 1F, 1F, SoundCategory.BLOCKS);
 				infusing = false;
 				craftTimer = 0;
+				enchants.clear();
+				pending = null;
 				return;
-			} else
+			} else if(!world.isRemote)
 			{
 				++craftTimer;
-				SoundUtil.playSoundEffect(world, InfoTAR.MOD_ID + ":brain", pos, 1F, 1F, SoundCategory.BLOCKS);
+				if(brainCD > 0)
+					--brainCD;
+				if(brainCD <= 0)
+				{
+					SoundUtil.playSoundEffect(world, SoundsTC.brain.getRegistryName().toString(), pos, 0.2F, 1F, SoundCategory.BLOCKS);
+					brainCD += 35 + getRNG().nextInt(50);
+				}
 				if(pending.visSize() == 0)
 				{
 					ItemStack stack = items.getStackInSlot(0).copy();
 					enchants.forEach(ed -> stack.addEnchantment(ed.enchantment, ed.enchantmentLevel));
 					items.setInventorySlotContents(1, stack);
-					items.removeStackFromSlot(0);
-					
-					SoundUtil.playSoundEffect(world, InfoTAR.MOD_ID + ":poof", pos, 1F, 1F, SoundCategory.BLOCKS);
+					items.getStackInSlot(0).shrink(1);
+					SoundUtil.playSoundEffect(world, SoundsTC.poof.getRegistryName().toString(), pos, 1F, 1F, SoundCategory.BLOCKS);
+					enchants.clear();
 					infusing = false;
 					craftTimer = 0;
 					return;
 				} else
 				{
-					Aspect a = pending.getAspects()[0];
-					if(EssentiaHandler.drainEssentia(this, a, null, 12, 1))
+					Aspect a = pending.getAspectsSortedByName()[0];
+					if(atTickRate(6) && EssentiaHandler.drainEssentia(this, a, null, 12, 1))
+					{
 						pending.remove(a, 1);
+						HCNet.INSTANCE.sendToAllAround(PacketShadowFX.create(this, a.getColor()), getSyncPoint(100));
+						sendChangesToNearby();
+					}
 				}
 			}
 		}
+	}
+	
+	public AspectList calculateAspects()
+	{
+		AspectList al = new AspectList();
+		for(AspectList list : enchants.stream().map(ed ->
+		{
+			ShadowEnchantment se = ShadowEnchantment.pick(ed.enchantment);
+			if(se != null)
+				return se.getAspects(ed.enchantmentLevel);
+			return null;
+		}).collect(Collectors.toList()))
+			if(list != null)
+				al.add(list);
+			else
+				return null;
+		return al;
 	}
 	
 	public void startCraft()
 	{
 		if(!infusing && !enchants.isEmpty() && items.getStackInSlot(1).isEmpty())
 		{
-			AspectList al = new AspectList();
+			AspectList al = calculateAspects();
+			if(al == null || al.size() > 32)
+				return;
 			
-			for(AspectList list : enchants.stream().map(ed ->
-			{
-				ShadowEnchantment se = ShadowEnchantment.pick(ed.enchantment);
-				if(se != null)
-					return se.getAspects(ed.enchantmentLevel);
-				return null;
-			}).collect(Collectors.toList()))
-				if(list != null)
-					al.add(list);
-				else
-					return;
-				
 			infusing = true;
 			craftTimer = 0;
 			pending = al;
 			
-			SoundUtil.playSoundEffect(world, InfoTAR.MOD_ID + ":craftstart", pos, 1F, 1F, SoundCategory.BLOCKS);
+			SoundUtil.playSoundEffect(world, SoundsTC.craftstart.getRegistryName().toString(), pos, 0.2F, 1F, SoundCategory.BLOCKS);
+			
+			sendChangesToNearby();
 		}
 	}
 	
 	public boolean isAplicable(Enchantment ench)
 	{
+		if(enchants.stream().filter(ed -> ed.enchantment != ench && !ed.enchantment.isCompatibleWith(ench)).findAny().isPresent())
+			return false;
 		ItemStack s = items.getStackInSlot(0);
 		return !s.isEmpty() && s.isItemEnchantable() && ench.canApply(s);
 	}
@@ -181,7 +212,7 @@ public class TileShadowEnchanter extends TileSyncableTickable
 		items.readFromNBT(nbt.getCompoundTag("Items"));
 		infusing = nbt.getBoolean("Infusing");
 		craftTimer = nbt.getInteger("Timer");
-		NBTTagList ench = nbt.getTagList("Enchantments", NBT.TAG_LIST);
+		NBTTagList ench = nbt.getTagList("Enchantments", NBT.TAG_COMPOUND);
 		enchants.clear();
 		for(int i = 0; i < ench.tagCount(); ++i)
 		{
@@ -196,5 +227,12 @@ public class TileShadowEnchanter extends TileSyncableTickable
 			pending.readFromNBT(nbt, "Aspects");
 		} else
 			pending = null;
+	}
+	
+	@Override
+	public void createDrop(EntityPlayer player, World world, BlockPos pos)
+	{
+		items.drop(world, pos);
+		items.clear();
 	}
 }

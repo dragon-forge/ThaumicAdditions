@@ -1,8 +1,8 @@
 {"__coment": "This is a part of ThaumicAdditions: Reconstructed mod, developed and maintained by DragonForge team. Do not steal!",
 	"parent": "block/block",
 	"textures": {
-		"0": "thaumadditions:blocks/thaumic_receptacle",
-		"particle": "thaumadditions:blocks/thaumic_receptacle"
+		"0": "thaumadditions:blocks/thaumic_lectern",
+		"particle": "thaumadditions:blocks/thaumic_lectern"
 	},
 	"elements": [
 		{

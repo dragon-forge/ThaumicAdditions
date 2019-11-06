@@ -103,7 +103,7 @@ public class RecipesTAR extends RecipeRegistry
 		shaped(new ItemStack(ItemsTAR.MITHRILLIUM_PLATE, 3), "ppp", 'p', ItemsTAR.MITHRILLIUM_INGOT);
 		shaped(new ItemStack(ItemsTAR.ADAMINITE_PLATE, 3), "ppp", 'p', ItemsTAR.ADAMINITE_INGOT);
 		shaped(new ItemStack(ItemsTAR.MITHMINITE_PLATE, 3), "ppp", 'p', ItemsTAR.MITHMINITE_INGOT);
-		shaped(new ItemStack(BlocksTAR.THAUMIC_RECEPTACLE), "mtm", "www", " w ", 'w', new ItemStack(BlocksTC.slabGreatwood), 'm', "ingotThaumium", 't', new ItemStack(ItemsTC.thaumonomicon));
+		shaped(new ItemStack(BlocksTAR.THAUMIC_LECTERN), "mtm", "www", " w ", 'w', new ItemStack(BlocksTC.slabGreatwood), 'm', "ingotThaumium", 't', new ItemStack(ItemsTC.thaumonomicon));
 		recipe(new RecipeMixSalts().setRegistryName(new ResourceLocation(getMod(), "essence_salt.mix")));
 		recipe(new RecipeApplySalt().setRegistryName(new ResourceLocation(getMod(), "essence_salt.apply")));
 		recipe(new RecipeClearSalt().setRegistryName(new ResourceLocation(getMod(), "essence_salt.remove")));
@@ -136,9 +136,8 @@ public class RecipesTAR extends RecipeRegistry
 		addInfusionRecipe("void_thaumometer", new ItemStack(ItemsTAR.VOID_THAUMOMETER), "TAR_VOID_THAUMOMETER", 4, new ItemStack(ItemsTC.thaumometer), AspectUtil.primals(10).add(Aspect.ELDRITCH, 40).add(Aspect.MIND, 20), new ItemStack(ItemsTC.ingots, 1, 1), new ItemStack(ItemsTC.ingots, 1, 1), new ItemStack(ItemsTC.ingots, 1, 1), new ItemStack(ItemsTC.ingots, 1, 1));
 		addInfusionRecipe("wormhole_mirror", new ItemStack(ItemsTAR.WORMHOLE_MIRROR), "TAR_WORMHOLE_MIRROR", 6, new ItemStack(ItemsTC.handMirror), new AspectList().add(Aspect.ELDRITCH, 50).add(KnowledgeTAR.IMPERIUM, 100).add(KnowledgeTAR.VISUM, 80), new ItemStack(ItemsTAR.VOID_THAUMOMETER), new ItemStack(ItemsTC.plate, 1, 3), new ItemStack(ItemsTC.plate, 1, 3));
 		addInfusionRecipe("void_elemental_hoe", new ItemStack(ItemsTAR.VOID_ELEMENTAL_HOE), "TAR_VOID_ELEMENTAL_HOE", 6, new ItemStack(ItemsTC.elementalHoe), new AspectList().add(Aspect.ELDRITCH, 40).add(Aspect.PLANT, 80).add(Aspect.LIFE, 50), primordialPearl, new ItemStack(ItemsTC.plate, 1, 3), new ItemStack(ItemsTC.plate, 1, 3));
-		
 		addInfusionRecipe("void_crop", new ItemStack(ItemsTAR.VOID_SEED), "TAR_VOID_CROP", 5, new ItemStack(Items.WHEAT_SEEDS), AspectUtil.primals(20).add(Aspect.DARKNESS, 100).add(KnowledgeTAR.CAELES, 10), primordialPearl, new ItemStack(ItemsTC.voidSeed), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.voidSeed), new ItemStack(BlocksTC.metalBlockVoid), new ItemStack(ItemsTC.voidSeed));
-		
+		addInfusionRecipe("shadow_enchanter", new ItemStack(BlocksTAR.SHADOW_ENCHANTER), "TAR_SHADOW_ENCHANTER", 10, new ItemStack(Blocks.ENCHANTING_TABLE), AspectUtil.primals(128).add(Aspect.MIND, 500), new ItemStack(ItemsTAR.MITHRILLIUM_PLATE), "ingotThaumium", new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR), new ItemStack(ItemsTC.mechanismComplex), new ItemStack(ItemsTAR.MITHRILLIUM_PLATE), "ingotThaumium", new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR), new ItemStack(ItemsTC.mechanismComplex));
 		addInfusionRecipe("mithminite_hood", new ItemStack(ItemsTAR.MITHMINITE_HOOD), "TAR_MITHMINITE_HOOD", 10, new ItemStack(ItemsTAR.ADAMINITE_HOOD), new AspectList().add(Aspect.PROTECT, 200).add(KnowledgeTAR.VISUM, 250).add(Aspect.FLUX, 150).add(Aspect.LIGHT, 200).add(Aspect.WATER, 250).add(Aspect.MIND, 250).add(KnowledgeTAR.CAELES, 75), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(BlocksTC.jarBrain), new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR), new ItemStack(Blocks.SEA_LANTERN), new ItemStack(ItemsTAR.FRAGNANT_PENDANT), new ItemStack(ItemsTAR.SEAL_GLOBE), new ItemStack(BlocksTC.lampArcane), new ItemStack(ItemsTC.sanityChecker));
 		addInfusionRecipe("mithminite_robe", new ItemStack(ItemsTAR.MITHMINITE_ROBE), "TAR_MITHMINITE_ROBE", 10, new ItemStack(ItemsTAR.ADAMINITE_ROBE), new AspectList().add(Aspect.PROTECT, 200).add(Aspect.LIFE, 250).add(Aspect.FLUX, 150).add(KnowledgeTAR.VENTUS, 200).add(Aspect.FIRE, 250).add(KnowledgeTAR.CAELES, 75), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR), new ItemStack(ItemsTAR.LEVITATION_DEVICE), new ItemStack(Items.GOLDEN_APPLE, 1, 1), new ItemStack(ItemsTC.modules, 1, 1));
 		addInfusionRecipe("mithminite_belt", new ItemStack(ItemsTAR.MITHMINITE_BELT), "TAR_MITHMINITE_BELT", 10, new ItemStack(ItemsTAR.ADAMINITE_BELT), new AspectList().add(Aspect.PROTECT, 200).add(KnowledgeTAR.FLUCTUS, 250).add(Aspect.FLUX, 150).add(KnowledgeTAR.VENTUS, 200).add(KnowledgeTAR.CAELES, 75), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHMINITE_FABRIC), new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR), new ItemStack(ItemsTAR.LEVITATION_DEVICE));
@@ -295,6 +294,13 @@ public class RecipesTAR extends RecipeRegistry
 	public static String[] getFakeRecipes(Item it, String... appends)
 	{
 		return ArrayHelper.merge(getFakeRecipesFor(it), appends);
+	}
+	
+	public static String[] getFakeRecipesPreAll(Item[] items, String... prepends)
+	{
+		for(Item i : items)
+			prepends = getFakeRecipesPre(i, prepends);
+		return prepends;
 	}
 	
 	public static String[] getFakeRecipesPre(Item it, String... prepends)
