@@ -40,7 +40,7 @@ tile.thaumadditions:seal.desc=Color: @COLOR
 tile.thaumadditions:cake.name=Arcane Cake
 tile.thaumadditions:flux_concentrator.name=Flux Concentrator
 tile.thaumadditions:shadow_enchanter.name=Shadow Enchanter
-tile.thaumadditions:thaumic_receptacle.name=Thaumonomicon Lectern
+tile.thaumadditions:thaumic_lectern.name=Thaumonomicon Lectern
 
 ##########
 
@@ -336,6 +336,10 @@ research_stage.thaumadditions:void_crop.2=Infusing void seeds with primordial en
 research_name.thaumadditions:essentia_pistol=Essentia Pistol
 research_stage.thaumadditions:essentia_pistol.1=Dispersing salts is nice, but not very applicable in rather unexpected situations I might end up in. Making it portable would be a key requirement to success.
 research_stage.thaumadditions:essentia_pistol.2=Using aura disperser as an accelerator is a smart decision. Essentia Pistol would be definitely the best option I could think of. Thaumium would help the essentia travel through the tube safer.
+
+research_name.thaumadditions:shadow_enchanter=Shadow Enchanter
+research_stage.thaumadditions:shadow_enchanter.1=There are quite a few ways of infusing tools, weapons and armor with mundane magic, but it is very unstable and occasional. I'll invest the phenomen of enchanting a bit further, to, perhaps, push the limits a bit further.
+research_stage.thaumadditions:shadow_enchanter.2=As it turned out, mithrillium not only allows to stabilize the enchating process and make it more predictable, but with some resonators attached, I might be able to select exactly what I need. Additional bonus of this all is xp-free enchanting! All I need now is only some essentia nearby. To start the process one's going to need to select all desired enchantments and activate the Shadow Enchanter with Caster's Gauntlet.
 
 ############
 

@@ -16,14 +16,26 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import thaumcraft.api.items.ItemsTC;
 
-public class BlockThaumicReceptacle extends Block
+public class BlockThaumicLectern extends Block
 {
-	public BlockThaumicReceptacle()
+	public BlockThaumicLectern()
 	{
 		super(Material.WOOD);
-		setTranslationKey("thaumic_receptacle");
+		setTranslationKey("thaumic_lectern");
 		setSoundType(SoundType.WOOD);
-		setHardness(1F);
+		setHardness(1.5F);
+	}
+	
+	@Override
+	public boolean isFullBlock(IBlockState state)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
 	}
 	
 	@Override
