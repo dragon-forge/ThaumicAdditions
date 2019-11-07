@@ -27,6 +27,8 @@ import com.zeitheron.thaumicadditions.blocks.BlockTotem;
 import com.zeitheron.thaumicadditions.blocks.plants.BlockPuriflower;
 import com.zeitheron.thaumicadditions.blocks.plants.BlockVisCrop;
 import com.zeitheron.thaumicadditions.blocks.plants.BlockVoidCrop;
+import com.zeitheron.thaumicadditions.blocks.sink.BlockEssentiaSink;
+import com.zeitheron.thaumicadditions.blocks.sink.BlockEssentiaSinkAux;
 import com.zeitheron.thaumicadditions.tiles.jars.TileAdaminiteJar;
 import com.zeitheron.thaumicadditions.tiles.jars.TileBrassJar;
 import com.zeitheron.thaumicadditions.tiles.jars.TileEldritchJar;
@@ -61,6 +63,9 @@ public class BlocksTAR
 	public static final BlockVoidCrop VOID_CROP = BlockVoidCrop.CROP;
 	public static final BlockShadowEnchanter SHADOW_ENCHANTER = new BlockShadowEnchanter();
 	public static final BlockThaumicLectern THAUMIC_LECTERN = new BlockThaumicLectern();
+	
+	public static final BlockEssentiaSink ESSENTIA_SINK = new BlockEssentiaSink();
+	public static final BlockEssentiaSinkAux ESSENTIA_SINK_AUX = new BlockEssentiaSinkAux();
 	
 	// public static final BlockAuraTotem AURA_TOTEM = new BlockAuraTotem();
 	

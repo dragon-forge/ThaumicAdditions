@@ -5,14 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.buuz135.thaumicjei.category.AspectCompoundCategory;
 import com.zeitheron.hammercore.net.HCNet;
-import com.zeitheron.hammercore.raytracer.RayTracer;
 import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.hammercore.utils.VecDir;
 import com.zeitheron.hammercore.utils.math.vec.Vector3;
 import com.zeitheron.thaumicadditions.InfoTAR;
+import com.zeitheron.thaumicadditions.api.items.IAspectChargableItem;
 import com.zeitheron.thaumicadditions.net.fxh.FXShadowBeamParticle;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,13 +32,22 @@ import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
 
-public class ItemShadowBeamStaff extends Item
+public class ItemShadowBeamStaff extends Item implements IAspectChargableItem
 {
 	public ItemShadowBeamStaff()
 	{
 		setTranslationKey("shadow_beam_staff");
 		setMaxStackSize(1);
+	}
+	
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+	{
+		int count = getHeldAspects(stack).getAmount(Aspect.ELDRITCH);
+		tooltip.add(String.format(Aspect.ELDRITCH.getName() + ": %,d/%,d", count, 500));
 	}
 	
 	@Override
@@ -54,7 +65,10 @@ public class ItemShadowBeamStaff extends Item
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
-		if(!worldIn.isRemote)
+		ItemStack held = playerIn.getHeldItem(handIn);
+		AspectList al = AspectChargableItemHelper.getAspects(held);
+		int alienis = al.getAmount(Aspect.ELDRITCH);
+		if(!worldIn.isRemote && (alienis > 0 || playerIn.capabilities.isCreativeMode))
 		{
 			List<Vec3d> positions = new ArrayList<>();
 			double cx = 0, cy = 0, cz = 0;
@@ -84,9 +98,14 @@ public class ItemShadowBeamStaff extends Item
 			strikes.forEach((ent, count) -> ent.attackEntityFrom(DamageSource.causePlayerDamage(playerIn), 5 * count));
 			HCNet.INSTANCE.sendToAllAround(FXShadowBeamParticle.create(positions), new TargetPoint(worldIn.provider.getDimension(), cx, cy, cz, 256));
 			SoundUtil.playSoundEffect(worldIn, InfoTAR.MOD_ID + ":shadow_beam", cx, cy, cz, 5F, 1F, SoundCategory.PLAYERS);
+			if(!playerIn.capabilities.isCreativeMode)
+			{
+				al.remove(Aspect.ELDRITCH, 1);
+				AspectChargableItemHelper.setAspects(held, al);
+			}
 		}
 		playerIn.getCooldownTracker().setCooldown(this, 20);
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+		return new ActionResult<ItemStack>(EnumActionResult.PASS, held);
 	}
 	
 	public static void recursiveLoop(EntityPlayer player, float partialTime, List<Vec3d> positions, double distance)
@@ -140,5 +159,57 @@ public class ItemShadowBeamStaff extends Item
 		{
 			positions.add(endVec);
 		}
+	}
+	
+	@Override
+	public AspectList getHeldAspects(ItemStack stack)
+	{
+		return AspectChargableItemHelper.getAspects(stack);
+	}
+	
+	@Override
+	public boolean canAcceptAspect(ItemStack stack, Aspect aspect)
+	{
+		return aspect == Aspect.ELDRITCH;
+	}
+	
+	@Override
+	public int getMaxAspectCount(ItemStack stack, Aspect aspect)
+	{
+		return 500;
+	}
+	
+	@Override
+	public int acceptAspect(ItemStack stack, Aspect aspect, int amount)
+	{
+		if(aspect == Aspect.ELDRITCH)
+		{
+			AspectList al = getHeldAspects(stack);
+			amount = Math.min(500 - al.getAmount(aspect), amount);
+			al.add(aspect, amount);
+			AspectChargableItemHelper.setAspects(stack, al);
+			return amount;
+		}
+		return 0;
+	}
+	
+	@Override
+	public int extractAspect(ItemStack stack, Aspect aspect, int amount)
+	{
+		if(aspect == Aspect.ELDRITCH)
+		{
+			AspectList al = getHeldAspects(stack);
+			amount = Math.min(al.getAmount(aspect), amount);
+			al.remove(aspect, amount);
+			AspectChargableItemHelper.setAspects(stack, al);
+			return amount;
+		}
+		return 0;
+	}
+	
+	@Override
+	public Aspect getCurrentRequest(ItemStack stack)
+	{
+		return Aspect.ELDRITCH;
 	}
 }
