@@ -41,6 +41,7 @@ tile.thaumadditions:cake.name=Волшебный торт
 tile.thaumadditions:flux_concentrator.name=Концентратор выбросов
 tile.thaumadditions:shadow_enchanter.name=Теневой стол зачарования
 tile.thaumadditions:thaumic_lectern.name=Кафедра с таумономиконом
+tile.thaumadditions:essentia_sink.name=Раковина эссенции
 
 ##########
 
@@ -337,9 +338,13 @@ research_name.thaumadditions:essentia_pistol=Essentia Pistol
 research_stage.thaumadditions:essentia_pistol.1=Dispersing salts is nice, but not very applicable in rather unexpected situations I might end up in. Making it portable would be a key requirement to success.
 research_stage.thaumadditions:essentia_pistol.2=Using aura disperser as an accelerator is a smart decision. Essentia Pistol would be definitely the best option I could think of. Thaumium would help the essentia travel through the tube safer.
 
-research_name.thaumadditions:shadow_enchanter=Shadow Enchanter
+research_name.thaumadditions:shadow_enchanter=Теневой стол зачарования
 research_stage.thaumadditions:shadow_enchanter.1=There are quite a few ways of infusing tools, weapons and armor with mundane magic, but it is very unstable and occasional. I'll invest the phenomen of enchanting a bit further, to, perhaps, push the limits a bit further.
 research_stage.thaumadditions:shadow_enchanter.2=As it turned out, mithrillium not only allows to stabilize the enchating process and make it more predictable, but with some resonators attached, I might be able to select exactly what I need. Additional bonus of this all is xp-free enchanting! All I need now is only some essentia nearby. To start the process one's going to need to select all desired enchantments and activate the Shadow Enchanter with Caster's Gauntlet.
+
+research_name.thaumadditions:shadow_beam_staff=Посох теневого пламени
+research_stage.thaumadditions:shadow_beam_staff.1=Mithrillium holds so much power, that I could probably focus it into a beam!
+research_stage.thaumadditions:shadow_beam_staff.2=Using vis resonator with mithrillium allows to harness the Alienis into a powerful laser. To charge it, I would need to use Essentia Sink to fill it up with Alienis essentia. Strangely enough, the laser seem to bounce from any surfaces that it hits.
 
 ############
 

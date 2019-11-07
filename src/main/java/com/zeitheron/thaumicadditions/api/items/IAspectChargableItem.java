@@ -35,6 +35,8 @@ public interface IAspectChargableItem
 	 */
 	int extractAspect(ItemStack stack, Aspect aspect, int amount);
 	
+	Aspect getCurrentRequest(ItemStack stack);
+	
 	class AspectChargableItemHelper
 	{
 		public static AspectList getAspects(ItemStack stack)
