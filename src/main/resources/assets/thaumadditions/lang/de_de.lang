@@ -361,6 +361,10 @@ research_name.thaumadditions:disenchant_fabric=Fabric of Disenchantment
 research_stage.thaumadditions:disenchant_fabric.1=Enchanting items with mundane tools can be quite hard to alter, I will need a tool to let me take these enchantments and cast them back to (some) experience. Perhaps rubbing my tools with something soft yet magical?
 research_stage.thaumadditions:disenchant_fabric.2=Enchanted Fabric along with salis mundus seem to provide a good and semi-reliable way of taking off the enchantments that I may have. The only catch here is the durability: the fabric seems to vanish after about 30 attempts. What a pain!
 
+research_name.thaumadditions:crystal_bag=Crystal Bag
+research_stage.thaumadditions:crystal_bag.1=Inventory problems can get quite annoying something, especially with all these crystals! I wonder if I could link foci pouches that to store crystals somehow...
+research_stage.thaumadditions:crystal_bag.2=The pure crystals may not work, but it appears to me that natural crystals can attune the pouch to accept any crystal. Also, I think I may have opened a black hole of some kind!..
+
 ############
 
 
