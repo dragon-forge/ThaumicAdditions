@@ -42,6 +42,7 @@ tile.thaumadditions:flux_concentrator.name=Flux Concentrator
 tile.thaumadditions:shadow_enchanter.name=Shadow Enchanter
 tile.thaumadditions:thaumic_lectern.name=Thaumonomicon Lectern
 tile.thaumadditions:essentia_sink.name=Essentia Sink
+tile.thaumadditions:void_anvil.name=Void Anvil
 
 ##########
 
@@ -112,6 +113,8 @@ item.thaumadditions:phantom_ink_phial.name=Phial of Phantom Ink
 item.thaumadditions:void_seed.name=Void Seed
 item.thaumadditions:shadow_beam_staff.name=Shadow Beam Staff
 item.thaumadditions:essentia_pistol.name=Essentia Pistol
+item.thaumadditions:disenchant_fabric.name=Fabric of Disenchantment
+item.thaumadditions:crystal_bag.name=Crystal Bag
 
 #########
 
@@ -132,6 +135,10 @@ entity.thaumadditions.chester=Chester
 tooltip.thaumadditions:vis=Vis: %,d / %,d
 tooltip.thaumadditions:phantom=Phantom
 tooltip.thaumadditions:essentia_pistol.shoot=Shoot Volume: %,d Vis
+tooltip.thaumadditions:cb_sort_rule.0=Sort by name (A->Z)
+tooltip.thaumadditions:cb_sort_rule.1=Sort by name (Z->A)
+tooltip.thaumadditions:cb_sort_rule.2=Sort by amount (Ascending)
+tooltip.thaumadditions:cb_sort_rule.3=Sort by amount (Descending)
 
 #################
 
@@ -345,6 +352,14 @@ research_stage.thaumadditions:shadow_enchanter.2=As it turned out, mithrillium n
 research_name.thaumadditions:shadow_beam_staff=Shadow Beam Staff
 research_stage.thaumadditions:shadow_beam_staff.1=Mithrillium holds so much power, that I could probably focus it into a beam!
 research_stage.thaumadditions:shadow_beam_staff.2=Using vis resonator with mithrillium allows to harness the Alienis into a powerful laser. To charge it, I would need to use Essentia Sink to fill it up with Alienis essentia. Strangely enough, the laser seem to bounce from any surfaces that it hits.
+
+research_name.thaumadditions:void_anvil=Void Anvil
+research_stage.thaumadditions:void_anvil.1=Sometimes mundane anvils don't take long to break, that may be a bit frustrating. After studying void metal, I might try to cover the anvil with void metal. Perhaps that may improve lifespan of them!
+research_stage.thaumadditions:void_anvil.2=Void metal seems to never stop impressing me, huh! I think this dark new anvil is pretty much infinite. But in exchance of damaging itself, it seems that every hit it gets, the aura pollutes by a little. I am going to need to be more careful next time!
+
+research_name.thaumadditions:disenchant_fabric=Fabric of Disenchantment
+research_stage.thaumadditions:disenchant_fabric.1=Enchanting items with mundane tools can be quite hard to alter, I will need a tool to let me take these enchantments and cast them back to (some) experience. Perhaps rubbing my tools with something soft yet magical?
+research_stage.thaumadditions:disenchant_fabric.2=Enchanted Fabric along with salis mundus seem to provide a good and semi-reliable way of taking off the enchantments that I may have. The only catch here is the durability: the fabric seems to vanish after about 30 attempts. What a pain!
 
 ############
 

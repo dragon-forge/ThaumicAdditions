@@ -4,10 +4,10 @@ import java.lang.management.ManagementFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.zeitheron.hammercore.api.lighting.ColoredLight;
 import com.zeitheron.hammercore.mod.ModuleLoader;
 import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.lux.api.LuxManager;
-import com.zeitheron.lux.api.light.Light;
 import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.compat.ITARC;
 
@@ -41,7 +41,7 @@ public class TARCLux implements ITARC
 			LuxManager.registerBlockLight(blk, (world, pos, state, e) ->
 			{
 				float flicker = (float) SIMPLEX.getValue(pos.getX() * 80 + ManagementFactory.getRuntimeMXBean().getUptime() / 500D, 160 * pos.getZ() * pos.getY()) + 1F;
-				e.add(Light.builder().pos(pos).color(color, false).radius(15 + flicker / 2F));
+				e.add(ColoredLight.builder().pos(pos).color(color, false).radius(15 + flicker / 2F).build());
 			});
 		}
 		
@@ -72,7 +72,7 @@ public class TARCLux implements ITARC
 						return;
 					int size = state.getValue(BlockCrystal.SIZE);
 					float flicker = (float) SIMPLEX.getValue(pos.getX() * 80 + ManagementFactory.getRuntimeMXBean().getUptime() / 2000D, 160 * pos.getZ() * pos.getY()) * 2F;
-					e.add(Light.builder().pos(pos).color(color, false).radius(flicker / 2F * size + (size + 1) * 1.5F));
+					e.add(ColoredLight.builder().pos(pos).color(color, false).radius(flicker / 2F * size + (size + 1) * 1.5F).build());
 				});
 			}
 		}
@@ -80,19 +80,19 @@ public class TARCLux implements ITARC
 		LuxManager.registerBlockLight(BlocksTC.shimmerleaf, (world, pos, state, e) ->
 		{
 			float flicker = (float) SIMPLEX.getValue(80 * pos.getX() + ManagementFactory.getRuntimeMXBean().getUptime() / 2000D, 160 * pos.getZ() * pos.getY()) + 1F;
-			e.add(Light.builder().pos(pos).color(0.1F, 0.3F, 0.3F, 1F).radius(flicker * 2F + 3));
+			e.add(ColoredLight.builder().pos(pos).color(0.1F, 0.3F, 0.3F, 1F).radius(flicker * 2F + 3).build());
 		});
 		
 		LuxManager.registerBlockLight(BlocksTC.vishroom, (world, pos, state, e) ->
 		{
 			float flicker = (float) SIMPLEX.getValue(80 * pos.getX() + ManagementFactory.getRuntimeMXBean().getUptime() / 2000D, 160 * pos.getZ() * pos.getY()) + 1F;
-			e.add(Light.builder().pos(pos).color(0.4F, 0.0F, 0.4F, 1F).radius(flicker * 2F + 3));
+			e.add(ColoredLight.builder().pos(pos).color(0.4F, 0.0F, 0.4F, 1F).radius(flicker * 2F + 3).build());
 		});
 		
 		LuxManager.registerBlockLight(BlocksTC.cinderpearl, (world, pos, state, e) ->
 		{
 			float flicker = (float) SIMPLEX.getValue(80 * pos.getX() + ManagementFactory.getRuntimeMXBean().getUptime() / 2000D, 160 * pos.getZ() * pos.getY()) + 1F;
-			e.add(Light.builder().pos(pos).color(0.5F, 0.3F, 0.0F, 1F).radius(flicker * 2F + 5));
+			e.add(ColoredLight.builder().pos(pos).color(0.5F, 0.3F, 0.0F, 1F).radius(flicker * 2F + 5).build());
 		});
 		
 		TAReconstructed.LOG.info("ColoredLux compat initialized.");

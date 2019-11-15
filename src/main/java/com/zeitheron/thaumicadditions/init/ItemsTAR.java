@@ -1,6 +1,8 @@
 package com.zeitheron.thaumicadditions.init;
 
 import com.zeitheron.thaumicadditions.items.ItemChester;
+import com.zeitheron.thaumicadditions.items.ItemCrystalBag;
+import com.zeitheron.thaumicadditions.items.ItemDisenchantingFabric;
 import com.zeitheron.thaumicadditions.items.ItemEntityCell;
 import com.zeitheron.thaumicadditions.items.ItemKnowledgeTome;
 import com.zeitheron.thaumicadditions.items.ItemMaterial;
@@ -26,6 +28,8 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 
 public class ItemsTAR
 {
+	// MATERIALS
+	
 	public static final ItemMaterial MITHRILLIUM_NUGGET = new ItemMaterial("mithrillium_nugget", "nuggetMithrillium");
 	public static final ItemMaterial ADAMINITE_NUGGET = new ItemMaterial("adaminite_nugget", "nuggetAdaminite");
 	public static final ItemMaterial MITHRILLIUM_INGOT = new ItemMaterial("mithrillium_ingot", "ingotMithrillium");
@@ -42,10 +46,6 @@ public class ItemsTAR
 	public static final ItemMaterial ODOUR_POWDER = new ItemMaterial("odour_powder");
 	public static final ItemMaterial PHANTOM_INK_PHIAL = new ItemMaterial("phantom_ink_phial");
 	public static final ItemMaterial ZEITH_SCALES = new ItemZeithScale();
-	public static final ItemChester CHESTER = new ItemChester();
-	public static final ItemKnowledgeTome KNOWLEDGE_TOME = new ItemKnowledgeTome();
-	public static final ItemShadowBeamStaff SHADOW_BEAM_STAFF = new ItemShadowBeamStaff();
-	public static final ItemEssentiaPistol ESSENTIA_PISTOL = new ItemEssentiaPistol();
 	
 	// BAUBLES
 	
@@ -59,6 +59,11 @@ public class ItemsTAR
 	public static final ItemVoidThaumometer VOID_THAUMOMETER = new ItemVoidThaumometer();
 	public static final ItemWormholeMirror WORMHOLE_MIRROR = new ItemWormholeMirror();
 	public static final ItemVoidElementalHoe VOID_ELEMENTAL_HOE = new ItemVoidElementalHoe();
+	
+	// WEAPONS
+
+	public static final ItemShadowBeamStaff SHADOW_BEAM_STAFF = new ItemShadowBeamStaff();
+	public static final ItemEssentiaPistol ESSENTIA_PISTOL = new ItemEssentiaPistol();
 	
 	// ARMOR
 	
@@ -86,4 +91,8 @@ public class ItemsTAR
 	// MISC ITEMS
 	
 	public static final ItemVoidSeed VOID_SEED = new ItemVoidSeed();
+	public static final ItemChester CHESTER = new ItemChester();
+	public static final ItemKnowledgeTome KNOWLEDGE_TOME = new ItemKnowledgeTome();
+	public static final ItemDisenchantingFabric DISENCHANT_FABRIC = new ItemDisenchantingFabric();
+	public static final ItemCrystalBag CRYSTAL_BAG = new ItemCrystalBag();
 }

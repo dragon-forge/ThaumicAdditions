@@ -1,0 +1,8 @@
+{
+    "parent": "block/anvil",
+    "textures": {
+        "particle": "thaumadditions:blocks/void_anvil_base",
+        "body": "thaumadditions:blocks/void_anvil_base",
+        "top": "thaumadditions:blocks/void_anvil_top"
+    }
+}
