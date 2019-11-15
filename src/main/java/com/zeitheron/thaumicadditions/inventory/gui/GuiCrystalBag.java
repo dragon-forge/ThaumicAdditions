@@ -30,7 +30,7 @@ public class GuiCrystalBag extends GuiWTFMojang<ContainerCrystalBag>
 	final Rectangle hoverArea = new Rectangle();
 	Aspect selectedAspect;
 	
-	int sortRule;
+	public static int sortRule;
 	
 	int skipRows;
 	

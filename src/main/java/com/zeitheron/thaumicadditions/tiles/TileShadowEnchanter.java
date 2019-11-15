@@ -59,6 +59,7 @@ public class TileShadowEnchanter extends TileSyncableTickable implements ITileDr
 				craftTimer = 0;
 				enchants.clear();
 				pending = null;
+				sendChangesToNearby();
 				return;
 			} else if(!world.isRemote)
 			{
@@ -80,15 +81,21 @@ public class TileShadowEnchanter extends TileSyncableTickable implements ITileDr
 					enchants.clear();
 					infusing = false;
 					craftTimer = 0;
+					sendChangesToNearby();
 					return;
 				} else
 				{
 					Aspect a = pending.getAspectsSortedByName()[0];
-					if(atTickRate(6) && EssentiaHandler.drainEssentia(this, a, null, 12, 1))
+					if(atTickRate(6))
 					{
-						pending.remove(a, 1);
-						HCNet.INSTANCE.sendToAllAround(PacketShadowFX.create(this, a.getColor()), getSyncPoint(100));
-						sendChangesToNearby();
+						if(EssentiaHandler.drainEssentia(this, a, null, 12, 1))
+						{
+							pending.remove(a, 1);
+							HCNet.INSTANCE.sendToAllAround(PacketShadowFX.create(this, a.getColor()), getSyncPoint(100));
+							sendChangesToNearby();
+							brainCD = Math.min(brainCD, 50);
+						} else
+							brainCD = 10000;
 					}
 				}
 			}
