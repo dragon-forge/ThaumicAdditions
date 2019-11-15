@@ -159,6 +159,7 @@ curseforge {
             requiredLibrary 'Hammer-Lib'
             requiredLibrary 'Thaumcraft'
 			optionalLibrary 'Visuals'
+			optionalLibrary 'Colored-Lux'
         }
 	}
 }
