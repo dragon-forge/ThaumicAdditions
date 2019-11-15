@@ -135,10 +135,10 @@ entity.thaumadditions.chester=Честер
 tooltip.thaumadditions:vis=Вис: %,d / %,d
 tooltip.thaumadditions:phantom=Фантомный
 tooltip.thaumadditions:essentia_pistol.shoot=Объём выстрела: %,d Вис
-tooltip.thaumadditions:cb_sort_rule.0=Sort by name (A->Z)
-tooltip.thaumadditions:cb_sort_rule.1=Sort by name (Z->A)
-tooltip.thaumadditions:cb_sort_rule.2=Sort by amount (Ascending)
-tooltip.thaumadditions:cb_sort_rule.3=Sort by amount (Descending)
+tooltip.thaumadditions:cb_sort_rule.0=Сортировать по имени (A->Z)
+tooltip.thaumadditions:cb_sort_rule.1=Сортировать по имени (Z->A)
+tooltip.thaumadditions:cb_sort_rule.2=Сортировать по количеству (спад.)
+tooltip.thaumadditions:cb_sort_rule.3=Сортировать по количеству (возрост.)
 
 #################
 
