@@ -52,8 +52,10 @@ public class GuiCrystalBag extends GuiWTFMojang<ContainerCrystalBag>
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
+        this.fontRenderer.drawString(this.getContainer().player.inventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
+        
 		if(selectedAspect != null)
-			drawHoveringText(Arrays.asList(selectedAspect.getName(), TextFormatting.DARK_GRAY + selectedAspect.getLocalizedDescription()), mouseX - guiLeft, mouseY - guiTop);
+			drawHoveringText(Arrays.asList(selectedAspect.getName() + " (x" + getContainer().aspects.getAmount(selectedAspect) + ")", TextFormatting.DARK_GRAY + selectedAspect.getLocalizedDescription()), mouseX - guiLeft, mouseY - guiTop);
 		
 		hoverArea.setBounds(guiLeft + 14, guiTop + 4, 10, 10);
 		if(hoverArea.contains(mouseX, mouseY))
@@ -77,7 +79,7 @@ public class GuiCrystalBag extends GuiWTFMojang<ContainerCrystalBag>
 		
 		GlStateManager.disableDepth();
 		
-		Aspect[] as = sortRule / 2 == 0 ? aspects.getAspectsSortedByAmount() : aspects.getAspectsSortedByName();
+		Aspect[] as = sortRule / 2 == 1 ? aspects.getAspectsSortedByAmount() : aspects.getAspectsSortedByName();
 		
 		int e = 0, j = 0;
 		boolean ifc = sortRule % 2 == 1;
