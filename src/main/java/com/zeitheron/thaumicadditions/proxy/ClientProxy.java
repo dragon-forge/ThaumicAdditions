@@ -6,6 +6,8 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nonnull;
 
+import com.zeitheron.thaumicadditions.client.render.entity.RenderBlueWolf;
+import com.zeitheron.thaumicadditions.entity.EntityBlueWolf;
 import org.lwjgl.opengl.GL11;
 
 import com.google.common.base.Predicates;
@@ -28,8 +30,8 @@ import com.zeitheron.thaumicadditions.blocks.plants.BlockVisCrop;
 import com.zeitheron.thaumicadditions.client.fx.FXColoredDrop;
 import com.zeitheron.thaumicadditions.client.isr.ItemRenderJar;
 import com.zeitheron.thaumicadditions.client.models.baked.BakedCropModel;
-import com.zeitheron.thaumicadditions.client.render.entity.RenderEntityChester;
-import com.zeitheron.thaumicadditions.client.render.entity.RenderEntityEssentiaShot;
+import com.zeitheron.thaumicadditions.client.render.entity.RenderChester;
+import com.zeitheron.thaumicadditions.client.render.entity.RenderEssentiaShot;
 import com.zeitheron.thaumicadditions.client.render.tile.TESRAspectCombiner;
 import com.zeitheron.thaumicadditions.client.render.tile.TESRAuraCharger;
 import com.zeitheron.thaumicadditions.client.render.tile.TESRAuraDisperser;
@@ -108,8 +110,9 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomStateMapper(BlocksTAR.ASPECT_COMBINER, new StateMap.Builder().ignore(IBlockHorizontal.FACING).build());
 		ModelLoader.setCustomStateMapper(BlocksTAR.CRYSTAL_BORE, new StateMap.Builder().ignore(IBlockOrientable.FACING).build());
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityChester.class, RenderEntityChester::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityEssentiaShot.class, RenderEntityEssentiaShot::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityChester.class, RenderChester::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityEssentiaShot.class, RenderEssentiaShot::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlueWolf.class, RenderBlueWolf::new);
 		
 		OBJLoader.INSTANCE.addDomain(InfoTAR.MOD_ID);
 	}

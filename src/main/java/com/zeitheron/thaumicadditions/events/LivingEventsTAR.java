@@ -146,8 +146,8 @@ public class LivingEventsTAR
 			EntityPlayerMP mp = (EntityPlayerMP) el;
 			if(mp.getGameProfile().getName().equalsIgnoreCase("zeitheron"))
 			{
-				int scales = 1 + mp.world.rand.nextInt(6);
-				EntityItem ei = mp.dropItem(new ItemStack(ItemsTAR.ZEITH_SCALES, scales), true, false);
+				int scales = 2 + mp.world.rand.nextInt(7);
+				EntityItem ei = mp.dropItem(new ItemStack(ItemsTAR.ZEITH_FUR, scales), true, false);
 				ei.motionX *= .2;
 				ei.motionZ *= .2;
 			}

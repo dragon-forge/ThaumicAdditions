@@ -55,10 +55,8 @@ public class ItemVisSeeds extends ItemSeeds implements IEssentiaContainerItem
 			
 			itemstack.shrink(1);
 			return EnumActionResult.SUCCESS;
-		} else
-		{
-			return EnumActionResult.FAIL;
 		}
+		return EnumActionResult.FAIL;
 	}
 	
 	@Override
@@ -70,7 +68,7 @@ public class ItemVisSeeds extends ItemSeeds implements IEssentiaContainerItem
 	@Override
 	public IBlockState getPlant(IBlockAccess world, BlockPos pos)
 	{
-		return BlocksTAR.VIS_CROPS.get(AspectUtil.cycleRandomAspect()).getDefaultState();
+		return BlocksTAR.VIS_CROPS.get(AspectUtil.cycleRandomAspect(BlocksTAR.INDEXED_ASPECTS)).getDefaultState();
 	}
 	
 	public static int getColor(ItemStack stack, int layer)

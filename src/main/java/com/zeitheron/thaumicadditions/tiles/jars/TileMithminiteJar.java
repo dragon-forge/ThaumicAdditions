@@ -1,7 +1,6 @@
 package com.zeitheron.thaumicadditions.tiles.jars;
 
 import com.zeitheron.thaumicadditions.tiles.TileAbstractJarFillable;
-
 import net.minecraft.util.EnumFacing;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aura.AuraHelper;
@@ -17,6 +16,11 @@ public class TileMithminiteJar extends TileAbstractJarFillable
 	@Override
 	public int addToContainer(Aspect tt, int am)
 	{
+		if(aspect == null)
+		{
+			aspect = tt;
+			amount = am;
+		}
 		boolean up = this.amount < getCapacity();
 		if(am == 0)
 			return am;

@@ -18,6 +18,7 @@ import com.zeitheron.thaumicadditions.api.ResearchAddendumBuilder;
 import com.zeitheron.thaumicadditions.api.ResearchEntryBuilder;
 import com.zeitheron.thaumicadditions.api.ResearchStageBuilder;
 import com.zeitheron.thaumicadditions.config.ConfigsTAR;
+import com.zeitheron.thaumicadditions.entity.EntityBlueWolf;
 import com.zeitheron.thaumicadditions.items.seed.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;
 
@@ -42,13 +43,9 @@ import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.capabilities.IPlayerKnowledge.EnumKnowledgeType;
 import thaumcraft.api.internal.CommonInternals;
 import thaumcraft.api.items.ItemsTC;
-import thaumcraft.api.research.ResearchCategories;
-import thaumcraft.api.research.ResearchCategory;
-import thaumcraft.api.research.ResearchEntry;
+import thaumcraft.api.research.*;
 import thaumcraft.api.research.ResearchEntry.EnumResearchMeta;
 import thaumcraft.api.research.ResearchStage.Knowledge;
-import thaumcraft.api.research.ScanBlock;
-import thaumcraft.api.research.ScanningManager;
 import thaumcraft.common.lib.CommandThaumcraft;
 import thaumcraft.common.lib.crafting.ThaumcraftCraftingManager;
 import thaumcraft.common.lib.research.ResearchManager;
@@ -94,6 +91,7 @@ public class KnowledgeTAR
 	private static void registerScans()
 	{
 		ScanningManager.addScannableThing(new ScanBlock("!TARShimmerleaf", BlocksTC.shimmerleaf));
+		ScanningManager.addScannableThing(new ScanEntity("!TARBlueWolf", EntityBlueWolf.class, false));
 	}
 	
 	private static void $init()
@@ -211,6 +209,8 @@ public class KnowledgeTAR
 				new REB().setBaseInfo("TAR_VOID_ELEMENTAL_HOE", "void_elemental_hoe", -2, 8, new ItemStack(ItemsTAR.VOID_ELEMENTAL_HOE)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":void_elemental_hoe.1").setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 1), new Knowledge(EnumKnowledgeType.THEORY, R_ELDRITCH, 1)).setWarp(2).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":void_elemental_hoe.2").setRecipes(InfoTAR.MOD_ID + ":void_elemental_hoe").build()).setParents("TAR_ELDRITCH", "ELEMENTALTOOLS").buildAndRegister();
 			}
 		}
+		
+		new REB().setBaseInfo("!TARBlueWolf", "blue_wolf", -6, -10, new ResourceLocation(InfoTAR.MOD_ID, "textures/research/blue_wolf.png")).setMeta(EnumResearchMeta.HIDDEN, EnumResearchMeta.HEX).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":blue_wolf").build()).buildAndRegister();
 	}
 	
 	private static void $insertAspects()
@@ -243,7 +243,7 @@ public class KnowledgeTAR
 		appendAspects(new ItemStack(Blocks.NETHER_BRICK_FENCE), new AspectList().add(INFERNUM, 5));
 		appendAspects(new ItemStack(Blocks.PISTON), new AspectList().add(FLUCTUS, 10).add(VENTUS, 10));
 		appendAspects(new ItemStack(BlocksTC.logGreatwood), new AspectList().add(Aspect.MAGIC, 10));
-		appendAspects(new ItemStack(ItemsTAR.ZEITH_SCALES), new AspectList().add(Aspect.MIND, 15).add(DRACO, 15).add(Aspect.LIFE, 15).add(CAELES, 2).add(Aspect.AURA, 20));
+		appendAspects(new ItemStack(ItemsTAR.ZEITH_FUR), new AspectList().add(Aspect.MIND, 15).add(DRACO, 15).add(Aspect.LIFE, 15).add(CAELES, 2).add(Aspect.AURA, 20));
 		appendAspects(new ItemStack(Items.SKULL, 1, 5), new AspectList().add(DRACO, 30));
 		appendAspects(new ItemStack(Items.FEATHER), new AspectList().add(VENTUS, 5));
 		appendAspects(new ItemStack(Items.ROTTEN_FLESH), new AspectList().add(Aspect.DEATH, 2));

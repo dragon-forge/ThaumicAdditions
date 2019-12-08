@@ -10,7 +10,7 @@ import net.minecraft.util.text.ITextComponent;
 
 public class ChatTA
 {
-	public static final ChatFingerprint THAUMIC_FINGERRINT = new ChatFingerprint(0x01_02_69_80_57_25_53_53l);
+	public static final ChatFingerprint THAUMIC_FINGERRINT = new ChatFingerprint(0x01_02_69_80_57_25_53_53L);
 	
 	public static void sendMessage(EntityPlayer player, ITextComponent text)
 	{

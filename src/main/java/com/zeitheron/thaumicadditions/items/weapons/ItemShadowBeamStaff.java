@@ -12,8 +12,8 @@ import com.zeitheron.hammercore.utils.VecDir;
 import com.zeitheron.hammercore.utils.math.vec.Vector3;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.items.IAspectChargableItem;
+import com.zeitheron.thaumicadditions.net.PacketSyncRotationAndShootShadowBeamStaff;
 import com.zeitheron.thaumicadditions.net.fxh.FXShadowBeamParticle;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
@@ -21,15 +21,13 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.*;
 import net.minecraft.util.EnumFacing.Axis;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import thaumcraft.api.aspects.Aspect;
@@ -65,10 +63,19 @@ public class ItemShadowBeamStaff extends Item implements IAspectChargableItem
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
+		if(worldIn.isRemote)
+		{
+			HCNet.INSTANCE.sendToServer(PacketSyncRotationAndShootShadowBeamStaff.create(playerIn, handIn));
+		}
+		return super.onItemRightClick(worldIn, playerIn, handIn);
+	}
+	
+	public void handleRightClick(EntityPlayer playerIn, EnumHand handIn)
+	{
 		ItemStack held = playerIn.getHeldItem(handIn);
 		AspectList al = AspectChargableItemHelper.getAspects(held);
 		int alienis = al.getAmount(Aspect.ELDRITCH);
-		if(!worldIn.isRemote && (alienis > 0 || playerIn.capabilities.isCreativeMode))
+		if(!playerIn.world.isRemote && (alienis > 0 || playerIn.capabilities.isCreativeMode))
 		{
 			List<Vec3d> positions = new ArrayList<>();
 			double cx = 0, cy = 0, cz = 0;
@@ -86,18 +93,18 @@ public class ItemShadowBeamStaff extends Item implements IAspectChargableItem
 			cy /= positions.size();
 			cz /= positions.size();
 			Map<Entity, Integer> strikes = new HashMap<>();
-			for(int i = 0; i < positions.size() - 1; ++i)
+			for(int i = 0; i < (positions.size() - 1); ++i)
 			{
 				Vec3d s = positions.get(i);
 				Vec3d e = positions.get(i + 1);
 				Vec3d dir = e.subtract(s).normalize();
 				double dist = s.distanceTo(e);
-				new VecDir(s, e.normalize(), dist).getEntitiesWithinDir(worldIn, EntityLivingBase.class).forEach(ent -> strikes.put(ent, strikes.computeIfAbsent(ent, e2 -> 0) + 1));
+				new VecDir(s, e.normalize(), dist).getEntitiesWithinDir(playerIn.world, EntityLivingBase.class).forEach(ent -> strikes.put(ent, strikes.computeIfAbsent(ent, e2 -> 0) + 1));
 			}
 			strikes.remove(playerIn);
 			strikes.forEach((ent, count) -> ent.attackEntityFrom(DamageSource.causePlayerDamage(playerIn), 5 * count));
-			HCNet.INSTANCE.sendToAllAround(FXShadowBeamParticle.create(positions), new TargetPoint(worldIn.provider.getDimension(), cx, cy, cz, 256));
-			SoundUtil.playSoundEffect(worldIn, InfoTAR.MOD_ID + ":shadow_beam", cx, cy, cz, 5F, 1F, SoundCategory.PLAYERS);
+			HCNet.INSTANCE.sendToAllAround(FXShadowBeamParticle.create(positions), new TargetPoint(playerIn.world.provider.getDimension(), cx, cy, cz, 256));
+			SoundUtil.playSoundEffect(playerIn.world, InfoTAR.MOD_ID + ":shadow_beam", cx, cy, cz, 5F, 1F, SoundCategory.PLAYERS);
 			if(!playerIn.capabilities.isCreativeMode)
 			{
 				al.remove(Aspect.ELDRITCH, 1);
@@ -105,7 +112,6 @@ public class ItemShadowBeamStaff extends Item implements IAspectChargableItem
 			}
 		}
 		playerIn.getCooldownTracker().setCooldown(this, 20);
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, held);
 	}
 	
 	public static void recursiveLoop(EntityPlayer player, float partialTime, List<Vec3d> positions, double distance)

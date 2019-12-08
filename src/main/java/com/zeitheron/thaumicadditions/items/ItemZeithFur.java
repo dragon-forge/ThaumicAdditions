@@ -22,11 +22,11 @@ import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchCategory;
 import thaumcraft.common.lib.SoundsTC;
 
-public class ItemZeithScale extends ItemMaterial
+public class ItemZeithFur extends ItemMaterial
 {
-	public ItemZeithScale()
+	public ItemZeithFur()
 	{
-		super("zeith_scale", "scalesDragon", "scaleDragon");
+		super("zeith_fur", "fur");
 	}
 	
 	@SideOnly(Side.CLIENT)

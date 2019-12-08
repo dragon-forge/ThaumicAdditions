@@ -1,6 +1,8 @@
 package com.zeitheron.thaumicadditions.init;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.zeitheron.hammercore.internal.SimpleRegistration;
@@ -81,10 +83,13 @@ public class BlocksTAR
 	
 	public static final BlockCrystal CRYSTAL_BLOCK = new BlockCrystal();
 	
+	public static List<Aspect> INDEXED_ASPECTS = new ArrayList<>();
+	
 	public static void loadAspectBlocks()
 	{
 		ProvideThaumicAspectsEvent evt = new ProvideThaumicAspectsEvent();
 		MinecraftForge.EVENT_BUS.post(evt);
+		INDEXED_ASPECTS.addAll(evt.getAspects());
 		for(Aspect a : evt.getAspects())
 			if(!VIS_CROPS.containsKey(a))
 			{

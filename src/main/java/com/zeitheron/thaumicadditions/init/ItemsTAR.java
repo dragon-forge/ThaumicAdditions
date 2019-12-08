@@ -9,7 +9,7 @@ import com.zeitheron.thaumicadditions.items.ItemMaterial;
 import com.zeitheron.thaumicadditions.items.ItemSaltEssence;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.items.ItemVisPod;
-import com.zeitheron.thaumicadditions.items.ItemZeithScale;
+import com.zeitheron.thaumicadditions.items.ItemZeithFur;
 import com.zeitheron.thaumicadditions.items.armor.ItemAdaminiteDress;
 import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
 import com.zeitheron.thaumicadditions.items.baubles.ItemFragnantPendant;
@@ -45,7 +45,7 @@ public class ItemsTAR
 	public static final ItemMaterial SEAL_GLOBE = new ItemMaterial("seal_globe");
 	public static final ItemMaterial ODOUR_POWDER = new ItemMaterial("odour_powder");
 	public static final ItemMaterial PHANTOM_INK_PHIAL = new ItemMaterial("phantom_ink_phial");
-	public static final ItemMaterial ZEITH_SCALES = new ItemZeithScale();
+	public static final ItemMaterial ZEITH_FUR = new ItemZeithFur();
 	
 	// BAUBLES
 	

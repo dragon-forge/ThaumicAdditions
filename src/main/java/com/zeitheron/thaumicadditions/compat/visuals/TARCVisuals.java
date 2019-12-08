@@ -7,7 +7,7 @@ import com.zeitheron.hammercore.client.utils.UtilsFX;
 import com.zeitheron.hammercore.mod.ModuleLoader;
 import com.zeitheron.hammercore.utils.ItemStackUtil;
 import com.zeitheron.thaumicadditions.TAReconstructed;
-import com.zeitheron.thaumicadditions.client.render.entity.RenderEntityChester;
+import com.zeitheron.thaumicadditions.client.render.entity.RenderChester;
 import com.zeitheron.thaumicadditions.compat.ITARC;
 import com.zeitheron.visuals.client.tesr.TESRChestModified;
 import com.zeitheron.visuals.client.tex.TextureTransformer;
@@ -32,9 +32,9 @@ public class TARCVisuals implements ITARC
 	{
 		TAReconstructed.LOG.info("Client compat with Visuals enabled!");
 		
-		TextureTransformer.transform(RenderEntityChester.CHESTER_TEXTURE, TextureTransformer.CHEST_SINGLE_SAW);
-		RenderEntityChester.visualsEnabled = true;
-		RenderEntityChester.visualsRenderer = (chester, transform) ->
+		TextureTransformer.transform(RenderChester.CHESTER_TEXTURE, TextureTransformer.CHEST_SINGLE_SAW);
+		RenderChester.visualsEnabled = true;
+		RenderChester.visualsRenderer = (chester, transform) ->
 		{
 			float pt = transform.get2().y;
 			float f = chester.getCurrentLidRotation(pt);
@@ -54,7 +54,7 @@ public class TARCVisuals implements ITARC
 				GlStateManager.rotate(chester.rotationYaw, 0, 1, 0);
 				GlStateManager.translate(-7 / 16F, -.5005, -7 / 16F);
 				
-				UtilsFX.bindTexture(RenderEntityChester.CHESTER_TEXTURE);
+				UtilsFX.bindTexture(RenderChester.CHESTER_TEXTURE);
 				TESRChestModified.CHEST_INSIDE.render(null, 0, 0, 0, 0, 0, 0.0625F);
 				
 				GlStateManager.enableAlpha();

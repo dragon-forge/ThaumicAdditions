@@ -6,12 +6,15 @@ import com.zeitheron.thaumicadditions.entity.EntityEssentiaShot;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class RenderEntityEssentiaShot extends Render<EntityEssentiaShot>
+@SideOnly(Side.CLIENT)
+public class RenderEssentiaShot extends Render<EntityEssentiaShot>
 {
 	public static final ResourceLocation ESSENTIA_DROP = new ResourceLocation(InfoTAR.MOD_ID, "textures/misc/essentia_drop.png");
 	
-	public RenderEntityEssentiaShot(RenderManager renderManager)
+	public RenderEssentiaShot(RenderManager renderManager)
 	{
 		super(renderManager);
 	}

@@ -1,15 +1,13 @@
 package com.zeitheron.thaumicadditions.blocks;
 
-import java.util.List;
-
 import com.zeitheron.hammercore.internal.blocks.IItemBlock;
 import com.zeitheron.hammercore.internal.blocks.base.BlockTileHC;
 import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
+import com.zeitheron.thaumicadditions.api.items.EssentiaJarManager;
 import com.zeitheron.thaumicadditions.tiles.TileAbstractJarFillable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -24,11 +22,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -47,6 +41,8 @@ import thaumcraft.api.items.ItemsTC;
 import thaumcraft.common.items.consumables.ItemPhial;
 import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.tiles.essentia.TileAlembic;
+
+import java.util.List;
 
 public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable> extends BlockTileHC<T> implements ILabelable, IItemBlock
 {
@@ -203,53 +199,78 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable> extends
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		TileEntity te = world.getTileEntity(pos);
-		if(te != null && te instanceof TileAbstractJarFillable && !player.getHeldItem(hand).isEmpty() && player.getHeldItem(hand).getItem() == ItemsTC.phial)
+		if(te != null && te instanceof TileAbstractJarFillable && !player.getHeldItem(hand).isEmpty())
 		{
 			TileAbstractJarFillable tile = (TileAbstractJarFillable) te;
-			ItemPhial ip = (ItemPhial) ItemsTC.phial;
 			
-			if(player.getHeldItem(hand).getItemDamage() == 0 && tile.amount >= 10)
+			EssentiaJarManager.IJar jar;
+			
+			ItemStack held = player.getHeldItem(hand);
+			if(held.getItem() == ItemsTC.phial)
 			{
-				if(world.isRemote)
-					return true;
+				ItemPhial ip = (ItemPhial) ItemsTC.phial;
 				
-				Aspect asp = tile.aspect;
-				if(asp != null && tile.takeFromContainer(asp, 10))
+				if(held.getItemDamage() == 0 && tile.amount >= 10)
 				{
-					player.getHeldItem(hand).shrink(1);
-					ItemStack phial = new ItemStack(ip, 1, 1);
-					ip.setAspects(phial, new AspectList().add(asp, 10));
-					if(!player.inventory.addItemStackToInventory(phial))
-						world.spawnEntity(new EntityItem(world, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, phial));
-					SoundUtil.playSoundEffect(world, SoundEvents.ITEM_BOTTLE_FILL.getRegistryName().toString(), pos, .5F, 1F, SoundCategory.PLAYERS);
-					player.inventoryContainer.detectAndSendChanges();
-					return true;
-				}
-			} else
-			{
-				AspectList al;
-				if((al = ip.getAspects(player.getHeldItem(hand))) != null && al.size() == 1)
-				{
-					Aspect aspect = al.getAspects()[0];
-					if(player.getHeldItem(hand).getItemDamage() != 0)
+					if(world.isRemote)
+						return true;
+					
+					Aspect asp = tile.aspect;
+					if(asp != null && tile.takeFromContainer(asp, 10))
 					{
-						if(tile.amount <= tile.getCapacity() - 10 && tile.doesContainerAccept(aspect))
+						held.shrink(1);
+						ItemStack phial = new ItemStack(ip, 1, 1);
+						ip.setAspects(phial, new AspectList().add(asp, 10));
+						if(!player.inventory.addItemStackToInventory(phial))
+							world.spawnEntity(new EntityItem(world, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, phial));
+						SoundUtil.playSoundEffect(world, SoundEvents.ITEM_BOTTLE_FILL.getRegistryName().toString(), pos, .5F, 1F, SoundCategory.PLAYERS);
+						player.inventoryContainer.detectAndSendChanges();
+						return true;
+					}
+				} else
+				{
+					AspectList al;
+					if((al = ip.getAspects(player.getHeldItem(hand))) != null && al.size() == 1)
+					{
+						Aspect aspect = al.getAspects()[0];
+						if(player.getHeldItem(hand).getItemDamage() != 0)
 						{
-							if(world.isRemote)
-								return true;
-							if(tile.addToContainer(aspect, 10) == 0)
+							if(tile.amount <= tile.getCapacity() - 10 && tile.doesContainerAccept(aspect))
 							{
-								world.markAndNotifyBlock(pos, world.getChunk(pos), state, state, 3);
-								tile.syncTile(true);
-								player.getHeldItem(hand).shrink(1);
-								if(!player.inventory.addItemStackToInventory(new ItemStack(ip, 1, 0)))
-									world.spawnEntity(new EntityItem(world, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, new ItemStack(ip, 1, 0)));
-								SoundUtil.playSoundEffect(world, SoundEvents.ITEM_BOTTLE_EMPTY.getRegistryName().toString(), pos, .5F, 1F, SoundCategory.PLAYERS);
-								player.inventoryContainer.detectAndSendChanges();
-								return true;
+								if(world.isRemote)
+									return true;
+								if(tile.addToContainer(aspect, 10) == 0)
+								{
+									world.markAndNotifyBlock(pos, world.getChunk(pos), state, state, 3);
+									tile.syncTile(true);
+									player.getHeldItem(hand).shrink(1);
+									if(!player.inventory.addItemStackToInventory(new ItemStack(ip, 1, 0)))
+										world.spawnEntity(new EntityItem(world, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, new ItemStack(ip, 1, 0)));
+									SoundUtil.playSoundEffect(world, SoundEvents.ITEM_BOTTLE_EMPTY.getRegistryName().toString(), pos, .5F, 1F, SoundCategory.PLAYERS);
+									player.inventoryContainer.detectAndSendChanges();
+									return true;
+								}
 							}
 						}
 					}
+				}
+			} else if(held.getCount() == 1 && (jar = EssentiaJarManager.fromStack(held)) != null && jar.getEssentia(held).size() > 0)
+			{
+				boolean didTheThing = false;
+				AspectList list = jar.getEssentia(held);
+				for(Aspect a : list.getAspectsSortedByAmount())
+					if(tile.aspect == null || (tile.aspect == a && tile.amount < tile.getCapacity()))
+					{
+						int e = Math.min(tile.getCapacity() - tile.amount, list.getAmount(a));
+						tile.aspect = a;
+						tile.addToContainer(a, e);
+						jar.drain(held, a, e);
+						didTheThing = true;
+					}
+				if(didTheThing)
+				{
+					world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundsTC.jar, SoundCategory.BLOCKS, 0.4f, 1.0f, false);
+					world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 0.5f, 1.0f + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.3f, false);
 				}
 			}
 		} else if(te != null && te instanceof TileAbstractJarFillable && !((TileAbstractJarFillable) te).blocked && player.getHeldItem(hand).getItem() == ItemsTC.jarBrace)
