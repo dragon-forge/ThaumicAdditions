@@ -2,31 +2,31 @@ package com.zeitheron.thaumicadditions.client.render.entity;
 
 import java.util.function.BiConsumer;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 import com.zeitheron.hammercore.lib.zlib.tuple.TwoTuple;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.client.models.ModelChester;
 import com.zeitheron.thaumicadditions.entity.EntityChester;
-
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class RenderEntityChester extends RenderLiving<EntityChester>
+@SideOnly(Side.CLIENT)
+public class RenderChester extends RenderLiving<EntityChester>
 {
 	private final ModelChester trunkModel;
 	
-	public RenderEntityChester(RenderManager renderManager)
+	public RenderChester(RenderManager renderManager)
 	{
 		this(renderManager, new ModelChester());
 	}
 	
-	protected RenderEntityChester(RenderManager renderManager, ModelChester model)
+	protected RenderChester(RenderManager renderManager, ModelChester model)
 	{
 		super(renderManager, model, .01F);
 		trunkModel = model;

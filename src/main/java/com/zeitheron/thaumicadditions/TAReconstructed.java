@@ -5,6 +5,7 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
 
+import com.zeitheron.thaumicadditions.entity.EntityBlueWolf;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -116,6 +117,7 @@ public class TAReconstructed
 		
 		EntityRegistry.registerModEntity(new ResourceLocation(InfoTAR.MOD_ID, "chester"), EntityChester.class, InfoTAR.MOD_ID + ".chester", 0, instance, 256, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation(InfoTAR.MOD_ID, "essentia_shot"), EntityEssentiaShot.class, InfoTAR.MOD_ID + ".essentia_shot", 1, instance, 64, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(InfoTAR.MOD_ID, "blue_wolf"), EntityBlueWolf.class, InfoTAR.MOD_ID + ".blue_wolf", 2, instance, 64, 1, true, 0x0172C0, 0x01FFE5);
 		
 		proxy.preInit();
 	}
@@ -131,8 +133,8 @@ public class TAReconstructed
 		PotionsTAR.register.call();
 		SealsTAR.init();
 		
-		WeightedRandomLoot.lootBagRare.add(new WeightedRandomLoot(new ItemStack(ItemsTAR.ZEITH_SCALES), 1));
-		EntityPech.tradeInventory.get(2).add(Arrays.asList(5, new ItemStack(ItemsTAR.ZEITH_SCALES)));
+		WeightedRandomLoot.lootBagRare.add(new WeightedRandomLoot(new ItemStack(ItemsTAR.ZEITH_FUR), 1));
+		EntityPech.tradeInventory.get(2).add(Arrays.asList(5, new ItemStack(ItemsTAR.ZEITH_FUR)));
 		
 		TheorycraftManager.registerCard(CardThaumicAdditions.class);
 	}

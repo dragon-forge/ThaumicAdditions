@@ -145,7 +145,11 @@ public class AspectUtil
 	
 	public static Aspect cycleRandomAspect()
 	{
-		List<Aspect> al = new ArrayList<>(Aspect.aspects.values());
+		return cycleRandomAspect(new ArrayList<>(Aspect.aspects.values()));
+	}
+	
+	public static Aspect cycleRandomAspect(List<Aspect> al)
+	{
 		return al.get((int) (System.currentTimeMillis() % (al.size() * 1000L) / 1000));
 	}
 	

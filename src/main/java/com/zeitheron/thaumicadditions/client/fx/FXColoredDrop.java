@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 import com.zeitheron.hammercore.client.particle.api.SimpleParticle;
 import com.zeitheron.hammercore.client.utils.UtilsFX;
 import com.zeitheron.hammercore.utils.color.ColorHelper;
-import com.zeitheron.thaumicadditions.client.render.entity.RenderEntityEssentiaShot;
+import com.zeitheron.thaumicadditions.client.render.entity.RenderEssentiaShot;
 
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -92,7 +92,7 @@ public class FXColoredDrop extends SimpleParticle
 	@Override
 	public void doRenderParticle(double x, double y, double z, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 	{
-		UtilsFX.bindTexture(RenderEntityEssentiaShot.ESSENTIA_DROP);
+		UtilsFX.bindTexture(RenderEssentiaShot.ESSENTIA_DROP);
 		
 		float f = (float) this.particleTextureIndexX / 16.0F;
 		float f1 = f + 0.0624375F;

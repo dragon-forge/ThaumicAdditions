@@ -75,8 +75,8 @@ item.thaumadditions:mithrillium_plate.name=Mithrillium Plate
 item.thaumadditions:adaminite_plate.name=Adaminite Plate
 item.thaumadditions:mithminite_plate.name=Mithminite Plate
 item.thaumadditions:salt_essence.name=Vis Salt
-item.thaumadditions:zeith_scale.name=Zeitheron's Curiosity
-item.thaumadditions:zeith_scale.tip=Drops from a mystical furry
+item.thaumadditions:zeith_fur.name=Blue Wolf Fur
+item.thaumadditions:zeith_fur.tip=Drops from a mystical feral
 item.thaumadditions:dna_sample.name=Entity Cell
 item.thaumadditions:dna_sample.blank=Blank
 item.thaumadditions:dna_sample.entity=Entity
@@ -132,6 +132,7 @@ chat.thaumadditions:chester.follow=The Chester will follow  you.
 chat.thaumadditions:chester.not_master=You are not my master.
 entity.thaumadditions.chester.name=Chester
 entity.thaumadditions.chester=Chester
+entity.thaumadditions.blue_wolf.name=Blue Wolf
 tooltip.thaumadditions:vis=Vis: %,d / %,d
 tooltip.thaumadditions:phantom=Phantom
 tooltip.thaumadditions:essentia_pistol.shoot=Shoot Volume: %,d Vis
@@ -364,6 +365,9 @@ research_stage.thaumadditions:disenchant_fabric.2=Enchanted Fabric along with sa
 research_name.thaumadditions:crystal_bag=Crystal Bag
 research_stage.thaumadditions:crystal_bag.1=Inventory problems can get quite annoying something, especially with all these crystals! I wonder if I could link foci pouches that to store crystals somehow...
 research_stage.thaumadditions:crystal_bag.2=The pure crystals may not work, but it appears to me that natural crystals can attune the pouch to accept any crystal. Also, I think I may have opened a black hole of some kind!..
+
+research_name.thaumadditions:blue_wolf=Blue Wolf
+research_stage.thaumadditions:blue_wolf=Blue Wolves cannot be found. Their fur color seems very unnatural. Everything about them reminds me of that one thing... Anyway, these wolves are a good source of blue fur. It might be worth researching! It appears that these animals only come with male gender, thus cannot be bred.
 
 ############
 

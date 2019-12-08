@@ -7,7 +7,6 @@ import java.util.function.Function;
 import com.google.common.base.Predicates;
 import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.blocks.BlockAbstractEssentiaJar.BlockAbstractJarItem;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -31,7 +30,8 @@ public class EssentiaJarManager
 				@Override
 				public AspectList getEssentia(ItemStack stack)
 				{
-					return item.getAspects(stack);
+					AspectList list = item.getAspects(stack);
+					return list == null ? new AspectList() : list;
 				}
 				
 				@Override
@@ -84,7 +84,8 @@ public class EssentiaJarManager
 					@Override
 					public AspectList getEssentia(ItemStack stack)
 					{
-						return item.getAspects(stack);
+						AspectList list = item.getAspects(stack);
+						return list == null ? new AspectList() : list;
 					}
 					
 					@Override
@@ -145,7 +146,7 @@ public class EssentiaJarManager
 		return jarsup == null ? null : jarsup.apply(stack);
 	}
 	
-	public static interface IJar
+	public interface IJar
 	{
 		AspectList getEssentia(ItemStack stack);
 		
