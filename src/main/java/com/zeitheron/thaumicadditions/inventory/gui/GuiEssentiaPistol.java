@@ -9,12 +9,12 @@ import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.inventory.container.ContainerEssentiaPistol;
 import com.zeitheron.thaumicadditions.tiles.TileGrowthChamber;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.math.MathHelper;
+import org.lwjgl.opengl.GL11;
 import thaumcraft.common.lib.SoundsTC;
 
 public class GuiEssentiaPistol extends GuiWTFMojang<ContainerEssentiaPistol>
@@ -56,6 +56,15 @@ public class GuiEssentiaPistol extends GuiWTFMojang<ContainerEssentiaPistol>
 			RenderUtil.drawTexturedModalRect(guiLeft + 47, guiTop + 30 + 50 - fill * 50, 248, (Minecraft.getMinecraft().player.ticksExisted + partialTicks) % 256, 8, fill * 50);
 		}
 		ColorHelper.gl(0xFFFFFFFF);
+		
+		if(!inventorySlots.inventorySlots.get(0).getHasStack())
+		{
+			GL11.glPushMatrix();
+			GL11.glTranslatef(guiLeft + 80, guiTop + 47, 0);
+			GL11.glScalef(0.5F, 0.5F, 1F);
+			drawTexturedModalRect(0, 0, 0, ySize, 32, 32);
+			GL11.glPopMatrix();
+		}
 		
 		if(hov >= 0F)
 		{
