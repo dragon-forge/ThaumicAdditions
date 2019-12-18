@@ -115,6 +115,10 @@ item.thaumadditions:shadow_beam_staff.name=Посох теневого плам�
 item.thaumadditions:essentia_pistol.name=Essentia Pistol
 item.thaumadditions:disenchant_fabric.name=Ткань снятия зачарований
 item.thaumadditions:crystal_bag.name=Мешочек для кристаллов
+item.thaumadditions:blue_wolf_mask.name=Маска синего волка
+item.thaumadditions:blue_wolf_body.name=Тело синего волка
+item.thaumadditions:blue_wolf_legs.name=Ноги синего волка
+item.thaumadditions:blue_wolf_feetpaws.name=Лапы синего волка
 
 #########
 

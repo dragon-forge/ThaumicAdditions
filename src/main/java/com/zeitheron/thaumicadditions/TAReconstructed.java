@@ -57,7 +57,7 @@ import thaumcraft.api.research.ResearchCategory;
 import thaumcraft.api.research.theorycraft.TheorycraftManager;
 import thaumcraft.common.entities.monster.EntityPech;
 
-@Mod(modid = InfoTAR.MOD_ID, name = InfoTAR.MOD_NAME, version = InfoTAR.MOD_VERSION, certificateFingerprint = "4d7b29cd19124e986da685107d16ce4b49bc0a97", dependencies = "required-after:hammercore;required-after:thaumcraft@[6.1.BETA26,);before:iceandfire", updateJSON = "https://dccg.herokuapp.com/api/fmluc/232564")
+@Mod(modid = InfoTAR.MOD_ID, name = InfoTAR.MOD_NAME, version = InfoTAR.MOD_VERSION, certificateFingerprint = "9f5e2a811a8332a842b34f6967b7db0ac4f24856", dependencies = "required-after:hammercore;required-after:thaumcraft@[6.1.BETA26,);before:iceandfire", updateJSON = "https://dccg.herokuapp.com/api/fmluc/232564")
 public class TAReconstructed
 {
 	public static final Logger LOG = LogManager.getLogger(InfoTAR.MOD_ID);

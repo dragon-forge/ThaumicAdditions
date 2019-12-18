@@ -115,6 +115,10 @@ item.thaumadditions:shadow_beam_staff.name=Shadow Beam Staff
 item.thaumadditions:essentia_pistol.name=Essentia Pistol
 item.thaumadditions:disenchant_fabric.name=Fabric of Disenchantment
 item.thaumadditions:crystal_bag.name=Crystal Bag
+item.thaumadditions:blue_wolf_mask.name=Blue Wolf Mask
+item.thaumadditions:blue_wolf_body.name=Blue Wolf Body
+item.thaumadditions:blue_wolf_legs.name=Blue Wolf Legs
+item.thaumadditions:blue_wolf_feetpaws.name=Blue Wolf Paws
 
 #########
 
