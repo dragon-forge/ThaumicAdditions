@@ -39,16 +39,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 
-public class ItemEssentiaPistol extends Item
+public class ItemEssentiaPistol
+		extends Item
 {
 	final AspectList emptylist = new AspectList();
-	
+
 	public ItemEssentiaPistol()
 	{
 		setTranslationKey("essentia_pistol");
 		setMaxStackSize(1);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
@@ -58,10 +59,11 @@ public class ItemEssentiaPistol extends Item
 		ItemStack jarStack = getJar(stack);
 		IJar jar = EssentiaJarManager.fromStack(jarStack);
 		AspectList list = jar != null ? jar.getEssentia(jarStack) : emptylist;
-		for(Aspect a : list.getAspectsSortedByAmount())
-			tooltip.add(" - " + a.getName() + " x" + String.format("%,d", list.getAmount(a)));
+		if(list != null)
+			for(Aspect a : list.getAspectsSortedByAmount())
+				tooltip.add(" - " + a.getName() + " x" + String.format("%,d", list.getAmount(a)));
 	}
-	
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
@@ -70,7 +72,7 @@ public class ItemEssentiaPistol extends Item
 			GuiManager.openGuiCallback(GuisTAR.ESSENTIA_PISTOL, playerIn, new WorldLocation(worldIn, playerIn.getPosition()));
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 		}
-		
+
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		ItemStack jarStack = getJar(stack);
 		IJar jar = EssentiaJarManager.fromStack(jarStack);
@@ -86,10 +88,10 @@ public class ItemEssentiaPistol extends Item
 				AspectList a = new AspectList();
 				a.add(as, amt);
 				EntityEssentiaShot shot = new EntityEssentiaShot(worldIn, playerIn, a);
-				
+
 				EnumHandSide hs = playerIn.getPrimaryHand();
 				int shift = (hs == EnumHandSide.RIGHT && handIn == EnumHand.MAIN_HAND) || (hs == EnumHandSide.LEFT && handIn == EnumHand.OFF_HAND) ? 90 : -90;
-				
+
 				float yaw = playerIn.rotationYaw + shift, pitch = playerIn.rotationPitch;
 				float f = MathHelper.cos(-yaw * 0.017453292F - (float) Math.PI);
 				float f1 = MathHelper.sin(-yaw * 0.017453292F - (float) Math.PI);
@@ -97,11 +99,11 @@ public class ItemEssentiaPistol extends Item
 				float f3 = MathHelper.sin(-pitch * 0.017453292F);
 				Vec3d look = new Vec3d((double) (f1 * f2), (double) f3, (double) (f * f2));
 				Vec3d actualLook = playerIn.getLook(1F).scale(0.4F);
-				
+
 				shot.posX += look.x * 0.65F + actualLook.x;
 				shot.posY += actualLook.y;
 				shot.posZ += look.z * 0.65F + actualLook.z;
-				
+
 				shot.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0, 1.5F, 0F);
 				worldIn.spawnEntity(shot);
 				if(!playerIn.capabilities.isCreativeMode)
@@ -115,7 +117,7 @@ public class ItemEssentiaPistol extends Item
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
-	
+
 	public static void setJar(ItemStack pistol, ItemStack jar)
 	{
 		if(!pistol.isEmpty())
@@ -125,38 +127,39 @@ public class ItemEssentiaPistol extends Item
 			pistol.getTagCompound().setTag("Jar", jar.serializeNBT());
 		}
 	}
-	
+
 	public static ItemStack getJar(ItemStack pistol)
 	{
 		if(!pistol.isEmpty() && pistol.hasTagCompound() && pistol.getTagCompound().hasKey("Jar"))
 			return new ItemStack(pistol.getTagCompound().getCompoundTag("Jar"));
 		return ItemStack.EMPTY;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
-	public static class ItemRendererEssentiaPistol implements IItemRender
+	public static class ItemRendererEssentiaPistol
+			implements IItemRender
 	{
 		final AspectList emptylist = new AspectList();
-		
+
 		@Override
 		public void renderItem(ItemStack item)
 		{
 			ItemStack jarStack = getJar(item);
 			IJar jar = EssentiaJarManager.fromStack(jarStack);
 			AspectList list = jar != null ? jar.getEssentia(jarStack) : emptylist;
-			
+
 			if(list == null || list.visSize() == 0)
 				return;
-			
+
 			float fill = list.visSize() / Math.max(1F, jar.capacity(jarStack));
 			int color = AspectUtil.getColor(list, true);
-			
+
 			GlStateManager.pushMatrix();
 			GlStateManager.pushAttrib();
-			
+
 			GlStateManager.disableBlend();
 			GL11.glBlendFunc(770, 771);
-			
+
 			GL11.glDisable(2896);
 			GlStateManager.rotate(22.5F, 1, 0, 0);
 			GlStateManager.color(1F, 1F, 1F, 1F);
@@ -170,7 +173,7 @@ public class ItemEssentiaPistol extends Item
 			sbr.end();
 			GL11.glEnable(2896);
 			GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-			
+
 			GlStateManager.popAttrib();
 			GlStateManager.popMatrix();
 		}
