@@ -292,7 +292,7 @@ public class RecipesTAR extends RecipeRegistry
 		List<ResourceLocation> locs = FAKE_RECIPE_MAP.get(it);
 		if(locs == null)
 			FAKE_RECIPE_MAP.put(it, locs = new ArrayList<>());
-		return locs.stream().map(l -> l.toString()).collect(Collectors.toList()).toArray(new String[locs.size()]);
+		return locs.stream().map(ResourceLocation::toString).collect(Collectors.toList()).toArray(new String[locs.size()]);
 	}
 	
 	public static String[] getFakeRecipes(Item it, String... appends)

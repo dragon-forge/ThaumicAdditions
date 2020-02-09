@@ -3,8 +3,8 @@ package com.zeitheron.thaumicadditions.items.seed;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
-
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,16 +27,18 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IEssentiaContainerItem;
 
-public class ItemVisSeeds extends ItemSeeds implements IEssentiaContainerItem
+public class ItemVisSeeds
+		extends ItemSeeds
+		implements IEssentiaContainerItem
 {
 	public static final int ASPECT_COUNT = 2;
-	
+
 	public ItemVisSeeds()
 	{
 		super(null, Blocks.FARMLAND);
 		setTranslationKey("vis_seeds");
 	}
-	
+
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
@@ -45,32 +47,34 @@ public class ItemVisSeeds extends ItemSeeds implements IEssentiaContainerItem
 		if(facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemstack) && state.getBlock().canSustainPlant(state, worldIn, pos, EnumFacing.UP, this) && worldIn.isAirBlock(pos.up()))
 		{
 			Aspect asp = Aspect.getAspect(itemstack.getTagCompound().getString("Aspect"));
-			
+
 			worldIn.setBlockState(pos.up(), BlocksTAR.VIS_CROPS.get(asp).getDefaultState());
-			
+
 			if(player instanceof EntityPlayerMP)
 			{
 				CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) player, pos.up(), itemstack);
 			}
-			
+
 			itemstack.shrink(1);
 			return EnumActionResult.SUCCESS;
 		}
 		return EnumActionResult.FAIL;
 	}
-	
+
 	@Override
 	public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos)
 	{
 		return EnumPlantType.Crop;
 	}
-	
+
 	@Override
 	public IBlockState getPlant(IBlockAccess world, BlockPos pos)
 	{
-		return BlocksTAR.VIS_CROPS.get(AspectUtil.cycleRandomAspect(BlocksTAR.INDEXED_ASPECTS)).getDefaultState();
+		Block crop = BlocksTAR.VIS_CROPS.get(AspectUtil.cycleRandomAspect(BlocksTAR.INDEXED_ASPECTS));
+		if(crop == null) crop = Blocks.AIR;
+		return crop.getDefaultState();
 	}
-	
+
 	public static int getColor(ItemStack stack, int layer)
 	{
 		if(layer == 1 && stack.hasTagCompound() && stack.getTagCompound().hasKey("Aspect", NBT.TAG_STRING))
@@ -81,7 +85,7 @@ public class ItemVisSeeds extends ItemSeeds implements IEssentiaContainerItem
 		}
 		return 0xFFFFFF;
 	}
-	
+
 	public static ItemStack create(Aspect aspect, int count)
 	{
 		ItemStack stack = new ItemStack(ItemsTAR.VIS_SEEDS, count);
@@ -89,15 +93,15 @@ public class ItemVisSeeds extends ItemSeeds implements IEssentiaContainerItem
 		stack.getTagCompound().setString("Aspect", aspect.getTag());
 		return stack;
 	}
-	
+
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
 	{
 		if(isInCreativeTab(tab))
-			for(Aspect a : Aspect.aspects.values())
+			for(Aspect a : BlocksTAR.VIS_CROPS.keySet())
 				items.add(create(a, 1));
 	}
-	
+
 	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
@@ -110,7 +114,7 @@ public class ItemVisSeeds extends ItemSeeds implements IEssentiaContainerItem
 		}
 		return I18n.translateToLocalFormatted(this.getUnlocalizedNameInefficiently(stack) + ".name", an).trim();
 	}
-	
+
 	@Override
 	public AspectList getAspects(ItemStack stack)
 	{
@@ -123,13 +127,13 @@ public class ItemVisSeeds extends ItemSeeds implements IEssentiaContainerItem
 		}
 		return al;
 	}
-	
+
 	@Override
 	public boolean ignoreContainedAspects()
 	{
 		return false;
 	}
-	
+
 	@Override
 	public void setAspects(ItemStack stack, AspectList list)
 	{

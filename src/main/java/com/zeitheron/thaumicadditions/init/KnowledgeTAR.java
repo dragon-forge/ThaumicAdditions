@@ -234,6 +234,8 @@ public class KnowledgeTAR
 		appendAspects(new ItemStack(Blocks.CHEST), new AspectList().add(Aspect.VOID, 6));
 		appendAspects(new ItemStack(Blocks.TNT), new AspectList().add(EXITIUM, 50));
 		appendAspects(new ItemStack(Items.GUNPOWDER), new AspectList().add(EXITIUM, 10));
+		appendAspects(new ItemStack(Blocks.COBBLESTONE), new AspectList().add(EXITIUM, 1));
+		appendAspects(new ItemStack(Blocks.NETHERRACK), new AspectList().add(EXITIUM, 1));
 		appendAspects(new ItemStack(Blocks.DRAGON_EGG), new AspectList().add(DRACO, 100));
 		appendAspects(new ItemStack(Items.DRAGON_BREATH), new AspectList().add(DRACO, 25));
 		appendAspects(new ItemStack(ItemsTC.thaumometer), new AspectList().add(VISUM, 20));

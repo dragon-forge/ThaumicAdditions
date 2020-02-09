@@ -1,15 +1,6 @@
 package com.zeitheron.thaumicadditions.init;
 
-import com.zeitheron.thaumicadditions.items.ItemChester;
-import com.zeitheron.thaumicadditions.items.ItemCrystalBag;
-import com.zeitheron.thaumicadditions.items.ItemDisenchantingFabric;
-import com.zeitheron.thaumicadditions.items.ItemEntityCell;
-import com.zeitheron.thaumicadditions.items.ItemKnowledgeTome;
-import com.zeitheron.thaumicadditions.items.ItemMaterial;
-import com.zeitheron.thaumicadditions.items.ItemSaltEssence;
-import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
-import com.zeitheron.thaumicadditions.items.ItemVisPod;
-import com.zeitheron.thaumicadditions.items.ItemZeithFur;
+import com.zeitheron.thaumicadditions.items.*;
 import com.zeitheron.thaumicadditions.items.armor.ItemAdaminiteDress;
 import com.zeitheron.thaumicadditions.items.armor.ItemBlueWolfSuit;
 import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
@@ -47,6 +38,7 @@ public class ItemsTAR
 	public static final ItemMaterial ODOUR_POWDER = new ItemMaterial("odour_powder");
 	public static final ItemMaterial PHANTOM_INK_PHIAL = new ItemMaterial("phantom_ink_phial");
 	public static final ItemMaterial ZEITH_FUR = new ItemZeithFur();
+	public static final ItemBlueBone BLUE_BONE = new ItemBlueBone();
 	
 	// BAUBLES
 	
@@ -78,10 +70,10 @@ public class ItemsTAR
 	public static final ItemMithminiteDress MITHMINITE_BELT = new ItemMithminiteDress(EntityEquipmentSlot.LEGS).setTranslationKey("mithminite_belt");
 	public static final ItemMithminiteDress MITHMINITE_BOOTS = new ItemMithminiteDress(EntityEquipmentSlot.FEET).setTranslationKey("mithminite_boots");
 
-	public static final ItemBlueWolfSuit BLUE_WOLF_MASK = new ItemBlueWolfSuit(EntityEquipmentSlot.HEAD).setTranslationKey("blue_wolf_mask");
-	public static final ItemBlueWolfSuit BLUE_WOLF_BODY = new ItemBlueWolfSuit(EntityEquipmentSlot.CHEST).setTranslationKey("blue_wolf_body");
-	public static final ItemBlueWolfSuit BLUE_WOLF_LEGS = new ItemBlueWolfSuit(EntityEquipmentSlot.LEGS).setTranslationKey("blue_wolf_legs");
-	public static final ItemBlueWolfSuit BLUE_WOLF_FEETPAWS = new ItemBlueWolfSuit(EntityEquipmentSlot.FEET).setTranslationKey("blue_wolf_feetpaws");
+//	public static final ItemBlueWolfSuit BLUE_WOLF_MASK = new ItemBlueWolfSuit(EntityEquipmentSlot.HEAD).setTranslationKey("blue_wolf_mask");
+//	public static final ItemBlueWolfSuit BLUE_WOLF_BODY = new ItemBlueWolfSuit(EntityEquipmentSlot.CHEST).setTranslationKey("blue_wolf_body");
+//	public static final ItemBlueWolfSuit BLUE_WOLF_LEGS = new ItemBlueWolfSuit(EntityEquipmentSlot.LEGS).setTranslationKey("blue_wolf_legs");
+//	public static final ItemBlueWolfSuit BLUE_WOLF_FEETPAWS = new ItemBlueWolfSuit(EntityEquipmentSlot.FEET).setTranslationKey("blue_wolf_feetpaws");
 
 	// ENTITY-BOUND ITEMS
 	

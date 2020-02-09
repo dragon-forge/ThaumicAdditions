@@ -1,12 +1,9 @@
 package com.zeitheron.thaumicadditions.blocks.plants;
 
-import java.util.Random;
-
 import com.zeitheron.hammercore.api.INoItemBlock;
 import com.zeitheron.thaumicadditions.api.seals.ISealFertilizable;
 import com.zeitheron.thaumicadditions.items.ItemVisPod;
 import com.zeitheron.thaumicadditions.items.seed.ItemVisSeeds;
-
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -24,18 +21,22 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.client.fx.FXDispatcher;
 import thaumcraft.common.items.tools.ItemElementalHoe;
 
-public class BlockVisCrop extends BlockCrops implements INoItemBlock, ISealFertilizable
+import java.util.Random;
+
+public class BlockVisCrop
+		extends BlockCrops
+		implements INoItemBlock, ISealFertilizable
 {
 	public static final PropertyInteger AGE_5 = PropertyInteger.create("age", 0, 4);
-	
+
 	public final Aspect aspect;
-	
+
 	public BlockVisCrop(Aspect aspect)
 	{
 		this.aspect = aspect;
 		setTranslationKey("vis_crop/" + aspect.getTag());
 	}
-	
+
 	@Override
 	public void getDrops(NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
 	{
@@ -51,12 +52,12 @@ public class BlockVisCrop extends BlockCrops implements INoItemBlock, ISealFerti
 					drops.add(ItemVisSeeds.create(aspect, 1));
 		}
 	}
-	
+
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		ItemStack held = playerIn.getHeldItem(hand);
-		
+
 		if(!held.isEmpty() && held.getItem() instanceof ItemElementalHoe)
 		{
 			int i = this.getAge(state) + 1 + worldIn.rand.nextInt(2);
@@ -66,7 +67,7 @@ public class BlockVisCrop extends BlockCrops implements INoItemBlock, ISealFerti
 				i = j;
 				return true;
 			}
-			
+
 			if(!worldIn.isRemote)
 			{
 				worldIn.setBlockState(pos, this.withAge(i), 2);
@@ -74,18 +75,19 @@ public class BlockVisCrop extends BlockCrops implements INoItemBlock, ISealFerti
 				playerIn.getHeldItem(hand).damageItem(3, playerIn);
 			} else
 				FXDispatcher.INSTANCE.drawBlockMistParticles(pos, 4259648);
-			
+
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	public int getColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex)
 	{
-		return tintIndex == 1 ? aspect.getColor() : 0xFFFFFF;
+		if(tintIndex == 1) return aspect.getColor();
+		return 0xFFFFFF;
 	}
-	
+
 	@Override
 	public boolean fertilize(World world, BlockPos pos)
 	{
@@ -96,48 +98,40 @@ public class BlockVisCrop extends BlockCrops implements INoItemBlock, ISealFerti
 			world.setBlockState(pos, withAge(na), 2);
 		return na != a;
 	}
-	
+
 	@Override
 	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
 	{
 		return false;
 	}
-	
+
 	@Override
 	protected PropertyInteger getAgeProperty()
 	{
 		return AGE_5;
 	}
-	
+
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, getAgeProperty());
 	}
-	
+
 	@Override
 	public int getMaxAge()
 	{
 		return 4;
 	}
-	
+
 	@Override
 	protected int getBonemealAgeIncrease(World worldIn)
 	{
 		return 1;
 	}
-	
+
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
 	{
 		return ItemVisSeeds.create(aspect, 1);
-	}
-	
-	@Override
-	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
-	{
-		if(!super.canBlockStay(worldIn, pos, state))
-			return false;
-		return this.canSustainBush(worldIn.getBlockState(pos.down()));
 	}
 }

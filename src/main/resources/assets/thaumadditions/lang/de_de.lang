@@ -119,6 +119,7 @@ item.thaumadditions:blue_wolf_mask.name=Blue Wolf Mask
 item.thaumadditions:blue_wolf_body.name=Blue Wolf Body
 item.thaumadditions:blue_wolf_legs.name=Blue Wolf Legs
 item.thaumadditions:blue_wolf_feetpaws.name=Blue Wolf Paws
+item.thaumadditions:blue_bone.name=Blue Bone
 
 #########
 
@@ -391,3 +392,6 @@ seal.thaumadditions:harvestcrops2=Dieses Siegel erntet und pflanzt Pflanzen in e
 seal.thaumadditions:pickupitems=Dieses Siegel nimmt Gegenstände in einem mittleren Bereich auf.
 
 #########
+
+item.thaumadditions:zeith_scale.name=Zeitheron's Curiosity
+item.thaumadditions:zeith_scale.tip=Drops from a mystical furry
