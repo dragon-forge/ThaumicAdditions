@@ -75,7 +75,7 @@ repositories {
 dependencies {
 	deobfCompile "hammer-lib:HammerCore-${config.minecraft_version}:${config.hc_version}:deobf"
 	deobfCompile "visuals:Visuals-${config.minecraft_version}:2r:deobf"
-	deobfCompile "colored-lux:ColoredLux-${config.minecraft_version}:8r:deobf"
+	deobfCompile "colored-lux:ColoredLux-${config.minecraft_version}:11r:deobf"
 	deobfCompile "mcp.mobius.waila:Hwyla:1.8.24-B39_1.12"
 	deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
 	
@@ -166,36 +166,36 @@ curseforge {
 
 task signJar(type: SignJar, dependsOn: reobfJar) {
     onlyIf {
-        project.hasProperty('keyStore')
+        System.env.MC_KS_PASS != null
     }
-    keyStore = project.findProperty('keyStore')
-    alias = project.findProperty('keyStoreAlias')
-    storePass = project.findProperty('keyStorePass')
-    keyPass = project.findProperty('keyStoreKeyPass')
+    keyStore = System.env.MC_KS_PATH
+    alias = System.env.MC_KS_ALIAS
+    storePass = System.env.MC_KS_PASS
+    keyPass = System.env.MC_KS_PASS
     inputFile = jar.archivePath
     outputFile = jar.archivePath
 }
 
 task signDeobfJar(type: SignJar, dependsOn: deobfJar) {
     onlyIf {
-        project.hasProperty('keyStore')
+        System.env.MC_KS_PASS != null
     }
-    keyStore = project.findProperty('keyStore')
-    alias = project.findProperty('keyStoreAlias')
-    storePass = project.findProperty('keyStorePass')
-    keyPass = project.findProperty('keyStoreKeyPass')
+    keyStore = System.env.MC_KS_PATH
+    alias = System.env.MC_KS_ALIAS
+    storePass = System.env.MC_KS_PASS
+    keyPass = System.env.MC_KS_PASS
     inputFile = deobfJar.archivePath
     outputFile = deobfJar.archivePath
 }
 
 task signSrcJar(type: SignJar, dependsOn: srcJar) {
     onlyIf {
-        project.hasProperty('keyStore')
+        System.env.MC_KS_PASS != null
     }
-    keyStore = project.findProperty('keyStore')
-    alias = project.findProperty('keyStoreAlias')
-    storePass = project.findProperty('keyStorePass')
-    keyPass = project.findProperty('keyStoreKeyPass')
+    keyStore = System.env.MC_KS_PATH
+    alias = System.env.MC_KS_ALIAS
+    storePass = System.env.MC_KS_PASS
+    keyPass = System.env.MC_KS_PASS
     inputFile = srcJar.archivePath
     outputFile = srcJar.archivePath
 }

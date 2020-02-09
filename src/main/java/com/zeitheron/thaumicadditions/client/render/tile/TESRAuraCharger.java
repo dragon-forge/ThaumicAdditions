@@ -1,21 +1,20 @@
 package com.zeitheron.thaumicadditions.client.render.tile;
 
-import org.lwjgl.opengl.GL11;
-
 import com.zeitheron.hammercore.client.render.tesr.TESR;
 import com.zeitheron.hammercore.utils.FrictionRotator;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.client.models.ModelAuraCharger;
 import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
-public class TESRAuraCharger extends TESR<TileAuraCharger>
+public class TESRAuraCharger
+		extends TESR<TileAuraCharger>
 {
 	public ResourceLocation texture = new ResourceLocation(InfoTAR.MOD_ID, "textures/models/aura_charger.png");
 	public ModelAuraCharger model = new ModelAuraCharger();
-	
+
 	@Override
 	public void renderTileEntityAt(TileAuraCharger te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
@@ -35,7 +34,7 @@ public class TESRAuraCharger extends TESR<TileAuraCharger>
 			GL11.glPopMatrix();
 		}
 	}
-	
+
 	@Override
 	public void renderItem(ItemStack item)
 	{

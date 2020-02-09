@@ -119,6 +119,7 @@ item.thaumadditions:blue_wolf_mask.name=Маска синего волка
 item.thaumadditions:blue_wolf_body.name=Тело синего волка
 item.thaumadditions:blue_wolf_legs.name=Ноги синего волка
 item.thaumadditions:blue_wolf_feetpaws.name=Лапы синего волка
+item.thaumadditions:blue_bone.name=Синяя кость
 
 #########
 
@@ -391,3 +392,6 @@ seal.thaumadditions:harvestcrops2=Эта печать собирает и пер
 seal.thaumadditions:pickupitems=Эта печать подбирает предметы в средней области.
 
 #########
+
+item.thaumadditions:zeith_scale.name=Zeitheron's Curiosity
+item.thaumadditions:zeith_scale.tip=Drops from a mystical furry
