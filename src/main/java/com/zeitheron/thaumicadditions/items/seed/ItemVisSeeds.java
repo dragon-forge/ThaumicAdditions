@@ -42,20 +42,16 @@ public class ItemVisSeeds
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		ItemStack itemstack = player.getHeldItem(hand);
+		ItemStack stack = player.getHeldItem(hand);
+		Aspect asp = fromSeed(stack);
+		IBlockState crop = asp != null && BlocksTAR.VIS_CROPS.containsKey(asp) ? BlocksTAR.VIS_CROPS.get(asp).getDefaultState() : null;
 		net.minecraft.block.state.IBlockState state = worldIn.getBlockState(pos);
-		if(facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemstack) && state.getBlock().canSustainPlant(state, worldIn, pos, EnumFacing.UP, this) && worldIn.isAirBlock(pos.up()))
+		if(facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, stack) && state.getBlock().canSustainPlant(state, worldIn, pos, EnumFacing.UP, this) && worldIn.isAirBlock(pos.up()) && asp != null && crop != null)
 		{
-			Aspect asp = Aspect.getAspect(itemstack.getTagCompound().getString("Aspect"));
-
-			worldIn.setBlockState(pos.up(), BlocksTAR.VIS_CROPS.get(asp).getDefaultState());
-
+			worldIn.setBlockState(pos.up(), crop);
 			if(player instanceof EntityPlayerMP)
-			{
-				CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) player, pos.up(), itemstack);
-			}
-
-			itemstack.shrink(1);
+				CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) player, pos.up(), stack);
+			stack.shrink(1);
 			return EnumActionResult.SUCCESS;
 		}
 		return EnumActionResult.FAIL;
@@ -77,13 +73,19 @@ public class ItemVisSeeds
 
 	public static int getColor(ItemStack stack, int layer)
 	{
-		if(layer == 1 && stack.hasTagCompound() && stack.getTagCompound().hasKey("Aspect", NBT.TAG_STRING))
+		if(layer == 1)
 		{
-			Aspect a = Aspect.getAspect(stack.getTagCompound().getString("Aspect"));
-			if(a != null)
-				return a.getColor();
+			Aspect a = fromSeed(stack);
+			if(a != null) return a.getColor();
 		}
 		return 0xFFFFFF;
+	}
+
+	public static Aspect fromSeed(ItemStack stack)
+	{
+		if(!stack.isEmpty() && stack.hasTagCompound() && stack.getTagCompound().hasKey("Aspect", NBT.TAG_STRING))
+			return Aspect.getAspect(stack.getTagCompound().getString("Aspect"));
+		return null;
 	}
 
 	public static ItemStack create(Aspect aspect, int count)
@@ -106,12 +108,8 @@ public class ItemVisSeeds
 	public String getItemStackDisplayName(ItemStack stack)
 	{
 		String an = "Unknown";
-		if(stack.hasTagCompound() && stack.getTagCompound().hasKey("Aspect", NBT.TAG_STRING))
-		{
-			Aspect a = Aspect.getAspect(stack.getTagCompound().getString("Aspect"));
-			if(a != null)
-				an = a.getName();
-		}
+		Aspect a = fromSeed(stack);
+		if(a != null) an = a.getName();
 		return I18n.translateToLocalFormatted(this.getUnlocalizedNameInefficiently(stack) + ".name", an).trim();
 	}
 
@@ -119,12 +117,8 @@ public class ItemVisSeeds
 	public AspectList getAspects(ItemStack stack)
 	{
 		AspectList al = new AspectList();
-		if(stack.hasTagCompound())
-		{
-			NBTTagCompound nbt = stack.getTagCompound();
-			if(nbt.hasKey("Aspect", NBT.TAG_STRING))
-				al.add(Aspect.getAspect(nbt.getString("Aspect")), ASPECT_COUNT);
-		}
+		Aspect a = fromSeed(stack);
+		if(a != null) al.add(a, ASPECT_COUNT);
 		return al;
 	}
 

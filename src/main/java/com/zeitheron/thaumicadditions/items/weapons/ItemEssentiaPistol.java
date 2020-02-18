@@ -1,23 +1,21 @@
 package com.zeitheron.thaumicadditions.items.weapons;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.lwjgl.opengl.GL11;
-
 import com.zeitheron.hammercore.client.render.item.IItemRender;
 import com.zeitheron.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.zeitheron.hammercore.client.utils.RenderBlocks;
 import com.zeitheron.hammercore.internal.GuiManager;
+import com.zeitheron.hammercore.net.HCNet;
 import com.zeitheron.hammercore.utils.SoundUtil;
 import com.zeitheron.hammercore.utils.WorldLocation;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
+import com.zeitheron.thaumicadditions.api.animator.BaseItemAnimator;
+import com.zeitheron.thaumicadditions.api.animator.IAnimatableItem;
+import com.zeitheron.thaumicadditions.api.animator.ItemShootableWeaponAnimator;
 import com.zeitheron.thaumicadditions.api.items.EssentiaJarManager;
 import com.zeitheron.thaumicadditions.api.items.EssentiaJarManager.IJar;
 import com.zeitheron.thaumicadditions.entity.EntityEssentiaShot;
 import com.zeitheron.thaumicadditions.init.GuisTAR;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
@@ -26,21 +24,22 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumHandSide;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ItemEssentiaPistol
 		extends Item
+		implements IAnimatableItem
 {
 	final AspectList emptylist = new AspectList();
 
@@ -97,12 +96,12 @@ public class ItemEssentiaPistol
 				float f1 = MathHelper.sin(-yaw * 0.017453292F - (float) Math.PI);
 				float f2 = -MathHelper.cos(-pitch * 0.017453292F);
 				float f3 = MathHelper.sin(-pitch * 0.017453292F);
-				Vec3d look = new Vec3d((double) (f1 * f2), (double) f3, (double) (f * f2));
+				Vec3d look = new Vec3d(f1 * f2, f3, f * f2);
 				Vec3d actualLook = playerIn.getLook(1F).scale(0.4F);
 
-				shot.posX += look.x * 0.65F + actualLook.x;
+				shot.posX += look.x * 0.45F + actualLook.x;
 				shot.posY += actualLook.y;
-				shot.posZ += look.z * 0.65F + actualLook.z;
+				shot.posZ += look.z * 0.45F + actualLook.z;
 
 				shot.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0, 1.5F, 0F);
 				worldIn.spawnEntity(shot);
@@ -111,6 +110,7 @@ public class ItemEssentiaPistol
 					jar.drain(jarStack, as, amt);
 					setJar(stack, jarStack);
 				}
+				HCNet.swingArm(playerIn, handIn);
 				SoundUtil.playSoundEffect(worldIn, InfoTAR.MOD_ID + ":essentia_pistol_shoot", playerIn.posX, playerIn.posY, playerIn.posZ, 1F, 1F, SoundCategory.PLAYERS);
 			}
 			playerIn.getCooldownTracker().setCooldown(this, 10);
@@ -133,6 +133,19 @@ public class ItemEssentiaPistol
 		if(!pistol.isEmpty() && pistol.hasTagCompound() && pistol.getTagCompound().hasKey("Jar"))
 			return new ItemStack(pistol.getTagCompound().getCompoundTag("Jar"));
 		return ItemStack.EMPTY;
+	}
+
+	@Override
+	public BaseItemAnimator getAnimator(ItemStack stack)
+	{
+		return ItemShootableWeaponAnimator.DEF_0125;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public float overrideSwing(float amount, ItemStack stack, EntityPlayer player, float partialTime)
+	{
+		return amount;
 	}
 
 	@SideOnly(Side.CLIENT)
