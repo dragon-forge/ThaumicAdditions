@@ -1,13 +1,11 @@
 package com.zeitheron.thaumicadditions.tiles;
 
-import java.util.Random;
-
+import com.zeitheron.hammercore.net.props.NetPropertyBool;
 import com.zeitheron.hammercore.tile.ITileDroppable;
 import com.zeitheron.hammercore.tile.TileSyncableTickable;
 import com.zeitheron.hammercore.utils.FrictionRotator;
 import com.zeitheron.hammercore.utils.color.ColorHelper;
 import com.zeitheron.thaumicadditions.net.PacketBlockEvent;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -27,41 +25,53 @@ import thaumcraft.client.fx.ParticleEngine;
 import thaumcraft.client.fx.particles.FXVisSparkle;
 import thaumcraft.common.world.aura.AuraHandler;
 
-public class TileAuraCharger extends TileSyncableTickable implements IEssentiaTransport, IAspectContainer, ITileDroppable
+import java.util.Random;
+
+public class TileAuraCharger
+		extends TileSyncableTickable
+		implements IEssentiaTransport, IAspectContainer, ITileDroppable
 {
 	public static final Aspect AURA = Aspect.AURA;
-	
+
 	protected int capacity = 10;
 	public int amount;
-	
+
+	public final NetPropertyBool isRotating;
 	public final FrictionRotator rotator = new FrictionRotator();
+
 	{
+		this.isRotating = new NetPropertyBool(this, false);
 		rotator.degree = new Random().nextFloat() * 360;
 	}
-	
+
 	public int getCapacity()
 	{
 		return capacity;
 	}
-	
+
 	@Override
 	public void tick()
 	{
 		rotator.friction = .25F;
 		if(world.isRemote)
 			rotator.update();
-		
+
 		float base = AuraHandler.getAuraBase(world, pos);
 		float vis = AuraHandler.getVis(world, pos);
-		
+
 		if(world.getRedstonePowerFromNeighbors(pos) > 0)
+		{
+			isRotating.set(false);
 			return;
-		
+		}
+
+		if(isRotating.get() && world.isRemote)
+			PacketBlockEvent.performBlockEvent(world, pos, 1, 0);
+
 		if(amount > 0 && vis < base * 2.5)
 		{
-			if(world.isRemote)
-				PacketBlockEvent.performBlockEvent(world, pos, 1, 0);
-			
+			if(!world.isRemote) isRotating.set(true);
+
 			if(atTickRate(100))
 			{
 				if(!world.isRemote)
@@ -71,16 +81,16 @@ public class TileAuraCharger extends TileSyncableTickable implements IEssentiaTr
 					sendChangesToNearby();
 				}
 			}
-			
+
 			if(atTickRate(40))
 				sendChangesToNearby();
-		}
-		
+		} else if(!world.isRemote) isRotating.set(false);
+
 		if(!world.isRemote)
 		{
 			EnumFacing rf = EnumFacing.UP;
 			IEssentiaTransport l = (IEssentiaTransport) ThaumcraftApiHelper.getConnectableTile(world, pos, EnumFacing.DOWN);
-			
+
 			if(l != null && l.canOutputTo(rf))
 			{
 				Aspect lasp = l.getEssentiaType(rf);
@@ -97,38 +107,38 @@ public class TileAuraCharger extends TileSyncableTickable implements IEssentiaTr
 			}
 		}
 	}
-	
+
 	@Override
 	public void writeNBT(NBTTagCompound nbt)
 	{
 		nbt.setInteger("Amount", amount);
 	}
-	
+
 	@Override
 	public void readNBT(NBTTagCompound nbt)
 	{
 		amount = nbt.getInteger("Amount");
 	}
-	
+
 	@Override
 	public AspectList getAspects()
 	{
 		return new AspectList().add(AURA, amount);
 	}
-	
+
 	@Override
 	public void setAspects(AspectList asp)
 	{
 		amount = asp.getAmount(AURA);
 		sendChangesToNearby();
 	}
-	
+
 	@Override
 	public boolean doesContainerAccept(Aspect a)
 	{
 		return a == AURA;
 	}
-	
+
 	@Override
 	public int addToContainer(Aspect a, int q)
 	{
@@ -141,102 +151,102 @@ public class TileAuraCharger extends TileSyncableTickable implements IEssentiaTr
 		}
 		return 0;
 	}
-	
+
 	@Override
 	public boolean takeFromContainer(Aspect a, int q)
 	{
 		return false;
 	}
-	
+
 	@Override
 	public boolean takeFromContainer(AspectList al)
 	{
 		return false;
 	}
-	
+
 	@Override
 	public boolean doesContainerContainAmount(Aspect a, int q)
 	{
 		return a == AURA && amount >= q;
 	}
-	
+
 	@Override
 	public boolean doesContainerContain(AspectList al)
 	{
 		return amount >= al.getAmount(AURA);
 	}
-	
+
 	@Override
 	public int containerContains(Aspect a)
 	{
 		return a == AURA ? amount : 0;
 	}
-	
+
 	@Override
 	public boolean isConnectable(EnumFacing f)
 	{
 		return canInputFrom(f);
 	}
-	
+
 	@Override
 	public boolean canInputFrom(EnumFacing f)
 	{
 		return f == EnumFacing.DOWN;
 	}
-	
+
 	@Override
 	public boolean canOutputTo(EnumFacing f)
 	{
 		return false;
 	}
-	
+
 	@Override
 	public void setSuction(Aspect var1, int var2)
 	{
 	}
-	
+
 	@Override
 	public Aspect getSuctionType(EnumFacing f)
 	{
 		return canInputFrom(f) ? AURA : null;
 	}
-	
+
 	@Override
 	public int getSuctionAmount(EnumFacing f)
 	{
 		return canInputFrom(f) ? 128 : 0;
 	}
-	
+
 	@Override
 	public int takeEssentia(Aspect a, int q, EnumFacing f)
 	{
 		return 0;
 	}
-	
+
 	@Override
 	public int addEssentia(Aspect a, int q, EnumFacing f)
 	{
 		return f == EnumFacing.DOWN ? addToContainer(a, q) : 0;
 	}
-	
+
 	@Override
 	public Aspect getEssentiaType(EnumFacing f)
 	{
 		return canInputFrom(f) ? AURA : null;
 	}
-	
+
 	@Override
 	public int getEssentiaAmount(EnumFacing f)
 	{
 		return canInputFrom(f) ? amount : 0;
 	}
-	
+
 	@Override
 	public int getMinimumSuction()
 	{
 		return 0;
 	}
-	
+
 	@Override
 	public boolean receiveClientEvent(int id, int type)
 	{
@@ -245,17 +255,17 @@ public class TileAuraCharger extends TileSyncableTickable implements IEssentiaTr
 			if(world.isRemote)
 			{
 				int rays = 2;
-				
+
 				rotator.slowdown(.5F);
-				
+
 				for(int i = 0; i < rays; ++i)
 				{
 					float deg = rotator.getActualRotation(1) - 5 + i * (360F / rays);
 					float rad = (float) Math.toRadians(deg);
-					
+
 					float sin = MathHelper.sin(rad);
 					float cos = MathHelper.cos(rad);
-					
+
 					visSparkle(pos.getX() + cos * .3F + .5F, pos.getY() + .5F, pos.getZ() + sin * .3F + .5F, pos.getX() + .5F + cos * getRNG().nextFloat() * 6, pos.getY() + 1.5F + getRNG().nextFloat() * 4, pos.getZ() + .5F + sin * getRNG().nextFloat() * 6, AURA.getColor());
 					
 					/*
@@ -282,7 +292,7 @@ public class TileAuraCharger extends TileSyncableTickable implements IEssentiaTr
 		}
 		return false;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public void visSparkle(float x, float y, float z, float x2, float y2, float z2, int color)
 	{
@@ -290,7 +300,7 @@ public class TileAuraCharger extends TileSyncableTickable implements IEssentiaTr
 		fb.setRBGColorF(ColorHelper.getRed(color), ColorHelper.getGreen(color), ColorHelper.getBlue(color));
 		ParticleEngine.addEffect(FXDispatcher.INSTANCE.getWorld(), fb);
 	}
-	
+
 	@Override
 	public void createDrop(EntityPlayer player, World world, BlockPos pos)
 	{
