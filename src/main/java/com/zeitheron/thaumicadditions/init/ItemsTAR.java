@@ -70,10 +70,10 @@ public class ItemsTAR
 	public static final ItemMithminiteDress MITHMINITE_BELT = new ItemMithminiteDress(EntityEquipmentSlot.LEGS).setTranslationKey("mithminite_belt");
 	public static final ItemMithminiteDress MITHMINITE_BOOTS = new ItemMithminiteDress(EntityEquipmentSlot.FEET).setTranslationKey("mithminite_boots");
 
-//	public static final ItemBlueWolfSuit BLUE_WOLF_MASK = new ItemBlueWolfSuit(EntityEquipmentSlot.HEAD).setTranslationKey("blue_wolf_mask");
-//	public static final ItemBlueWolfSuit BLUE_WOLF_BODY = new ItemBlueWolfSuit(EntityEquipmentSlot.CHEST).setTranslationKey("blue_wolf_body");
-//	public static final ItemBlueWolfSuit BLUE_WOLF_LEGS = new ItemBlueWolfSuit(EntityEquipmentSlot.LEGS).setTranslationKey("blue_wolf_legs");
-//	public static final ItemBlueWolfSuit BLUE_WOLF_FEETPAWS = new ItemBlueWolfSuit(EntityEquipmentSlot.FEET).setTranslationKey("blue_wolf_feetpaws");
+	public static final ItemBlueWolfSuit BLUE_WOLF_MASK = new ItemBlueWolfSuit(EntityEquipmentSlot.HEAD).setTranslationKey("blue_wolf_mask");
+	public static final ItemBlueWolfSuit BLUE_WOLF_BODY = new ItemBlueWolfSuit(EntityEquipmentSlot.CHEST).setTranslationKey("blue_wolf_body");
+	public static final ItemBlueWolfSuit BLUE_WOLF_LEGS = new ItemBlueWolfSuit(EntityEquipmentSlot.LEGS).setTranslationKey("blue_wolf_legs");
+	public static final ItemBlueWolfSuit BLUE_WOLF_FEETPAWS = new ItemBlueWolfSuit(EntityEquipmentSlot.FEET).setTranslationKey("blue_wolf_feetpaws");
 
 	// ENTITY-BOUND ITEMS
 	
