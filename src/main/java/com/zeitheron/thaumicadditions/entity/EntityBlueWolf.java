@@ -70,7 +70,7 @@ public class EntityBlueWolf
 
 	public static void trasfurmate(EntityWolf wolf)
 	{
-		if(!wolf.isAIDisabled())
+		if(!wolf.isTamed() && !wolf.isAIDisabled())
 		{
 			HCNet.INSTANCE.sendToAllAround(new PacketTransfurmWolf(wolf), new TargetPoint(wolf.world.provider.getDimension(), wolf.posX, wolf.posY, wolf.posZ, 128));
 			wolf.setNoAI(true);

@@ -1,10 +1,7 @@
 package com.zeitheron.thaumicadditions.recipes;
 
-import java.util.Objects;
-
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.utils.Foods;
-
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
@@ -14,13 +11,17 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry.Impl;
 
-public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
+import java.util.Objects;
+
+public class RecipeClearSalt
+		extends Impl<IRecipe>
+		implements IRecipe
 {
 	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn)
 	{
 		boolean water = false;
-		
+
 		Item food = null;
 		NBTTagCompound nbt = null;
 		int foodq = 0;
@@ -40,12 +41,14 @@ public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
 						return false;
 					else
 						foodq++;
+				} else
+				{
+					food = stack.getItem();
+					dmg = stack.getItemDamage();
+					nbt = stack.getTagCompound();
+					hasAspects = EdibleAspect.getSalt(stack).visSize() > 0;
+					foodq++;
 				}
-				food = stack.getItem();
-				dmg = stack.getItemDamage();
-				nbt = stack.getTagCompound();
-				hasAspects = EdibleAspect.getSalt(stack).visSize() > 0;
-				foodq++;
 			} else if(stack.getItem() == Items.WATER_BUCKET)
 			{
 				if(water)
@@ -54,15 +57,15 @@ public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
 			} else
 				return false;
 		}
-		
+
 		return food != null && foodq > 0 && hasAspects && water;
 	}
-	
+
 	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv)
 	{
 		boolean water = false;
-		
+
 		Item food = null;
 		NBTTagCompound nbt = null;
 		int foodq = 0;
@@ -82,12 +85,14 @@ public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
 						return ItemStack.EMPTY;
 					else
 						foodq++;
+				} else
+				{
+					food = stack.getItem();
+					dmg = stack.getItemDamage();
+					nbt = stack.getTagCompound();
+					hasAspects = EdibleAspect.getSalt(stack).visSize() > 0;
+					foodq++;
 				}
-				food = stack.getItem();
-				dmg = stack.getItemDamage();
-				nbt = stack.getTagCompound();
-				hasAspects = EdibleAspect.getSalt(stack).visSize() > 0;
-				foodq++;
 			} else if(stack.getItem() == Items.WATER_BUCKET)
 			{
 				if(water)
@@ -96,7 +101,7 @@ public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
 			} else
 				return ItemStack.EMPTY;
 		}
-		
+
 		if(food != null && foodq > 0 && hasAspects && water)
 		{
 			ItemStack s = new ItemStack(food, foodq, dmg);
@@ -104,28 +109,28 @@ public class RecipeClearSalt extends Impl<IRecipe> implements IRecipe
 				s.setTagCompound(nbt);
 			return EdibleAspect.withoutSalt(s);
 		}
-		
+
 		return ItemStack.EMPTY;
 	}
-	
+
 	@Override
 	public boolean canFit(int width, int height)
 	{
 		return width * height > 1;
 	}
-	
+
 	@Override
 	public ItemStack getRecipeOutput()
 	{
 		return ItemStack.EMPTY;
 	}
-	
+
 	@Override
 	public boolean isDynamic()
 	{
 		return true;
 	}
-	
+
 	private static boolean nbtEqual(NBTTagCompound a, NBTTagCompound b)
 	{
 		return Objects.equals(a, b);
