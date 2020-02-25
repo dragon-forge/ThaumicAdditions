@@ -1,8 +1,5 @@
 package com.zeitheron.thaumicadditions.entity;
 
-import java.util.List;
-import java.util.UUID;
-
 import com.zeitheron.hammercore.HammerCore;
 import com.zeitheron.hammercore.net.HCNet;
 import com.zeitheron.hammercore.utils.InterItemStack;
@@ -15,7 +12,6 @@ import com.zeitheron.thaumicadditions.inventory.container.ContainerChester;
 import com.zeitheron.thaumicadditions.items.tools.ItemBoneEye;
 import com.zeitheron.thaumicadditions.net.PacketSyncEntity;
 import com.zeitheron.thaumicadditions.net.PacketSyncTrunk;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -31,12 +27,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -45,67 +36,71 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import thaumcraft.api.aura.AuraHelper;
 
-public class EntityChester extends EntityAnimal
+import java.util.List;
+import java.util.UUID;
+
+public class EntityChester
+		extends EntityAnimal
 {
 	public static final DataParameter<Float> LID_ROTATION = EntityDataManager.createKey(EntityChester.class, DataSerializers.FLOAT);
 	public final InventoryDummy inventory = new InventoryDummy(36);
-	
+
 	public boolean open;
 	private int jumpDelay;
 	private int eatDelay;
 	public int angerLevel, attackTime;
-	
+
 	public boolean staying;
 	public float prevLidRotation;
-	
+
 	public UUID owner;
-	
+
 	public float field_768_a;
 	public float field_767_b;
-	
+
 	public EntityChester(World worldIn)
 	{
 		super(worldIn);
 		setSize(.8F, .8F);
 	}
-	
+
 	public EntityChester(World world, EntityPlayer player, double x, double y, double z)
 	{
 		this(world);
 		owner = player.getGameProfile().getId();
 		setPositionAndUpdate(x, y, z);
 	}
-	
+
 	public float getLidRotation()
 	{
 		return this.dataManager.get(LID_ROTATION).floatValue();
 	}
-	
+
 	public float getCurrentLidRotation(float partialTime)
 	{
 		float c = getLidRotation();
 		return prevLidRotation + (c - prevLidRotation) * partialTime;
 	}
-	
+
 	public void setLidRotation(float lidRotation)
 	{
 		this.dataManager.set(LID_ROTATION, lidRotation);
 	}
-	
+
 	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataManager.register(LID_ROTATION, 0F);
 	}
-	
+
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
 		getAttributeMap().getAttributeInstance(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50);
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound nbt)
 	{
@@ -114,7 +109,7 @@ public class EntityChester extends EntityAnimal
 		inventory.readFromNBT(nbt.getCompoundTag("Items"));
 		owner = nbt.getUniqueId("Owner");
 	}
-	
+
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt)
 	{
@@ -123,7 +118,7 @@ public class EntityChester extends EntityAnimal
 		nbt.setUniqueId("Owner", owner);
 		return super.writeToNBT(nbt);
 	}
-	
+
 	public void resizeInventory(int slots)
 	{
 		NonNullList<ItemStack> nev = NonNullList.withSize(slots, ItemStack.EMPTY);
@@ -132,48 +127,48 @@ public class EntityChester extends EntityAnimal
 			nev.set(i, inventory.inventory.get(i));
 		inventory.inventory = nev;
 	}
-	
+
 	@Override
 	public boolean isChild()
 	{
 		return false;
 	}
-	
+
 	@Override
 	public void addPotionEffect(PotionEffect potioneffectIn)
 	{
 	}
-	
+
 	@Override
 	protected float applyPotionDamageCalculations(DamageSource source, float damage)
 	{
 		return 0F;
 	}
-	
+
 	@Override
 	protected boolean canDespawn()
 	{
 		return false;
 	}
-	
+
 	@Override
 	public boolean canMateWith(EntityAnimal otherAnimal)
 	{
 		return false;
 	}
-	
+
 	@Override
 	public EntityAgeable createChild(EntityAgeable ageable)
 	{
 		return null;
 	}
-	
+
 	@Override
 	protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier)
 	{
 		inventory.drop(world, getPosition());
 	}
-	
+
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
@@ -181,21 +176,30 @@ public class EntityChester extends EntityAnimal
 			setDead();
 		return false;
 	}
-	
+
+	@Override
+	public boolean isEntityInvulnerable(DamageSource source)
+	{
+		return source != DamageSource.OUT_OF_WORLD;
+	}
+
 	@Override
 	protected void despawnEntity()
 	{
 		// Empty to prevent ANY POSSIBLE despawning of the entity
 	}
-	
+
 	@Override
 	public void setDead()
 	{
-		inventory.drop(world, getPosition());
-		WorldUtil.spawnItemStack(world, posX, posY, posZ, new ItemStack(ItemsTAR.CHESTER));
+		if(!isDead)
+		{
+			inventory.drop(world, getPosition());
+			WorldUtil.spawnItemStack(world, posX, posY, posZ, new ItemStack(ItemsTAR.CHESTER));
+		}
 		super.setDead();
 	}
-	
+
 	public void eatItems()
 	{
 		if(getHealth() <= 25 && eatDelay == 0)
@@ -215,18 +219,18 @@ public class EntityChester extends EntityAnimal
 				setLidRotation(.15F);
 				break;
 			}
-			
+
 		// if(hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.STABILIZED_SINGULARITY)))
 		// pullItems();
 	}
-	
+
 	private void pullItems()
 	{
 		if(eatDelay > 0)
 			return;
-		
+
 		List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(posX - .5, posY - .5, posZ - .5, posX + .5, posY + .5, posZ + .5));
-		
+
 		for(EntityItem ei : items)
 		{
 			ItemStack leftover = ItemInsertionUtil.putStackInInventoryAllSlots(inventory, ei.getItem().copy(), EnumFacing.UP);
@@ -242,7 +246,7 @@ public class EntityChester extends EntityAnimal
 			}
 		}
 	}
-	
+
 	@Override
 	public void onUpdate()
 	{
@@ -256,7 +260,7 @@ public class EntityChester extends EntityAnimal
 		field_768_a *= 0.6f;
 		prevLidRotation = getLidRotation();
 	}
-	
+
 	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
@@ -266,9 +270,9 @@ public class EntityChester extends EntityAnimal
 				player.sendMessage(new TextComponentTranslation("chat." + InfoTAR.MOD_ID + ":chester.not_master"));
 				return true;
 			}
-		
+
 		ItemStack held = player.getHeldItem(hand);
-		
+
 		if(!held.isEmpty() && held.getItem() instanceof ItemFood && getHealth() < 50F)
 		{
 			// heal(((ItemFood) held.getItem()).getHealAmount(held));
@@ -279,10 +283,10 @@ public class EntityChester extends EntityAnimal
 				HammerCore.audioProxy.playSoundAt(world, "random.eat", getPosition(), .5F, rand.nextFloat() * .5F + .5F, SoundCategory.AMBIENT);
 			showHeartsOrSmokeFX(true);
 			setLidRotation(.15F);
-			
+
 			return true;
 		}
-		
+
 		// if(player.isSneaking() && InteractionEvents.isWandReversal(held))
 		// {
 		// if(!dropUpgrade(player))
@@ -303,7 +307,7 @@ public class EntityChester extends EntityAnimal
 		// setTrunkType();
 		// return true;
 		// }
-		
+
 		if(!held.isEmpty() && held.getItem() instanceof ItemBoneEye && !world.isRemote)
 		{
 			if(player.isSneaking())
@@ -320,7 +324,7 @@ public class EntityChester extends EntityAnimal
 			player.swingArm(hand);
 			return true;
 		}
-		
+
 		// if(!held.isEmpty() && held.getItem() instanceof ItemUpgrade)
 		// {
 		// int up = ItemUpgrade.idFromItem((ItemUpgrade) held.getItem());
@@ -336,32 +340,32 @@ public class EntityChester extends EntityAnimal
 		// }
 		// return true;
 		// }
-		
+
 		open = true;
-		
+
 		if(player instanceof EntityPlayerMP && !world.isRemote)
 		{
 			HCNet.INSTANCE.sendTo(new PacketSyncTrunk(this), (EntityPlayerMP) player);
 			HammerCore.audioProxy.playSoundAt(world, "block.chest.open", getPosition(), .1F, rand.nextFloat() * .1F + .9F, SoundCategory.AMBIENT);
 		}
-		
+
 		player.openContainer = new ContainerChester(this, player);
 		player.swingArm(hand);
-		
+
 		return true;
 	}
-	
+
 	void showHeartsOrSmokeFX(boolean flag)
 	{
 		EnumParticleTypes s = EnumParticleTypes.HEART;
 		int amount = 1;
-		
+
 		if(!flag)
 		{
 			s = EnumParticleTypes.EXPLOSION_NORMAL;
 			amount = 7;
 		}
-		
+
 		for(int i = 0; i < amount; ++i)
 		{
 			double d = rand.nextGaussian() * 0.02;
@@ -370,18 +374,18 @@ public class EntityChester extends EntityAnimal
 			world.spawnParticle(s, posX + rand.nextFloat() * width * 2 - width, posZ + .5 + rand.nextFloat() * height, posZ + rand.nextFloat() * width * 2 - width, d, d1, d2);
 		}
 	}
-	
+
 	protected void updateEntity()
 	{
 		boolean sync = false;
-		
+
 		if(angerLevel > 0)
 			--angerLevel;
 		if(eatDelay > 0)
 			--eatDelay;
 		if(attackTime > 0)
 			--attackTime;
-		
+
 		MinecraftServer mc = getServer();
 		fallDistance = 0F;
 		EntityPlayer entityplayer = mc != null ? mc.getPlayerList().getPlayerByUUID(owner) : null;
@@ -392,16 +396,17 @@ public class EntityChester extends EntityAnimal
 				open = false;
 				HammerCore.audioProxy.playSoundAt(world, "block.chest.close", getPosition(), .1F, rand.nextFloat() * .1F + .9F, SoundCategory.AMBIENT);
 			}
-			
+
 			EntityLivingBase entity;
 			List<EntityLivingBase> list;
-			
-			tp: if(!staying && entityplayer != null && (getDistance(entityplayer) > 20 || (inWater && getDistance(entityplayer) > 8 && !entityplayer.isInWater())))
+
+			tp:
+			if(!staying && entityplayer != null && (getDistance(entityplayer) > 20 || (inWater && getDistance(entityplayer) > 8 && !entityplayer.isInWater())))
 			{
 				int i = MathHelper.floor(entityplayer.posX) - 2;
 				int j = MathHelper.floor(entityplayer.posZ) - 2;
 				int k = MathHelper.floor(entityplayer.posY);
-				
+
 				for(int l = 0; l <= 4; ++l)
 					for(int i1 = 0; i1 <= 4; ++i1)
 					{
@@ -416,7 +421,7 @@ public class EntityChester extends EntityAnimal
 						break tp;
 					}
 			}
-			
+
 			// if((angerLevel == 0 || getAttackingEntity() == null) &&
 			// hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.STABILIZED_SINGULARITY))
 			// && !(list = world.getEntitiesWithinAABB(EntityLivingBase.class,
@@ -428,14 +433,14 @@ public class EntityChester extends EntityAnimal
 			// angerLevel = 600;
 			// setAttackTarget(entity);
 			// }
-			
+
 			boolean move = false;
-			
+
 			if(angerLevel > 0 && getAttackTarget() != null && getAttackTarget() != entityplayer)
 			{
 				faceEntity(getAttackTarget(), 10, 20);
 				move = true;
-				
+
 				if(attackTime <= 0 && getDistanceSq(getAttackTarget()) < 1.5 && getAttackTarget().getEntityBoundingBox().maxY > getEntityBoundingBox().minY && getAttackTarget().getEntityBoundingBox().minY < getEntityBoundingBox().maxY)
 				{
 					float damage = 0;
@@ -449,44 +454,44 @@ public class EntityChester extends EntityAnimal
 					setLidRotation(getLidRotation() + .015F);
 					HammerCore.audioProxy.playSoundAt(world, "entity.blaze.hit", getPosition(), .5F, rand.nextFloat() * .1F + .9F, SoundCategory.HOSTILE);
 				}
-				
+
 				if(getAttackTarget().isDead)
 				{
 					setAttackTarget(null);
 					angerLevel = 5;
 				}
 			}
-			
+
 			if(entityplayer != null && getDistance(entityplayer) > 4 && angerLevel == 0 && !staying)
 			{
 				faceEntity(entityplayer, 10, 20);
 				move = true;
 			}
-			
+
 			if(onGround && jumpDelay-- <= 0 && move)
 			{
 				jumpDelay = rand.nextInt(10) + 5;
 				jumpDelay /= 3;
-				
+
 				isJumping = true;
 				field_768_a = 1;
-				
+
 				// moveStrafing = 1 - rand.nextFloat() * 2;
 				// moveForward = 6 +
 				// (hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.QUICKSILVER_CORE))
 				// ? 2 : 0);
-				
+
 				moveStrafing = 0;
 				moveForward = 0;
-				
+
 				jumpMovementFactor = .03F;
-				
+
 				double div = .2;
 				motionX = com.zeitheron.hammercore.utils.math.MathHelper.clip((entityplayer.posX - posX) / 16D, -div, div);
 				motionZ = com.zeitheron.hammercore.utils.math.MathHelper.clip((entityplayer.posZ - posZ) / 16D, -div, div);
-				
+
 				jump();
-				
+
 				HammerCore.audioProxy.playSoundAt(world, "block.chest.close", getPosition(), .1F, rand.nextFloat() * .1F + .9F, SoundCategory.AMBIENT);
 			} else
 			{
@@ -513,7 +518,7 @@ public class EntityChester extends EntityAnimal
 							setLidRotation(getLidRotation() - .1F);
 							sync = true;
 						}
-						
+
 						if(getLidRotation() < 0F)
 						{
 							setLidRotation(0);
@@ -522,24 +527,24 @@ public class EntityChester extends EntityAnimal
 					}
 				}
 			}
-			
+
 			if(open)
 			{
 				setLidRotation(getLidRotation() + .035F);
 				sync = true;
 			}
-			
+
 			if(getLidRotation() > .5F)
 			{
 				setLidRotation(.5F);
 				sync = true;
 			}
 		}
-		
+
 		if(sync && !world.isRemote)
 			HCNet.INSTANCE.sendToAllAround(new PacketSyncEntity(this), new TargetPoint(world.provider.getDimension(), posX, posY, posZ, 32));
 	}
-	
+
 	private float updateRotation(float f, float f1, float f2)
 	{
 		float f3;
