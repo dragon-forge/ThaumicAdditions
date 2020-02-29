@@ -1,0 +1,28 @@
+{
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "thaumadditions:items/the_beheader"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [ 0, -90, 55 ],
+			"translation": [ 0, 6.0, 0.5 ],
+			"scale": [ 1.5, 1.5, 1 ]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [ 0, 90, -55 ],
+			"translation": [ 0, 6.0, 0.5 ],
+			"scale": [ 1.5, 1.5, 1 ]
+		},
+		"firstperson_righthand": {
+			"rotation": [ 0, -90, 25 ],
+			"translation": [ 1.13, 4.2, 1.13 ],
+			"scale": [ 1.4, 1.4, 1 ]
+		},
+		"firstperson_lefthand": {
+			"rotation": [ 0, 90, -25 ],
+			"translation": [ 1.13, 4.2, 1.13 ],
+			"scale": [ 1.4, 1.4, 1 ]
+		}
+	}
+}
