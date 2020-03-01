@@ -5,6 +5,7 @@ import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.events.ProvideThaumicAspectsEvent;
 import com.zeitheron.thaumicadditions.api.utils.IOcasionalPositionedEvent;
 import com.zeitheron.thaumicadditions.blocks.*;
+import com.zeitheron.thaumicadditions.blocks.decor.BlockTARStorage;
 import com.zeitheron.thaumicadditions.blocks.plants.BlockPuriflower;
 import com.zeitheron.thaumicadditions.blocks.plants.BlockVisCrop;
 import com.zeitheron.thaumicadditions.blocks.plants.BlockVoidCrop;
@@ -58,6 +59,10 @@ public class BlocksTAR
 	public static final BlockAbstractEssentiaJar<TileMithminiteJar> MITHMINITE_JAR = new BlockAbstractEssentiaJar<>(TileMithminiteJar.class, 4000, "jar_mithminite");
 
 	public static final BlockCrystal CRYSTAL_BLOCK = new BlockCrystal();
+
+	public static final BlockTARStorage MITHRILLIUM_BLOCK = new BlockTARStorage("mithrillium_block", "blockMithrillium");
+	public static final BlockTARStorage ADAMINITE_BLOCK = new BlockTARStorage("adaminite_block", "blockAdaminite");
+	public static final BlockTARStorage MITHMINITE_BLOCK = new BlockTARStorage("mithminite_block", "blockMithminite");
 
 	public static final Map<Aspect, BlockVisCrop> VIS_CROPS = new HashMap<>();
 
