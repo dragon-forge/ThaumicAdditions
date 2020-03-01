@@ -2,29 +2,26 @@ package com.zeitheron.thaumicadditions.init;
 
 import com.zeitheron.thaumicadditions.items.*;
 import com.zeitheron.thaumicadditions.items.armor.ItemAdaminiteDress;
-import com.zeitheron.thaumicadditions.items.armor.ItemBlueWolfSuit;
 import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
+import com.zeitheron.thaumicadditions.items.baubles.ItemBeltTraveller;
 import com.zeitheron.thaumicadditions.items.baubles.ItemFragnantPendant;
 import com.zeitheron.thaumicadditions.items.baubles.ItemRechargeCharm;
 import com.zeitheron.thaumicadditions.items.seed.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.items.seed.ItemVoidSeed;
-import com.zeitheron.thaumicadditions.items.tools.ItemBoneEye;
-import com.zeitheron.thaumicadditions.items.tools.ItemVisScribingTools;
-import com.zeitheron.thaumicadditions.items.tools.ItemVoidElementalHoe;
-import com.zeitheron.thaumicadditions.items.tools.ItemVoidThaumometer;
-import com.zeitheron.thaumicadditions.items.tools.ItemWormholeMirror;
+import com.zeitheron.thaumicadditions.items.tools.*;
+import com.zeitheron.thaumicadditions.items.weapons.ItemAdaminiteSword;
 import com.zeitheron.thaumicadditions.items.weapons.ItemEssentiaPistol;
 import com.zeitheron.thaumicadditions.items.weapons.ItemShadowBeamStaff;
-
 import com.zeitheron.thaumicadditions.items.weapons.ItemTheBeheader;
 import net.minecraft.inventory.EntityEquipmentSlot;
 
 public class ItemsTAR
 {
 	// MATERIALS
-	
+
 	public static final ItemMaterial MITHRILLIUM_NUGGET = new ItemMaterial("mithrillium_nugget", "nuggetMithrillium");
 	public static final ItemMaterial ADAMINITE_NUGGET = new ItemMaterial("adaminite_nugget", "nuggetAdaminite");
+	public static final ItemMaterial MITHMINITE_NUGGET = new ItemMaterial("mithminite_nugget", "nuggetMithminite");
 	public static final ItemMaterial MITHRILLIUM_INGOT = new ItemMaterial("mithrillium_ingot", "ingotMithrillium");
 	public static final ItemMaterial ADAMINITE_INGOT = new ItemMaterial("adaminite_ingot", "ingotAdaminite");
 	public static final ItemMaterial MITHMINITE_INGOT = new ItemMaterial("mithminite_ingot", "ingotMithminite");
@@ -40,33 +37,35 @@ public class ItemsTAR
 	public static final ItemMaterial PHANTOM_INK_PHIAL = new ItemMaterial("phantom_ink_phial");
 	public static final ItemMaterial ZEITH_FUR = new ItemZeithFur();
 	public static final ItemBlueBone BLUE_BONE = new ItemBlueBone();
-	
+
 	// BAUBLES
-	
+
 	public static final ItemFragnantPendant FRAGNANT_PENDANT = new ItemFragnantPendant();
 	public static final ItemRechargeCharm RECHARGE_CHARM = new ItemRechargeCharm();
-	
+	public static final ItemBeltTraveller TRAVELLER_BELT = new ItemBeltTraveller();
+
 	// TOOLS
-	
+
 	public static final ItemBoneEye BONE_EYE = new ItemBoneEye();
 	public static final ItemVisScribingTools VIS_SCRIBING_TOOLS = new ItemVisScribingTools();
 	public static final ItemVoidThaumometer VOID_THAUMOMETER = new ItemVoidThaumometer();
 	public static final ItemWormholeMirror WORMHOLE_MIRROR = new ItemWormholeMirror();
 	public static final ItemVoidElementalHoe VOID_ELEMENTAL_HOE = new ItemVoidElementalHoe();
-	
+
 	// WEAPONS
 
 	public static final ItemShadowBeamStaff SHADOW_BEAM_STAFF = new ItemShadowBeamStaff();
 	public static final ItemEssentiaPistol ESSENTIA_PISTOL = new ItemEssentiaPistol();
 	public static final ItemTheBeheader THE_BEHEADER = new ItemTheBeheader();
+	public static final ItemAdaminiteSword ADAMINITE_SWORD = new ItemAdaminiteSword();
 
 	// ARMOR
-	
+
 	public static final ItemAdaminiteDress ADAMINITE_HOOD = new ItemAdaminiteDress(EntityEquipmentSlot.HEAD).setTranslationKey("adaminite_hood");
 	public static final ItemAdaminiteDress ADAMINITE_ROBE = new ItemAdaminiteDress(EntityEquipmentSlot.CHEST).setTranslationKey("adaminite_robe");
 	public static final ItemAdaminiteDress ADAMINITE_BELT = new ItemAdaminiteDress(EntityEquipmentSlot.LEGS).setTranslationKey("adaminite_belt");
 	public static final ItemAdaminiteDress ADAMINITE_BOOTS = new ItemAdaminiteDress(EntityEquipmentSlot.FEET).setTranslationKey("adaminite_boots");
-	
+
 	public static final ItemMithminiteDress MITHMINITE_HOOD = new ItemMithminiteDress(EntityEquipmentSlot.HEAD).setTranslationKey("mithminite_hood");
 	public static final ItemMithminiteDress MITHMINITE_ROBE = new ItemMithminiteDress(EntityEquipmentSlot.CHEST).setTranslationKey("mithminite_robe");
 	public static final ItemMithminiteDress MITHMINITE_BELT = new ItemMithminiteDress(EntityEquipmentSlot.LEGS).setTranslationKey("mithminite_belt");
@@ -78,18 +77,18 @@ public class ItemsTAR
 //	public static final ItemBlueWolfSuit BLUE_WOLF_FEETPAWS = new ItemBlueWolfSuit(EntityEquipmentSlot.FEET).setTranslationKey("blue_wolf_feetpaws");
 
 	// ENTITY-BOUND ITEMS
-	
+
 	public static final ItemEntityCell ENTITY_CELL = new ItemEntityCell();
-	
+
 	// VIS-BOUND ITEMS
-	
+
 	public static final ItemSaltEssence SALT_ESSENCE = new ItemSaltEssence();
 	public static final ItemSealSymbol SEAL_SYMBOL = new ItemSealSymbol();
 	public static final ItemVisPod VIS_POD = new ItemVisPod();
 	public static final ItemVisSeeds VIS_SEEDS = new ItemVisSeeds();
-	
+
 	// MISC ITEMS
-	
+
 	public static final ItemVoidSeed VOID_SEED = new ItemVoidSeed();
 	public static final ItemChester CHESTER = new ItemChester();
 	public static final ItemKnowledgeTome KNOWLEDGE_TOME = new ItemKnowledgeTome();
