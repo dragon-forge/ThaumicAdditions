@@ -50,7 +50,8 @@ public class ItemBeltTraveller
 	@Override
 	public void onWornTick(ItemStack itemStack, EntityLivingBase player)
 	{
-		if(player instanceof EntityPlayer && ((EntityPlayer) player).inventory.armorInventory.get(0).getItem() == ItemsTC.travellerBoots)
+		EntityPlayer asPlayer = null;
+		if(player instanceof EntityPlayer && (asPlayer = (EntityPlayer) player).inventory.armorInventory.get(0).getItem() == ItemsTC.travellerBoots)
 			return;
 
 		boolean hasCharge = RechargeHelper.getCharge(itemStack) > 0;
@@ -58,8 +59,12 @@ public class ItemBeltTraveller
 		{
 			int e = 0;
 			if(itemStack.hasTagCompound()) e = itemStack.getTagCompound().getInteger("energy");
-			if(e > 0) --e;
-			else if(RechargeHelper.consumeCharge(itemStack, player, 1)) e = 60;
+			if(e > 0)
+			{
+				if(asPlayer == null || !asPlayer.capabilities.isCreativeMode)
+					--e;
+			} else if((asPlayer != null && asPlayer.capabilities.isCreativeMode) || RechargeHelper.consumeCharge(itemStack, player, 1))
+				e = 60;
 			itemStack.setTagInfo("energy", new NBTTagInt(e));
 		}
 

@@ -2,6 +2,7 @@ package com.zeitheron.thaumicadditions.items.weapons;
 
 import com.google.common.collect.Multimap;
 import com.zeitheron.hammercore.utils.IRegisterListener;
+import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.utils.LootHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -25,6 +26,8 @@ import net.minecraft.world.storage.loot.LootTable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Optional;
 
@@ -71,6 +74,20 @@ public class ItemTheBeheader
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
 	{
 		stack.damageItem(1, attacker);
+		return true;
+	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
+	{
+		if(!repair.isEmpty() && repair.getItem() == ItemsTAR.MITHRILLIUM_NUGGET) return true;
+		return false;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean isFull3D()
+	{
 		return true;
 	}
 

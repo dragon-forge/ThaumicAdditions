@@ -43,6 +43,9 @@ tile.thaumadditions:shadow_enchanter.name=Shadow Enchanter
 tile.thaumadditions:thaumic_lectern.name=Thaumonomicon Lectern
 tile.thaumadditions:essentia_sink.name=Essentia Sink
 tile.thaumadditions:void_anvil.name=Void Anvil
+tile.thaumadditions:mithrillium_block.name=Mithrillium Block
+tile.thaumadditions:adaminite_block.name=Adaminite Block
+tile.thaumadditions:mithminite_block.name=Mithminite Block
 
 ##########
 
@@ -149,6 +152,7 @@ tooltip.thaumadditions:cb_sort_rule.0=Sort by name (A->Z)
 tooltip.thaumadditions:cb_sort_rule.1=Sort by name (Z->A)
 tooltip.thaumadditions:cb_sort_rule.2=Sort by quantity (Descending)
 tooltip.thaumadditions:cb_sort_rule.3=Sort by quantity (Ascending)
+attribute.name.generic.flyingSpeed=Flight Speed
 
 #################
 
