@@ -5,6 +5,8 @@ import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.events.ProvideThaumicAspectsEvent;
 import com.zeitheron.thaumicadditions.api.utils.IOcasionalPositionedEvent;
 import com.zeitheron.thaumicadditions.blocks.*;
+import com.zeitheron.thaumicadditions.blocks.decor.BlockAmberLamp;
+import com.zeitheron.thaumicadditions.blocks.decor.BlockIronFramedGreatwood;
 import com.zeitheron.thaumicadditions.blocks.decor.BlockTARStorage;
 import com.zeitheron.thaumicadditions.blocks.plants.BlockPuriflower;
 import com.zeitheron.thaumicadditions.blocks.plants.BlockVisCrop;
@@ -63,6 +65,9 @@ public class BlocksTAR
 	public static final BlockTARStorage MITHRILLIUM_BLOCK = new BlockTARStorage("mithrillium_block", "blockMithrillium");
 	public static final BlockTARStorage ADAMINITE_BLOCK = new BlockTARStorage("adaminite_block", "blockAdaminite");
 	public static final BlockTARStorage MITHMINITE_BLOCK = new BlockTARStorage("mithminite_block", "blockMithminite");
+
+	public static final BlockIronFramedGreatwood IRON_FRAMED_GREATWOOD = new BlockIronFramedGreatwood();
+	public static final BlockAmberLamp AMBER_LAMP = new BlockAmberLamp();
 
 	public static final Map<Aspect, BlockVisCrop> VIS_CROPS = new HashMap<>();
 

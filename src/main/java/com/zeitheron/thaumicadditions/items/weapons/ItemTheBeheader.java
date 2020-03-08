@@ -135,7 +135,10 @@ public class ItemTheBeheader
 					{
 						NonNullList<ItemStack> items = LootHelper.getEntryItems(e2, player.getRNG(), context);
 						Optional<ItemStack> head = items.stream().filter(stack -> !stack.isEmpty() && (stack.getItem().getRegistryName().toString().contains("head") || stack.getItem().getRegistryName().toString().contains("skull"))).findAny();
-						if(head.isPresent() && player.getRNG().nextInt(100) <= 20)
+						if(head.isPresent()
+								&& player.getRNG().nextInt(100) <= 20
+								&& !LootHelper.hasDropped(e,
+								s -> s.getItem() == head.get().getItem() && s.getItemDamage() == head.get().getItemDamage()))
 							e.getDrops().add(base.entityDropItem(head.get().copy(), 0F));
 					});
 				}

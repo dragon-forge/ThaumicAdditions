@@ -3,7 +3,6 @@ package com.zeitheron.thaumicadditions;
 import com.zeitheron.hammercore.HammerCore;
 import com.zeitheron.hammercore.internal.SimpleRegistration;
 import com.zeitheron.hammercore.mod.ModuleLister;
-import com.zeitheron.hammercore.utils.HammerCoreUtils;
 import com.zeitheron.hammercore.utils.ReflectionUtil;
 import com.zeitheron.thaumicadditions.api.AttributesTAR;
 import com.zeitheron.thaumicadditions.api.ShadowEnchantment;
@@ -14,6 +13,7 @@ import com.zeitheron.thaumicadditions.entity.EntityEssentiaShot;
 import com.zeitheron.thaumicadditions.init.*;
 import com.zeitheron.thaumicadditions.misc.theorycraft.CardThaumicAdditions;
 import com.zeitheron.thaumicadditions.proxy.CommonProxy;
+import com.zeitheron.thaumicadditions.utils.CreativeTabTAR;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
@@ -83,7 +83,7 @@ public class TAReconstructed
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e)
 	{
-		tab = HammerCoreUtils.createStaticIconCreativeTab(InfoTAR.MOD_ID, new ItemStack(ItemsTAR.SEAL_GLOBE));
+		tab = new CreativeTabTAR(InfoTAR.MOD_ID);
 		arcs = ModuleLister.createModules(ITARC.class, null, e.getAsmData());
 
 		FluidsTAR.init.call();

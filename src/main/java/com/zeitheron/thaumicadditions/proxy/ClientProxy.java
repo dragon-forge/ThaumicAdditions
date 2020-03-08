@@ -23,6 +23,7 @@ import com.zeitheron.thaumicadditions.blocks.plants.BlockVisCrop;
 import com.zeitheron.thaumicadditions.client.fx.FXColoredDrop;
 import com.zeitheron.thaumicadditions.client.isr.ItemRenderJar;
 import com.zeitheron.thaumicadditions.client.models.baked.BakedCropModel;
+import com.zeitheron.thaumicadditions.client.render.block.statemap.LambdaStateMapper;
 import com.zeitheron.thaumicadditions.client.render.entity.RenderBlueWolf;
 import com.zeitheron.thaumicadditions.client.render.entity.RenderChester;
 import com.zeitheron.thaumicadditions.client.render.entity.RenderEssentiaShot;
@@ -45,7 +46,6 @@ import com.zeitheron.thaumicadditions.items.weapons.ItemShadowBeamStaff;
 import com.zeitheron.thaumicadditions.proxy.fx.FXHandler;
 import com.zeitheron.thaumicadditions.proxy.fx.FXHandlerClient;
 import com.zeitheron.thaumicadditions.tiles.*;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -57,7 +57,6 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -154,16 +153,14 @@ public class ClientProxy
 		{
 			if(layer == 1)
 			{
-				int color = 0xFF0000;
-
 				if(stack.hasTagCompound())
 				{
 					int[] rgb = stack.getTagCompound().getIntArray("RGB");
-					if(rgb != null && rgb.length >= 3)
-						color = rgb[0] << 16 | rgb[1] << 8 | rgb[2];
+					if(rgb.length >= 3)
+						return rgb[0] << 16 | rgb[1] << 8 | rgb[2];
 				}
 
-				return color;
+				return 0xFF0000;
 			}
 
 			return 0xFFFFFF;
@@ -186,15 +183,14 @@ public class ClientProxy
 			{
 				return player.world.tickableTileEntities.stream().filter(Predicates.instanceOf(TileInfusionMatrix.class)).map(te ->
 				{
-					ColoredLight light = null;
 					TileInfusionMatrix im = (TileInfusionMatrix) te;
 					if(im.active)
 					{
 						float mod = im.crafting ? 1F : 0.5F;
 						float rad = (float) (BASE_SIMPLEX.getValue(im.count / 128F, 0) + 1.5F) * 5F;
-						light = ColoredLight.builder().pos(te.getPos()).color(mod * 1F, mod * 0.5F, mod * 1F).radius(rad).build();
+						return ColoredLight.builder().pos(te.getPos()).color(mod * 1F, mod * 0.5F, mod * 1F).radius(rad).build();
 					}
-					return light;
+					return null;
 				});
 			}
 			return Stream.empty();
@@ -234,14 +230,7 @@ public class ClientProxy
 
 		{
 			ModelResourceLocation cryloc = new ModelResourceLocation(BlocksTAR.CRYSTAL_BLOCK.getRegistryName(), "normal");
-			ModelLoader.setCustomStateMapper(BlocksTAR.CRYSTAL_BLOCK, new StateMapperBase()
-			{
-				@Override
-				protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-				{
-					return cryloc;
-				}
-			});
+			ModelLoader.setCustomStateMapper(BlocksTAR.CRYSTAL_BLOCK, new LambdaStateMapper(state -> cryloc));
 		}
 
 		// Fluid state mapping.
@@ -319,14 +308,7 @@ public class ClientProxy
 		ModelBakery.registerItemVariants(item);
 		ModelResourceLocation modelResourceLocation = new ModelResourceLocation(InfoTAR.MOD_ID + ":fluid", fluidBlock.getFluid().getName());
 		ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
-		ModelLoader.setCustomStateMapper(fluidBlock, new StateMapperBase()
-		{
-			@Override
-			protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-			{
-				return modelResourceLocation;
-			}
-		});
+		ModelLoader.setCustomStateMapper(fluidBlock, new LambdaStateMapper(state -> modelResourceLocation));
 	}
 
 	public static class ParticleColoredBreaking
@@ -393,13 +375,21 @@ public class ClientProxy
 		{
 			EnumHand ohand = e.getHand() == EnumHand.MAIN_HAND ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND;
 			ItemStack held2 = player.getHeldItem(ohand);
+
+			if(ohand == EnumHand.MAIN_HAND && !held2.isEmpty())
+			{
+				e.setCanceled(true);
+				return;
+			}
+
 			if(!held2.isEmpty() && held2.getItem() instanceof IAnimatableItem)
 			{
 				IAnimatableItem ai = ((IAnimatableItem) held2.getItem());
 				BaseItemAnimator animator2 = ai.getAnimator(held2);
 				if(animator2 != null)
 				{
-					if(animator2.rendersHand(player, ohand, handSide) && (animator == null || e.getHand() == EnumHand.OFF_HAND))
+					boolean isMain = flag && !player.getHeldItemMainhand().isEmpty();
+					if(animator2.rendersHand(player, ohand, handSide) && (animator == null || e.getHand() == EnumHand.OFF_HAND) && !isMain)
 					{
 						e.setCanceled(true);
 						return;

@@ -2,6 +2,7 @@ package com.zeitheron.thaumicadditions.utils;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,12 +22,18 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class LootHelper
 {
 	private static Field pools, lootEntries;
 	private static Method getLootTable;
+
+	public static boolean hasDropped(LivingDropsEvent e, Predicate<ItemStack> drop)
+	{
+		return e.getDrops().stream().map(EntityItem::getItem).anyMatch(drop);
+	}
 
 	public static LootContext generateDropContent(LivingDropsEvent e)
 	{
