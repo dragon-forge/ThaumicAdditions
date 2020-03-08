@@ -46,6 +46,8 @@ tile.thaumadditions:void_anvil.name=Пустотная наковальня
 tile.thaumadditions:mithrillium_block.name=Блок мифриллиума
 tile.thaumadditions:adaminite_block.name=Блок адаминита
 tile.thaumadditions:mithminite_block.name=Блок мифминита
+tile.thaumadditions:iron_framed_greatwood.name=Обрамленное железом великое дерево
+tile.thaumadditions:amber_lamp.name=Янтарный фонарь
 
 ##########
 

@@ -58,7 +58,13 @@ public class TileSeal extends TileSyncableTickable implements ITileDroppable, IG
 		if(instance != null)
 			instance.onSealBreak();
 	}
-	
+
+	@Override
+	public boolean atTickRate(int rate)
+	{
+		return ticksExisted % rate == 0;
+	}
+
 	public Aspect getSymbol(int slot)
 	{
 		return Aspect.getAspect(slots[slot].get());
