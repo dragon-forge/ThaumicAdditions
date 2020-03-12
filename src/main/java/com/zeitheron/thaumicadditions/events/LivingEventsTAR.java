@@ -10,6 +10,8 @@ import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
 import com.zeitheron.thaumicadditions.utils.Foods;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -39,6 +41,7 @@ import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.research.ResearchManager;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 @MCFBus
 public class LivingEventsTAR
@@ -75,6 +78,18 @@ public class LivingEventsTAR
 		IPlayerKnowledge ipk = ThaumcraftCapabilities.getKnowledge(e.player);
 		if(ipk.isResearchComplete("BASEELDRITCH") && !ipk.isResearchComplete("TAR_ELDRITCH"))
 			ResearchManager.completeResearch(e.player, "TAR_ELDRITCH", true);
+		ItemStack chestplate = e.player.inventory.armorItemInSlot(2);
+		if(chestplate.isEmpty() || chestplate.getItem() != ItemsTAR.MITHMINITE_ROBE)
+		{
+			UUID id = UUID.fromString("6d9fc7ce-b49f-41d8-93db-8ecb26505405");
+			IAttributeInstance health = e.player.getAttributeMap()
+					.getAttributeInstance(SharedMonsterAttributes.MAX_HEALTH);
+			if(health.getModifier(id) != null)
+			{
+				health.removeModifier(id);
+				e.player.setHealth(Math.min(e.player.getHealth(), e.player.getMaxHealth()));
+			}
+		}
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)

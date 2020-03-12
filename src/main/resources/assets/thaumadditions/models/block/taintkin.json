@@ -1,0 +1,9 @@
+{
+    "parent": "thaumadditions:block/orientable",
+    "textures": {
+        "top": "thaumadditions:blocks/taintkin/vertical",
+        "front": "thaumadditions:blocks/taintkin/front_off",
+        "side": "thaumadditions:blocks/taintkin/side",
+		"down": "thaumadditions:blocks/taintkin/vertical"
+    }
+}

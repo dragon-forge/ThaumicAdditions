@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "thaumadditions:taintkin_lit" },
+		"facing=south": { "model": "thaumadditions:taintkin_lit", "y": 180 },
+		"facing=west":  { "model": "thaumadditions:taintkin_lit", "y": 270 },
+		"facing=east":  { "model": "thaumadditions:taintkin_lit", "y": 90 }
+	}
+}

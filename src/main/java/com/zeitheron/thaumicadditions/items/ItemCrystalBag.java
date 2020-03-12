@@ -1,12 +1,10 @@
 package com.zeitheron.thaumicadditions.items;
 
-import java.util.List;
-
 import com.zeitheron.hammercore.internal.GuiManager;
 import com.zeitheron.hammercore.utils.WorldLocation;
 import com.zeitheron.thaumicadditions.api.items.IAspectChargableItem.AspectChargableItemHelper;
 import com.zeitheron.thaumicadditions.init.GuisTAR;
-
+import com.zeitheron.thaumicadditions.inventory.container.ContainerCrystalBag;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +16,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,15 +24,18 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.items.ItemsTC;
 import thaumcraft.common.items.resources.ItemCrystalEssence;
 
+import java.util.List;
+
 @EventBusSubscriber
-public class ItemCrystalBag extends Item
+public class ItemCrystalBag
+		extends Item
 {
 	public ItemCrystalBag()
 	{
 		setTranslationKey("crystal_bag");
 		setMaxStackSize(1);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
@@ -53,21 +53,23 @@ public class ItemCrystalBag extends Item
 			++i;
 		}
 	}
-	
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
 		GuiManager.openGuiCallback(GuisTAR.CRYSTAL_BAG, playerIn, new WorldLocation(worldIn, playerIn.getPosition()));
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
-	
+
 	@SubscribeEvent
 	public static void tryPickupItem(EntityItemPickupEvent e)
 	{
 		EntityPlayer picker = e.getEntityPlayer();
 		EntityItem picked = e.getItem();
 		ItemStack stack;
-		
+
+		if(picker.openContainer instanceof ContainerCrystalBag) return;
+
 		if(picker != null && picked != null && !(stack = picked.getItem()).isEmpty() && stack.getItem() == ItemsTC.crystalEssence)
 		{
 			stack = stack.copy();
@@ -80,10 +82,11 @@ public class ItemCrystalBag extends Item
 					if(!bagStack.isEmpty() && bagStack.getItem() instanceof ItemCrystalBag)
 					{
 						AspectList list = AspectChargableItemHelper.getAspects(bagStack);
-						
+
 						int amt = 0;
-						
-						twice: while(!stack.isEmpty())
+
+						twice:
+						while(!stack.isEmpty())
 							for(Aspect a : aspects.getAspectsSortedByAmount())
 							{
 								if(32_768 - list.getAmount(a) > 0)
@@ -96,12 +99,12 @@ public class ItemCrystalBag extends Item
 								} else
 									break twice;
 							}
-						
+
 						e.setCanceled(true);
-						
+
 						picker.onItemPickup(picked, amt);
 						picked.setItem(stack);
-						
+
 						return;
 					}
 				}

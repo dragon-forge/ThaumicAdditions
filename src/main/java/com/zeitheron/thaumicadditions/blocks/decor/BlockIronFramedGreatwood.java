@@ -17,13 +17,14 @@ public class BlockIronFramedGreatwood
 {
 	protected EnumConnTexVersion connV;
 
-	public BlockIronFramedGreatwood()
+	public BlockIronFramedGreatwood(String name)
 	{
 		super(Material.ROCK);
 		this.connV = EnumConnTexVersion.V2;
+		setHarvestLevel("axe", 0);
 		setSoundType(SoundType.WOOD);
 		setHardness(2F);
-		setTranslationKey("iron_framed_greatwood");
+		setTranslationKey(name);
 	}
 
 	@Override
