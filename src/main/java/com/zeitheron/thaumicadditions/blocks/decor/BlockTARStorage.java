@@ -22,6 +22,16 @@ public class BlockTARStorage
 		setSoundType(SoundType.METAL);
 	}
 
+	public BlockTARStorage(Material materialIn, SoundType sound, float hardness, String toolClass, int toolLevel, String name, String... ods)
+	{
+		super(materialIn);
+		this.OD = ods;
+		setTranslationKey(name);
+		setHardness(hardness);
+		setHarvestLevel(toolClass, toolLevel);
+		setSoundType(sound);
+	}
+
 	@Override
 	public void onRegistered()
 	{

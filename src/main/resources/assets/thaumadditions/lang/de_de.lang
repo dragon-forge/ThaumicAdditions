@@ -48,6 +48,10 @@ tile.thaumadditions:adaminite_block.name=Adaminite Block
 tile.thaumadditions:mithminite_block.name=Mithminite Block
 tile.thaumadditions:iron_framed_greatwood.name=Iron Framed Greatwood
 tile.thaumadditions:amber_lamp.name=Amber Lamp
+tile.thaumadditions:brass_plated_silverwood.name=Brass Plated Silverwood
+tile.thaumadditions:taintwood_planks.name=Taintwood Planks
+tile.thaumadditions:taintkin.name=Taintkin
+tile.thaumadditions:taintkin_lit.name=Taint o' Lantern
 
 ##########
 

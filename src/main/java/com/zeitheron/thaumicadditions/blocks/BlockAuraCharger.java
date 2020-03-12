@@ -8,6 +8,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
@@ -18,6 +19,14 @@ public class BlockAuraCharger
 	{
 		super(Material.ROCK, TileAuraCharger.class, "aura_charger");
 		setSoundType(SoundType.STONE);
+	}
+
+	AxisAlignedBB aabb = new AxisAlignedBB(2 / 16F, 0, 2 / 16F, 14 / 16F, 9 / 16F, 14 / 16F);
+
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+	{
+		return aabb;
 	}
 
 	@Override
