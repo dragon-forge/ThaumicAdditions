@@ -14,7 +14,6 @@ import com.zeitheron.thaumicadditions.blocks.sink.BlockEssentiaSinkAux;
 import com.zeitheron.thaumicadditions.tiles.jars.*;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.audio.Sound;
 import net.minecraftforge.common.MinecraftForge;
 import thaumcraft.api.aspects.Aspect;
 
@@ -69,6 +68,7 @@ public class BlocksTAR
 	public static final BlockTARStorage ADAMINITE_BLOCK = new BlockTARStorage("adaminite_block", "blockAdaminite");
 	public static final BlockTARStorage MITHMINITE_BLOCK = new BlockTARStorage("mithminite_block", "blockMithminite");
 	public static final BlockTARStorage TAINTWOOD_PLANK = new BlockTARStorage(Material.WOOD, SoundType.WOOD, 1F, "axe", 0, "taintwood_planks", "plankWood");
+	public static final BlockTARStorage CHISELED_AMBER_BLOCK = new BlockTARStorage(Material.ROCK, SoundType.STONE, 1F, "pickaxe", 0, "chiseled_amber_block", "blockAmber");
 	public static final BlockIronFramedGreatwood IRON_FRAMED_GREATWOOD = new BlockIronFramedGreatwood("iron_framed_greatwood");
 	public static final BlockIronFramedGreatwood BRASS_PLATED_SILVERWOOD = new BlockIronFramedGreatwood("brass_plated_silverwood");
 	public static final BlockAmberLamp AMBER_LAMP = new BlockAmberLamp();

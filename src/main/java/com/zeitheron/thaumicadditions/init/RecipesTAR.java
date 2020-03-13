@@ -104,6 +104,8 @@ public class RecipesTAR
 		shapeless(new ItemStack(ItemsTAR.ADAMINITE_INGOT, 9), BlocksTAR.ADAMINITE_BLOCK);
 		shapeless(new ItemStack(ItemsTAR.MITHMINITE_INGOT, 9), BlocksTAR.MITHMINITE_BLOCK);
 
+		shaped(new ItemStack(BlocksTAR.CHISELED_AMBER_BLOCK, 4), " a ", "a a", " a ", 'a', BlocksTC.amberBlock);
+
 		shapeless(new ItemStack(BlocksTAR.TAINTWOOD_PLANK, 4), new ItemStack(BlocksTC.taintLog));
 
 		if(ConfigsTAR.rewritable)
