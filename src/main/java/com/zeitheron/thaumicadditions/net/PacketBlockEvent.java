@@ -3,6 +3,7 @@ package com.zeitheron.thaumicadditions.net;
 import com.zeitheron.hammercore.HammerCore;
 import com.zeitheron.hammercore.net.HCNet;
 import com.zeitheron.hammercore.net.IPacket;
+import com.zeitheron.hammercore.net.MainThreaded;
 import com.zeitheron.hammercore.net.PacketContext;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,6 +13,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@MainThreaded
 public class PacketBlockEvent
 		implements IPacket
 {

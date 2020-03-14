@@ -1,22 +1,24 @@
 package com.zeitheron.thaumicadditions.net;
 
 import com.zeitheron.hammercore.net.IPacket;
+import com.zeitheron.hammercore.net.MainThreaded;
 import com.zeitheron.hammercore.net.PacketContext;
 import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.inventory.container.ContainerShadowEnchanter;
 import com.zeitheron.thaumicadditions.tiles.TileShadowEnchanter;
-
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-public class PacketHandleShadowLvl implements IPacket
+@MainThreaded
+public class PacketHandleShadowLvl
+		implements IPacket
 {
 	Enchantment ench;
 	int action;
-	
+
 	public static PacketHandleShadowLvl create(int action, Enchantment ench)
 	{
 		PacketHandleShadowLvl p = new PacketHandleShadowLvl();
@@ -24,21 +26,21 @@ public class PacketHandleShadowLvl implements IPacket
 		p.action = action;
 		return p;
 	}
-	
+
 	@Override
 	public void writeToNBT(NBTTagCompound nbt)
 	{
 		nbt.setInteger("a", action);
 		nbt.setString("e", ench.getRegistryName().toString());
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound nbt)
 	{
 		action = nbt.getInteger("a");
 		ench = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(nbt.getString("e")));
 	}
-	
+
 	@Override
 	public void executeOnServer2(PacketContext net)
 	{
