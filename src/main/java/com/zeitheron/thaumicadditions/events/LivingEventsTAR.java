@@ -78,7 +78,7 @@ public class LivingEventsTAR
 		IPlayerKnowledge ipk = ThaumcraftCapabilities.getKnowledge(e.player);
 		if(ipk.isResearchComplete("BASEELDRITCH") && !ipk.isResearchComplete("TAR_ELDRITCH"))
 			ResearchManager.completeResearch(e.player, "TAR_ELDRITCH", true);
-		ItemStack chestplate = e.player.inventory.armorItemInSlot(2);
+		ItemStack chestplate = e.player.inventory.armorInventory.get(2);
 		if(chestplate.isEmpty() || chestplate.getItem() != ItemsTAR.MITHMINITE_ROBE)
 		{
 			UUID id = UUID.fromString("6d9fc7ce-b49f-41d8-93db-8ecb26505405");
