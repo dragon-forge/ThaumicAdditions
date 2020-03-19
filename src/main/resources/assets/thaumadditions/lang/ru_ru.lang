@@ -134,6 +134,9 @@ item.thaumadditions:blue_bone.name=Синяя кость
 item.thaumadditions:the_beheader.name=Головорубец
 item.thaumadditions:adaminite_sword.name=Адаминитовый меч
 item.thaumadditions:traveller_belt.name=Пояс путешественника
+item.thaumadditions:mithminite_scythe.name=Мифминитовая коса
+item.thaumadditions:mithminite_blade.name=Мифминитовое лезвие
+item.thaumadditions:mithminite_handle.name=Мифминитовая рукоять
 
 #########
 
@@ -160,6 +163,8 @@ tooltip.thaumadditions:cb_sort_rule.1=Сортировать по имени (Z-
 tooltip.thaumadditions:cb_sort_rule.2=Сортировать по количеству (спад.)
 tooltip.thaumadditions:cb_sort_rule.3=Сортировать по количеству (возрост.)
 attribute.name.generic.flyingSpeed=Скорость полёта
+damage.thaumadditions:mithminite_scythe.melee=12 Melee Damage
+damage.thaumadditions:mithminite_scythe.ranged=14 Ranged Damage
 
 #################
 
@@ -400,6 +405,10 @@ research_stage.thaumadditions:traveller_belt.2=Похоже, что наполн
 research_name.thaumadditions:adaminite_sword=Адаминитовый меч
 research_stage.thaumadditions:adaminite_sword.1=В то время как пустые металлы обладают удивительной силой, я зашел далеко в его иерархии, и я уверен, что его стоит обновить.
 research_stage.thaumadditions:adaminite_sword.2=Адаминит хорошо сочетается со своим собственным компонентом, это довольно умно. Хотя, поскольку адаминит трудно применить, может потребоваться много дополнительной эссенции. Добавление в него первичной энергии также делает это оружие лучшим оружием для рукопашного боя, которое может предложить любой тауматург. Или же...?
+
+research_name.thaumadditions:mithminite_scythe=Мифминитовая коса
+research_stage.thaumadditions:mithminite_scythe.1=Мифминит оказался довольно важным в нескольких направлениях, но, возможно, из него можно было бы сделать инструмент?
+research_stage.thaumadditions:mithminite_scythe.2=К сожалению, просто установить мифминит на рукоять инструмента - это плохая идея - все стержни, которые я пытался использовать, ломаются очень быстро... Хотя, кажется, что сделать весь инструмент из мифминита с помощью дополнительных материалов возможно, и результат может быть чуть более смертоносным, чем я ожидал... Каким-то образом новая коса способна стрелять фантомными косами, которые также немного сильнее моей. Ну, можно было бы пойти и убить нескольких врагов.
 
 ############
 

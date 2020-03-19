@@ -1,0 +1,36 @@
+{
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "thaumadditions:items/mithminite_scythe"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [ 0, -90, 55 ],
+			"translation": [ 0, 8.0, -1.5 ],
+			"scale": [ 1.5, 1.5, 1 ]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [ 0, 90, -55 ],
+			"translation": [ 0, 8.0, -1.5 ],
+			"scale": [ 1.5, 1.5, 1 ]
+		},
+		"firstperson_righthand": {
+			"rotation": [ 0, -90, 25 ],
+			"translation": [ 1.13, 8.2, 1.13 ],
+			"scale": [ 1.4, 1.4, 1 ]
+		},
+		"firstperson_lefthand": {
+			"rotation": [ 0, 90, -25 ],
+			"translation": [ 1.13, 8.2, 1.13 ],
+			"scale": [ 1.4, 1.4, 1 ]
+		},
+		"gui": {
+			"scale": [ 1.4545, 1.4545, 1.4545 ],
+			"translation": [ 3.6, 3.6, 0 ]
+		}
+	},
+	"overrides": [
+		{ "predicate": { "vperp": 0 }, "model": "thaumadditions:item/mithminite_scythe" },
+		{ "predicate": { "vperp": 1 }, "model": "thaumadditions:item/mithminite_scythe_2" }
+	]
+}

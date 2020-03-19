@@ -10,6 +10,7 @@ import com.zeitheron.thaumicadditions.compat.ITARC;
 import com.zeitheron.thaumicadditions.entity.EntityBlueWolf;
 import com.zeitheron.thaumicadditions.entity.EntityChester;
 import com.zeitheron.thaumicadditions.entity.EntityEssentiaShot;
+import com.zeitheron.thaumicadditions.entity.EntityMithminiteScythe;
 import com.zeitheron.thaumicadditions.init.*;
 import com.zeitheron.thaumicadditions.misc.theorycraft.CardThaumicAdditions;
 import com.zeitheron.thaumicadditions.proxy.CommonProxy;
@@ -19,8 +20,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -99,6 +102,7 @@ public class TAReconstructed
 
 		KnowledgeTAR.clInit.call();
 		GuisTAR.register();
+		SoundsTAR.register();
 
 		SimpleRegistration.registerFieldItemsFrom(ItemsTAR.class, InfoTAR.MOD_ID, tab);
 		SimpleRegistration.registerFieldBlocksFrom(BlocksTAR.class, InfoTAR.MOD_ID, tab);
@@ -107,6 +111,7 @@ public class TAReconstructed
 		EntityRegistry.registerModEntity(new ResourceLocation(InfoTAR.MOD_ID, "chester"), EntityChester.class, InfoTAR.MOD_ID + ".chester", 0, instance, 256, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation(InfoTAR.MOD_ID, "essentia_shot"), EntityEssentiaShot.class, InfoTAR.MOD_ID + ".essentia_shot", 1, instance, 64, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation(InfoTAR.MOD_ID, "blue_wolf"), EntityBlueWolf.class, InfoTAR.MOD_ID + ".blue_wolf", 2, instance, 64, 1, true, 0x0172C0, 0x01FFE5);
+		EntityRegistry.registerModEntity(new ResourceLocation(InfoTAR.MOD_ID, "mithminite_scythe"), EntityMithminiteScythe.class, InfoTAR.MOD_ID + ".mithminite_scythe", 3, instance, 64, 1, true);
 
 		proxy.preInit();
 
@@ -200,5 +205,19 @@ public class TAReconstructed
 		ShadowEnchantment.registerEnchantment(Enchantments.FROST_WALKER, ShadowEnchantment.aspectBuilder().multiplyByLvl(Aspect.COLD, 20), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/frost_walker.png"), null);
 		ShadowEnchantment.registerEnchantment(Enchantments.RESPIRATION, ShadowEnchantment.aspectBuilder().multiplyByLvl(Aspect.WATER, 20).multiplyByLvl(KnowledgeTAR.VENTUS, 20).multiplyByLvl(Aspect.EXCHANGE, 5), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/respiration.png"), null);
 		ShadowEnchantment.registerEnchantment(Enchantments.MENDING, ShadowEnchantment.aspectBuilder().multiplyByLvl(Aspect.DESIRE, 200).multiplyByLvl(KnowledgeTAR.IMPERIUM, 300).multiplyByLvl(Aspect.EXCHANGE, 500), new ResourceLocation(InfoTAR.MOD_ID, "textures/enchantments/mending.png"), null);
+	}
+
+	public static NBTTagCompound getPlayerTag(EntityPlayer player)
+	{
+		NBTTagCompound nbt = player.getEntityData();
+		NBTTagCompound tag = nbt.getCompoundTag(InfoTAR.MOD_ID);
+		if(!nbt.hasKey(InfoTAR.MOD_ID, Constants.NBT.TAG_COMPOUND)) nbt.setTag(InfoTAR.MOD_ID, tag);
+		return tag;
+	}
+
+	public static void setPlayerTag(EntityPlayer player, NBTTagCompound tag)
+	{
+		NBTTagCompound nbt = player.getEntityData();
+		nbt.setTag(InfoTAR.MOD_ID, tag);
 	}
 }

@@ -9,10 +9,7 @@ import com.zeitheron.thaumicadditions.items.baubles.ItemRechargeCharm;
 import com.zeitheron.thaumicadditions.items.seed.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.items.seed.ItemVoidSeed;
 import com.zeitheron.thaumicadditions.items.tools.*;
-import com.zeitheron.thaumicadditions.items.weapons.ItemAdaminiteSword;
-import com.zeitheron.thaumicadditions.items.weapons.ItemEssentiaPistol;
-import com.zeitheron.thaumicadditions.items.weapons.ItemShadowBeamStaff;
-import com.zeitheron.thaumicadditions.items.weapons.ItemTheBeheader;
+import com.zeitheron.thaumicadditions.items.weapons.*;
 import net.minecraft.inventory.EntityEquipmentSlot;
 
 public class ItemsTAR
@@ -35,6 +32,8 @@ public class ItemsTAR
 	public static final ItemMaterial SEAL_GLOBE = new ItemMaterial("seal_globe");
 	public static final ItemMaterial ODOUR_POWDER = new ItemMaterial("odour_powder");
 	public static final ItemMaterial PHANTOM_INK_PHIAL = new ItemMaterial("phantom_ink_phial");
+	public static final ItemMaterial MITHMINITE_BLADE = new ItemMaterial("mithminite_blade");
+	public static final ItemMaterial MITHMINITE_HANDLE = new ItemMaterial("mithminite_handle");
 	public static final ItemMaterial ZEITH_FUR = new ItemZeithFur();
 	public static final ItemBlueBone BLUE_BONE = new ItemBlueBone();
 
@@ -58,6 +57,7 @@ public class ItemsTAR
 	public static final ItemEssentiaPistol ESSENTIA_PISTOL = new ItemEssentiaPistol();
 	public static final ItemTheBeheader THE_BEHEADER = new ItemTheBeheader();
 	public static final ItemAdaminiteSword ADAMINITE_SWORD = new ItemAdaminiteSword();
+	public static final ItemMithminiteScythe MITHMINITE_SCYTHE = new ItemMithminiteScythe();
 
 	// ARMOR
 
