@@ -27,12 +27,14 @@ import com.zeitheron.thaumicadditions.client.render.block.statemap.LambdaStateMa
 import com.zeitheron.thaumicadditions.client.render.entity.RenderBlueWolf;
 import com.zeitheron.thaumicadditions.client.render.entity.RenderChester;
 import com.zeitheron.thaumicadditions.client.render.entity.RenderEssentiaShot;
+import com.zeitheron.thaumicadditions.client.render.entity.RenderMithminiteScythe;
 import com.zeitheron.thaumicadditions.client.render.tile.*;
 import com.zeitheron.thaumicadditions.client.texture.TextureThaumonomiconBG;
 import com.zeitheron.thaumicadditions.compat.ITARC;
 import com.zeitheron.thaumicadditions.entity.EntityBlueWolf;
 import com.zeitheron.thaumicadditions.entity.EntityChester;
 import com.zeitheron.thaumicadditions.entity.EntityEssentiaShot;
+import com.zeitheron.thaumicadditions.entity.EntityMithminiteScythe;
 import com.zeitheron.thaumicadditions.events.ClientEventReactor;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
@@ -114,6 +116,7 @@ public class ClientProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityChester.class, RenderChester::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityEssentiaShot.class, RenderEssentiaShot::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlueWolf.class, RenderBlueWolf::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityMithminiteScythe.class, RenderMithminiteScythe::new);
 
 		OBJLoader.INSTANCE.addDomain(InfoTAR.MOD_ID);
 	}

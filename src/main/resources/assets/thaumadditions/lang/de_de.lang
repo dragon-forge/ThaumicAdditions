@@ -134,6 +134,9 @@ item.thaumadditions:blue_bone.name=Blue Bone
 item.thaumadditions:the_beheader.name=The Beheader
 item.thaumadditions:adaminite_sword.name=Adaminite Sword
 item.thaumadditions:traveller_belt.name=Belt of the Traveller
+item.thaumadditions:mithminite_scythe.name=Mithminite Scythe
+item.thaumadditions:mithminite_blade.name=Mithminite Blade
+item.thaumadditions:mithminite_handle.name=Mithminite Handle
 
 #########
 
@@ -160,6 +163,8 @@ tooltip.thaumadditions:cb_sort_rule.1=Sort by name (Z->A)
 tooltip.thaumadditions:cb_sort_rule.2=Sort by quantity (Descending)
 tooltip.thaumadditions:cb_sort_rule.3=Sort by quantity (Ascending)
 attribute.name.generic.flyingSpeed=Flight Speed
+damage.thaumadditions:mithminite_scythe.melee=12 Melee Damage
+damage.thaumadditions:mithminite_scythe.ranged=14 Ranged Damage
 
 #################
 
@@ -400,6 +405,10 @@ research_stage.thaumadditions:traveller_belt.2=Seems like infusing the mundane b
 research_name.thaumadditions:adaminite_sword=Adaminite Sword
 research_stage.thaumadditions:adaminite_sword.1=While void metals posesses amazing powers, I have gone far in it's hierarchy, and I am confident that an upgrade to it is worthy.
 research_stage.thaumadditions:adaminite_sword.2=Adaminite fuses well with it's own component, that's pretty smart. Though since adaminite is hard to apply, a lot of auxiliary essentia may be required. Adding some primal energy to it also makes this weapong a pretty much the best melee weapon any thaumaturge may posess. Or is it?
+
+research_name.thaumadditions:mithminite_scythe=Mithminite Scythe
+research_stage.thaumadditions:mithminite_scythe.1=Mithminite has proven to be quite important in few ways, but perhaps a tool could be made out of it?
+research_stage.thaumadditions:mithminite_scythe.2=Unfortunately, just putting Mithminite on a tool handle is a bad idea - all rods that I've tried break very fast... Though it seems like making the entire tool out of mithminite with help of some auxiliary materials is possible, and the result may be a bit more deadly then I expected... Somehow the new scythe is able to shoot with phantom scythes that are also a bit more strong then mine. Oh well, might as well go and murder some enemies.
 
 ############
 

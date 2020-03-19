@@ -1,21 +1,11 @@
 package com.zeitheron.thaumicadditions.events;
 
-import java.lang.ref.WeakReference;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.lwjgl.opengl.ARBShaderObjects;
-import org.lwjgl.opengl.GL11;
-
 import com.zeitheron.hammercore.client.render.shader.ShaderProgram;
 import com.zeitheron.hammercore.client.render.shader.impl.ShaderEnderField;
 import com.zeitheron.hammercore.client.render.world.VirtualWorld;
 import com.zeitheron.hammercore.client.utils.RenderUtil;
 import com.zeitheron.hammercore.client.utils.UtilsFX;
+import com.zeitheron.hammercore.net.HCNet;
 import com.zeitheron.thaumicadditions.InfoTAR;
 import com.zeitheron.thaumicadditions.api.AttributesTAR;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
@@ -24,9 +14,9 @@ import com.zeitheron.thaumicadditions.client.ParticleHooksTAR;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
 import com.zeitheron.thaumicadditions.items.tools.ItemVoidThaumometer;
+import com.zeitheron.thaumicadditions.net.PacketLeftClick;
 import com.zeitheron.thaumicadditions.tiles.TileSeal;
 import com.zeitheron.thaumicadditions.utils.Foods;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -42,6 +32,7 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -68,6 +59,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.ARBShaderObjects;
+import org.lwjgl.opengl.GL11;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.client.fx.ParticleEngine;
@@ -75,31 +68,37 @@ import thaumcraft.client.fx.particles.FXGeneric;
 import thaumcraft.common.entities.EntityFluxRift;
 import thaumcraft.common.lib.utils.Utils;
 
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
+import java.util.*;
+
 public class ClientEventReactor
 {
 	public static final ClientEventReactor REACTOR = new ClientEventReactor();
-	
+
 	final List<Particle> sounding = new ArrayList<>();
 	final List<BlockPos> excludesRAJ = new ArrayList<>();
-	
+
 	boolean voidThaumometer;
-	
+
 	WeakReference<TileSeal> seal_MH;
 	int sealHoverTime_MH;
-	
+
 	final VirtualWorld ores = new VirtualWorld();
-	
+
 	public static void translatePlayerIrrelative(double x, double y, double z)
 	{
 		GlStateManager.translate(x - TileEntityRendererDispatcher.staticPlayerX, y - TileEntityRendererDispatcher.staticPlayerY, z - TileEntityRendererDispatcher.staticPlayerZ);
 	}
-	
+
+	private boolean keyBindAttack;
+
 	@SubscribeEvent
 	public void clientTick(ClientTickEvent cte)
 	{
 		if(cte.phase == Phase.START)
 			return;
-		
+
 		World world = Minecraft.getMinecraft().world;
 		EntityPlayer player = Minecraft.getMinecraft().player;
 		ItemStack head;
@@ -107,20 +106,20 @@ public class ClientEventReactor
 		if(world != null && player != null && !(head = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD)).isEmpty() && head.getItem() instanceof ItemMithminiteDress)
 		{
 			mithminiteHelm = true;
-			
+
 			Profiler prof = Minecraft.getMinecraft().profiler;
 			prof.startSection("sounding_figure_ores");
-			
+
 			Field particles = ParticleEngine.class.getDeclaredFields()[2];
 			particles.setAccessible(true);
 			try
 			{
 				HashMap<Integer, ArrayList<Particle>>[] ps = (HashMap<Integer, ArrayList<Particle>>[]) particles.get(null);
-				
+
 				int pss = sounding.size();
-				
+
 				sounding.clear();
-				
+
 				for(HashMap<Integer, ArrayList<Particle>> effects : ps)
 				{
 					ArrayList<Particle> listParticles = effects.get(world.provider.getDimension());
@@ -135,11 +134,11 @@ public class ClientEventReactor
 							}
 						}
 				}
-				
+
 				if(pss != sounding.size())
 				{
 					excludesRAJ.clear();
-					
+
 					prof.startSection("render");
 					for(int i = 0; i < sounding.size(); ++i)
 					{
@@ -158,14 +157,24 @@ public class ClientEventReactor
 			} catch(IllegalArgumentException | IllegalAccessException | ConcurrentModificationException e1)
 			{
 			}
-			
+
 			prof.endSection();
 		} else
 		{
 			sounding.clear();
 			excludesRAJ.clear();
 		}
-		
+
+		if(world != null)
+		{
+			KeyBinding kb = Minecraft.getMinecraft().gameSettings.keyBindAttack;
+			if(kb.isKeyDown() != keyBindAttack)
+			{
+				keyBindAttack = kb.isKeyDown();
+				HCNet.INSTANCE.sendToServer(new PacketLeftClick(keyBindAttack));
+			}
+		}
+
 		RayTraceResult over;
 		if(mithminiteHelm && (over = Minecraft.getMinecraft().objectMouseOver) != null && over.typeOfHit == Type.BLOCK && world.getTileEntity(over.getBlockPos()) instanceof TileSeal)
 		{
@@ -179,7 +188,7 @@ public class ClientEventReactor
 			sealHoverTime_MH = 0;
 		}
 	}
-	
+
 	/**
 	 * SoundEvent handling, used to make sounds louder with a special potion
 	 * effect.
@@ -196,14 +205,14 @@ public class ClientEventReactor
 				try
 				{
 					float f = volume.getFloat(ps);
-					
+
 					// Adjust volume
 					if(Minecraft.getMinecraft().player != null)
 					{
 						IAttributeInstance ss = Minecraft.getMinecraft().player.getEntityAttribute(AttributesTAR.SOUND_SENSIVITY);
 						f *= (float) ss.getAttributeValue();
 					}
-					
+
 					volume.setFloat(ps, f);
 				} catch(Throwable err)
 				{
@@ -211,12 +220,12 @@ public class ClientEventReactor
 				}
 		}
 	}
-	
+
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void tooltipEvent(ItemTooltipEvent e)
 	{
 		ItemStack stack = e.getItemStack();
-		
+
 		AspectList salt;
 		if(!stack.isEmpty() && Foods.isFood(stack.getItem()) && (salt = EdibleAspect.getSalt(stack)).visSize() > 0)
 		{
@@ -224,11 +233,11 @@ public class ClientEventReactor
 			for(Aspect a : salt.getAspectsSortedByName())
 				e.getToolTip().add(a.getName() + " x" + salt.getAmount(a));
 		}
-		
+
 		if(stack.getItem() instanceof ItemArmor && stack.hasTagCompound() && stack.getTagCompound().getBoolean("TAR_PHANTOM"))
 			e.getToolTip().add(TextFormatting.DARK_AQUA + I18n.format("tooltip." + InfoTAR.MOD_ID + ":phantom"));
 	}
-	
+
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void renderWorldLast(RenderWorldLastEvent e)
 	{
@@ -250,7 +259,7 @@ public class ClientEventReactor
 		ShaderEnderField.endShader.freeBindShader();
 		ARBShaderObjects.glUniform4fARB(ShaderEnderField.endShader.getUniformLoc("color"), 0.044F, 0.036F, 0.063F, .2F);
 		GlStateManager.disableDepth();
-		
+
 		bb.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
 		int c = excludesRAJ.size();
 		for(int i = 0; i < c; ++i)
@@ -262,41 +271,41 @@ public class ClientEventReactor
 			brd.getBlockModelRenderer().renderModel(ores, model, state, pos, bb, true);
 		}
 		Tessellator.getInstance().draw();
-		
+
 		ShaderProgram.unbindShader();
 		GlStateManager.enableDepth();
 		GlStateManager.popMatrix();
 		prof.endSection();
-		
+
 		if(voidThaumometer)
 		{
 			EntityFluxRift rift = ItemVoidThaumometer.getSelectedRift();
 			if(rift != null)
 			{
 				double x = 0, y = 0, z = 0;
-				
+
 				for(Vec3d p : rift.points)
 				{
 					x += p.x;
 					y += p.y;
 					z += p.z;
 				}
-				
+
 				int np = rift.points.size();
-				
+
 				x /= np;
 				y /= np;
 				z /= np;
-				
+
 				x += rift.posX;
 				y += rift.posY + 1;
 				z += rift.posZ;
-				
+
 				if(Minecraft.getMinecraft().getRenderViewEntity() instanceof EntityPlayer)
 				{
 					String text = I18n.format("stability." + rift.getStability()) + (rift.getCollapse() ? ", Collapsing..." : "");
 					float scale = 1.5F;
-					
+
 					float partialTicks = e.getPartialTicks();
 					player = (EntityPlayer) Minecraft.getMinecraft().getRenderViewEntity();
 					double iPX = player.prevPosX + (player.posX - player.prevPosX) * (double) partialTicks;
@@ -321,9 +330,9 @@ public class ClientEventReactor
 			}
 		}
 	}
-	
+
 	private Map<EntityEquipmentSlot, ItemStack> armor = new HashMap<>();
-	
+
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void preRenderPlayer(RenderPlayerEvent.Pre e)
 	{
@@ -339,7 +348,7 @@ public class ClientEventReactor
 				}
 			}
 	}
-	
+
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void postRenderPlayer(RenderPlayerEvent.Post e)
 	{
@@ -350,7 +359,7 @@ public class ClientEventReactor
 				player.inventory.armorInventory.set(s.getIndex(), armor.remove(s));
 			}
 	}
-	
+
 	@SubscribeEvent
 	public void renderTick(TickEvent.RenderTickEvent event)
 	{
@@ -366,7 +375,7 @@ public class ClientEventReactor
 			}
 		}
 	}
-	
+
 	@SideOnly(value = Side.CLIENT)
 	void renderHuds(Minecraft mc, float renderTickTime, EntityPlayer player, long time)
 	{
@@ -401,7 +410,7 @@ public class ClientEventReactor
 				handStack = player.getHeldItemOffhand();
 			}
 			voidThaumometer = rT;
-			
+
 			TileSeal seal;
 			if(seal_MH != null && (seal = seal_MH.get()) != null)
 			{
@@ -409,12 +418,12 @@ public class ClientEventReactor
 				int ySize = 96;
 				int guiLeft = (sr.getScaledWidth() - xSize) / 2;
 				int guiTop = (sr.getScaledHeight() - ySize) / 2;
-				
+
 				float size = 32F;
 				int total = 3;
-				
+
 				double gap = xSize / total;
-				
+
 				for(int i = 0; i < total; ++i)
 				{
 					Aspect s = seal.getSymbol(i);
@@ -439,9 +448,9 @@ public class ClientEventReactor
 					}
 					GlStateManager.popMatrix();
 				}
-				
+
 				String text;
-				
+
 				if(seal.combination == null)
 					text = I18n.format("seal." + InfoTAR.MOD_ID + ":none");
 				else
@@ -452,11 +461,11 @@ public class ClientEventReactor
 					else
 						text = I18n.format("seal." + InfoTAR.MOD_ID + ":unconfigured", seal.combination.getModName(), seal.combination.getAuthor());
 				}
-				
+
 				FontRenderer fontRenderer = mc.fontRenderer;
-				
+
 				int width = Math.min(fontRenderer.getStringWidth(text), sr.getScaledWidth() / 2);
-				
+
 				fontRenderer.drawSplitString(text, (int) ((sr.getScaledWidth() - width) / 2 + 1), (int) (guiTop + 37 + (ySize - 36) / 2), width, 0xFF444444);
 				fontRenderer.drawSplitString(text, (int) ((sr.getScaledWidth() - width) / 2), (int) (guiTop + 36 + (ySize - 36) / 2), width, 0xFFFFFFFF);
 			}
@@ -464,7 +473,7 @@ public class ClientEventReactor
 		GL11.glDisable((int) 3042);
 		GL11.glPopMatrix();
 	}
-	
+
 	private void renderAllAdjacent(World world, BlockPos pos, BufferBuilder bb, BlockRendererDispatcher brd)
 	{
 		if(excludesRAJ.size() >= 8192 || excludesRAJ.contains(pos) || !Utils.isOreBlock(world, pos))
@@ -481,7 +490,7 @@ public class ClientEventReactor
 				renderAllAdjacent(world, rem, bb, brd);
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void fixFOV(FOVUpdateEvent e)
 	{
