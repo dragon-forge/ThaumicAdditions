@@ -148,7 +148,7 @@ public class EntityMithminiteScythe
 			if(thrower != null && thrower.getEntityId() == result.entityHit.getEntityId()) return;
 			if(((EntityLivingBase) result.entityHit).getHealth() > 0)
 			{
-				result.entityHit.attackEntityFrom(ThaumicHelper.createLivingDamageSource(thrower), 14F);
+				result.entityHit.attackEntityFrom(ThaumicHelper.createLivingDamageSource(thrower).setDamageBypassesArmor(), 14F);
 				hasHitEntity = true;
 				dataManager.set(DISPOSE_TIME, Math.min(dataManager.get(DISPOSE_TIME), Math.min(ticksExisted + 15, 60)));
 			}

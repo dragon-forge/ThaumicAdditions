@@ -143,7 +143,7 @@ public class ItemMithminiteScythe
 				if(ent instanceof EntityLivingBase)
 				{
 					EntityLivingBase elb = (EntityLivingBase) ent;
-					elb.attackEntityFrom(DamageSource.causePlayerDamage(player), 12F);
+					elb.attackEntityFrom(DamageSource.causePlayerDamage(player).setDamageBypassesArmor(), 12F);
 				}
 			}
 
