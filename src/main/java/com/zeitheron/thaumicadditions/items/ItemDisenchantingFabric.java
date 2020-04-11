@@ -17,7 +17,13 @@ public class ItemDisenchantingFabric extends Item implements ICustomEnchantColor
 		setMaxStackSize(1);
 		setMaxDamage(32);
 	}
-	
+
+	@Override
+	public boolean isRepairable()
+	{
+		return false;
+	}
+
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
 	{

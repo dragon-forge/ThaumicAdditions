@@ -1,11 +1,7 @@
 package com.zeitheron.thaumicadditions.recipes;
 
-import java.lang.reflect.Field;
-import java.util.Map;
-
 import com.zeitheron.hammercore.utils.ReflectionUtil;
 import com.zeitheron.thaumicadditions.items.ItemDisenchantingFabric;
-
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -20,26 +16,60 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public class RecipeDisenchant extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe
+import java.lang.reflect.Field;
+import java.util.Map;
+
+public class RecipeDisenchant
+		extends IForgeRegistryEntry.Impl<IRecipe>
+		implements IRecipe
 {
 	@Override
 	public ItemStack getRecipeOutput()
 	{
 		return ItemStack.EMPTY;
 	}
-	
+
 	@Override
 	public boolean canFit(int width, int height)
 	{
 		return width * height >= 2;
 	}
-	
+
+	@Override
+	public boolean matches(InventoryCrafting inv, World worldIn)
+	{
+		ItemStack enchantedItem = ItemStack.EMPTY;
+		boolean fabric = false;
+
+		for(int i = 0; i < inv.getSizeInventory(); ++i)
+		{
+			ItemStack stack = inv.getStackInSlot(i);
+			if(!stack.isEmpty())
+			{
+				if(stack.getItem() instanceof ItemDisenchantingFabric)
+				{
+					if(!fabric)
+						fabric = true;
+					else return false;
+				} else if(stack.isItemEnchanted())
+				{
+					if(enchantedItem.isEmpty())
+						enchantedItem = stack;
+					else
+						return false;
+				}
+			}
+		}
+
+		return !enchantedItem.isEmpty() && fabric;
+	}
+
 	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv)
 	{
 		ItemStack enchantedItem = ItemStack.EMPTY;
 		boolean fabric = false;
-		
+
 		for(int i = 0; i < inv.getSizeInventory(); ++i)
 		{
 			ItemStack stack = inv.getStackInSlot(i);
@@ -60,7 +90,7 @@ public class RecipeDisenchant extends IForgeRegistryEntry.Impl<IRecipe> implemen
 				}
 			}
 		}
-		
+
 		if(fabric && !enchantedItem.isEmpty())
 		{
 			ItemStack di = enchantedItem.copy().splitStack(1);
@@ -69,46 +99,16 @@ public class RecipeDisenchant extends IForgeRegistryEntry.Impl<IRecipe> implemen
 				di.getTagCompound().removeTag("ench");
 			return di;
 		}
-		
+
 		return ItemStack.EMPTY;
 	}
-	
-	@Override
-	public boolean matches(InventoryCrafting inv, World worldIn)
-	{
-		ItemStack enchantedItem = ItemStack.EMPTY;
-		boolean fabric = false;
-		
-		for(int i = 0; i < inv.getSizeInventory(); ++i)
-		{
-			ItemStack stack = inv.getStackInSlot(i);
-			if(!stack.isEmpty())
-			{
-				if(stack.getItem() instanceof ItemDisenchantingFabric)
-				{
-					if(!fabric)
-						fabric = true;
-					else
-						return false;
-				} else if(stack.isItemEnchanted())
-				{
-					if(enchantedItem.isEmpty())
-						enchantedItem = stack;
-					else
-						return false;
-				}
-			}
-		}
-		
-		return !enchantedItem.isEmpty() && fabric;
-	}
-	
+
 	@Override
 	public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
 	{
 		ItemStack enchantedItem = ItemStack.EMPTY;
 		boolean fabric = false;
-		
+
 		for(int i = 0; i < inv.getSizeInventory(); ++i)
 		{
 			ItemStack stack = inv.getStackInSlot(i);
@@ -129,14 +129,14 @@ public class RecipeDisenchant extends IForgeRegistryEntry.Impl<IRecipe> implemen
 				}
 			}
 		}
-		
+
 		if(fabric && !enchantedItem.isEmpty())
 		{
 			ItemStack di = enchantedItem.copy().splitStack(1);
 			Map<Enchantment, Integer> ench = EnchantmentHelper.getEnchantments(di);
 			if(di.hasTagCompound())
 				di.getTagCompound().removeTag("ench");
-			
+
 			EntityPlayer crafter = null;
 			Field f = ReflectionUtil.getField(InventoryCrafting.class, Container.class);
 			if(f != null)
@@ -158,7 +158,7 @@ public class RecipeDisenchant extends IForgeRegistryEntry.Impl<IRecipe> implemen
 					e.printStackTrace();
 				}
 			}
-			
+
 			if(crafter != null && !crafter.world.isRemote)
 			{
 				int xp = 0;
@@ -177,10 +177,10 @@ public class RecipeDisenchant extends IForgeRegistryEntry.Impl<IRecipe> implemen
 				}
 			}
 		}
-		
+
 		return IRecipe.super.getRemainingItems(inv);
 	}
-	
+
 	@Override
 	public boolean isDynamic()
 	{
