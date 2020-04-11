@@ -63,6 +63,10 @@ repositories {
         url = "https://minecraft.curseforge.com/api/maven/"
     }
     maven {
+        name = "DragonForge"
+        url = "https://raw.github.com/dragon-forge/maven/master"
+    }
+    maven {
         name = "jei"
         url =  "http://dvs1.progwml6.com/files/maven"
     }
@@ -73,7 +77,7 @@ repositories {
 }
 
 dependencies {
-	deobfCompile "hammer-lib:HammerCore-${config.minecraft_version}:${config.hc_version}:deobf"
+	deobfCompile "tk.zeitheron.HammerLib:HammerLib-${config.minecraft_version}:${config.hl_version}:deobf"
 	deobfCompile "visuals:Visuals-${config.minecraft_version}:2r:deobf"
 	deobfCompile "colored-lux:ColoredLux-${config.minecraft_version}:11r:deobf"
 	deobfCompile "mcp.mobius.waila:Hwyla:1.8.24-B39_1.12"
