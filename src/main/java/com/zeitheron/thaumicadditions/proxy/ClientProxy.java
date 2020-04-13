@@ -362,6 +362,7 @@ public class ClientProxy
 		EnumHandSide handSide = flag ? player.getPrimaryHand() : player.getPrimaryHand().opposite();
 
 		ItemStack held = e.getItemStack();
+
 		if(!held.isEmpty() && held.getItem() instanceof IAnimatableItem)
 		{
 			IAnimatableItem ai = ((IAnimatableItem) held.getItem());
@@ -379,11 +380,7 @@ public class ClientProxy
 			EnumHand ohand = e.getHand() == EnumHand.MAIN_HAND ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND;
 			ItemStack held2 = player.getHeldItem(ohand);
 
-			if(ohand == EnumHand.MAIN_HAND && !held2.isEmpty())
-			{
-				e.setCanceled(true);
-				return;
-			}
+			if(ohand == EnumHand.MAIN_HAND && !held2.isEmpty()) return;
 
 			if(!held2.isEmpty() && held2.getItem() instanceof IAnimatableItem)
 			{
