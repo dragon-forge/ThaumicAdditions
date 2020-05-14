@@ -24,7 +24,13 @@ public class ItemAdaminiteDress extends ItemArmor implements IVisDiscountGear, I
 	{
 		super(ADAMINITE, slot == EntityEquipmentSlot.LEGS ? 1 : 0, slot);
 	}
-	
+
+	@Override
+	public boolean isEnchantable(ItemStack stack)
+	{
+		return true;
+	}
+
 	@Override
 	public ItemAdaminiteDress setTranslationKey(String key)
 	{

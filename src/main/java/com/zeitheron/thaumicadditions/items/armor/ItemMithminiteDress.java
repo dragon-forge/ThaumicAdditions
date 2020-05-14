@@ -54,6 +54,12 @@ public class ItemMithminiteDress
 	}
 
 	@Override
+	public boolean isEnchantable(ItemStack stack)
+	{
+		return true;
+	}
+
+	@Override
 	public void onArmorTick(World world, EntityPlayer mp, ItemStack itemStack)
 	{
 		ItemStack tmp;
