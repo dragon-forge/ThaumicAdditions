@@ -1,5 +1,6 @@
 package com.zeitheron.thaumicadditions.items.weapons;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraftforge.common.util.EnumHelper;
 
@@ -14,5 +15,11 @@ public class ItemAdaminiteSword
 	{
 		super(ADAMINITE_SWORD_MAT);
 		setTranslationKey("adaminite_sword");
+	}
+
+	@Override
+	public boolean isEnchantable(ItemStack stack)
+	{
+		return true;
 	}
 }

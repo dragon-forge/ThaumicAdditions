@@ -45,6 +45,18 @@ public class ItemTheBeheader
 	}
 
 	@Override
+	public boolean isEnchantable(ItemStack stack)
+	{
+		return true;
+	}
+
+	@Override
+	public int getItemEnchantability()
+	{
+		return 30;
+	}
+
+	@Override
 	public void onRegistered()
 	{
 		MinecraftForge.EVENT_BUS.register(this);
