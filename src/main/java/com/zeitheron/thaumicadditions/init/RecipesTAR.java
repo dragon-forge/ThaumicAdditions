@@ -123,6 +123,7 @@ public class RecipesTAR
 		shaped(new ItemStack(BlocksTAR.IRON_FRAMED_GREATWOOD, 5), "npn", "ppp", "npn", 'n', "nuggetIron", 'p', new ItemStack(BlocksTC.plankGreatwood));
 		shaped(new ItemStack(BlocksTAR.BRASS_PLATED_SILVERWOOD, 5), "npn", "ppp", "npn", 'n', "nuggetBrass", 'p', new ItemStack(BlocksTC.plankSilverwood));
 		shaped(new ItemStack(BlocksTAR.AMBER_LAMP, 3), "bnb", "aaa", "bnb", 'b', new ItemStack(Blocks.IRON_BARS), 'n', "nitor", 'a', new ItemStack(BlocksTC.amberBlock));
+		shaped(new ItemStack(BlocksTAR.CHISELED_GREATWOOD, 3), " s ", "sps", " s ", 's', new ItemStack(BlocksTC.slabGreatwood), 'p', new ItemStack(BlocksTC.plankGreatwood));
 
 		recipe(new RecipeMixSalts().setRegistryName(new ResourceLocation(getMod(), "essence_salt.mix")));
 		recipe(new RecipeApplySalt().setRegistryName(new ResourceLocation(getMod(), "essence_salt.apply")));

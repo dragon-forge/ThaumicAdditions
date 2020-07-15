@@ -97,4 +97,5 @@ public class ItemsTAR
 	public static final ItemKnowledgeTome KNOWLEDGE_TOME = new ItemKnowledgeTome();
 	public static final ItemDisenchantingFabric DISENCHANT_FABRIC = new ItemDisenchantingFabric();
 	public static final ItemCrystalBag CRYSTAL_BAG = new ItemCrystalBag();
+	public static final ItemVoidFruit VOID_FRUIT = new ItemVoidFruit();
 }
