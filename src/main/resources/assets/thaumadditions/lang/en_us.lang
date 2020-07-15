@@ -53,6 +53,7 @@ tile.thaumadditions:taintwood_planks.name=Taintwood Planks
 tile.thaumadditions:taintkin.name=Taintkin
 tile.thaumadditions:taintkin_lit.name=Taint o' Lantern
 tile.thaumadditions:chiseled_amber_block.name=Chiseled Amber Block
+tile.thaumadditions:chiseled_greatwood.name=Chiseled Greatwood
 
 ##########
 
@@ -144,6 +145,7 @@ item.thaumadditions:mithrillium_cap.name=Charged Mithrillium Cap
 item.thaumadditions:adaminite_cap.name=Charged Adaminite Cap
 item.thaumadditions:mithminite_cap.name=Charged Mithminite Cap
 item.thaumadditions:adaminitewood_rod.name=Adaminitewood Rod
+item.thaumadditions:void_fruit.name=Void Fruit
 
 #########
 

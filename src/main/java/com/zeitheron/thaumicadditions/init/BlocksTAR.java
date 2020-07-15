@@ -71,6 +71,7 @@ public class BlocksTAR
 	public static final BlockTARStorage CHISELED_AMBER_BLOCK = new BlockTARStorage(Material.ROCK, SoundType.STONE, 1F, "pickaxe", 0, "chiseled_amber_block", "blockAmber");
 	public static final BlockIronFramedGreatwood IRON_FRAMED_GREATWOOD = new BlockIronFramedGreatwood("iron_framed_greatwood");
 	public static final BlockIronFramedGreatwood BRASS_PLATED_SILVERWOOD = new BlockIronFramedGreatwood("brass_plated_silverwood");
+	public static final BlockIronFramedGreatwood CHISELED_GREATWOOD = new BlockIronFramedGreatwood("chiseled_greatwood");
 	public static final BlockAmberLamp AMBER_LAMP = new BlockAmberLamp();
 
 	public static final Map<Aspect, BlockVisCrop> VIS_CROPS = new HashMap<>();
