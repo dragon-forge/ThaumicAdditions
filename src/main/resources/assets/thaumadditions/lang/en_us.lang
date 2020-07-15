@@ -137,6 +137,13 @@ item.thaumadditions:traveller_belt.name=Belt of the Traveller
 item.thaumadditions:mithminite_scythe.name=Mithminite Scythe
 item.thaumadditions:mithminite_blade.name=Mithminite Blade
 item.thaumadditions:mithminite_handle.name=Mithminite Handle
+item.thaumadditions:mithrillium_cap_inert.name=Inert Mithrillium Cap
+item.thaumadditions:adaminite_cap_inert.name=Inert Adaminite Cap
+item.thaumadditions:mithminite_cap_inert.name=Inert Mithminite Cap
+item.thaumadditions:mithrillium_cap.name=Charged Mithrillium Cap
+item.thaumadditions:adaminite_cap.name=Charged Adaminite Cap
+item.thaumadditions:mithminite_cap.name=Charged Mithminite Cap
+item.thaumadditions:adaminitewood_rod.name=Adaminitewood Rod
 
 #########
 
@@ -165,6 +172,10 @@ tooltip.thaumadditions:cb_sort_rule.3=Sort by quantity (Ascending)
 attribute.name.generic.flyingSpeed=Flight Speed
 damage.thaumadditions:mithminite_scythe.melee=12 Melee Damage
 damage.thaumadditions:mithminite_scythe.ranged=14 Ranged Damage
+item.wand.mithrillium.cap=Mithrillium Attuned
+item.wand.adaminite.cap=Adaminite Adorned
+item.wand.mithminite.cap=Mithminite Ornamented
+item.wand.adaminitewood.rod=Adamitewood
 
 #################
 
@@ -409,6 +420,22 @@ research_stage.thaumadditions:adaminite_sword.2=Adaminite fuses well with it's o
 research_name.thaumadditions:mithminite_scythe=Mithminite Scythe
 research_stage.thaumadditions:mithminite_scythe.1=Mithminite has proven to be quite important in few ways, but perhaps a tool could be made out of it?
 research_stage.thaumadditions:mithminite_scythe.2=Unfortunately, just putting Mithminite on a tool handle is a bad idea - all rods that I've tried break very fast... Though it seems like making the entire tool out of mithminite with help of some auxiliary materials is possible, and the result may be a bit more deadly then I expected... Somehow the new scythe is able to shoot with phantom scythes that are also a bit more strong then mine. Oh well, might as well go and murder some enemies.
+
+research_name.thaumadditions:cap_mithrillium=Mithrillium Wand Caps
+research_stage.thaumadditions:cap_mithrillium.1=I never expected there to be a metal even more potent than void metal, but this is truely baffeling, maybe my thaumaturgy studies have ended to soon, maybe I should try forging myself a new pair of wand caps...
+research_stage.thaumadditions:cap_mithrillium.2=It took a lot of salis mundus to get these to work again, but the result was definitly worth it, these caps provide a 25% discount and even a 1 crystal discount on every aspect, but why does it always take so much salis mundus though ?
+
+research_name.thaumadditions:cap_adaminite=Adaminite Wand Caps
+research_stage.thaumadditions:cap_adaminite.1=When Mithrillium is already great, then what about Adaminite it should be even better, it is only logical, but I have a feeling that not only the Warp will affect my sanity this time.
+research_stage.thaumadditions:cap_adaminite.2=It turns out I was right, these caps truely are marvelous, they provide a 30% disount and even a doubled primal discount, maybe I should stop now, or maybe I should go even further.
+
+research_name.thaumadditions:rod_adaminitewood=Adaminitewood Wand Rod
+research_stage.thaumadditions:rod_adaminitewood.1=I've got a problem, it looks like I can not proceed any further unless I find myself an alternative to this silverwood rod, I was a fool thinking 800 vis is enough, I should have started sooner to create a bigger vis storage, but now seems like a good time to start.
+research_stage.thaumadditions:rod_adaminitewood.2=By infusing a mundane silverwood rod with a lot of adaminite I was able to make a vessel strong enough to quadruple the vis capacity of the silverwood rod, I know I could have gone further, but I feel uncomfortable dirctly touching such a huge amount of vis with my bare hands, especialy when such a big part of it conducts vis like nothing else in the universe.
+
+research_name.thaumadditions:cap_mithminite=Mithminite Wand Caps
+research_stage.thaumadditions:cap_mithminite.1=This has to be it, this metal, so full of primal energy, so strong of a vis conductor I can't even measure it, I don't care how but I want this for my wand caps, I never desired something more than this.
+research_stage.thaumadditions:cap_mithminite.2=Who was I to think that this metal could simply be reactivated by some of this foolish salis mundus, it took some of the purest primal energy I could find, but it was worth it, a 40% vis discount, and a three crystal discount on all of the aspects, I doubt I could go further with this, this is the end.
 
 ############
 
