@@ -5,17 +5,17 @@ import com.zeitheron.hammercore.utils.OnetimeCaller;
 import com.zeitheron.hammercore.utils.recipes.helper.RecipeRegistry;
 import com.zeitheron.hammercore.utils.recipes.helper.RegisterRecipes;
 import com.zeitheron.thaumicadditions.InfoTAR;
+import com.zeitheron.thaumicadditions.TAReconstructed;
 import com.zeitheron.thaumicadditions.api.AspectUtil;
 import com.zeitheron.thaumicadditions.api.RecipesFluxConcentrator;
 import com.zeitheron.thaumicadditions.api.blueprint.BlueprintBuilder;
+import com.zeitheron.thaumicadditions.compat.ITARC;
 import com.zeitheron.thaumicadditions.config.ConfigsTAR;
 import com.zeitheron.thaumicadditions.items.ItemSealSymbol;
 import com.zeitheron.thaumicadditions.items.seed.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.recipes.*;
 import com.zeitheron.thaumicadditions.recipes.ingr.NBTRespectfulIngredient;
 import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;
-
-import de.zpenguin.thaumicwands.item.TW_Items;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -27,7 +27,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
@@ -74,6 +73,8 @@ public class RecipesTAR
 		arcaneCrafting();
 		crucible();
 		multiblock();
+
+		TAReconstructed.arcs.forEach(ITARC::addArcaneRecipes);
 
 		RecipesFluxConcentrator.handle(Blocks.BROWN_MUSHROOM.getDefaultState(), RecipesFluxConcentrator.output(BlocksTC.vishroom.getDefaultState()));
 		RecipesFluxConcentrator.handle(Blocks.RED_MUSHROOM.getDefaultState(), RecipesFluxConcentrator.output(BlocksTC.vishroom.getDefaultState()));
@@ -174,14 +175,6 @@ public class RecipesTAR
 		addInfusionRecipe("mithminite_blade", new ItemStack(ItemsTAR.MITHMINITE_BLADE), "TAR_MITHMINITE_SCYTHE", 1, new ItemStack(ItemsTAR.ADAMINITE_SWORD), new AspectList().add(Aspect.AVERSION, 250).add(KnowledgeTAR.INFERNUM, 150), new ItemStack(ItemsTAR.MITHMINITE_PLATE), new ItemStack(ItemsTAR.MITHMINITE_PLATE), new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR), new ItemStack(ItemsTAR.MITHMINITE_PLATE));
 		addInfusionRecipe("mithminite_handle", new ItemStack(ItemsTAR.MITHMINITE_HANDLE), "TAR_MITHMINITE_SCYTHE", 1, new ItemStack(ItemsTAR.MITHMINITE_NUGGET), new AspectList().add(Aspect.TOOL, 100).add(Aspect.SOUL, 150), new ItemStack(ItemsTAR.MITHMINITE_PLATE), new ItemStack(ItemsTAR.MITHMINITE_INGOT), new ItemStack(ItemsTAR.MITHMINITE_INGOT));
 
-		if(Loader.isModLoaded("thaumicwands"))
-		{
-			addInfusionRecipe("mithrillium_cap", new ItemStack(ItemsTAR.MITHRILLIUM_CAP), "TAR_CAP_MITHRILLIUM", 5, new ItemStack(ItemsTAR.MITHRILLIUM_CAP_INERT), AspectUtil.primals(50).add(KnowledgeTAR.DRACO, 50).add(Aspect.MAGIC, 50), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
-			addInfusionRecipe("adaminite_cap", new ItemStack(ItemsTAR.ADAMINITE_CAP), "TAR_CAP_ADAMINITE", 8, new ItemStack(ItemsTAR.ADAMINITE_CAP_INERT), AspectUtil.primals(50).add(KnowledgeTAR.INFERNUM, 50).add(Aspect.MAGIC, 50), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
-			addInfusionRecipe("mithminite_cap", new ItemStack(ItemsTAR.MITHMINITE_CAP), "TAR_CAP_MITHMINITE", 6, new ItemStack(ItemsTAR.MITHMINITE_CAP_INERT), AspectUtil.primals(50).add(KnowledgeTAR.CAELES, 10).add(Aspect.MAGIC, 50), primordialPearl, new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
-			addInfusionRecipe("adaminitewood_rod", new ItemStack(ItemsTAR.ADAMINITEWOOD_ROD), "TAR_ROD_ADAMINITEWOOD", 8, new ItemStack(TW_Items.itemWandRod,1,7), AspectUtil.primals(100).add(KnowledgeTAR.INFERNUM, 100).add(KnowledgeTAR.DRACO, 100), new ItemStack(ItemsTAR.ADAMINITE_INGOT), new ItemStack(ItemsTAR.ADAMINITE_INGOT),new ItemStack(ItemsTAR.ADAMINITE_FABRIC),new ItemStack(ItemsTAR.ADAMINITE_FABRIC), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
-		}
-
 		for(Aspect a : Aspect.aspects.values())
 		{
 			InfusionRecipe rec = new InfusionRecipe("TAR_SEAL_SYMBOLS", ItemSealSymbol.createItem(a, 1), 1, new AspectList().add(a, 10), AspectUtil.crystalEssence(a), "nuggetGold", "nuggetGold", "nuggetGold", "nuggetGold");
@@ -221,14 +214,6 @@ public class RecipesTAR
 		addShapedArcaneRecipe("adaminite_boots", "TAR_ADAMINITE_FABRIC", 200, AspectUtil.primals(4), new ItemStack(ItemsTAR.ADAMINITE_BOOTS), "f f", "fmf", 'f', new ItemStack(ItemsTAR.ADAMINITE_FABRIC), 'm', new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR));
 		addShapedArcaneRecipe("essentia_pistol", "TAR_ESSENTIA_PISTOL", 100, new AspectList().add(Aspect.AIR, 1), new ItemStack(ItemsTAR.ESSENTIA_PISTOL), "stt", "gbd", "g  ", 's', new ItemStack(ItemsTC.mechanismSimple), 't', "ingotThaumium", 'g', new ItemStack(BlocksTC.plankGreatwood), 'b', new ItemStack(Blocks.STONE_BUTTON), 'd', new ItemStack(BlocksTAR.AURA_DISPERSER));
 		addShapedArcaneRecipe("disenchant_fabric", "TAR_DISENCHANT_FABRIC", 150, new AspectList().add(Aspect.EARTH, 1), new ItemStack(ItemsTAR.DISENCHANT_FABRIC), " f ", "fsf", " f ", 'f', new ItemStack(ItemsTC.fabric), 's', new ItemStack(ItemsTC.salisMundus));
-
-		if(Loader.isModLoaded("thaumicwands"))
-		{
-			addShapedArcaneRecipe("mithrillium_cap_inert", "TAR_CAP_MITHRILLIUM", 100, AspectUtil.primals(10), new ItemStack(ItemsTAR.MITHRILLIUM_CAP_INERT), "nnn","n n", 'n', "nuggetMithrillium");
-			addShapedArcaneRecipe("adaminite_cap_inert", "TAR_CAP_ADAMINITE", 150, AspectUtil.primals(15), new ItemStack(ItemsTAR.ADAMINITE_CAP_INERT), "nnn","n n", 'n', "nuggetAdaminite");
-			addShapedArcaneRecipe("mithminite_cap_inert", "TAR_CAP_MITHMINITE", 200, AspectUtil.primals(20), new ItemStack(ItemsTAR.MITHMINITE_CAP_INERT), "nnn","n n", 'n', "nuggetMithminite");
-
-		}
 
 		for(Aspect a : Aspect.aspects.values())
 		{
@@ -283,29 +268,29 @@ public class RecipesTAR
 		}
 	}
 
-	private static void addCrucibleRecipe(String path, String research, ItemStack output, Object catalyst, AspectList aspects)
+	public static void addCrucibleRecipe(String path, String research, ItemStack output, Object catalyst, AspectList aspects)
 	{
 		ThaumcraftApi.addCrucibleRecipe(new ResourceLocation(InfoTAR.MOD_ID, path), new CrucibleRecipe(research, output, catalyst, aspects));
 	}
 
-	private static void addInfusionRecipe(String path, Object output, String research, int instability, Object catalyst, AspectList aspects, Object... inputs)
+	public static void addInfusionRecipe(String path, Object output, String research, int instability, Object catalyst, AspectList aspects, Object... inputs)
 	{
 		ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(InfoTAR.MOD_ID, path), new InfusionRecipe(research, output, instability, aspects, catalyst, inputs));
 	}
 
 	static ResourceLocation defaultGroup = new ResourceLocation("");
 
-	private static void addShapedArcaneRecipe(String path, String res, int vis, AspectList crystals, ItemStack result, Object... recipe)
+	public static void addShapedArcaneRecipe(String path, String res, int vis, AspectList crystals, ItemStack result, Object... recipe)
 	{
 		ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(InfoTAR.MOD_ID, path), new ShapedArcaneRecipe(defaultGroup, res, vis, crystals, result, recipe));
 	}
 
-	private static void addShapedArcaneRecipe(String path, String res, int vis, AspectList crystals, Item result, Object... recipe)
+	public static void addShapedArcaneRecipe(String path, String res, int vis, AspectList crystals, Item result, Object... recipe)
 	{
 		ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(InfoTAR.MOD_ID, path), new ShapedArcaneRecipe(defaultGroup, res, vis, crystals, result, recipe));
 	}
 
-	private static void addShapedArcaneRecipe(String path, String res, int vis, AspectList crystals, Block result, Object... recipe)
+	public static void addShapedArcaneRecipe(String path, String res, int vis, AspectList crystals, Block result, Object... recipe)
 	{
 		ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(InfoTAR.MOD_ID, path), new ShapedArcaneRecipe(defaultGroup, res, vis, crystals, result, recipe));
 	}

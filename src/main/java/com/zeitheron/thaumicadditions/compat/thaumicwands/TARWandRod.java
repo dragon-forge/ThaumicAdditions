@@ -1,13 +1,13 @@
 package com.zeitheron.thaumicadditions.compat.thaumicwands;
 
 import com.zeitheron.thaumicadditions.InfoTAR;
-
 import de.zpenguin.thaumicwands.api.item.wand.IWandRod;
 import de.zpenguin.thaumicwands.api.item.wand.IWandUpdate;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class TARWandRod implements IWandRod
+public class TARWandRod
+		implements IWandRod
 {
 	int craftCost;
 	int capacity;

@@ -1,15 +1,14 @@
 package com.zeitheron.thaumicadditions.compat.thaumicwands;
 
 import com.zeitheron.thaumicadditions.InfoTAR;
-
 import de.zpenguin.thaumicwands.api.item.wand.IWandCap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import thaumcraft.api.aspects.AspectList;
 
-public class TARWandCap implements IWandCap
+public class TARWandCap
+		implements IWandCap
 {
-
 	int craftCost;
 	float discount;
 
@@ -51,7 +50,8 @@ public class TARWandCap implements IWandCap
 		return new ResourceLocation(InfoTAR.MOD_ID, "textures/models/wand_cap_" + tag + ".png");
 	}
 
-	public int getCraftCost() {
+	public int getCraftCost()
+	{
 		return craftCost;
 	}
 
@@ -84,6 +84,4 @@ public class TARWandCap implements IWandCap
 	{
 		return aspectDiscount;
 	}
-
-
 }

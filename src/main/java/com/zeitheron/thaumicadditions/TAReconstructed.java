@@ -108,6 +108,8 @@ public class TAReconstructed
 		SimpleRegistration.registerFieldBlocksFrom(BlocksTAR.class, InfoTAR.MOD_ID, tab);
 		BlocksTAR.loadAspectBlocks();
 
+		arcs.forEach(ITARC::preInit);
+
 		EntityRegistry.registerModEntity(new ResourceLocation(InfoTAR.MOD_ID, "chester"), EntityChester.class, InfoTAR.MOD_ID + ".chester", 0, instance, 256, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation(InfoTAR.MOD_ID, "essentia_shot"), EntityEssentiaShot.class, InfoTAR.MOD_ID + ".essentia_shot", 1, instance, 64, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation(InfoTAR.MOD_ID, "blue_wolf"), EntityBlueWolf.class, InfoTAR.MOD_ID + ".blue_wolf", 2, instance, 64, 1, true, 0x0172C0, 0x01FFE5);
