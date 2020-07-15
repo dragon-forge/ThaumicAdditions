@@ -10,7 +10,10 @@ import com.zeitheron.thaumicadditions.items.seed.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.items.seed.ItemVoidSeed;
 import com.zeitheron.thaumicadditions.items.tools.*;
 import com.zeitheron.thaumicadditions.items.weapons.*;
+
+import net.minecraft.block.Block;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraftforge.fml.common.Loader;
 
 public class ItemsTAR
 {
@@ -94,4 +97,15 @@ public class ItemsTAR
 	public static final ItemKnowledgeTome KNOWLEDGE_TOME = new ItemKnowledgeTome();
 	public static final ItemDisenchantingFabric DISENCHANT_FABRIC = new ItemDisenchantingFabric();
 	public static final ItemCrystalBag CRYSTAL_BAG = new ItemCrystalBag();
+
+	// WAND PARTS
+
+	public static final ItemMaterial MITHRILLIUM_CAP_INERT = new ItemMaterial("mithrillium_cap_inert", !Loader.isModLoaded("thaumicwands"));
+	public static final ItemMaterial ADAMINITE_CAP_INERT = new ItemMaterial("adaminite_cap_inert", !Loader.isModLoaded("thaumicwands"));
+	public static final ItemMaterial MITHMINITE_CAP_INERT = new ItemMaterial("mithminite_cap_inert", !Loader.isModLoaded("thaumicwands"));
+	public static final ItemMaterial MITHRILLIUM_CAP = new ItemMaterial("mithrillium_cap", !Loader.isModLoaded("thaumicwands"));
+	public static final ItemMaterial ADAMINITE_CAP = new ItemMaterial("adaminite_cap", !Loader.isModLoaded("thaumicwands"));
+	public static final ItemMaterial MITHMINITE_CAP = new ItemMaterial("mithminite_cap", !Loader.isModLoaded("thaumicwands"));
+	public static final ItemMaterial ADAMINITEWOOD_ROD = new ItemMaterial("adaminitewood_rod", !Loader.isModLoaded("thaumicwands"));
+
 }
