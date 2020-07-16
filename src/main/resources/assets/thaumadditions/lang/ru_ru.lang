@@ -1,4 +1,4 @@
-# Thaumic Additions Russian Translation (by Zeitheron, American and ItsFLamb)
+# Thaumic Additions Translation File
 
 itemGroup.thaumadditions=Thaumic Additions: Reconstructed
 tc.research_category.THAUMADDITIONS=Thaumic Additions
@@ -53,13 +53,14 @@ tile.thaumadditions:taintwood_planks.name=Доски из заражённой �
 tile.thaumadditions:taintkin.name=Порче-тыква
 tile.thaumadditions:taintkin_lit.name=Taint o' Lantern
 tile.thaumadditions:chiseled_amber_block.name=Резной янтарный блок
+tile.thaumadditions:chiseled_greatwood.name=Chiseled Greatwood
 
 ##########
 
 
 
 ##FLUIDS##
-# Авторский перевод, НЕ ТРОШЬ!
+
 fluid.thaumadditions:crystal_water=Кристаллат воды
 
 ##########
@@ -137,6 +138,14 @@ item.thaumadditions:traveller_belt.name=Пояс путешественника
 item.thaumadditions:mithminite_scythe.name=Мифминитовая коса
 item.thaumadditions:mithminite_blade.name=Мифминитовое лезвие
 item.thaumadditions:mithminite_handle.name=Мифминитовая рукоять
+item.thaumadditions:mithrillium_cap_inert.name=Inert Mithrillium Cap
+item.thaumadditions:adaminite_cap_inert.name=Inert Adaminite Cap
+item.thaumadditions:mithminite_cap_inert.name=Inert Mithminite Cap
+item.thaumadditions:mithrillium_cap.name=Charged Mithrillium Cap
+item.thaumadditions:adaminite_cap.name=Charged Adaminite Cap
+item.thaumadditions:mithminite_cap.name=Charged Mithminite Cap
+item.thaumadditions:adaminitewood_rod.name=Adaminitewood Rod
+item.thaumadditions:void_fruit.name=Void Fruit
 
 #########
 
@@ -165,6 +174,10 @@ tooltip.thaumadditions:cb_sort_rule.3=Сортировать по количес
 attribute.name.generic.flyingSpeed=Скорость полёта
 damage.thaumadditions:mithminite_scythe.melee=12 Melee Damage
 damage.thaumadditions:mithminite_scythe.ranged=14 Ranged Damage
+item.wand.mithrillium.cap=Mithrillium Attuned
+item.wand.adaminite.cap=Adaminite Adorned
+item.wand.mithminite.cap=Mithminite Ornamented
+item.wand.adaminitewood.rod=Adamitewood
 
 #################
 
@@ -410,6 +423,22 @@ research_name.thaumadditions:mithminite_scythe=Мифминитовая коса
 research_stage.thaumadditions:mithminite_scythe.1=Мифминит оказался довольно важным в нескольких направлениях, но, возможно, из него можно было бы сделать инструмент?
 research_stage.thaumadditions:mithminite_scythe.2=К сожалению, просто установить мифминит на рукоять инструмента - это плохая идея - все стержни, которые я пытался использовать, ломаются очень быстро... Хотя, кажется, что сделать весь инструмент из мифминита с помощью дополнительных материалов возможно, и результат может быть чуть более смертоносным, чем я ожидал... Каким-то образом новая коса способна стрелять фантомными косами, которые также немного сильнее моей. Ну, можно было бы пойти и убить нескольких врагов.
 
+research_name.thaumadditions:cap_mithrillium=Mithrillium Wand Caps
+research_stage.thaumadditions:cap_mithrillium.1=I never expected there to be a metal even more potent than void metal, but this is truely baffeling, maybe my thaumaturgy studies have ended to soon, maybe I should try forging myself a new pair of wand caps...
+research_stage.thaumadditions:cap_mithrillium.2=It took a lot of salis mundus to get these to work again, but the result was definitly worth it, these caps provide a 25% discount and even a 1 crystal discount on every aspect, but why does it always take so much salis mundus though ?
+
+research_name.thaumadditions:cap_adaminite=Adaminite Wand Caps
+research_stage.thaumadditions:cap_adaminite.1=When Mithrillium is already great, then what about Adaminite it should be even better, it is only logical, but I have a feeling that not only the Warp will affect my sanity this time.
+research_stage.thaumadditions:cap_adaminite.2=It turns out I was right, these caps truely are marvelous, they provide a 30% disount and even a doubled primal discount, maybe I should stop now, or maybe I should go even further.
+
+research_name.thaumadditions:rod_adaminitewood=Adaminitewood Wand Rod
+research_stage.thaumadditions:rod_adaminitewood.1=I've got a problem, it looks like I can not proceed any further unless I find myself an alternative to this silverwood rod, I was a fool thinking 800 vis is enough, I should have started sooner to create a bigger vis storage, but now seems like a good time to start.
+research_stage.thaumadditions:rod_adaminitewood.2=By infusing a mundane silverwood rod with a lot of adaminite I was able to make a vessel strong enough to quadruple the vis capacity of the silverwood rod, I know I could have gone further, but I feel uncomfortable dirctly touching such a huge amount of vis with my bare hands, especialy when such a big part of it conducts vis like nothing else in the universe.
+
+research_name.thaumadditions:cap_mithminite=Mithminite Wand Caps
+research_stage.thaumadditions:cap_mithminite.1=This has to be it, this metal, so full of primal energy, so strong of a vis conductor I can't even measure it, I don't care how but I want this for my wand caps, I never desired something more than this.
+research_stage.thaumadditions:cap_mithminite.2=Who was I to think that this metal could simply be reactivated by some of this foolish salis mundus, it took some of the purest primal energy I could find, but it was worth it, a 40% vis discount, and a three crystal discount on all of the aspects, I doubt I could go further with this, this is the end.
+
 ############
 
 
@@ -428,6 +457,3 @@ seal.thaumadditions:harvestcrops2=Эта печать собирает и пер
 seal.thaumadditions:pickupitems=Эта печать подбирает предметы в средней области.
 
 #########
-
-item.thaumadditions:zeith_scale.name=Zeitheron's Curiosity
-item.thaumadditions:zeith_scale.tip=Drops from a mystical furry
