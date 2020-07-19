@@ -14,6 +14,7 @@ import com.zeitheron.thaumicadditions.init.RecipesTAR;
 import com.zeitheron.thaumicadditions.items.ItemMaterial;
 import de.zpenguin.thaumicwands.api.ThaumicWandsAPI;
 import de.zpenguin.thaumicwands.item.TW_Items;
+import de.zpenguin.thaumicwands.main.ThaumicWands;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import thaumcraft.api.aspects.Aspect;
@@ -24,6 +25,9 @@ import thaumcraft.api.research.ResearchCategory;
 import thaumcraft.api.research.ResearchEntry.EnumResearchMeta;
 import thaumcraft.api.research.ResearchStage.Knowledge;
 
+/**
+ * @author Zoko061602
+ */
 @ModuleLoader(requiredModid = "thaumicwands")
 public class TARCThaumicWands
 		implements ITARC
@@ -71,13 +75,14 @@ public class TARCThaumicWands
 	public void addResearches()
 	{
 		ResearchCategory R_THAUMADDS = TAReconstructed.RES_CAT;
+		ResearchCategory R_THAUMICWANDS = ResearchCategories.getResearchCategory("THAUMATURGY");
 
-		new REB().setBaseInfo("TAR_CAP_MITHMINITE", "cap_mithminite", 18, -5, new ItemStack(MITHMINITE_CAP)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":cap_mithminite.1").setRequiredCraft(new ItemStack(ItemsTAR.MITHMINITE_NUGGET)).setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 2), new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("THAUMATURGY"), 2)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":cap_mithminite.2").setRecipes(InfoTAR.MOD_ID + ":mithminite_cap_inert", InfoTAR.MOD_ID + ":mithminite_cap").build()).setParents("TAR_CAP_ADAMINITE", "TAR_MITHMINITE").buildAndRegister();
+		new REB().setBaseInfo("TAR_CAP_MITHRILLIUM", "cap_mithrillium", -2, -7, new ItemStack(MITHRILLIUM_CAP)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":cap_mithrillium.1").setRequiredCraft(new ItemStack(ItemsTAR.MITHRILLIUM_NUGGET)).setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 2), new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("THAUMATURGY"), 2)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":cap_mithrillium.2").setRecipes(InfoTAR.MOD_ID + ":mithrillium_cap_inert", InfoTAR.MOD_ID + ":mithrillium_cap").build()).setParents("CAP_VOID", "TAR_MITHRILLIUM").setCategory(R_THAUMICWANDS.key).buildAndRegister();
 
-		new REB().setBaseInfo("TAR_CAP_MITHRILLIUM", "cap_mithrillium", 18, -1, new ItemStack(MITHRILLIUM_CAP)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":cap_mithrillium.1").setRequiredCraft(new ItemStack(ItemsTAR.MITHRILLIUM_NUGGET)).setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 2), new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("THAUMATURGY"), 2)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":cap_mithrillium.2").setRecipes(InfoTAR.MOD_ID + ":mithrillium_cap_inert", InfoTAR.MOD_ID + ":mithrillium_cap").build()).setParents("CAP_VOID", "TAR_MITHRILLIUM").buildAndRegister();
+		new REB().setBaseInfo("TAR_CAP_ADAMINITE", "cap_adaminite", 0, -7, new ItemStack(ADAMINITE_CAP)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":cap_adaminite.1").setRequiredCraft(new ItemStack(ItemsTAR.ADAMINITE_NUGGET)).setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 2), new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("THAUMATURGY"), 2)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":cap_adaminite.2").setRecipes(InfoTAR.MOD_ID + ":adaminite_cap_inert", InfoTAR.MOD_ID + ":adaminite_cap").build()).setParents("TAR_CAP_MITHRILLIUM", "TAR_ADAMINITE").setCategory(R_THAUMICWANDS.key).buildAndRegister();
 
-		new REB().setBaseInfo("TAR_CAP_ADAMINITE", "cap_adaminite", 18, -3, new ItemStack(ADAMINITE_CAP)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":cap_adaminite.1").setRequiredCraft(new ItemStack(ItemsTAR.ADAMINITE_NUGGET)).setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 2), new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("THAUMATURGY"), 2)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":cap_adaminite.2").setRecipes(InfoTAR.MOD_ID + ":adaminite_cap_inert", InfoTAR.MOD_ID + ":adaminite_cap").build()).setParents("TAR_CAP_MITHRILLIUM", "TAR_ADAMINITE").buildAndRegister();
+		new REB().setBaseInfo("TAR_CAP_MITHMINITE", "cap_mithminite", 2, -7, new ItemStack(MITHMINITE_CAP)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":cap_mithminite.1").setRequiredCraft(new ItemStack(ItemsTAR.MITHMINITE_NUGGET)).setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 2), new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("THAUMATURGY"), 2)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":cap_mithminite.2").setRecipes(InfoTAR.MOD_ID + ":mithminite_cap_inert", InfoTAR.MOD_ID + ":mithminite_cap").build()).setParents("TAR_CAP_ADAMINITE", "TAR_MITHMINITE").setCategory(R_THAUMICWANDS.key).buildAndRegister();
 
-		new REB().setBaseInfo("TAR_ROD_ADAMINITEWOOD", "rod_adaminitewood", 1, -6, new ItemStack(ADAMINITEWOOD_ROD)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":rod_adaminitewood.1").setRequiredCraft(new ItemStack(ItemsTAR.ADAMINITE_INGOT), new ItemStack(TW_Items.itemWandRod, 1, 7)).setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 2), new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("THAUMATURGY"), 2)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":rod_adaminitewood.2").setRecipes(InfoTAR.MOD_ID + ":adaminitewood_rod").build()).setParents("ROD_SILVERWOOD", "TAR_ADAMINITE_FABRIC").buildAndRegister();
+		new REB().setBaseInfo("TAR_ROD_ADAMINITEWOOD", "rod_adaminitewood", 10, 3, new ItemStack(ADAMINITEWOOD_ROD)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":rod_adaminitewood.1").setRequiredCraft(new ItemStack(ItemsTAR.ADAMINITE_INGOT), new ItemStack(TW_Items.itemWandRod, 1, 7)).setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 2), new Knowledge(EnumKnowledgeType.THEORY, ResearchCategories.getResearchCategory("THAUMATURGY"), 2)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":rod_adaminitewood.2").setRecipes(InfoTAR.MOD_ID + ":adaminitewood_rod").build()).setParents("ROD_SILVERWOOD", "TAR_ADAMINITE_FABRIC").setCategory(R_THAUMICWANDS.key).buildAndRegister();
 	}
 }
