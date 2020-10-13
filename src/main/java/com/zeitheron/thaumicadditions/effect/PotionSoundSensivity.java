@@ -1,17 +1,17 @@
 package com.zeitheron.thaumicadditions.effect;
 
-import java.util.UUID;
-
 import com.zeitheron.thaumicadditions.api.AttributesTAR;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.player.EntityPlayer;
+
+import java.util.UUID;
 
 public class PotionSoundSensivity extends PotionBaseTAR
 {
-	public static final UUID SENS = UUID.fromString("506ae2cb-95d7-4347-9625-5ea935930e3e");
+	public static final UUID SENS = new UUID(5794693234585715527L, -7627586313040753090L);
 	
 	public PotionSoundSensivity()
 	{
@@ -21,23 +21,34 @@ public class PotionSoundSensivity extends PotionBaseTAR
 	@Override
 	public void applyAttributesModifiersToEntity(EntityLivingBase entityLivingBaseIn, AbstractAttributeMap attributeMapIn, int amplifier)
 	{
-		IAttributeInstance attr = attributeMapIn.getAttributeInstance(AttributesTAR.SOUND_SENSIVITY);
-		
-		float amt = 1;
-		
-		if(amplifier > 20)
-			amt = .01F;
-		else
-			amt += amplifier / 8F;
-		
-		attr.removeModifier(SENS);
-		attr.applyModifier(new AttributeModifier(SENS, "Sonus Potion", amt - 1, 2));
+		if(entityLivingBaseIn instanceof EntityPlayer)
+		{
+			IAttributeInstance attr = attributeMapIn.getAttributeInstance(AttributesTAR.SOUND_SENSIVITY);
+			
+			float amt = 1;
+			
+			if(amplifier > 20)
+				amt = .01F;
+			else
+				amt += amplifier / 8F;
+			
+			attr.removeModifier(SENS);
+			attr.applyModifier(new AttributeModifier(SENS, "Sonus Potion", amt - 1, 2));
+		}
+	}
+	
+	public PotionSoundSensivity(boolean bad, int color, String name, int tx, int ty)
+	{
+		super(bad, color, name, tx, ty);
 	}
 	
 	@Override
 	public void removeAttributesModifiersFromEntity(EntityLivingBase entityLivingBaseIn, AbstractAttributeMap attributeMapIn, int amplifier)
 	{
-		IAttributeInstance attr = attributeMapIn.getAttributeInstance(AttributesTAR.SOUND_SENSIVITY);
-		attr.removeModifier(SENS);
+		if(entityLivingBaseIn instanceof EntityPlayer)
+		{
+			IAttributeInstance attr = attributeMapIn.getAttributeInstance(AttributesTAR.SOUND_SENSIVITY);
+			attr.removeModifier(SENS);
+		}
 	}
 }

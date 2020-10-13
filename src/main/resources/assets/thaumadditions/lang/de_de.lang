@@ -146,6 +146,11 @@ item.thaumadditions:adaminite_cap.name=Charged Adaminite Cap
 item.thaumadditions:mithminite_cap.name=Charged Mithminite Cap
 item.thaumadditions:adaminitewood_rod.name=Adaminitewood Rod
 item.thaumadditions:void_fruit.name=Void Fruit
+item.thaumadditions:void_elemental_pickaxe.name=Void Pickaxe of the Core
+item.thaumadditions:void_elemental_axe.name=Void Axe of the Stream
+item.thaumadditions:void_elemental_shovel.name=Void Shovel of the Earthmover
+item.thaumadditions:striding_belt.name=Belt of the Strider
+item.thaumadditions:meteor_belt.name=Belt of the Meteor
 
 #########
 
@@ -372,10 +377,6 @@ research_name.thaumadditions:wormhole_mirror=Wormhole Mirror
 research_stage.thaumadditions:wormhole_mirror.1=I was wondering how I could stabilize and expand the thin connection between magic mirrors, so I could pass through them... Studying void metal does bring some hints, but I need a bit of additional thinking...
 research_stage.thaumadditions:wormhole_mirror.2=Okay, I have found a way to expand connections between magic mirrors... using a... 'wormhole'? Whatever that is, I really want to test it out, but then I think I'm going crazy... Using a thaumometer (as a connection catcher), a bit of void plates onto the hand mirror seem to get me a Wormhole Mirror... Though, how does it work? Perhaps I should use it on a bound mirror?..
 
-research_name.thaumadditions:void_elemental_hoe=Void Hoe of Growth
-research_stage.thaumadditions:void_elemental_hoe.1=Researching void metal have hinted me at just how much void metal can restore by itself. What would happen if I upgrade my hoe of growth with it?
-research_stage.thaumadditions:void_elemental_hoe.2=I wasn't able to attach void metal to the hoe, but I think that with some primordial energy it might be quite possible. "Void Hoe of Growth" is essentially the same as my Hoe of Growth, but it also restores itself using a little help from aura.
-
 research_name.thaumadditions:void_crop=Growing Void
 research_stage.thaumadditions:void_crop.1=Void seeds have a wonderful ability to regenerate. But could this matter be directed to cloning these rare seeds?
 research_stage.thaumadditions:void_crop.2=Infusing void seeds with primordial energies have enabled me to make the seed plantable. I'll need a complex and long infusion process to get it done.
@@ -422,6 +423,24 @@ research_stage.thaumadditions:adaminite_sword.2=Adaminite fuses well with it's o
 research_name.thaumadditions:mithminite_scythe=Mithminite Scythe
 research_stage.thaumadditions:mithminite_scythe.1=Mithminite has proven to be quite important in few ways, but perhaps a tool could be made out of it?
 research_stage.thaumadditions:mithminite_scythe.2=Unfortunately, just putting Mithminite on a tool handle is a bad idea - all rods that I've tried break very fast... Though it seems like making the entire tool out of mithminite with help of some auxiliary materials is possible, and the result may be a bit more deadly then I expected... Somehow the new scythe is able to shoot with phantom scythes that are also a bit more strong then mine. Oh well, might as well go and murder some enemies.
+
+research_name.thaumadditions:void_elemental_hoe=Void Hoe of Growth
+research_stage.thaumadditions:void_elemental_hoe.1=Researching void metal have hinted me at just how much void metal can restore by itself. What would happen if I upgrade my hoe of growth with it?
+research_stage.thaumadditions:void_elemental_hoe.2=I wasn't able to attach void metal to the hoe, but I think that with some primordial energy it might be quite possible. "Void Hoe of Growth" is essentially the same as my Hoe of Growth, but it also restores itself using a little help from aura.
+
+research_name.thaumadditions:void_elemental_shovel=Void Shovel of the Earthmover
+research_stage.thaumadditions:void_elemental_shovel.1=Digging out large patches of earth may be easier with shovel of the Earthmover, but sadly it is still no that durable. Surely void metal can be infused into an elemental shovel with a little help from outside this world...
+research_stage.thaumadditions:void_elemental_shovel.2=Using the primordial pearl to merge my shovel with void metal gave a pretty fascinating result. The new void shovel of the Earthmover is now capable of using aura every so often to last longer, or forever. Really depends on how intensively I use it though.
+
+research_name.thaumadditions:void_elemental_pickaxe=Void Pickaxe of the Core
+research_stage.thaumadditions:void_elemental_pickaxe.1=Mining is a chore that requires a lot of tools at all times. Pickaxe of the Core may not be as sturdy as some other materials, but some of it's other perks make it still a better solution. I am sure that the durability problem can be solved with a little trickery with void metal.
+research_stage.thaumadditions:void_elemental_pickaxe.2=This seems wrong.. I think something went wrong, and getting this new Void pickaxe of the Core needs a hefty amount of Metallum. I suppose it may be because the pickaxe itself is very sensitive to metal?
+
+research_name.thaumadditions:void_elemental_axe=Void Axe of the Stream
+research_stage.thaumadditions:void_elemental_axe.1=Cutting down forests of trees has been easier with Axe of the Stream due to it's ability to destroy the entire trunk. I may need to come up with an upgrade to make it a lot tougher. I am sure that using my beloved void metal is the way here!
+research_stage.thaumadditions:void_elemental_axe.2=Putting together the usual primordial formula for infusing tools with void metal is not too hard, I think. What I know for sure, this is definitely a worthy upgrade as long as used properly.
+
+## Thaumic Wands
 
 research_name.thaumadditions:cap_mithrillium=Mithrillium Wand Caps
 research_stage.thaumadditions:cap_mithrillium.1=I never expected there to be a metal even more potent than void metal, but this is truely baffeling, maybe my thaumaturgy studies have ended to soon, maybe I should try forging myself a new pair of wand caps...

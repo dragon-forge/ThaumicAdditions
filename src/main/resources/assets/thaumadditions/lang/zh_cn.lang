@@ -146,6 +146,11 @@ item.thaumadditions:adaminite_cap.name=Charged Adaminite Cap
 item.thaumadditions:mithminite_cap.name=Charged Mithminite Cap
 item.thaumadditions:adaminitewood_rod.name=Adaminitewood Rod
 item.thaumadditions:void_fruit.name=Void Fruit
+item.thaumadditions:void_elemental_pickaxe.name=Void Pickaxe of the Core
+item.thaumadditions:void_elemental_axe.name=Void Axe of the Stream
+item.thaumadditions:void_elemental_shovel.name=Void Shovel of the Earthmover
+item.thaumadditions:striding_belt.name=Belt of the Strider
+item.thaumadditions:meteor_belt.name=Belt of the Meteor
 
 #########
 
@@ -372,10 +377,6 @@ research_name.thaumadditions:wormhole_mirror=虫洞手镜
 research_stage.thaumadditions:wormhole_mirror.1=我想知道如何稳定并扩大魔镜之间微弱的连接通道，这样我就可以穿过它们... 对虚空金属的研究带给我一些提示，但我需要更深入的思考...
 research_stage.thaumadditions:wormhole_mirror.2=好的，我找了一个扩大魔镜之间连接通道的方法...使用一个... “虫洞”？不管它是什么，我特别希望测试它，但后来我觉得我快要疯了... 使用一个魔导透镜 (作为一个连接捕获器)，一些虚空金属板添加到魔力手镜上就得到了虫洞之镜...但是，它怎么工作？也许我应该把它用在一个绑定的魔镜上？...
 
-research_name.thaumadditions:void_elemental_hoe=虚空句芒锄
-research_stage.thaumadditions:void_elemental_hoe.1=对虚空金属的研究给了我对虚空金属可以自行修复多少的问题的提示。那么用虚空金属强化我的句芒锄会发生什么呢？
-research_stage.thaumadditions:void_elemental_hoe.2=我不能直接把虚空金属贴合到句芒锄上，但我认为加上点元始之力会让这变得可能。“虚空句芒锄” 和句芒锄基本相同，但它可以借助一点灵气来修复自身耐久。
-
 research_name.thaumadditions:void_crop=培植虚空
 research_stage.thaumadditions:void_crop.1=虚空种子看上去有绝妙的再生能力，但是这件事可以直接用于复制这些稀有种子吗？
 research_stage.thaumadditions:void_crop.2=给虚空种子注魔元始能量可以使其能被种植，我需要一个复杂而漫长的注魔过程来完成它。
@@ -422,6 +423,24 @@ research_stage.thaumadditions:adaminite_sword.2=精金与它原来的部件契�
 research_name.thaumadditions:mithminite_scythe=秘金镰刀
 research_stage.thaumadditions:mithminite_scythe.1=秘金在许多方面有很重要的作用，或许可以用它制造出一种工具？
 research_stage.thaumadditions:mithminite_scythe.2=很可惜，仅仅将秘金放在一般手柄上是一个坏主意-我尝试过的所有杆都折断得非常快...但似乎可以借助一些辅助材料将整个工具用秘金制成，结果可能比我预期的还要致命...不知为何，新的镰刀可以挥出比本体更强大的幻影镰刀来攻击。哇哦，用来杀敌可能也很不错。
+
+research_name.thaumadditions:void_elemental_hoe=虚空句芒锄
+research_stage.thaumadditions:void_elemental_hoe.1=对虚空金属的研究给了我对虚空金属可以自行修复多少的问题的提示。那么用虚空金属强化我的句芒锄会发生什么呢？
+research_stage.thaumadditions:void_elemental_hoe.2=我不能直接把虚空金属贴合到句芒锄上，但我认为加上点元始之力会让这变得可能。“虚空句芒锄” 和句芒锄基本相同，但它可以借助一点灵气来修复自身耐久。
+
+research_name.thaumadditions:void_elemental_shovel=Void Shovel of the Earthmover
+research_stage.thaumadditions:void_elemental_shovel.1=Digging out large patches of earth may be easier with shovel of the Earthmover, but sadly it is still no that durable. Surely void metal can be infused into an elemental shovel with a little help from outside this world...
+research_stage.thaumadditions:void_elemental_shovel.2=Using the primordial pearl to merge my shovel with void metal gave a pretty fascinating result. The new void shovel of the Earthmover is now capable of using aura every so often to last longer, or forever. Really depends on how intensively I use it though.
+
+research_name.thaumadditions:void_elemental_pickaxe=Void Pickaxe of the Core
+research_stage.thaumadditions:void_elemental_pickaxe.1=Mining is a chore that requires a lot of tools at all times. Pickaxe of the Core may not be as sturdy as some other materials, but some of it's other perks make it still a better solution. I am sure that the durability problem can be solved with a little trickery with void metal.
+research_stage.thaumadditions:void_elemental_pickaxe.2=This seems wrong.. I think something went wrong, and getting this new Void pickaxe of the Core needs a hefty amount of Metallum. I suppose it may be because the pickaxe itself is very sensitive to metal?
+
+research_name.thaumadditions:void_elemental_axe=Void Axe of the Stream
+research_stage.thaumadditions:void_elemental_axe.1=Cutting down forests of trees has been easier with Axe of the Stream due to it's ability to destroy the entire trunk. I may need to come up with an upgrade to make it a lot tougher. I am sure that using my beloved void metal is the way here!
+research_stage.thaumadditions:void_elemental_axe.2=Putting together the usual primordial formula for infusing tools with void metal is not too hard, I think. What I know for sure, this is definitely a worthy upgrade as long as used properly.
+
+## Thaumic Wands
 
 research_name.thaumadditions:cap_mithrillium=Mithrillium Wand Caps
 research_stage.thaumadditions:cap_mithrillium.1=I never expected there to be a metal even more potent than void metal, but this is truely baffeling, maybe my thaumaturgy studies have ended to soon, maybe I should try forging myself a new pair of wand caps...

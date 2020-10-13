@@ -81,7 +81,7 @@ public class LivingEventsTAR
 		ItemStack chestplate = e.player.inventory.armorInventory.get(2);
 		if(chestplate.isEmpty() || chestplate.getItem() != ItemsTAR.MITHMINITE_ROBE)
 		{
-			UUID id = UUID.fromString("6d9fc7ce-b49f-41d8-93db-8ecb26505405");
+			UUID id = new UUID(7899251962038665688L, -7792477727062207483L);
 			IAttributeInstance health = e.player.getAttributeMap()
 					.getAttributeInstance(SharedMonsterAttributes.MAX_HEALTH);
 			if(health.getModifier(id) != null)
