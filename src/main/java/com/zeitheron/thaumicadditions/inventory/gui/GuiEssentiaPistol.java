@@ -1,6 +1,8 @@
 package com.zeitheron.thaumicadditions.inventory.gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.zeitheron.hammercore.client.gui.GuiWTFMojang;
 import com.zeitheron.hammercore.client.utils.RenderUtil;
@@ -26,11 +28,7 @@ public class GuiEssentiaPistol extends GuiWTFMojang<ContainerEssentiaPistol>
 		ySize = 192;
 	}
 	
-	@Override
-	public void initGui()
-	{
-		super.initGui();
-	}
+	List<String> tooltip = new ArrayList<>();
 	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
@@ -69,8 +67,16 @@ public class GuiEssentiaPistol extends GuiWTFMojang<ContainerEssentiaPistol>
 		if(hov >= 0F)
 		{
 			int amt = Math.round(32 * hov);
-			drawHoveringText(I18n.format("tooltip.thaumadditions:essentia_pistol.shoot", amt), mouseX, mouseY);
+			tooltip.add(I18n.format("tooltip.thaumadditions:essentia_pistol.shoot", amt));
 		}
+	}
+	
+	@Override
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
+	{
+		drawHoveringText(tooltip, mouseX - guiLeft, mouseY - guiTop);
+		tooltip.clear();
+		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 	}
 	
 	@Override
@@ -86,23 +92,5 @@ public class GuiEssentiaPistol extends GuiWTFMojang<ContainerEssentiaPistol>
 		}
 		
 		super.mouseClicked(mouseX, mouseY, mouseButton);
-	}
-	
-	@Override
-	protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick)
-	{
-		super.mouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick);
-	}
-	
-	@Override
-	protected void mouseReleased(int mouseX, int mouseY, int state)
-	{
-		super.mouseReleased(mouseX, mouseY, state);
-	}
-	
-	@Override
-	protected void actionPerformed(GuiButton button) throws IOException
-	{
-		super.actionPerformed(button);
 	}
 }
