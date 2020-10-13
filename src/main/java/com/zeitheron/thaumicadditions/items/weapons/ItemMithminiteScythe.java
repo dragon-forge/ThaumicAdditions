@@ -16,6 +16,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -100,8 +102,8 @@ public class ItemMithminiteScythe
 		tooltip.add(I18n.format("damage." + getRegistryName() + ".melee"));
 		tooltip.add(I18n.format("damage." + getRegistryName() + ".ranged"));
 	}
-
-	static final UUID REACH_ID = UUID.fromString("16786798-6b7b-4a28-a20e-1a6a80be39d7");
+	
+	static final UUID REACH_ID = new UUID(1619157970375625256L, -6769444145162470953L);
 
 	@SubscribeEvent
 	public void playerTick(PlayerTickEvent e)
@@ -159,5 +161,23 @@ public class ItemMithminiteScythe
 				player.motionZ = mz;
 			}
 		}
+	}
+	
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment)
+	{
+		return enchantment.type == EnumEnchantmentType.WEAPON;
+	}
+	
+	@Override
+	public boolean isEnchantable(ItemStack stack)
+	{
+		return true;
+	}
+	
+	@Override
+	public int getItemEnchantability()
+	{
+		return 25;
 	}
 }

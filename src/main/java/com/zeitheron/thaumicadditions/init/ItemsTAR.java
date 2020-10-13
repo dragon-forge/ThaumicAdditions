@@ -3,9 +3,7 @@ package com.zeitheron.thaumicadditions.init;
 import com.zeitheron.thaumicadditions.items.*;
 import com.zeitheron.thaumicadditions.items.armor.ItemAdaminiteDress;
 import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
-import com.zeitheron.thaumicadditions.items.baubles.ItemBeltTraveller;
-import com.zeitheron.thaumicadditions.items.baubles.ItemFragnantPendant;
-import com.zeitheron.thaumicadditions.items.baubles.ItemRechargeCharm;
+import com.zeitheron.thaumicadditions.items.baubles.*;
 import com.zeitheron.thaumicadditions.items.seed.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.items.seed.ItemVoidSeed;
 import com.zeitheron.thaumicadditions.items.tools.*;
@@ -45,6 +43,8 @@ public class ItemsTAR
 	public static final ItemFragnantPendant FRAGNANT_PENDANT = new ItemFragnantPendant();
 	public static final ItemRechargeCharm RECHARGE_CHARM = new ItemRechargeCharm();
 	public static final ItemBeltTraveller TRAVELLER_BELT = new ItemBeltTraveller();
+	public static final ItemBeltStriding STRIDING_BELT = new ItemBeltStriding();
+	public static final ItemBeltMeteor METEOR_BELT = new ItemBeltMeteor();
 
 	// TOOLS
 
@@ -52,6 +52,10 @@ public class ItemsTAR
 	public static final ItemVisScribingTools VIS_SCRIBING_TOOLS = new ItemVisScribingTools();
 	public static final ItemVoidThaumometer VOID_THAUMOMETER = new ItemVoidThaumometer();
 	public static final ItemWormholeMirror WORMHOLE_MIRROR = new ItemWormholeMirror();
+	
+	public static final ItemVoidElementalPickaxe VOID_ELEMENTAL_PICKAXE = new ItemVoidElementalPickaxe();
+	public static final ItemVoidElementalShovel VOID_ELEMENTAL_SHOVEL = new ItemVoidElementalShovel();
+	public static final ItemVoidElementalAxe VOID_ELEMENTAL_AXE = new ItemVoidElementalAxe();
 	public static final ItemVoidElementalHoe VOID_ELEMENTAL_HOE = new ItemVoidElementalHoe();
 
 	// WEAPONS

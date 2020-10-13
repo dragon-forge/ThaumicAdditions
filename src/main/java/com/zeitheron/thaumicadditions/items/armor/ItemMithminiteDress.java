@@ -114,8 +114,8 @@ public class ItemMithminiteDress
 			case CHEST:
 			{
 				mp.getEntityData().setBoolean("TAR_Flight", true);
-
-				UUID id = UUID.fromString("6d9fc7ce-b49f-41d8-93db-8ecb26505405");
+				
+				UUID id = new UUID(7899251962038665688L, -7792477727062207483L);
 				AttributeModifier mod = new AttributeModifier(id, "TAR_MCHEST_HP", 20, 0).setSaved(true);
 				IAttributeInstance attr = mp.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
 				attr.removeModifier(id);
@@ -174,11 +174,11 @@ public class ItemMithminiteDress
 		{
 			if(slot == EntityEquipmentSlot.HEAD)
 			{
-				map.put("generic.luck", new AttributeModifier(UUID.fromString("de9fc7ce-b49f-21d8-a3db-8ecb26505405"), "TAR_MHEAD_LUCK", 1, 1));
+				map.put("generic.luck", new AttributeModifier(new UUID(-2404983985385037352L, -6639556222455360507L), "TAR_MHEAD_LUCK", 1, 1));
 			} else if(slot == EntityEquipmentSlot.LEGS)
 			{
-				map.put("generic.movementSpeed", new AttributeModifier(UUID.fromString("6e9fc7ce-b49b-21d8-a3da-8ecb26505423"), "TAR_MHEAD_LUCK", 1, 1));
-				map.put("generic.flyingSpeed", new AttributeModifier(UUID.fromString("6e9fc7ce-b49b-46f6-a3da-8ecb26505423"), "TAR_MHEAD_LUCK", 1, 1));
+				map.put("generic.movementSpeed", new AttributeModifier(new UUID(7971309556076323288L, -6639837697432071133L), "TAR_MHEAD_LUCK", 1, 1));
+				map.put("generic.flyingSpeed", new AttributeModifier(new UUID(7971309556076332790L, -6639837697432071133L), "TAR_MHEAD_LUCK", 1, 1));
 			} else if(slot == EntityEquipmentSlot.FEET)
 			{
 
@@ -196,7 +196,7 @@ public class ItemMithminiteDress
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
 	{
-		return slot == EntityEquipmentSlot.LEGS ? InfoTAR.MOD_ID + ":textures/armor/mithminite_1.png" : InfoTAR.MOD_ID + ":textures/armor/mithminite_0.png";
+		return InfoTAR.MOD_ID + ":textures/armor/mithminite_" + (slot == EntityEquipmentSlot.LEGS ? "1" : "0") + ".png";
 	}
 
 	@Override
@@ -206,7 +206,7 @@ public class ItemMithminiteDress
 		return null;
 	}
 
-	private final int[] discounts = {
+	private final int[] discounts = new int[]{
 			0,
 			0,
 			10,

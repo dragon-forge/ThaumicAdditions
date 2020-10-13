@@ -11,8 +11,6 @@ import com.zeitheron.thaumicadditions.api.seals.SealCombination;
 import com.zeitheron.thaumicadditions.api.seals.SealInstance;
 import com.zeitheron.thaumicadditions.api.seals.SealManager;
 import com.zeitheron.thaumicadditions.init.BlocksTAR;
-
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -31,7 +29,6 @@ public class TileSeal extends TileSyncableTickable implements ITileDroppable, IG
 	public SealInstance instance;
 	public NBTTagCompound optInstNBT;
 	public NetPropertyString placer;
-	
 	public boolean dirty = false;
 	
 	{
@@ -45,26 +42,16 @@ public class TileSeal extends TileSyncableTickable implements ITileDroppable, IG
 	@Override
 	public void createDrop(EntityPlayer player, World world, BlockPos pos)
 	{
-		if(!world.isRemote)
-		{
-			EntityItem ent = new EntityItem(world, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, stack.get().copy());
-			double mod = .10000000149011612;
-			ent.motionX = (player.posX - ent.posX) * mod;
-			ent.motionY = (player.posY - ent.posY) * mod;
-			ent.motionZ = (player.posZ - ent.posZ) * mod;
-			world.spawnEntity(ent);
-		}
-		
 		if(instance != null)
 			instance.onSealBreak();
 	}
-
+	
 	@Override
 	public boolean atTickRate(int rate)
 	{
 		return ticksExisted % rate == 0;
 	}
-
+	
 	public Aspect getSymbol(int slot)
 	{
 		return Aspect.getAspect(slots[slot].get());

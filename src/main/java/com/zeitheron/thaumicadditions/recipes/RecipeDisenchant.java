@@ -28,19 +28,19 @@ public class RecipeDisenchant
 	{
 		return ItemStack.EMPTY;
 	}
-
+	
 	@Override
 	public boolean canFit(int width, int height)
 	{
 		return width * height >= 2;
 	}
-
+	
 	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn)
 	{
 		ItemStack enchantedItem = ItemStack.EMPTY;
 		boolean fabric = false;
-
+		
 		for(int i = 0; i < inv.getSizeInventory(); ++i)
 		{
 			ItemStack stack = inv.getStackInSlot(i);
@@ -60,16 +60,16 @@ public class RecipeDisenchant
 				}
 			}
 		}
-
+		
 		return !enchantedItem.isEmpty() && fabric;
 	}
-
+	
 	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv)
 	{
 		ItemStack enchantedItem = ItemStack.EMPTY;
 		boolean fabric = false;
-
+		
 		for(int i = 0; i < inv.getSizeInventory(); ++i)
 		{
 			ItemStack stack = inv.getStackInSlot(i);
@@ -90,7 +90,7 @@ public class RecipeDisenchant
 				}
 			}
 		}
-
+		
 		if(fabric && !enchantedItem.isEmpty())
 		{
 			ItemStack di = enchantedItem.copy().splitStack(1);
@@ -99,16 +99,16 @@ public class RecipeDisenchant
 				di.getTagCompound().removeTag("ench");
 			return di;
 		}
-
+		
 		return ItemStack.EMPTY;
 	}
-
+	
 	@Override
 	public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
 	{
 		ItemStack enchantedItem = ItemStack.EMPTY;
 		boolean fabric = false;
-
+		
 		for(int i = 0; i < inv.getSizeInventory(); ++i)
 		{
 			ItemStack stack = inv.getStackInSlot(i);
@@ -129,14 +129,14 @@ public class RecipeDisenchant
 				}
 			}
 		}
-
+		
 		if(fabric && !enchantedItem.isEmpty())
 		{
 			ItemStack di = enchantedItem.copy().splitStack(1);
 			Map<Enchantment, Integer> ench = EnchantmentHelper.getEnchantments(di);
 			if(di.hasTagCompound())
 				di.getTagCompound().removeTag("ench");
-
+			
 			EntityPlayer crafter = null;
 			Field f = ReflectionUtil.getField(InventoryCrafting.class, Container.class);
 			if(f != null)
@@ -158,7 +158,7 @@ public class RecipeDisenchant
 					e.printStackTrace();
 				}
 			}
-
+			
 			if(crafter != null && !crafter.world.isRemote)
 			{
 				int xp = 0;
@@ -177,10 +177,10 @@ public class RecipeDisenchant
 				}
 			}
 		}
-
+		
 		return IRecipe.super.getRemainingItems(inv);
 	}
-
+	
 	@Override
 	public boolean isDynamic()
 	{
