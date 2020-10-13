@@ -165,7 +165,7 @@ public class RecipeDisenchant
 				for(Enchantment e : ench.keySet())
 				{
 					int lvl = ench.get(e);
-					float prog = 50F * (lvl - e.getMinLevel()) / (float) (e.getMaxLevel() - e.getMinLevel());
+					float prog = 50F * (lvl - e.getMinLevel()) / Math.max(1, (e.getMaxLevel() - e.getMinLevel()));  // we do not want infinite experience, right?
 					prog /= e.getRarity().getWeight();
 					xp += prog;
 				}
