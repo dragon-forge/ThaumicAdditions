@@ -16,6 +16,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.IRarity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import thaumcraft.api.items.IRechargable;
 import thaumcraft.api.items.ItemsTC;
@@ -30,19 +31,19 @@ public class ItemBeltStriding
 		setTranslationKey("striding_belt");
 		setMaxStackSize(1);
 	}
-
+	
 	@Override
 	public void onRegistered()
 	{
 		MinecraftForge.EVENT_BUS.register(this);
 	}
-
+	
 	@Override
 	public BaubleType getBaubleType(ItemStack itemstack)
 	{
 		return BaubleType.BELT;
 	}
-
+	
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
@@ -73,7 +74,7 @@ public class ItemBeltStriding
 		EntityPlayer asPlayer = null;
 		if(player instanceof EntityPlayer && (asPlayer = (EntityPlayer) player).inventory.armorInventory.get(0).getItem() == ItemsTC.travellerBoots)
 			return;
-
+		
 		boolean hasCharge = RechargeHelper.getCharge(itemStack) > 0;
 		if(!player.world.isRemote && player.ticksExisted % 20 == 0)
 		{
@@ -87,10 +88,10 @@ public class ItemBeltStriding
 				e = 60;
 			itemStack.setTagInfo("energy", new NBTTagInt(e));
 		}
-
+		
 		boolean isFlying = false;
 		if(player instanceof EntityPlayer) isFlying = ((EntityPlayer) player).capabilities.isFlying;
-
+		
 		if(hasCharge && !isFlying && player.moveForward > 0.0F)
 		{
 			if(player.world.isRemote && !player.isSneaking())
@@ -99,7 +100,7 @@ public class ItemBeltStriding
 					LivingEventsTAR.prevStep.put(player.getEntityId(), Float.valueOf(player.stepHeight));
 				player.stepHeight = 1.0f;
 			}
-
+			
 			if(player.onGround)
 			{
 				float bonus = 0.1F;
@@ -108,7 +109,7 @@ public class ItemBeltStriding
 				{
 					bonus /= 4.0F;
 				}
-
+				
 				player.moveRelative(0.0F, 0.0F, bonus, 1.0F);
 			} else
 			{
@@ -116,39 +117,84 @@ public class ItemBeltStriding
 				{
 					player.moveRelative(0.0F, 0.0F, 0.025F, 1.0F);
 				}
-
+				
 				player.jumpMovementFactor = 0.1F;
 			}
 		}
 	}
-
+	
 	@Override
 	public int getMaxCharge(ItemStack itemStack, EntityLivingBase entityLivingBase)
 	{
 		return 240;
 	}
-
+	
 	@Override
 	public EnumChargeDisplay showInHud(ItemStack itemStack, EntityLivingBase entityLivingBase)
 	{
 		return EnumChargeDisplay.PERIODIC;
 	}
-
+	
 	@SubscribeEvent
 	public void playerJumps(LivingJumpEvent event)
 	{
 		if(event.getEntity() instanceof EntityPlayer && ((EntityPlayer) event.getEntity()).inventory.armorInventory.get(0).getItem() == ItemsTC.travellerBoots)
 			return;
-
+		
 		IBaublesItemHandler h;
 		if(event.getEntity() instanceof EntityPlayer && (h = BaublesApi.getBaublesHandler((EntityPlayer) event.getEntity())) != null)
-		{
-			ItemStack is = h.getStackInSlot(BaubleType.BELT.getValidSlots()[0]);
-			if(RechargeHelper.getCharge(is) > 0 && !is.isEmpty() && is.getItem() instanceof ItemBeltStriding)
+			for(int belt : BaubleType.BELT.getValidSlots())
 			{
-				EntityLivingBase var10000 = event.getEntityLiving();
-				var10000.motionY += 0.450000059604645D;
+				ItemStack is = h.getStackInSlot(belt);
+				
+				if(RechargeHelper.getCharge(is) > 0 && !is.isEmpty())
+				{
+					if(is.getItem() instanceof ItemBeltTraveller)
+						event.getEntityLiving().motionY += 0.2750000059604645D;
+					if(is.getItem() instanceof ItemBeltStriding)
+						event.getEntityLiving().motionY += 0.450000059604645D;
+					if(is.getItem() instanceof ItemBeltMeteor)
+						event.getEntityLiving().motionY += 0.600000059604645D;
+				}
 			}
-		}
+	}
+	
+	@SubscribeEvent
+	public void playerFalls(LivingFallEvent event)
+	{
+		if(event.getEntity() instanceof EntityPlayer && ((EntityPlayer) event.getEntity()).inventory.armorInventory.get(0).getItem() == ItemsTC.travellerBoots)
+			return;
+		
+		IBaublesItemHandler h;
+		if(event.getEntity() instanceof EntityPlayer && (h = BaublesApi.getBaublesHandler((EntityPlayer) event.getEntity())) != null)
+			for(int belt : BaubleType.BELT.getValidSlots())
+			{
+				ItemStack is = h.getStackInSlot(belt);
+				
+				if(RechargeHelper.getCharge(is) > 0 && !is.isEmpty())
+				{
+					if(is.getItem() instanceof ItemBeltTraveller)
+					{
+						if(event.getDistance() < 6)
+							event.setDistance(event.getDistance() / 2F);
+						else
+							event.setDistance(event.getDistance() * 0.875F);
+					}
+					if(is.getItem() instanceof ItemBeltStriding)
+					{
+						if(event.getDistance() < 12)
+							event.setDistance(event.getDistance() / 4F);
+						else
+							event.setDistance(event.getDistance() * 0.75F);
+					}
+					if(is.getItem() instanceof ItemBeltMeteor)
+					{
+						if(event.getDistance() < 18)
+							event.setDistance(event.getDistance() / 9F);
+						else
+							event.setDistance(event.getDistance() * 0.5F);
+					}
+				}
+			}
 	}
 }
