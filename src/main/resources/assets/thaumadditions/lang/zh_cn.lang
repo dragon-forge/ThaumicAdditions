@@ -149,7 +149,7 @@ item.thaumadditions:void_fruit.name=Void Fruit
 item.thaumadditions:void_elemental_pickaxe.name=Void Pickaxe of the Core
 item.thaumadditions:void_elemental_axe.name=Void Axe of the Stream
 item.thaumadditions:void_elemental_shovel.name=Void Shovel of the Earthmover
-item.thaumadditions:striding_belt.name=Belt of the Strider
+item.thaumadditions:striding_belt.name=Striding Belt
 item.thaumadditions:meteor_belt.name=Belt of the Meteor
 
 #########
@@ -412,10 +412,6 @@ research_name.thaumadditions:the_beheader=枭首者
 research_stage.thaumadditions:the_beheader.1=每次去下界的旅程都使我气恼。在下界要塞四处奔跑使自己精疲力尽，一边还要四处张望找寻凋零骷髅，期盼能得到它的头。也许我应该停止打碎那堆骨头，而要足够小心地收获那些黑色头骨？
 research_stage.thaumadditions:the_beheader.2=使用斩首或许是我达成目的的好办法。强化我的神秘斧是一个绝佳的主意——它可以很好的与秘银融合。这个全新的枭首者重量比普通斧头轻，并且具有不错的伤害，因此当我再次没有剑的时候应该可以使用它。
 
-research_name.thaumadditions:traveller_belt=旅者腰带
-research_stage.thaumadditions:traveller_belt.1=发现旅行者之靴后，它们对于探索新大陆变得至关重要。然而有时可能会遇上经过的步履蹒跚的怪物，而这靴子不利于保护穿戴者。
-research_stage.thaumadditions:traveller_belt.2=通过给凡人腰带注魔了同旅行者之靴一样的仪式，我可以给自己做一个精致的旅者腰带。它的功能绝对相同，但是它是一条腰带，因此更加便携。
-
 research_name.thaumadditions:adaminite_sword=精金剑
 research_stage.thaumadditions:adaminite_sword.1=虽然虚空金属蕴含着巨量的能量，但我在深入了解它的机理以后，我确信它需要一次升级。
 research_stage.thaumadditions:adaminite_sword.2=精金与它原来的部件契合的很好，这挺不错。虽然精金很难被应用，可能需要附加很多的源质。加入元始能量于其中使得这近战武器远好过其他神秘使所持有的，或者可能有更好的？
@@ -439,6 +435,19 @@ research_stage.thaumadditions:void_elemental_pickaxe.2=This seems wrong.. I thin
 research_name.thaumadditions:void_elemental_axe=Void Axe of the Stream
 research_stage.thaumadditions:void_elemental_axe.1=Cutting down forests of trees has been easier with Axe of the Stream due to it's ability to destroy the entire trunk. I may need to come up with an upgrade to make it a lot tougher. I am sure that using my beloved void metal is the way here!
 research_stage.thaumadditions:void_elemental_axe.2=Putting together the usual primordial formula for infusing tools with void metal is not too hard, I think. What I know for sure, this is definitely a worthy upgrade as long as used properly.
+
+research_name.thaumadditions:traveller_belt=旅者腰带
+research_stage.thaumadditions:traveller_belt.1=发现旅行者之靴后，它们对于探索新大陆变得至关重要。然而有时可能会遇上经过的步履蹒跚的怪物，而这靴子不利于保护穿戴者。
+research_stage.thaumadditions:traveller_belt.2=通过给凡人腰带注魔了同旅行者之靴一样的仪式，我可以给自己做一个精致的旅者腰带。它的功能绝对相同，但是它是一条腰带，因此更加便携。
+
+research_name.thaumadditions:striding_belt=Striding Belt
+research_stage.thaumadditions:striding_belt.1=Surely the all new and shiny Belt of the Traveller was a really good uplift from old fashioned boots, but should be possible to upgrade a little bit further.
+research_stage.thaumadditions:striding_belt.2=Striding Belt seems to be a pretty sensible outcome of fusing the old belt with a lot of Aer and Motus essentia with some ember and feathers. This belt is capable of making leaps never seen before, while also increasing my walk speed slightly.
+
+research_name.thaumadditions:meteor_belt=Belt of the Meteor
+research_stage.thaumadditions:meteor_belt.1=I'm unsure if this is a rational move or not, but I *may* need another upgrade to the belt I currently possess... It's quite chaotic, sure, but I still need it!
+research_stage.thaumadditions:meteor_belt.2=Belt of the Meteor is an explosive succeess... Quite literally. It's not as safe, and can cause harm to living beings if I am not careful enough with it. Infusing old belt with lots of Ignis and Motus, I've made a beast of a belt, that is surely at it's peak of power.
+
 
 ## Thaumic Wands
 

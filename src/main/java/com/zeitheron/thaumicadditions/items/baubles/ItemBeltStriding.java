@@ -141,6 +141,10 @@ public class ItemBeltStriding
 		if(event.getEntity() instanceof EntityPlayer && ((EntityPlayer) event.getEntity()).inventory.armorInventory.get(0).getItem() == ItemsTC.travellerBoots)
 			return;
 		
+		// no jump boost when sneaking!
+		if(event.getEntityLiving().isSneaking())
+			return;
+		
 		IBaublesItemHandler h;
 		if(event.getEntity() instanceof EntityPlayer && (h = BaublesApi.getBaublesHandler((EntityPlayer) event.getEntity())) != null)
 			for(int belt : BaubleType.BELT.getValidSlots())
