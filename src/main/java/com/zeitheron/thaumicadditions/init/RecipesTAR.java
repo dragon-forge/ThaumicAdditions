@@ -49,69 +49,65 @@ public class RecipesTAR
 {
 	public static final ResourceLocation crystalBlockRecipeIDFake = new ResourceLocation(InfoTAR.MOD_ID, "crystal_block_recipes_all");
 	public static final List<ResourceLocation> crystalBlockRecipes = new ArrayList<>();
-
 	public static final ResourceLocation visSeedsRecipeIDFake = new ResourceLocation(InfoTAR.MOD_ID, "vis_seeds_recipes_all");
 	public static final List<ResourceLocation> visSeedsRecipes = new ArrayList<>();
-
 	public static final ResourceLocation sealSymbolRecipeIDFake = new ResourceLocation(InfoTAR.MOD_ID, "seal_symbol_recipes_all");
 	public static final List<ResourceLocation> sealSymbolRecipes = new ArrayList<>();
-
 	public static final Map<Item, List<ResourceLocation>> FAKE_RECIPE_MAP = new HashMap<>();
-
 	public static OnetimeCaller init, postInit;
 	private static RecipesTAR instance;
-
+	
 	{
 		instance = this;
 		init = new OnetimeCaller(this::init);
 		postInit = new OnetimeCaller(this::postInit);
 	}
-
+	
 	private void init()
 	{
 		infusing();
 		arcaneCrafting();
 		crucible();
 		multiblock();
-
+		
 		TAReconstructed.arcs.forEach(ITARC::addArcaneRecipes);
-
+		
 		RecipesFluxConcentrator.handle(Blocks.BROWN_MUSHROOM.getDefaultState(), RecipesFluxConcentrator.output(BlocksTC.vishroom.getDefaultState()));
 		RecipesFluxConcentrator.handle(Blocks.RED_MUSHROOM.getDefaultState(), RecipesFluxConcentrator.output(BlocksTC.vishroom.getDefaultState()));
 		RecipesFluxConcentrator.handle(Blocks.PUMPKIN.getDefaultState(), RecipesFluxConcentrator.output(BlocksTAR.TAINTKIN.getDefaultState()));
 		RecipesFluxConcentrator.handle(Blocks.LIT_PUMPKIN.getDefaultState(), RecipesFluxConcentrator.output(BlocksTAR.TAINTKIN_LIT.getDefaultState()));
 	}
-
+	
 	private void postInit()
 	{
 		postAspects();
 	}
-
+	
 	@Override
 	public void crafting()
 	{
 		shaped(Items.QUARTZ, "sss", "sss", "sss", 's', new ItemStack(ItemsTC.nuggets, 1, 9));
-
+		
 		shapeless(ItemsTAR.MITHRILLIUM_INGOT, ItemsTAR.MITHRILLIUM_NUGGET, ItemsTAR.MITHRILLIUM_NUGGET, ItemsTAR.MITHRILLIUM_NUGGET, ItemsTAR.MITHRILLIUM_NUGGET, ItemsTAR.MITHRILLIUM_NUGGET, ItemsTAR.MITHRILLIUM_NUGGET, ItemsTAR.MITHRILLIUM_NUGGET, ItemsTAR.MITHRILLIUM_NUGGET, ItemsTAR.MITHRILLIUM_NUGGET);
 		shapeless(ItemsTAR.ADAMINITE_INGOT, ItemsTAR.ADAMINITE_NUGGET, ItemsTAR.ADAMINITE_NUGGET, ItemsTAR.ADAMINITE_NUGGET, ItemsTAR.ADAMINITE_NUGGET, ItemsTAR.ADAMINITE_NUGGET, ItemsTAR.ADAMINITE_NUGGET, ItemsTAR.ADAMINITE_NUGGET, ItemsTAR.ADAMINITE_NUGGET, ItemsTAR.ADAMINITE_NUGGET);
 		shapeless(ItemsTAR.MITHMINITE_INGOT, ItemsTAR.MITHMINITE_NUGGET, ItemsTAR.MITHMINITE_NUGGET, ItemsTAR.MITHMINITE_NUGGET, ItemsTAR.MITHMINITE_NUGGET, ItemsTAR.MITHMINITE_NUGGET, ItemsTAR.MITHMINITE_NUGGET, ItemsTAR.MITHMINITE_NUGGET, ItemsTAR.MITHMINITE_NUGGET, ItemsTAR.MITHMINITE_NUGGET);
-
+		
 		shapeless(new ItemStack(ItemsTAR.MITHRILLIUM_NUGGET, 9), ItemsTAR.MITHRILLIUM_INGOT);
 		shapeless(new ItemStack(ItemsTAR.ADAMINITE_NUGGET, 9), ItemsTAR.ADAMINITE_INGOT);
 		shapeless(new ItemStack(ItemsTAR.MITHMINITE_NUGGET, 9), ItemsTAR.MITHMINITE_INGOT);
-
+		
 		shapeless(BlocksTAR.MITHRILLIUM_BLOCK, ItemsTAR.MITHRILLIUM_INGOT, ItemsTAR.MITHRILLIUM_INGOT, ItemsTAR.MITHRILLIUM_INGOT, ItemsTAR.MITHRILLIUM_INGOT, ItemsTAR.MITHRILLIUM_INGOT, ItemsTAR.MITHRILLIUM_INGOT, ItemsTAR.MITHRILLIUM_INGOT, ItemsTAR.MITHRILLIUM_INGOT, ItemsTAR.MITHRILLIUM_INGOT);
 		shapeless(BlocksTAR.ADAMINITE_BLOCK, ItemsTAR.ADAMINITE_INGOT, ItemsTAR.ADAMINITE_INGOT, ItemsTAR.ADAMINITE_INGOT, ItemsTAR.ADAMINITE_INGOT, ItemsTAR.ADAMINITE_INGOT, ItemsTAR.ADAMINITE_INGOT, ItemsTAR.ADAMINITE_INGOT, ItemsTAR.ADAMINITE_INGOT, ItemsTAR.ADAMINITE_INGOT);
 		shapeless(BlocksTAR.MITHMINITE_BLOCK, ItemsTAR.MITHMINITE_INGOT, ItemsTAR.MITHMINITE_INGOT, ItemsTAR.MITHMINITE_INGOT, ItemsTAR.MITHMINITE_INGOT, ItemsTAR.MITHMINITE_INGOT, ItemsTAR.MITHMINITE_INGOT, ItemsTAR.MITHMINITE_INGOT, ItemsTAR.MITHMINITE_INGOT, ItemsTAR.MITHMINITE_INGOT);
-
+		
 		shapeless(new ItemStack(ItemsTAR.MITHRILLIUM_INGOT, 9), BlocksTAR.MITHRILLIUM_BLOCK);
 		shapeless(new ItemStack(ItemsTAR.ADAMINITE_INGOT, 9), BlocksTAR.ADAMINITE_BLOCK);
 		shapeless(new ItemStack(ItemsTAR.MITHMINITE_INGOT, 9), BlocksTAR.MITHMINITE_BLOCK);
-
+		
 		shaped(new ItemStack(BlocksTAR.CHISELED_AMBER_BLOCK, 4), " a ", "a a", " a ", 'a', BlocksTC.amberBlock);
-
+		
 		shapeless(new ItemStack(BlocksTAR.TAINTWOOD_PLANK, 4), new ItemStack(BlocksTC.taintLog));
-
+		
 		if(ConfigsTAR.rewritable)
 			shapeless(new ItemStack(ItemsTAR.KNOWLEDGE_TOME), new ItemStack(ItemsTAR.KNOWLEDGE_TOME));
 		shaped(new ItemStack(ItemsTAR.MITHRILLIUM_PLATE, 3), "ppp", 'p', ItemsTAR.MITHRILLIUM_INGOT);
@@ -119,12 +115,12 @@ public class RecipesTAR
 		shaped(new ItemStack(ItemsTAR.MITHMINITE_PLATE, 3), "ppp", 'p', ItemsTAR.MITHMINITE_INGOT);
 		shaped(new ItemStack(BlocksTAR.THAUMIC_LECTERN), "mtm", "www", " w ", 'w', new ItemStack(BlocksTC.slabGreatwood), 'm', "ingotThaumium", 't', new ItemStack(ItemsTC.thaumonomicon));
 		shaped(new ItemStack(BlocksTAR.ESSENTIA_SINK), "lvl", "igt", "isi", 'l', new ItemStack(ItemsTC.jarBrace), 'v', new ItemStack(BlocksTC.tubeValve), 'i', "plateIron", 'g', new ItemStack(BlocksTC.tableWood), 't', new ItemStack(BlocksTC.tube), 's', new ItemStack(BlocksTC.slabGreatwood));
-
+		
 		shaped(new ItemStack(BlocksTAR.IRON_FRAMED_GREATWOOD, 5), "npn", "ppp", "npn", 'n', "nuggetIron", 'p', new ItemStack(BlocksTC.plankGreatwood));
 		shaped(new ItemStack(BlocksTAR.BRASS_PLATED_SILVERWOOD, 5), "npn", "ppp", "npn", 'n', "nuggetBrass", 'p', new ItemStack(BlocksTC.plankSilverwood));
 		shaped(new ItemStack(BlocksTAR.AMBER_LAMP, 3), "bnb", "aaa", "bnb", 'b', new ItemStack(Blocks.IRON_BARS), 'n', "nitor", 'a', new ItemStack(BlocksTC.amberBlock));
 		shaped(new ItemStack(BlocksTAR.CHISELED_GREATWOOD, 3), " s ", "sps", " s ", 's', new ItemStack(BlocksTC.slabGreatwood), 'p', new ItemStack(BlocksTC.plankGreatwood));
-
+		
 		recipe(new RecipeMixSalts().setRegistryName(new ResourceLocation(getMod(), "essence_salt.mix")));
 		recipe(new RecipeApplySalt().setRegistryName(new ResourceLocation(getMod(), "essence_salt.apply")));
 		recipe(new RecipeClearSalt().setRegistryName(new ResourceLocation(getMod(), "essence_salt.remove")));
@@ -133,11 +129,11 @@ public class RecipesTAR
 		recipe(new RecipeRemovePhantomInk().setRegistryName(new ResourceLocation(getMod(), "phantom_ink.remove")));
 		recipe(new RecipeDisenchant().setRegistryName(new ResourceLocation(getMod(), "disenchant")));
 	}
-
+	
 	private void infusing()
 	{
 		Ingredient primordialPearl = Ingredient.fromItem(ItemsTC.primordialPearl);
-
+		
 		addInfusionRecipe("mithrillium_ingot", new ItemStack(ItemsTAR.MITHRILLIUM_INGOT), "TAR_MITHRILLIUM", 5, new ItemStack(ItemsTC.ingots, 1, 1), new AspectList().add(Aspect.CRYSTAL, 30).add(Aspect.ENERGY, 15).add(Aspect.ELDRITCH, 10).add(Aspect.METAL, 30).add(Aspect.MAGIC, 10), new ItemStack(ItemsTC.amber), new ItemStack(ItemsTC.alumentum), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.fabric), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.amber), new ItemStack(ItemsTC.alumentum), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.fabric), new ItemStack(ItemsTC.salisMundus));
 		addInfusionRecipe("adaminite_ingot", new ItemStack(ItemsTAR.ADAMINITE_INGOT), "TAR_ADAMINITE", 10, new ItemStack(ItemsTAR.MITHRILLIUM_INGOT), new AspectList().add(Aspect.LIFE, 100).add(Aspect.ALCHEMY, 30).add(Aspect.EXCHANGE, 40).add(Aspect.METAL, 40).add(Aspect.SOUL, 120).add(Aspect.MAGIC, 100).add(KnowledgeTAR.DRACO, 20).add(KnowledgeTAR.INFERNUM, 100).add(KnowledgeTAR.VISUM, 20), new ItemStack(Items.NETHER_STAR), new ItemStack(ItemsTC.fabric), primordialPearl, new ItemStack(Items.NETHER_STAR));
 		addInfusionRecipe("mithminite_ingot", new ItemStack(ItemsTAR.MITHMINITE_INGOT), "TAR_MITHMINITE", 8, new ItemStack(ItemsTAR.ADAMINITE_INGOT), new AspectList().add(KnowledgeTAR.CAELES, 10).add(Aspect.METAL, 60).add(Aspect.LIFE, 90).add(Aspect.MAGIC, 120), new ItemStack(ItemsTAR.MITHRILLIUM_INGOT), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTAR.MITHRILLIUM_INGOT), new ItemStack(ItemsTC.quicksilver));
@@ -174,13 +170,17 @@ public class RecipesTAR
 		addInfusionRecipe("crystal_bag", new ItemStack(ItemsTAR.CRYSTAL_BAG), "TAR_CRYSTAL_BAG", 6, new ItemStack(ItemsTC.focusPouch), AspectUtil.primals(10).add(Aspect.VOID, 50), new ItemStack(BlocksTC.crystalAir), new ItemStack(BlocksTC.crystalEarth), new ItemStack(BlocksTC.crystalEntropy), new ItemStack(BlocksTC.crystalFire), new ItemStack(BlocksTC.crystalOrder), new ItemStack(BlocksTC.crystalTaint), new ItemStack(BlocksTC.crystalWater));
 		addInfusionRecipe("blue_bone", new ItemStack(ItemsTAR.BLUE_BONE), "TAR_MITHRILLIUM", 1, new ItemStack(Items.BONE), new AspectList().add(KnowledgeTAR.EXITIUM, 6).add(Aspect.EXCHANGE, 6).add(KnowledgeTAR.DRACO, 6), new ItemStack(ItemsTAR.MITHRILLIUM_NUGGET), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTAR.MITHRILLIUM_NUGGET), new ItemStack(ItemsTC.salisMundus));
 		addInfusionRecipe("the_beheader", new ItemStack(ItemsTAR.THE_BEHEADER), "TAR_THE_BEHEADER", 8, new ItemStack(ItemsTC.thaumiumAxe), new AspectList().add(Aspect.UNDEAD, 100).add(Aspect.ENTROPY, 70).add(Aspect.MAGIC, 85).add(Aspect.AVERSION, 120).add(Aspect.DEATH, 70), new ItemStack(ItemsTAR.MITHRILLIUM_PLATE), new ItemStack(Items.SKULL, 1, 1), new ItemStack(ItemsTAR.MITHRILLIUM_PLATE), new ItemStack(ItemsTC.plate, 1, 2), new ItemStack(ItemsTAR.MITHRILLIUM_PLATE), new ItemStack(Items.SKULL, 1, 1));
+		
 		addInfusionRecipe("traveller_belt", new ItemStack(ItemsTAR.TRAVELLER_BELT), "TAR_TRAVELLER_BELT", 1, new ItemStack(ItemsTC.baubles, 1, 2), new AspectList().add(Aspect.MOTION, 100).add(Aspect.FLIGHT, 100), AspectUtil.crystalEssence(Aspect.AIR), AspectUtil.crystalEssence(Aspect.AIR), new ItemStack(ItemsTC.fabric), new ItemStack(ItemsTC.fabric), new ItemStack(Items.FEATHER), new ItemStack(Items.FISH, 1, OreDictionary.WILDCARD_VALUE));
+		addInfusionRecipe("striding_belt", new ItemStack(ItemsTAR.STRIDING_BELT), "TAR_STRIDING_BELT", 3, new ItemStack(ItemsTAR.TRAVELLER_BELT), new AspectList().add(Aspect.MOTION, 150).add(Aspect.FLIGHT, 150).add(Aspect.AIR, 200).add(KnowledgeTAR.FLUCTUS, 50), new ItemStack(ItemsTC.amber), new ItemStack(Items.FEATHER), new ItemStack(ItemsTC.amber), new ItemStack(Items.FEATHER));
+		addInfusionRecipe("meteor_belt", new ItemStack(ItemsTAR.METEOR_BELT), "TAR_METEOR_BELT", 5, new ItemStack(ItemsTAR.STRIDING_BELT), new AspectList().add(Aspect.MOTION, 250).add(Aspect.FLIGHT, 250).add(Aspect.FIRE, 200).add(KnowledgeTAR.FLUCTUS, 50), AspectUtil.crystalEssence(Aspect.FIRE), new ItemStack(Items.NETHERBRICK), AspectUtil.crystalEssence(Aspect.FIRE), new ItemStack(Items.NETHERBRICK));
+		
 		addInfusionRecipe("adaminite_sword", new ItemStack(ItemsTAR.ADAMINITE_SWORD), "TAR_ADAMINITE_SWORD", 6, new ItemStack(ItemsTC.voidSword), new AspectList().add(KnowledgeTAR.DRACO, 40).add(Aspect.MAGIC, 70).add(Aspect.AVERSION, 150).add(KnowledgeTAR.INFERNUM, 90).add(Aspect.METAL, 60), "plateAdaminite", "plateAdaminite", primordialPearl, "plateAdaminite");
-
+		
 		addInfusionRecipe("mithminite_scythe", new ItemStack(ItemsTAR.MITHMINITE_SCYTHE), "TAR_MITHMINITE_SCYTHE", 1, primordialPearl, new AspectList().add(Aspect.AVERSION, 250).add(Aspect.TOOL, 150).add(Aspect.MAGIC, 100), new ItemStack(ItemsTAR.MITHMINITE_BLADE), new ItemStack(ItemsTAR.MITHMINITE_PLATE), new ItemStack(ItemsTAR.MITHMINITE_HANDLE), new ItemStack(ItemsTAR.MITHMINITE_PLATE));
 		addInfusionRecipe("mithminite_blade", new ItemStack(ItemsTAR.MITHMINITE_BLADE), "TAR_MITHMINITE_SCYTHE", 1, new ItemStack(ItemsTAR.ADAMINITE_SWORD), new AspectList().add(Aspect.AVERSION, 250).add(KnowledgeTAR.INFERNUM, 150), new ItemStack(ItemsTAR.MITHMINITE_PLATE), new ItemStack(ItemsTAR.MITHMINITE_PLATE), new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR), new ItemStack(ItemsTAR.MITHMINITE_PLATE));
 		addInfusionRecipe("mithminite_handle", new ItemStack(ItemsTAR.MITHMINITE_HANDLE), "TAR_MITHMINITE_SCYTHE", 1, new ItemStack(ItemsTAR.MITHMINITE_NUGGET), new AspectList().add(Aspect.TOOL, 100).add(Aspect.SOUL, 150), new ItemStack(ItemsTAR.MITHMINITE_PLATE), new ItemStack(ItemsTAR.MITHMINITE_INGOT), new ItemStack(ItemsTAR.MITHMINITE_INGOT));
-
+		
 		for(Aspect a : Aspect.aspects.values())
 		{
 			InfusionRecipe rec = new InfusionRecipe("TAR_SEAL_SYMBOLS", ItemSealSymbol.createItem(a, 1), 1, new AspectList().add(a, 10), AspectUtil.crystalEssence(a), "nuggetGold", "nuggetGold", "nuggetGold", "nuggetGold");
@@ -188,10 +188,10 @@ public class RecipesTAR
 			sealSymbolRecipes.add(loc);
 			ThaumcraftApi.addInfusionCraftingRecipe(loc, rec);
 		}
-
+		
 		ThaumcraftApi.addFakeCraftingRecipe(sealSymbolRecipeIDFake, sealSymbolRecipes);
 	}
-
+	
 	private void arcaneCrafting()
 	{
 		addShapedArcaneRecipe("mithrillium_smelter", "TAR_MITHRILLIUM_SMELTER", 1000, new AspectList().add(Aspect.FIRE, 6).add(Aspect.WATER, 2), new ItemStack(BlocksTAR.MITHRILLIUM_SMELTER), "bsb", "mcm", "mmm", 'b', "plateBrass", 's', BlocksTC.smelterVoid, 'm', ItemsTAR.MITHRILLIUM_PLATE, 'c', BlocksTC.metalAlchemicalAdvanced);
@@ -220,7 +220,7 @@ public class RecipesTAR
 		addShapedArcaneRecipe("adaminite_boots", "TAR_ADAMINITE_FABRIC", 200, AspectUtil.primals(4), new ItemStack(ItemsTAR.ADAMINITE_BOOTS), "f f", "fmf", 'f', new ItemStack(ItemsTAR.ADAMINITE_FABRIC), 'm', new ItemStack(ItemsTAR.MITHRILLIUM_RESONATOR));
 		addShapedArcaneRecipe("essentia_pistol", "TAR_ESSENTIA_PISTOL", 100, new AspectList().add(Aspect.AIR, 1), new ItemStack(ItemsTAR.ESSENTIA_PISTOL), "stt", "gbd", "g  ", 's', new ItemStack(ItemsTC.mechanismSimple), 't', "ingotThaumium", 'g', new ItemStack(BlocksTC.plankGreatwood), 'b', new ItemStack(Blocks.STONE_BUTTON), 'd', new ItemStack(BlocksTAR.AURA_DISPERSER));
 		addShapedArcaneRecipe("disenchant_fabric", "TAR_DISENCHANT_FABRIC", 150, new AspectList().add(Aspect.EARTH, 1), new ItemStack(ItemsTAR.DISENCHANT_FABRIC), " f ", "fsf", " f ", 'f', new ItemStack(ItemsTC.fabric), 's', new ItemStack(ItemsTC.salisMundus));
-
+		
 		for(Aspect a : Aspect.aspects.values())
 		{
 			IArcaneRecipe rec = new ShapedArcaneRecipe(defaultGroup, "TAR_CRYSTAL_BLOCK", 10, new AspectList(), AspectUtil.crystalBlock(a), "ccc", "ccc", "ccc", 'c', new NBTRespectfulIngredient(AspectUtil.crystalEssence(a)));
@@ -228,10 +228,10 @@ public class RecipesTAR
 			crystalBlockRecipes.add(loc);
 			ThaumcraftApi.addArcaneCraftingRecipe(loc, rec);
 		}
-
+		
 		ThaumcraftApi.addFakeCraftingRecipe(crystalBlockRecipeIDFake, crystalBlockRecipes);
 	}
-
+	
 	private void postAspects()
 	{
 		IThaumcraftRecipe hedge_gunpowder = ThaumcraftApi.getCraftingRecipes().get(new ResourceLocation("thaumcraft:hedge_gunpowder"));
@@ -243,13 +243,13 @@ public class RecipesTAR
 				catal.add(KnowledgeTAR.EXITIUM, 10);
 		}
 	}
-
+	
 	private void crucible()
 	{
 		addCrucibleRecipe("crystal_water", "TAR_CRYSTAL_WATER", FluidUtil.getFilledBucket(new FluidStack(FluidsTAR.CRYSTAL_WATER, Fluid.BUCKET_VOLUME)), new ItemStack(Items.WATER_BUCKET), new AspectList().add(Aspect.CRYSTAL, 10).add(Aspect.DESIRE, 4).add(Aspect.EXCHANGE, 6));
 		addCrucibleRecipe("odour_powder", "TAR_FRAGNANT_PENDANT", new ItemStack(ItemsTAR.ODOUR_POWDER, 4), new ItemStack(ItemsTC.bathSalts), new AspectList().add(Aspect.ORDER, 10).add(KnowledgeTAR.EXITIUM, 5).add(KnowledgeTAR.VENTUS, 5));
 		addCrucibleRecipe("phantom_ink_phial", "TAR_THAUMADDS", new ItemStack(ItemsTAR.PHANTOM_INK_PHIAL), new ItemStack(ItemsTC.phial), new AspectList().add(KnowledgeTAR.VISUM, 10).add(Aspect.ELDRITCH, 20));
-
+		
 		for(Aspect a : Aspect.aspects.values())
 		{
 			CrucibleRecipe cr = new CrucibleRecipe("TAR_VIS_SEEDS", ItemVisSeeds.create(a, 1), new ItemStack(Items.WHEAT_SEEDS), new AspectList().add(Aspect.PLANT, 10).add(a, 20));
@@ -257,10 +257,10 @@ public class RecipesTAR
 			visSeedsRecipes.add(loc);
 			ThaumcraftApi.addCrucibleRecipe(loc, cr);
 		}
-
+		
 		ThaumcraftApi.addFakeCraftingRecipe(visSeedsRecipeIDFake, visSeedsRecipes);
 	}
-
+	
 	private void multiblock()
 	{
 		{
@@ -273,39 +273,39 @@ public class RecipesTAR
 			ThaumcraftApi.addMultiblockRecipeToCatalog(new ResourceLocation(InfoTAR.MOD_ID, "mb.crystal_acceleration"), b.build("TAR_CRYSTAL_WATER", new ItemStack(ItemsTC.crystalEssence)));
 		}
 	}
-
+	
 	public static void addCrucibleRecipe(String path, String research, ItemStack output, Object catalyst, AspectList aspects)
 	{
 		ThaumcraftApi.addCrucibleRecipe(new ResourceLocation(InfoTAR.MOD_ID, path), new CrucibleRecipe(research, output, catalyst, aspects));
 	}
-
+	
 	public static void addInfusionRecipe(String path, Object output, String research, int instability, Object catalyst, AspectList aspects, Object... inputs)
 	{
 		ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(InfoTAR.MOD_ID, path), new InfusionRecipe(research, output, instability, aspects, catalyst, inputs));
 	}
-
+	
 	static ResourceLocation defaultGroup = new ResourceLocation("");
-
+	
 	public static void addShapedArcaneRecipe(String path, String res, int vis, AspectList crystals, ItemStack result, Object... recipe)
 	{
 		ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(InfoTAR.MOD_ID, path), new ShapedArcaneRecipe(defaultGroup, res, vis, crystals, result, recipe));
 	}
-
+	
 	public static void addShapedArcaneRecipe(String path, String res, int vis, AspectList crystals, Item result, Object... recipe)
 	{
 		ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(InfoTAR.MOD_ID, path), new ShapedArcaneRecipe(defaultGroup, res, vis, crystals, result, recipe));
 	}
-
+	
 	public static void addShapedArcaneRecipe(String path, String res, int vis, AspectList crystals, Block result, Object... recipe)
 	{
 		ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(InfoTAR.MOD_ID, path), new ShapedArcaneRecipe(defaultGroup, res, vis, crystals, result, recipe));
 	}
-
+	
 	@Override
 	public void smelting()
 	{
 	}
-
+	
 	@Override
 	protected IRecipe recipe(IRecipe recipe)
 	{
@@ -319,7 +319,7 @@ public class RecipesTAR
 		ThaumcraftApi.addFakeCraftingRecipe(recipe.getRegistryName(), recipe);
 		return recipe;
 	}
-
+	
 	public static String[] getFakeRecipesFor(Item it)
 	{
 		List<ResourceLocation> locs = FAKE_RECIPE_MAP.get(it);
@@ -327,19 +327,19 @@ public class RecipesTAR
 			FAKE_RECIPE_MAP.put(it, locs = new ArrayList<>());
 		return locs.stream().map(ResourceLocation::toString).collect(Collectors.toList()).toArray(new String[locs.size()]);
 	}
-
+	
 	public static String[] getFakeRecipes(Item it, String... appends)
 	{
 		return ArrayHelper.merge(getFakeRecipesFor(it), appends);
 	}
-
+	
 	public static String[] getFakeRecipesPreAll(Item[] items, String... prepends)
 	{
 		for(Item i : items)
 			prepends = getFakeRecipesPre(i, prepends);
 		return prepends;
 	}
-
+	
 	public static String[] getFakeRecipesPre(Item it, String... prepends)
 	{
 		return ArrayHelper.merge(prepends, getFakeRecipesFor(it));

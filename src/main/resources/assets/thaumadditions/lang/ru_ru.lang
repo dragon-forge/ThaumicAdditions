@@ -149,7 +149,7 @@ item.thaumadditions:void_fruit.name=Void Fruit
 item.thaumadditions:void_elemental_pickaxe.name=Void Pickaxe of the Core
 item.thaumadditions:void_elemental_axe.name=Void Axe of the Stream
 item.thaumadditions:void_elemental_shovel.name=Void Shovel of the Earthmover
-item.thaumadditions:striding_belt.name=Belt of the Strider
+item.thaumadditions:striding_belt.name=Striding Belt
 item.thaumadditions:meteor_belt.name=Belt of the Meteor
 
 #########
@@ -412,10 +412,6 @@ research_name.thaumadditions:the_beheader=Головорубец
 research_stage.thaumadditions:the_beheader.1=Every trip to the nether annoys me. Running around the fortress exhausting yourself and looking everywhere to find wither skeletons, hoping to get their skulls. Perhaps I should stop smashing those piles of bones and be actually careful enough to harvest black skulls?
 research_stage.thaumadditions:the_beheader.2=Beheading seems like the way to go here. Improving on my thaumium axe would be an excellent idea - it fuses quite well with mithrillium. The new Beheader is lighter than an average axe, and has a good damage, so this may be used when I'm out of swords again.
 
-research_name.thaumadditions:traveller_belt=Пояс путешественника
-research_stage.thaumadditions:traveller_belt.1=После открытия сапог путешественника, они приобрели ключевое значение для освоения новых земель. Но к сожалению, иногда можно наткнуться на толпу мобов, а сапоги плохо защищают своего носителя.
-research_stage.thaumadditions:traveller_belt.2=Похоже, что наполняя обычный пояс тем же ритуалом, что и мои ботинки, я могу сделать себе новый модный пояс путешественника. Функция кажется абсолютно идентичной, но этот пояс таким образом становиться значительно более портативным.
-
 research_name.thaumadditions:adaminite_sword=Адаминитовый меч
 research_stage.thaumadditions:adaminite_sword.1=В то время как пустые металлы обладают удивительной силой, я зашел далеко в его иерархии, и я уверен, что его стоит обновить.
 research_stage.thaumadditions:adaminite_sword.2=Адаминит хорошо сочетается со своим собственным компонентом, это довольно умно. Хотя, поскольку адаминит трудно применить, может потребоваться много дополнительной эссенции. Добавление в него первичной энергии также делает это оружие лучшим оружием для рукопашного боя, которое может предложить любой тауматург. Или же...?
@@ -439,6 +435,19 @@ research_stage.thaumadditions:void_elemental_pickaxe.2=This seems wrong.. I thin
 research_name.thaumadditions:void_elemental_axe=Void Axe of the Stream
 research_stage.thaumadditions:void_elemental_axe.1=Cutting down forests of trees has been easier with Axe of the Stream due to it's ability to destroy the entire trunk. I may need to come up with an upgrade to make it a lot tougher. I am sure that using my beloved void metal is the way here!
 research_stage.thaumadditions:void_elemental_axe.2=Putting together the usual primordial formula for infusing tools with void metal is not too hard, I think. What I know for sure, this is definitely a worthy upgrade as long as used properly.
+
+research_name.thaumadditions:traveller_belt=Пояс путешественника
+research_stage.thaumadditions:traveller_belt.1=После открытия сапог путешественника, они приобрели ключевое значение для освоения новых земель. Но к сожалению, иногда можно наткнуться на толпу мобов, а сапоги плохо защищают своего носителя.
+research_stage.thaumadditions:traveller_belt.2=Похоже, что наполняя обычный пояс тем же ритуалом, что и мои ботинки, я могу сделать себе новый модный пояс путешественника. Функция кажется абсолютно идентичной, но этот пояс таким образом становиться значительно более портативным.
+
+research_name.thaumadditions:striding_belt=Striding Belt
+research_stage.thaumadditions:striding_belt.1=Surely the all new and shiny Belt of the Traveller was a really good uplift from old fashioned boots, but should be possible to upgrade a little bit further.
+research_stage.thaumadditions:striding_belt.2=Striding Belt seems to be a pretty sensible outcome of fusing the old belt with a lot of Aer and Motus essentia with some ember and feathers. This belt is capable of making leaps never seen before, while also increasing my walk speed slightly.
+
+research_name.thaumadditions:meteor_belt=Belt of the Meteor
+research_stage.thaumadditions:meteor_belt.1=I'm unsure if this is a rational move or not, but I *may* need another upgrade to the belt I currently possess... It's quite chaotic, sure, but I still need it!
+research_stage.thaumadditions:meteor_belt.2=Belt of the Meteor is an explosive succeess... Quite literally. It's not as safe, and can cause harm to living beings if I am not careful enough with it. Infusing old belt with lots of Ignis and Motus, I've made a beast of a belt, that is surely at it's peak of power.
+
 
 ## Thaumic Wands
 

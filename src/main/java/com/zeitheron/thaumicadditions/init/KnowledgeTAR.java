@@ -12,8 +12,6 @@ import com.zeitheron.thaumicadditions.config.ConfigsTAR;
 import com.zeitheron.thaumicadditions.entity.EntityBlueWolf;
 import com.zeitheron.thaumicadditions.items.seed.ItemVisSeeds;
 import com.zeitheron.thaumicadditions.tiles.TileAuraCharger;
-
-import de.zpenguin.thaumicwands.item.TW_Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -166,6 +164,12 @@ public class KnowledgeTAR
 			new REB().setBaseInfo("TAR_VIS_SEEDS", "vis_seeds", -10, 1, ItemVisSeeds.create(DRACO, 1)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":vis_seeds.1").setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_ALCHEMY, 1), new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 1)).setConsumedItems(new ItemStack(Items.WHEAT_SEEDS)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":vis_seeds.2").setRecipes(RecipesTAR.visSeedsRecipeIDFake).build()).setParents("TAR_THAUMADDS").buildAndRegister();
 			new REB().setBaseInfo("TAR_CRYSTAL_BAG", "crystal_bag", -12, -1, new ItemStack(ItemsTAR.CRYSTAL_BAG)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_bag.1").setKnow(new Knowledge(EnumKnowledgeType.THEORY, R_ALCHEMY, 1), new Knowledge(EnumKnowledgeType.THEORY, R_THAUMADDS, 1)).setConsumedItems(new ItemStack(ItemsTC.focusPouch)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":crystal_bag.2").setRecipes(InfoTAR.MOD_ID + ":crystal_bag").build()).setParents("TAR_THAUMADDS", "FOCUSPOUCH", "CRYSTALFARMER").setMeta(EnumResearchMeta.HIDDEN).buildAndRegister();
 			new REB().setBaseInfo("TAR_TRAVELLER_BELT", "traveller_belt", -12, 1, new ItemStack(ItemsTAR.TRAVELLER_BELT)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":traveller_belt.1").setRequiredCraft(new ItemStack(ItemsTC.travellerBoots)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, R_THAUMADDS, 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":traveller_belt.2").setRecipes(InfoTAR.MOD_ID + ":traveller_belt").build()).setParents("TAR_THAUMADDS", "BOOTSTRAVELLER").setMeta(EnumResearchMeta.HIDDEN).buildAndRegister();
+			{
+				new REB().setBaseInfo("TAR_STRIDING_BELT", "striding_belt", -12, 3, new ItemStack(ItemsTAR.STRIDING_BELT)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":striding_belt.1").setRequiredCraft(new ItemStack(ItemsTAR.TRAVELLER_BELT)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, R_THAUMADDS, 2), new Knowledge(EnumKnowledgeType.THEORY, R_ARTIFICE, 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":striding_belt.2").setRecipes(InfoTAR.MOD_ID + ":striding_belt").build()).setParents("TAR_TRAVELLER_BELT").setMeta(EnumResearchMeta.HIDDEN).buildAndRegister();
+				{
+					new REB().setBaseInfo("TAR_METEOR_BELT", "meteor_belt", -12, 5, new ItemStack(ItemsTAR.METEOR_BELT)).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":meteor_belt.1").setRequiredCraft(new ItemStack(ItemsTAR.STRIDING_BELT)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, R_THAUMADDS, 3), new Knowledge(EnumKnowledgeType.THEORY, R_ARTIFICE, 2), new Knowledge(EnumKnowledgeType.THEORY, R_INFUSION, 1)).setWarp(3).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":meteor_belt.2").setRecipes(InfoTAR.MOD_ID + ":meteor_belt").build()).setParents("TAR_STRIDING_BELT").setMeta(EnumResearchMeta.HIDDEN).buildAndRegister();
+				}
+			}
 
 			//
 
@@ -412,7 +416,7 @@ public class KnowledgeTAR
 		{
 			if(name.contains("thaumcraft:"))
 				return super.setBaseInfo(key, "THAUMADDITIONS", "research." + name.replace("thaumcraft:", "") + ".title", x, y, icons);
-			return super.setBaseInfo(key, "THAUMADDITIONS", "research_name." + InfoTAR.MOD_ID + ":" + name, x, y, icons);
+			return super.setBaseInfo(key, "THAUMADDITIONS", "research_name." + InfoTAR.MOD_ID + ':' + name, x, y, icons);
 		}
 	}
 
