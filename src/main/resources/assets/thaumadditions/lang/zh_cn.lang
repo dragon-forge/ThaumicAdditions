@@ -52,8 +52,8 @@ tile.thaumadditions:brass_plated_silverwood.name=镀黄铜银树木板
 tile.thaumadditions:taintwood_planks.name=腐化原木木板
 tile.thaumadditions:taintkin.name=腐化南瓜
 tile.thaumadditions:taintkin_lit.name=腐化南瓜灯
-tile.thaumadditions:chiseled_amber_block.name=雕凿琥珀块
-tile.thaumadditions:chiseled_greatwood.name=Chiseled Greatwood
+tile.thaumadditions:chiseled_amber_block.name=錾制琥珀块
+tile.thaumadditions:chiseled_greatwood.name=錾制宏伟之木
 
 ##########
 
@@ -138,19 +138,19 @@ item.thaumadditions:traveller_belt.name=旅者腰带
 item.thaumadditions:mithminite_scythe.name=秘金镰刀
 item.thaumadditions:mithminite_blade.name=秘金镰刃
 item.thaumadditions:mithminite_handle.name=秘金手柄
-item.thaumadditions:mithrillium_cap_inert.name=Inert Mithrillium Cap
-item.thaumadditions:adaminite_cap_inert.name=Inert Adaminite Cap
-item.thaumadditions:mithminite_cap_inert.name=Inert Mithminite Cap
-item.thaumadditions:mithrillium_cap.name=Charged Mithrillium Cap
-item.thaumadditions:adaminite_cap.name=Charged Adaminite Cap
-item.thaumadditions:mithminite_cap.name=Charged Mithminite Cap
-item.thaumadditions:adaminitewood_rod.name=Adaminitewood Rod
-item.thaumadditions:void_fruit.name=Void Fruit
-item.thaumadditions:void_elemental_pickaxe.name=Void Pickaxe of the Core
-item.thaumadditions:void_elemental_axe.name=Void Axe of the Stream
-item.thaumadditions:void_elemental_shovel.name=Void Shovel of the Earthmover
-item.thaumadditions:striding_belt.name=Striding Belt
-item.thaumadditions:meteor_belt.name=Belt of the Meteor
+item.thaumadditions:mithrillium_cap_inert.name=惰性秘银杖端
+item.thaumadditions:adaminite_cap_inert.name=惰性精金杖端
+item.thaumadditions:mithminite_cap_inert.name=惰性秘金杖端
+item.thaumadditions:mithrillium_cap.name=充能秘银杖端
+item.thaumadditions:adaminite_cap.name=充能精金杖端
+item.thaumadditions:mithminite_cap.name=充能秘金杖端
+item.thaumadditions:adaminitewood_rod.name=鎏金木杖
+item.thaumadditions:void_fruit.name=虚空果实
+item.thaumadditions:void_elemental_pickaxe.name=虚空炽心镐
+item.thaumadditions:void_elemental_axe.name=虚空奔流斧
+item.thaumadditions:void_elemental_shovel.name=虚空后土铲
+item.thaumadditions:striding_belt.name=腾跃腰带
+item.thaumadditions:meteor_belt.name=陨星腰带
 
 #########
 
@@ -179,10 +179,10 @@ tooltip.thaumadditions:cb_sort_rule.3=源质数量排序 (升序)
 attribute.name.generic.flyingSpeed=飞行速度
 damage.thaumadditions:mithminite_scythe.melee=12 近战伤害
 damage.thaumadditions:mithminite_scythe.ranged=14 远程伤害
-item.wand.mithrillium.cap=Mithrillium Attuned
-item.wand.adaminite.cap=Adaminite Adorned
-item.wand.mithminite.cap=Mithminite Ornamented
-item.wand.adaminitewood.rod=Adamitewood
+item.wand.mithrillium.cap=秘银谐鸣
+item.wand.adaminite.cap=精金镶饰
+item.wand.mithminite.cap=秘金华缀
+item.wand.adaminitewood.rod=鎏金木
 
 #################
 
@@ -424,48 +424,48 @@ research_name.thaumadditions:void_elemental_hoe=虚空句芒锄
 research_stage.thaumadditions:void_elemental_hoe.1=对虚空金属的研究给了我对虚空金属可以自行修复多少的问题的提示。那么用虚空金属强化我的句芒锄会发生什么呢？
 research_stage.thaumadditions:void_elemental_hoe.2=我不能直接把虚空金属贴合到句芒锄上，但我认为加上点元始之力会让这变得可能。“虚空句芒锄” 和句芒锄基本相同，但它可以借助一点灵气来修复自身耐久。
 
-research_name.thaumadditions:void_elemental_shovel=Void Shovel of the Earthmover
-research_stage.thaumadditions:void_elemental_shovel.1=Digging out large patches of earth may be easier with shovel of the Earthmover, but sadly it is still no that durable. Surely void metal can be infused into an elemental shovel with a little help from outside this world...
-research_stage.thaumadditions:void_elemental_shovel.2=Using the primordial pearl to merge my shovel with void metal gave a pretty fascinating result. The new void shovel of the Earthmover is now capable of using aura every so often to last longer, or forever. Really depends on how intensively I use it though.
+research_name.thaumadditions:void_elemental_shovel=虚空后土铲
+research_stage.thaumadditions:void_elemental_shovel.1=用后土铲铲出一大片土地可能会更容易，但可惜的是它耐久仍并不高。在一点异域之力的帮助下肯定能将虚空金属融入到后土铲中...
+research_stage.thaumadditions:void_elemental_shovel.2=将元始珍珠将铲子与虚空金属融合在一起，效果十分喜人。现在，新型的虚空后土铲能够经常利用灵气增长使用寿命甚至能永久使用，这取决于我实际的使用强度。
 
-research_name.thaumadditions:void_elemental_pickaxe=Void Pickaxe of the Core
-research_stage.thaumadditions:void_elemental_pickaxe.1=Mining is a chore that requires a lot of tools at all times. Pickaxe of the Core may not be as sturdy as some other materials, but some of it's other perks make it still a better solution. I am sure that the durability problem can be solved with a little trickery with void metal.
-research_stage.thaumadditions:void_elemental_pickaxe.2=This seems wrong.. I think something went wrong, and getting this new Void pickaxe of the Core needs a hefty amount of Metallum. I suppose it may be because the pickaxe itself is very sensitive to metal?
+research_name.thaumadditions:void_elemental_pickaxe=虚空炽心镐
+research_stage.thaumadditions:void_elemental_pickaxe.1=采矿是一件总是需要用到工具的令人厌烦的事。炽心镐可能不像其他材料那么坚固，但是其中的一些额外优点使它仍不失为一个更好的方案。 我敢肯定耐久的问题可以用虚空金属的奇招解决。
+research_stage.thaumadditions:void_elemental_pickaxe.2=这感觉不对..我认为某些地方出了问题，要得到这个新型的虚空炽心镐需要异常多的 Metallum 要素。我想这可能是因为镐本身对金属非常敏感？
 
-research_name.thaumadditions:void_elemental_axe=Void Axe of the Stream
-research_stage.thaumadditions:void_elemental_axe.1=Cutting down forests of trees has been easier with Axe of the Stream due to it's ability to destroy the entire trunk. I may need to come up with an upgrade to make it a lot tougher. I am sure that using my beloved void metal is the way here!
-research_stage.thaumadditions:void_elemental_axe.2=Putting together the usual primordial formula for infusing tools with void metal is not too hard, I think. What I know for sure, this is definitely a worthy upgrade as long as used properly.
+research_name.thaumadditions:void_elemental_axe=虚空奔流斧
+research_stage.thaumadditions:void_elemental_axe.1=奔流斧能够砍倒一整棵树，因此砍伐森林变得更加容易。我可能需要思考一种强化方法使其变得更坚韧。我确信我所钟爱的虚空金属便是其解决方案！
+research_stage.thaumadditions:void_elemental_axe.2=我认为，将注魔工具的常用元始配方与虚空金属组合在一起并不难。我所知道可确定的是，只要使用得当，这绝对值得被提升。
 
 research_name.thaumadditions:traveller_belt=旅者腰带
 research_stage.thaumadditions:traveller_belt.1=发现旅行者之靴后，它们对于探索新大陆变得至关重要。然而有时可能会遇上经过的步履蹒跚的怪物，而这靴子不利于保护穿戴者。
 research_stage.thaumadditions:traveller_belt.2=通过给凡人腰带注魔了同旅行者之靴一样的仪式，我可以给自己做一个精致的旅者腰带。它的功能绝对相同，但是它是一条腰带，因此更加便携。
 
-research_name.thaumadditions:striding_belt=Striding Belt
-research_stage.thaumadditions:striding_belt.1=Surely the all new and shiny Belt of the Traveller was a really good uplift from old fashioned boots, but should be possible to upgrade a little bit further.
-research_stage.thaumadditions:striding_belt.2=Striding Belt seems to be a pretty sensible outcome of fusing the old belt with a lot of Aer and Motus essentia with some ember and feathers. This belt is capable of making leaps never seen before, while also increasing my walk speed slightly.
+research_name.thaumadditions:striding_belt=腾跃腰带
+research_stage.thaumadditions:striding_belt.1=自然，全新闪亮的旅者腰带确实是对那种老式的靴子有着的巨大提升，但应该有更进一步提升的可能性。
+research_stage.thaumadditions:striding_belt.2=将旧的腰带与大量的 Aer 和 Motus 要素以及一些琥珀和羽毛融合在一起做成的腾跃腰带似乎是一个不错的产物。这条腰带能够实现前所未有的飞跃，同时还能略微提高我的步行速度。
 
-research_name.thaumadditions:meteor_belt=Belt of the Meteor
-research_stage.thaumadditions:meteor_belt.1=I'm unsure if this is a rational move or not, but I *may* need another upgrade to the belt I currently possess... It's quite chaotic, sure, but I still need it!
-research_stage.thaumadditions:meteor_belt.2=Belt of the Meteor is an explosive succeess... Quite literally. It's not as safe, and can cause harm to living beings if I am not careful enough with it. Infusing old belt with lots of Ignis and Motus, I've made a beast of a belt, that is surely at it's peak of power.
+research_name.thaumadditions:meteor_belt=陨星腰带
+research_stage.thaumadditions:meteor_belt.1=我不确定这是否是一个合理的举动，但是我*可能*需要对我目前的腰带再次强化...这听起来似乎令人费解，但我仍需继续强化它！
+research_stage.thaumadditions:meteor_belt.2=毫不夸张的说，陨星腰带是一个爆炸性的成功...它不那么安全，如果我不够小心的话，可能会对生物造成伤害。我在旧腰带中融入了 Ignis 和 Motus 要素，做出了如猛兽般的腰带，这无疑是腰带的巅峰之作。
 
 
 ## Thaumic Wands
 
-research_name.thaumadditions:cap_mithrillium=Mithrillium Wand Caps
-research_stage.thaumadditions:cap_mithrillium.1=I never expected there to be a metal even more potent than void metal, but this is truely baffeling, maybe my thaumaturgy studies have ended to soon, maybe I should try forging myself a new pair of wand caps...
-research_stage.thaumadditions:cap_mithrillium.2=It took a lot of salis mundus to get these to work again, but the result was definitly worth it, these caps provide a 25% discount and even a 1 crystal discount on every aspect, but why does it always take so much salis mundus though ?
+research_name.thaumadditions:cap_mithrillium=秘银法杖杖端
+research_stage.thaumadditions:cap_mithrillium.1=我不认为这世上还有比虚空金属更为优秀的金属，但秘银的出现令我对自己产生了怀疑。我的神秘学研究估计很快就到了尽头，我或许可以为自己再打造出一套在新的杖端...
+research_stage.thaumadditions:cap_mithrillium.2=激活这一杖端需要用到大量的世界盐，尽管如此，最终结果也物超所值，这一杖端可以提供25%的灵气消耗减免，以及1的全水晶消耗减免，但是这种杖端实在是太消耗世界盐了。
 
-research_name.thaumadditions:cap_adaminite=Adaminite Wand Caps
-research_stage.thaumadditions:cap_adaminite.1=When Mithrillium is already great, then what about Adaminite it should be even better, it is only logical, but I have a feeling that not only the Warp will affect my sanity this time.
-research_stage.thaumadditions:cap_adaminite.2=It turns out I was right, these caps truely are marvelous, they provide a 30% disount and even a doubled primal discount, maybe I should stop now, or maybe I should go even further.
+research_name.thaumadditions:cap_adaminite=精金法杖杖端
+research_stage.thaumadditions:cap_adaminite.1=秘银性能优秀，但按照常理，精金要比秘银更好，但我怀疑，精金的杖端估计不只是给我带来扭曲这么简单。
+research_stage.thaumadditions:cap_adaminite.2=果然没错，这一杖端实在是令人惊叹，它能够给予30%的灵气减免，以及2的水晶消耗减免。我真的该停下我的研究了，但或许，我还能走的更远？
 
-research_name.thaumadditions:rod_adaminitewood=Adaminitewood Wand Rod
-research_stage.thaumadditions:rod_adaminitewood.1=I've got a problem, it looks like I can not proceed any further unless I find myself an alternative to this silverwood rod, I was a fool thinking 800 vis is enough, I should have started sooner to create a bigger vis storage, but now seems like a good time to start.
-research_stage.thaumadditions:rod_adaminitewood.2=By infusing a mundane silverwood rod with a lot of adaminite I was able to make a vessel strong enough to quadruple the vis capacity of the silverwood rod, I know I could have gone further, but I feel uncomfortable dirctly touching such a huge amount of vis with my bare hands, especialy when such a big part of it conducts vis like nothing else in the universe.
+research_name.thaumadditions:rod_adaminitewood=鎏金木法杖杖柄
+research_stage.thaumadditions:rod_adaminitewood.1=我遇到了问题，我的研究进度推进不下去了，除非我能把手头的这一根银木杖柄替换掉。事实证明我真的很蠢，居然天真的以为800Vis的储量已经足够我的研究了。我应该准备准备一个新的杖柄设计方案，这次的杖柄一定要设计的足够大。或许现在就可以开始进行研究了。
+research_stage.thaumadditions:rod_adaminitewood.2=通过向一根普通的银木杖端内注入了大量的精金，我将这一根银木杖端的灵气容量整整提高了四倍，我感觉我还可以继续深挖这一杖端的潜力，但当我握住这根杖端时，我却感到坐立难安，尤其是我一想到这根杖端能够引导的可怕的灵气量，我真的找不出其它东西能与它相媲美了，我感觉我握着的就是个怪物。
 
-research_name.thaumadditions:cap_mithminite=Mithminite Wand Caps
-research_stage.thaumadditions:cap_mithminite.1=This has to be it, this metal, so full of primal energy, so strong of a vis conductor I can't even measure it, I don't care how but I want this for my wand caps, I never desired something more than this.
-research_stage.thaumadditions:cap_mithminite.2=Who was I to think that this metal could simply be reactivated by some of this foolish salis mundus, it took some of the purest primal energy I could find, but it was worth it, a 40% vis discount, and a three crystal discount on all of the aspects, I doubt I could go further with this, this is the end.
+research_name.thaumadditions:cap_mithminite=秘金法杖杖端
+research_stage.thaumadditions:cap_mithminite.1=最终还是来了，这种金属内部充满了元始能量，我根本无法测量出它对灵气的操控性为几何。但我不在乎为什么它这么强大，我只想将它制作为我的杖端，我从未如此渴望过去做一件事。
+research_stage.thaumadditions:cap_mithminite.2=我是不是傻了，居然想着用这些愚蠢的世界盐来与杖端进行反应。我向杖端中注入了我能找来的最纯净的原始能量，很昂贵，但是真的太值了，40%的灵气减免，3的水晶消耗减免，我感觉我还能继续研究，但我终究走到了这条路的尽头。
 
 ############
 
