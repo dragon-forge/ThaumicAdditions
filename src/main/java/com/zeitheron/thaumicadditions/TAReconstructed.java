@@ -71,7 +71,7 @@ public class TAReconstructed
 	{
 		LOG.warn("*****************************");
 		LOG.warn("WARNING: Somebody has been tampering with Thaumic Additions (Reconstructed) jar!");
-		LOG.warn("It is highly recommended that you redownload mod from https://www.curseforge.com/projects/247401 !");
+		LOG.warn("It is highly recommended that you redownload mod from https://www.curseforge.com/projects/232564 !");
 		LOG.warn("*****************************");
 		HammerCore.invalidCertificates.put(InfoTAR.MOD_ID, "https://www.curseforge.com/projects/232564");
 	}
