@@ -1,5 +1,8 @@
 package com.zeitheron.thaumicadditions.events;
 
+import baubles.api.BaubleType;
+import baubles.api.cap.BaublesCapabilities;
+import baubles.api.cap.IBaublesItemHandler;
 import com.zeitheron.hammercore.annotations.MCFBus;
 import com.zeitheron.hammercore.event.FoodEatenEvent;
 import com.zeitheron.hammercore.utils.SoundUtil;
@@ -7,6 +10,9 @@ import com.zeitheron.hammercore.utils.base.Cast;
 import com.zeitheron.thaumicadditions.api.EdibleAspect;
 import com.zeitheron.thaumicadditions.init.ItemsTAR;
 import com.zeitheron.thaumicadditions.items.armor.ItemMithminiteDress;
+import com.zeitheron.thaumicadditions.items.baubles.ItemBeltMeteor;
+import com.zeitheron.thaumicadditions.items.baubles.ItemBeltStriding;
+import com.zeitheron.thaumicadditions.items.baubles.ItemBeltTraveller;
 import com.zeitheron.thaumicadditions.utils.Foods;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,6 +24,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -233,10 +240,13 @@ public class LivingEventsTAR
 
 	private static void handleSpeedMods(EntityPlayer player)
 	{
-		if(player.world.isRemote && (player.isSneaking() || !((player.getItemStackFromSlot(EntityEquipmentSlot.FEET)).getItem() instanceof ItemMithminiteDress)) && prevStep.containsKey(player.getEntityId()))
-		{
-			player.stepHeight = prevStep.get(player.getEntityId()).floatValue();
-			prevStep.remove(player.getEntityId());
+		if (player.world.isRemote) {
+			Item beltItem = player.getCapability(BaublesCapabilities.CAPABILITY_BAUBLES, null).getStackInSlot(3).getItem();
+			boolean hasBelts = beltItem instanceof ItemBeltTraveller || beltItem instanceof ItemBeltStriding || beltItem instanceof ItemBeltMeteor;
+			if (player.world.isRemote && (player.isSneaking() || !(hasBelts || (player.getItemStackFromSlot(EntityEquipmentSlot.FEET)).getItem() instanceof ItemMithminiteDress)) && prevStep.containsKey(player.getEntityId())) {
+				player.stepHeight = prevStep.get(player.getEntityId()).floatValue();
+				prevStep.remove(player.getEntityId());
+			}
 		}
 	}
 }
