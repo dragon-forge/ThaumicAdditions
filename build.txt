@@ -1,6 +1,6 @@
 #Project info
 author=Zeitheron
-start_git_commit=c417f81fc2487b8e583569fb2c9a60ec675a270b
+start_git_commit=2e19e9f85366664193e470a3f6c6a741868c20ec
 git_commit=https://gitlab.com/DragonForge/ThaumicAdditions/commit/{{hash}}
 
 #Runtime info
@@ -9,13 +9,13 @@ minecraft_version=1.12.2
 mcp=stable_39
 hl_version=2.0.6.23
 cl_version=12.3.17
-jei_version=4.11.0.206
+jei_version=4.15.0.275
 
 #Mod info
 trusted_build=false
 mod_id=thaumadds
 mod_id_fancy=ThaumicAdditions
 mod_name=Thaumic Additions: Reconstructed
-mod_version=12.6.6
+mod_version=12.6.7
 cf_project=232564
 release_type=release
