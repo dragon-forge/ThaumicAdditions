@@ -88,7 +88,7 @@ item.thaumadditions:adaminite_plate.name=Adaminite Plate
 item.thaumadditions:mithminite_plate.name=Mithminite Plate
 item.thaumadditions:salt_essence.name=Vis Salt
 item.thaumadditions:zeith_fur.name=Blue Wolf Fur
-item.thaumadditions:zeith_fur.tip=Drops from a mystical feral
+item.thaumadditions:zeith_fur.tip=Dropped by a mystical feral
 item.thaumadditions:dna_sample.name=Entity Cell
 item.thaumadditions:dna_sample.blank=Blank
 item.thaumadditions:dna_sample.entity=Entity
@@ -159,19 +159,19 @@ item.thaumadditions:meteor_belt.name=Belt of the Meteor
 ##MISC MESSAGES##
 
 status.thaumadditions:dna_unpickable=This entity is too strong to be sampled!
-status.thaumadditions:dna_unpickable.1=This is inanimate onject!
+status.thaumadditions:dna_unpickable.1=This is an inanimate object!
 gui.thaumadditions:null=None
 gui.thaumadditions:knowledge_tome.store=Knowledge stored! You own %s discoveries, %s of them are complete.
-gui.thaumadditions:knowledge_tome.restore=Now you know everything that %s knew at %s
+gui.thaumadditions:knowledge_tome.restore=You now know everything that %s knew at %s
 chat.thaumadditions:chester.stay=The Chester will stay here.
 chat.thaumadditions:chester.follow=The Chester will follow  you.
-chat.thaumadditions:chester.not_master=You are not my master.
+chat.thaumadditions:chester.not_master=You are not this Chester's master.
 entity.thaumadditions.chester.name=Chester
 entity.thaumadditions.chester=Chester
 entity.thaumadditions.blue_wolf.name=Blue Wolf
 tooltip.thaumadditions:vis=Vis: %,d / %,d
 tooltip.thaumadditions:phantom=Phantom
-tooltip.thaumadditions:essentia_pistol.shoot=Shoot Volume: %,d Vis
+tooltip.thaumadditions:essentia_pistol.shoot=Shot Volume: %,d Vis
 tooltip.thaumadditions:cb_sort_rule.0=Sort by name (A->Z)
 tooltip.thaumadditions:cb_sort_rule.1=Sort by name (Z->A)
 tooltip.thaumadditions:cb_sort_rule.2=Sort by quantity (Descending)
@@ -191,262 +191,346 @@ item.wand.adaminitewood.rod=Adamitewood
 ##RESEARCH##
 
 research.!FluxRift.text=Scan a Flux Rift
-research.!TARShimmerleaf.text=Research Shimmerleaf
+research.!TARShimmerleaf.text=Scan a Shimmerleaf
 
 card.thaumadditions:base.name=Thaumic Additions
-card.thaumadditions:base.text=You study unusual objects around you. Gain from %,d to %,d §lThaumic Additions§r and 1 bonus draw.
+card.thaumadditions:base.text=You study the unusual objects and events around you. Gain from %,d to %,d §lThaumic Additions§r and 1 bonus draw.
 
 research_name.thaumadditions:thaumadds=Thaumic Additions
-research_stage.thaumadditions:thaumadds.1=I found very strange theory, that seems to will to help me in my thaumic journey. It seems that I will find obvious things later that I can't think of without this strange observation...
-research_stage.thaumadditions:thaumadds.2=I will note this down: Thaumic Additions is a magical expansion to my abilities that wills to help me in many possible ways. And how did I find it again?
+research_stage.thaumadditions:thaumadds.1=Through my travels, I've had several unique theories come and go, none of which related to the other topics I've encountered so far. Perhaps the time has come to delve further into the stranger thaumic encounters I've had...
+research_stage.thaumadditions:thaumadds.2=Most of the work around this was simply sorting all the originally undocumented findings into this Additions tab in the Thaumonomicon. From here, I should be able to explore new avenues of thought, and perhaps even rediscover knowledge of thaumaturges' past.
 
 research_name.thaumadditions:essence_salt=Salty Vis
-research_stage.thaumadditions:essence_salt.1=I was always wondering what vis crystals taste like... Considering that crystals are fragile, they may be easy to crush into salt? According to my theory this may just work...
-research_stage.thaumadditions:essence_salt.2=Gah! The salt I just made using my hands was so unstable that it somehow disappeared?! I may need to try once more. For this I will need to jump from a high place on a crystal dropped on the ground.
-research_stage.thaumadditions:essence_salt.3=Hm... This salt is much more stable, somehow. And I think each crystal's salt tastes differently! Considering that aspects contain magical powers, could I apply them to my food? <LINE>I will note how to get them: Jump on a dropped vis crystal from hight place.
+research_stage.thaumadditions:essence_salt.1=Despite all the research I've done regarding them, I've still not done what man always aims to do: made it edible. Considering how fragile they are, it may be possible to grind them into a substance akin to salt? No reason not to try, I guess
+research_stage.thaumadditions:essence_salt.2=Well, that was a waste of time. Even though I've studied them forever, it was still shocking how fragile they seem, broken pieces practically evaporating in my hands. I can only assume that the lone shards lost stability to the larger chunks of crystal as I ground it... <BR>Hm... perhaps crushing it all at once, evenly, will keep the shards equally stable? My own weight from an average height should do the trick - though, it may be best to test with multiple at once, considering the chance of it failing.
+research_stage.thaumadditions:essence_salt.3=My theory seemed to be correct, in some regards. I've created a semi-stable salt, with a... lets just say, 'unique' taste. Its safe to assume though that most will be edible - and, if their aspects have any relation to their effects, perhaps even beneficial, or dangerous. <LINE>For further reference, the process is both lossy and somewhat painful for my shins: I'll need to jump from 15 or more blocks onto the crystals, of which there should be at LEAST two, considering the lossy nature of breaking them apart under my feet.
 
 research_name.thaumadditions:mithrillium=Mithrillium Metal
-research_stage.thaumadditions:mithrillium.1=I think I've found an improvement to Void Metal. This new metal not only restores itself faster, it seems to pulsate with high thaumic vibes. I should experiment more, I know that this metal is worth it.
-research_stage.thaumadditions:mithrillium.2=Huh! This strange new metal is very unusual, even understanding how void metal works! The book pronounces it's name as "Mithrillium Metal"... I think that it may be a good material to improve my arcane setup. But what exactly can I do with it? Seems like upgrading morphic resonator is easy with it. I am going to bookmark the recipe, perhaps I'll need it in the future?
+research_stage.thaumadditions:mithrillium.1=Yet still, my mind wanders down darker paths, the Void filling it with calls to improve its already terrifying power... Against my better judgement, I've written the dark infusion the whispers requested of me. <BR>As powerful as this seems, I severely doubt this will be good for my sanity.
+research_stage.thaumadditions:mithrillium.2=I'm... surprised, actually. The Void's whispers still continue to mention empowering their metal, despite having done just that? Perhaps I've accidentally cured the metal of some of its corruption..? <BR>A strange metal with a blue sheen, it has the strange contradictive properties of the Void Metal, but without its cursed impurities. The only thing that slipped through past the Void's cries for power was a strange sound, similar to Myth. I suppose its as good a name as any: §lMithrillium§r. It should be of some use in improving my technology, with fewer downsides of... the Void.......
 
 research_name.thaumadditions:mithminite=Mithminite Metal
-research_stage.thaumadditions:mithminite.1=Adaminite has proven to be a very powerful metal and it is capable of crazy  things such as Adaminite Smeltery. But I think it doesn't reveal it's powers at max. I have an idea about solving that; I may try to fuse it with couple pieces of mithrillium and few drops of quicksilver.
-research_stage.thaumadditions:mithminite.2=My experiment was a success! I've made a new metal that is adaminite, but I can reveal it's full potential. Hm... What should I try to discover with this?
+research_stage.thaumadditions:mithminite.1=My thirst for the perfect material never ends. Despite the powers of Adaminite, with its red hue now coming to remind me of Ichor, God's blood, is truly amazing... but had to trade some of its material strength for magical. Perhaps if I infused more Mithrillium into it, it could regain some of its lost strength... I've drawn up a diagram for this, a much more simple ritual than the last one.
+research_stage.thaumadditions:mithminite.2=Further, further, this material's power grows. The quicksilver worked perfectly, drawing the hardness of the Mithrillium back into the Adaminite. The simple combination of them into §lMithminite§r has created a wonder-material, but... its use is yet to be properly discovered.
 
 research_name.thaumadditions:adaminite=Adaminite Metal
-research_stage.thaumadditions:adaminite.1=Mithrillium metal is a very strange substance, but I am certain that it could be improved even further. I will try to experiment, and maybe I will be able to know where the best is in this world.
-research_stage.thaumadditions:adaminite.2=My experiments have succeeded! The book calls this new creation as "Adaminite". I'm going crazy now. I heard of Ichor, the blood of Gods, but I think that this metal is far better than Ichor, even if it exists anywhere in this world.
+research_stage.thaumadditions:adaminite.1=I simply just can't learn when to stop. Despite the strange and contradictive powers of Mithrillium, I've been filled with renewed temptations, dreams of even greater power. If I simply infuse the Mithrillium with the most powerful materials I can find...
+research_stage.thaumadditions:adaminite.2=Yet again to my surprise, this damned experiment was in fact successful! Minus a few small fires, of course. <BR>This strong, blood-red material, which I've dubbed §lAdaminite§r simply because it was the first unused word to come to mind, is more magically inclined than its parent metal, and should be of further use despite its expenses.
 
 research_name.thaumadditions:mithrillium_smelter=Mithrillium Smeltery
-research_stage.thaumadditions:mithrillium_smelter.1=I have a theory about using mithrillium to upgrade my void smeltery. I think that this upgrade will loose less essentia than void one (about 5% loss).
-research_stage.thaumadditions:mithrillium_smelter.2=This was definitely worth it! Mithrillium metal seems to keep all slurry in place converting everything without any loss.
+research_stage.thaumadditions:mithrillium_smelter.1=As I mentioned in the original entry, the potential of Mithrillium to have purer reactions should definitely be looked into. Even with the power of the Void Metal, I occasionally noticed it sapped about 5% of essentia for its own dark purposes...
+research_stage.thaumadditions:mithrillium_smelter.2=This is much purer, indeed. In fact, I dont think I've logged any sort of loss - the essentia slurry it creates can't even be regarded as a slurry any more, as if it's been pre-seperated by the metal. It's truly the perfect reaction, with near-0% loss.
 
 research_name.thaumadditions:adaminite_smelter=Adaminite Smeltery
-research_stage.thaumadditions:adaminite_smelter.1=Mithrillium smeltery is definitely the best smeltery already. But maybe I could make it extract extra essentia from slurry? I need to experiment with this quite a bit more.
-research_stage.thaumadditions:adaminite_smelter.2=Yes! Adaminite seems to work well with efficiency! Adaminite smelter now has a 20% to increase essentia. This means that I may need to do less smelting.
+research_stage.thaumadditions:adaminite_smelter.1=I find that the total purity of the Mithrillium Smeltery still isn't enough. Even with no loss, could there instead also be gain? Perhaps using the magic property of Adaminite in the filter would be beneficial...
+research_stage.thaumadditions:adaminite_smelter.2=Amazing. By filtering some of the raw essentia through an Adaminite casing, nearby matching essentia from the Aura seemed to pass through and condense inside. This should see a roughly 20% increase to output essentia, which should help me save on rarer materials.
 
 research_name.thaumadditions:mithminite_smelter=Mithminite Smeltery
-research_stage.thaumadditions:mithminite_smelter.1=I'd like to improve adaminite smelter's quality and make it faster and produce extra essentia more often. I know that mithminite may help and I need to ensure that I'm thinking right with a little experiment.
-research_stage.thaumadditions:mithminite_smelter.2=This new smeltery may be too expensive but I discovered it for 'special' cases. I will make a bookmark on smelter's recipe though.
+research_stage.thaumadditions:mithminite_smelter.1=Honestly? I've no clue how I could possibly improve upon the smeltery further, but it's worth a try. New magical metal, new essentia smeltery.
+research_stage.thaumadditions:mithminite_smelter.2=This expense doesn't quite feel worth it, honestly. I suppose the new Mithminite smeltery is faster and has a higher extra output (+50%), but the insane cost makes it of questionable use unless I can spare the materials. I suppose if the time comes, it will be here.
 
 research_name.thaumadditions:brass_jar=Brass Warded Jars
-research_stage.thaumadditions:brass_jar.1=Warded jars are nice and big but they hold only two hundred and fifty essentia inside. I may get a slight increase by upgrading it with brass.
-research_stage.thaumadditions:brass_jar.2=I did it! Brass Warded Jar holds a little bit more. It's not significant upgrade but I am sure that this may be upgraded even further.
+research_stage.thaumadditions:brass_jar.1=The old technique of warding jars with essentia is efficient and all, but feels... outdated. This is a new era, and my only solution for storage is a small jar with a wooden cap? Surely I have the materials to improve upon it, at least in the sake of testing...
+research_stage.thaumadditions:brass_jar.2=Take that, you old fools! Long gone are the days of wood! By strengthening the glass with some extra vis infusions and replacing the outdated wooden cap with a polished brass lid, I've managed to better secure the jar. It only stores 25 more essentia, bringing the total to 275, but as a proof-of-concept, it definitely shows that I can improve upon the outdated essentia storage.
 
 research_name.thaumadditions:thaumium_jar=Thaumium Reinforced Jars
-research_stage.thaumadditions:thaumium_jar.1=Brass is all good and shiny, and it does increase the jar a little bit, but I need a far bigger storage, and I need to make more experiments, maybe with thaumium?
-research_stage.thaumadditions:thaumium_jar.2=Worked like a charm! Thaumium Reinforced Jar is a slightly more significant increase in storage. The book says that this new jar holds about three hundred and fifty essentia inside. I actually like where this is going now!
+research_stage.thaumadditions:thaumium_jar.1=Again, my material studies have given me new potential to improve upon my equipment. The magical nature of Thaumium has seen much use in other places, but its yet to be tested how well it stores raw essentia.
+research_stage.thaumadditions:thaumium_jar.2=By again reinforcing the warding aura of the jar's glass and fastening a specially-made Thaumium lid, I've observed a nice improvement to the original jars. The magical properties of the metal seem to sponge up some of the essentia, acting as an extra storage chamber in a way. Overall, this should see an increase of roughly one hundred from the original jar, a total of 350 essentia.
 
 research_name.thaumadditions:eldritch_jar=Void Foritified Jars
-research_stage.thaumadditions:eldritch_jar.1=Thaumium may be a good choice for storing liquid essentia more compactly, but I think this may not be enough. I need to experiment with void metal. Who knows what will happen anyway?
-research_stage.thaumadditions:eldritch_jar.2=The structure of void metal plate seems to expand storage up to five hundred! I imagine these jars in my laboratory... But they are getting a little bit expensive now, arent they?
+research_stage.thaumadditions:eldritch_jar.1=If I were to say that the Void's whispers were the only thing influencing me writing this, I'd be lying. It's become a genuine curiosity to see how different materials react with raw essentia, and despite all the evil surrounding this blackened ingot, I don't see too much harm in a few tests... 
+research_stage.thaumadditions:eldritch_jar.2=After a few straining tests to make sure the Void Metal didn't damage the glass seal of the jar, I've managed to finally draft a lid to top the new jar. The initial tests actually came to little surprise: the jet-black metal seems to sponge up the raw essentia in a way akin to Thaumium, except in a greater quantity. Adding it to the new strengthened glass warding, it should store an estimated 500 essentia. <BR>Regardless of my success here though, it's best I keep an eye on this. The Void's desires are beyond me - I feel its stare every time I glance at that blackened lid. Plus, the material cost of these upgrades is getting quite extreme...
 
 research_name.thaumadditions:mithrillium_jar=Mithrillium Reinforced Jars
-research_stage.thaumadditions:mithrillium_jar.1=Void metal was a fine choice for storing large quantities of essentia, but the time has come and I need a better storage, again! I remember something about mithrillium being a very ridiculous metal and I definitely remember it being better than void metal. I need to study this further...
-research_stage.thaumadditions:mithrillium_jar.2=Upgrading void jar to a mithrillium was definitely worth some time and effort. This new baby holds ten hundred essentia inside wich makes it as ridiculous as primordial pearls! I just can't think of how dense the essentia is stored in such a small place at once!
+research_stage.thaumadditions:mithrillium_jar.1=With the creation of Mithrillium, I've again come back to my old sketches of jars and the efforts I went to in shaping their lids. I'm surprised this hadn't come to me before: why not simply melt the newer metal over the old lid? Its worth testing, and with the malleability of this new blue friend of mine, there's no better place to start.
+research_stage.thaumadditions:mithrillium_jar.2=So. The "melting new metal over the old one" ended with lots of charred hairs. After another attempt - making sure the lid wasn't ON the jar this time - I've managed to basically encase the old Void lid in Mithrillium, also taking it upon myself to reshape the jar's glass. With the blue metal's enhanced properties and purer essence, not only have I silenced that scary black gaze from the Void but I've also doubled the essentia storage: with both metals' pressures pushing the essentia into a denser form, the jar now fits 1000 essentia!
 
 research_name.thaumadditions:adaminite_jar=Adaminite Foritified Jars
-research_stage.thaumadditions:adaminite_jar.1=That mithrillium upgrade was very wonderful, but I think that adaminite may hold essentia better than anything that I know of, as of right now. This may be a bad and also an expensive idea as this may need quite a lot of battling involved.
-research_stage.thaumadditions:adaminite_jar.2=Adaminite is very special! I think that this jar may hold twenty hundred points of essentia wich makes this a very dense point in space.
-research_stage.thaumadditions:adaminite_jar.3=Adaminite is very special! I think that this jar may hold twenty hundred points of essentia wich makes this a very dense point in space. I hear someone called Zeitheron, one of The Creators who built this world. He whispers that this jar is too dense and may be unstable under special cases: "I don't think that filling it entirely with flux is a good choice...". I can also hear that he is very surprised that I made it as this was a tough challenge that I had done.
+research_stage.thaumadditions:adaminite_jar.1=As lovely as the Mithrillium is, I'm still always open to improvement. While the cobalt-blue metal is a strong material physically, Adaminite has proven to be strong magically. While it's insanely expensive, a few initial tests couldn't hurt...
+research_stage.thaumadditions:adaminite_jar.2=Using a similar method as the previous upgrade, I've molded the Adaminite over the old lids and adjusted the glass again. At this point it feels more like a barrel, both in circumference and storage. The Adaminite condenses all the essentia that passes through it, doubling every bit of the storage previously in the jar. While 2000 essentia is a lot, the jar is quite expensive... also, I've yet to properly test how the condensation of essentia properly works.
+research_stage.thaumadditions:adaminite_jar.3=Using a similar method as the previous upgrade, I've molded the Adaminite over the old lids and adjusted the glass again. At this point it feels more like a barrel, both in circumference and storage. The Adaminite condenses all the essentia that passes through it, doubling every bit of the storage previously in the jar. While 2000 essentia is a lot, the jar is quite expensive... also, I've yet to properly test how the condensation of essentia properly works.<line>§lAddendum:§r After further testing with the final prototype, I've been met with a new concern. The condensation of most aspects is fine, but condensing Flux down that much on even a testing scale has had disasterous results. If I filled this to capacity with it, it'd probably mean quite the explosion - and losing all the materials I invested into this jar. Speaking of, good job, Me. Worth it or not, the fact alone that I crafted this deserves some self-appreciation.
 
 research_name.thaumadditions:mithminite_jar=Mithminite Jars
-research_stage.thaumadditions:mithminite_jar.1=Now that I know that adaminite may be awakened using mithrillium and some quicksilver, I may need to know if I can afford mithminite jars.
-research_stage.thaumadditions:mithminite_jar.2=My theory was true, adaminite jar may be awakened using a complex infusion process involving mithminite alloy, this new (and I hope final) jar holds four thousand essentia wich is twice as much as adaminite jar. I also noticed that this jar destroys excess essentia that flows into it, this may be a very fine upgrade to my old Void Jars AND it doesn't explode from flux overfill.
+research_stage.thaumadditions:mithminite_jar.1=The discovery of Mithminite brings back questions of how I could possibly improve upon my designs for jars. The method of creation for Mithminite should be a sure enough sign that the old "melt some metal over the last cap" trick won't work for this...
+research_stage.thaumadditions:mithminite_jar.2=Using a somewhat recreatable infusion, I've managed to create a prototype* Mithminite Jar. By infusing an old Void Jar with some Mithminite, alumentum to fuse the metals, and amber to strengthen the glass, I've created an improved jar which densifies and sponges up essentia to a capacity of 4000, twice as much as the last! Not only that, but any excess past its capacity seems to... vanish. I've yet to observe quite how, but I can only assume that by infusing the original Void lid, the dark forces beyond my understanding sap off anything that I have in excess. While this does serve as a good storage and disposal solution, I'd best not pump anything of importance to me in there.
 
 research_name.thaumadditions:aspect_combiner=Essentia Combining
-research_stage.thaumadditions:aspect_combiner.1=I was always wondering if I could undo what a centrifuge does? If that is possible then I would be able to prepare for complex insusion crafting much easier!
-research_stage.thaumadditions:aspect_combiner.2=I was experimenting with alchemical centrifuge, mithrillium and phial of permutatio, and I found a way to really mix two aspects to create new aspect. I call this Alchemical Aspect Combiner.
+research_stage.thaumadditions:aspect_combiner.1=The art of centrifugal processing is simple: spin stuff until it comes apart. But while the Centrifuge is useful and all, I've had many times I wish I could simply do the opposite. Rather than split one into two, combine two into one...
+research_stage.thaumadditions:aspect_combiner.2=With the purer Mithrillium I'd discovered and a bit of permutatio essence, I combined two aspects back into one! For a moment, at least. The fact it's possible has given me renewed optimism, and I've drafted a design for an Alchemical Aspect Combiner to better utilize Mithrillium to condense aspects together. It shouldn't be too dangerous, as long as I keep my fingers out of the mechanisms.
 
 research_name.thaumadditions:aura_charger=Aura Charger
-research_stage.thaumadditions:aura_charger.1=I was always wondering if I could replenish aura using alchemy and power of infusion. I will need some Auram aspect and Essentia Combiner to experiment with.
-research_stage.thaumadditions:aura_charger.2=Aura Charger is an amazing block that restores vis in aura and caps at almost three times the base aura value. This device uses Auram essentia to restore 10 vis in the environment.
+research_stage.thaumadditions:aura_charger.1=Progress comes at a cost, usually at the expense of the environment. My pollution has definitely done a number... perhaps its time to look into giving back to the aura, instead of taking from it as I always do.
+research_stage.thaumadditions:aura_charger.2=Old scribbles and papers read of "Aura Nodes", small gateways through which the aura flowed. Its safe to assume that those have long since burst, the aura instead infusing with reality itself now - the reason I say this is that regardless of their properties, they all radiated strongly of the aspect §lAuram§r. Which, now that I look at the name, is actually embarassingly obvious. <line>By reversing my methods of harnessing aural vis with the recharger, I've instead created an output: by suppling this §lAura Charger§r with enough §lAuram§r, I can recharge the local aura at a rate of §l1 vis to 10 aura§r. Not only that, but I can overcharge it to almost 3 times its maximum capacity! Though, seeing how I've already thrown off the Aura's balance, I should be sparing in this. Dont want to damage it further.
 
 research_name.thaumadditions:crystal_crusher=Crystal Crusher
-research_stage.thaumadditions:crystal_crusher.1=I was wondering if crystal crushing may be automated... I am tired of jumping on a crystal to break it into salt. I will need some mechanisms to experiment with.
-research_stage.thaumadditions:crystal_crusher.2=I accidentally broke Simple Arcane Mechanism but I think that I know a way how to do this! I need to infuse a complex arcane mechanism with all primal crystals, a few thaumium plates, arcane stone slabs and some... salt? It uses Machina from nearby jars to operate.
+research_stage.thaumadditions:crystal_crusher.1=Look. Jumping on vis crystals is fun and all, but my legs ache and there's grains of Corpus making my shoes stink. I really should look into doing it mechanically.
+research_stage.thaumadditions:crystal_crusher.2=After ruining a few simple mechanisms† I've got a nice schematic drawn up. If I infuse a complex arcane mechanism with one of each primal crystal, along with some materials for a frame and a dash of salt to taste*, I can create what looks like a simple press.<BR> However, this §lCrystal Crusher§r is more than it seems: the pressing mechanism directs vis flow through each primal crystal to stabilize the target crystal as it presses, fixing the issue I had of them disappearing. Of course, to run the mechanism and its crystals, it needs to draw §lMachina§r essentia from nearby sources.<BR><BR>†Note to self: despite its name, raw Machina does NOT react well with unprotected machines<BR>*As funny as the joke is, the salt isn't used for taste - it actually is used to keep the Machina from melting the precious arcane mechanism. Please do not eat the machine.
 
 research_name.thaumadditions:aura_disperser=Aura Disperser
-research_stage.thaumadditions:aura_disperser.1=Using salt with food is very useful but I may want to apply this to an area of entities, maybe my farm. I'd love to know more about this...
-research_stage.thaumadditions:aura_disperser.2=Aura Disperser is a machine that uses vis salts and applies them to a small area to where it's facing. May be good for many uses, like farms, mob grinders, traps and other things.
+research_stage.thaumadditions:aura_disperser.1=As much as I enjoy the new seasonings, the Vis Salt feels under-utilized as of yet. If only I could put the effects to use without consumption...
+research_stage.thaumadditions:aura_disperser.2=After some initial tests, I found that the salt worked surprisingly well simply being sprayed from a dispenser - after a bit of purification and vis reactions. The new infusion diagram attached to this page goes more in-detail, but the thought process is as follows: infuse a dispenser with a mechanism, some salt to enhance function, materials for the casing, and a powerful filter. If it works according to plan, the §lAura Disperser§r should blast the salt a small ways into the area its facing. Seeing the variety of aspects, the uses are nearly endless: effect-applying stations, farms, traps...
 
 research_name.thaumadditions:crystal_bore=Crystal Bore
-research_stage.thaumadditions:crystal_bore.1=I need to mine crystals without destroying one crystal, and I don't see any ways to do this yet... And I also need to automate it, if possible. I will keep studying some golemancy to understand this better.
-research_stage.thaumadditions:crystal_bore.2=I discovered a new device: Crystal Bore! It is capable of mining crystals in front of it at slight cost of vis in nearby aura. It may be disabled using redstone signal, and it can output items to adjacent chest of the back side.
+research_stage.thaumadditions:crystal_bore.1=The key difference between me and the mages of old is simple: my civilized ways lead me down the path of automation. One such path that I'd been considering for quite some time was the harvesting of primal vis crystals: going down into the mines is a fun but destructive process, leaving the shards with little to grow back from. Its best my new machine is adjusted away from full destruction of the crystal cluster.
+research_stage.thaumadditions:crystal_bore.2=Surprisingly, the solution to this lied simly in the morphic resonator. Infusing this as the core of a drill-like casing, I've created a Crystal Bore, which will harvest any crystal in front of it down to a single shard without damaging it - this leaves a strong enough sample for it to regrow.<LINE> The Crystal Bore has a few important mechanics to it:<BR>-It will harvest whatever crystal it faces down to a single remaining shard. The brass used for the drill-head will probably just harmlessly scrape against anything else, and I'd rather not hurt my ears.<BR>-The Bore will require a small flow of local Aura as a power source, another benefit to using a morphic resonator at the core.<BR>-It will automatically move harvested crystals into most storages attached to the back of it.<BR>-A redstone signal can be applied to turn it off, if need be.
 
 research_name.thaumadditions:crystal_water=Liquid Crystal
-research_stage.thaumadditions:crystal_water.1=My theory is that I could add some aspects to water to make it react to crystal in some way.
-research_stage.thaumadditions:crystal_water.2=Crystal Water is able to speed up the growth of crystal surrounded by eight blocks of this fluid. Each time a crystal grows it MAY consume the water. I will bookmark one of the structures that need to be built.
+research_stage.thaumadditions:crystal_water.1=Many branches of both science and magic, especially those involving crystals, typically have some method to hasten crystal growth. Studying further into how crystallized aspects react with liquids may help me find a way to grow the crystals, or at least speed up the natural growth of primal crystals.
+research_stage.thaumadditions:crystal_water.2=During one of many tests I accidentally dropped the emptied glass into the cauldron, accelerating my research to near-completion. The Vitreus reacted well with the other aspects present, blending into a shimmering blue liquid. After testing with this for a while, I found that the presence of enough Crystal Water greatly sped up crystal growth, with the only downside being that of the Crystal Water being consumed. The best reasoning I can fathom for this is that the aspects in the water act as 'nutrients' for the growing crystal: the Vitreus accelerating the growth of a 'shell' and the Desiderium and Permutatio enhancing essentia solidification.<BR> I've drawn up a small diagram of the best setup for accelerating growth - One central stone to grow it on, surrounded by eight buckets of Crystal Water; what happens above or below this is irrelevant and space for automation. It's important to keep in mind though that I'll need spare Crystal Water in case the growing crystal absorbs any.
 
 research_name.thaumadditions:enchanted_golden_apple=Enchanted Golden Apple
-research_stage.thaumadditions:enchanted_golden_apple.1=Legents tell that ancient dungeons contain a super enchanted golden apples, sometimes. I think that thaumaturgy can offer a way to make this apple using Desiderium.
-research_stage.thaumadditions:enchanted_golden_apple.2=Surprisingly enchanted golden apple is not as expensive as legends tell, probably because I did it differently. I need some desiderium and few golden blocks to enchant normal golden apple.
+research_stage.thaumadditions:enchanted_golden_apple.1=Along my travels I've rarely found ancient golden apples, enchanted with magics well beyond what I've seen before. Even if I can't match the raw energy infused into those, perhaps I can at least use them as inspiration to improve upon my own golden apples?
+research_stage.thaumadditions:enchanted_golden_apple.2=To my surprise, the ancient apples are actually.. disappointingly simple. By taking my original golden apple and infusing it with more gold and related aspects, I've created what most would see as a perfect copy of the more powerful, "enchanted" golden apples
 
 research_name.thaumadditions:mob_summoning=Entity Recreation
-research_stage.thaumadditions:mob_summoning.1=I have a theory of entity recreation that involves vis and a fourth dimension. I need to capture a mob to use it as a 'sample', or a template.
-research_stage.thaumadditions:mob_summoning.2=I am slowly progressing through this study. I think that now that I have a way to capture mobs, I will need to recreate them, somehow.
-research_stage.thaumadditions:mob_summoning.3=I found how to summon entities using a sample that I can capture using Entity Cell. Now I need to infuse thaumium block with few items and a crap tonn of aspects.
+research_stage.thaumadditions:mob_summoning.1=One of the more common hazards for explorers such as myself are "spawners" or "summoners" - cage-like machines that seem to simply bring new entities into existance. Understanding the mechanisms behind this will be beyond me for a long time, but perhaps I can create a replication of this. I'll need to study mobs and their essence in order to understand how to replicate it, so to start I'll need a 'willing' test subject.
+research_stage.thaumadditions:mob_summoning.2=Now that I've devised a way to capture not only a mob, but seperate it from its basic essence/soul/spirit, the next step will be to find out how this template can be used in creating duplicate mobs. The best lead I have on this is again in the ancient Totemic texts - the dark Twilight Totems seemed to be most used as summoning focal points, at least for maddened zombies and wisps...
+research_stage.thaumadditions:mob_summoning.3=
+##UNFINISHED!! 
+##- needs mechanics after <LINE> (i.e. lighting/redstone function/vis requirement)
+##Success! Kind of!<BR> In my small-scale tests I managed to summon... something. By creating a makeshift cage akin to the spawners I've grown accustomed to, infused with dark magic akin to the Twilight Totem and a few other trinkets, I had a basic summoning cage. Before putting in the template and starting it up though, a slimy purple tendril - a beast of the Taint, I assume - grew out the totemic base of the cage and tore it apart! My newer design is much better fortified, with a Thaumium block at its core and a self-cleaning filter, which should prevent repeats of that mess.<line>
 
 research_name.thaumadditions:puriflower=Puriflower
-research_stage.thaumadditions:puriflower.1=I was experimenting with vishrooms and how useless they are, trying to find a use to it. Maybe if combined with shimmerleaf or totem of dawn I may utilize it in aura cleaning, as vishrooms seem to be a powerful source of vis.
-research_stage.thaumadditions:puriflower.2=Infusing a totem with vishrooms, shimmerleaf and turning it all alive, along with auram, herba, imperium and ordo results in a quite different plant: Puriflower. It has very special ability: slowly absorb flux from aura. I will note, however: They absorb flux a bit slower than totems do, but when they do, the amount of flux taken is much more, and it doesn't malfunction. If I place a lot of them, then dealing with flux won't be a problem, and flux rifts will either appear much more rare, or not appear at all!
+research_stage.thaumadditions:puriflower.1=
+I was experimenting with vishrooms and how useless they are, trying to find a use to it. Maybe if combined with shimmerleaf or totem of dawn I may utilize it in aura cleaning, as vishrooms seem to be a powerful source of vis.
+research_stage.thaumadditions:puriflower.2=
+Infusing a totem with vishrooms, shimmerleaf and turning it all alive, along with auram, herba, imperium and ordo results in a quite different plant: Puriflower. It has very special ability: slowly absorb flux from aura. I will note, however: They absorb flux a bit slower than totems do, but when they do, the amount of flux taken is much more, and it doesn't malfunction. If I place a lot of them, then dealing with flux won't be a problem, and flux rifts will either appear much more rare, or not appear at all!
 
 research_name.thaumadditions:crystal_block=Crystal Blocks
-research_stage.thaumadditions:crystal_block.1=I was thinking of a way of placing crystals as decorative blocks in my house. I may need to use arcane workbench in order to channel vis properly.
-research_stage.thaumadditions:crystal_block.2=My clues were true! Channeling vis into 9 crystals can create a shape that is similar to a crystal. I think that these can replace the old crystal clusters that my parents used before.
+research_stage.thaumadditions:crystal_block.1=
+I was thinking of a way of placing crystals as decorative blocks in my house. I may need to use arcane workbench in order to channel vis properly.
+research_stage.thaumadditions:crystal_block.2=
+My clues were true! Channeling vis into 9 crystals can create a shape that is similar to a crystal. I think that these can replace the old crystal clusters that my parents used before.
 
 research_name.thaumadditions:growth_chamber=Crystal Growth Chamber
-research_stage.thaumadditions:growth_chamber.1=Growing crystals was my dream, it was proven to be possible by farming crystals, but I know that this is not the most efficient and fastest way out there. I need to put some things and research the property of crystal's block, and perhaps I will find something new...
-research_stage.thaumadditions:growth_chamber.2=Of course! I managed to create a very special device that can easily recreate any crystal, even those made by me in the crucible. I just need to place the growth chamber in a saturated on vis place, then put crystals together to create a crystal cluster, then provide the chamber with the cluster, give it some vis of the same type. Then the chamber will start to deplete aura and produce a crystal.
+research_stage.thaumadditions:growth_chamber.1=
+Growing crystals was my dream, it was proven to be possible by farming crystals, but I know that this is not the most efficient and fastest way out there. I need to put some things and research the property of crystal's block, and perhaps I will find something new...
+research_stage.thaumadditions:growth_chamber.2=
+Of course! I managed to create a very special device that can easily recreate any crystal, even those made by me in the crucible. I just need to place the growth chamber in a saturated on vis place, then put crystals together to create a crystal cluster, then provide the chamber with the cluster, give it some vis of the same type. Then the chamber will start to deplete aura and produce a crystal.
 
 research_name.thaumadditions:seal=Arcane Seals
-research_stage.thaumadditions:seal.1=I am thinking of some sort of arcane base that will allow to replace golems in sort of a way.. I just need it to continue thinking about how to do that.
-research_stage.thaumadditions:seal.2=Seems like gold with wool is good enough for what I will do in the future. Now all I need is something magical enough to attach to this seal. Seems like it has about three slots for whatever I will attach onto it.
+research_stage.thaumadditions:seal.1=
+I am thinking of some sort of arcane base that will allow to replace golems in sort of a way.. I just need it to continue thinking about how to do that.
+research_stage.thaumadditions:seal.2=
+Seems like gold with wool is good enough for what I will do in the future. Now all I need is something magical enough to attach to this seal. Seems like it has about three slots for whatever I will attach onto it.
 
 research_name.thaumadditions:seal_symbols=Seal Symbology
-research_stage.thaumadditions:seal_symbols.1=That seal seems to go with somewhat round objects... Now I am thinking of using vis crystals in this setup along with some gold.. maybe?
-research_stage.thaumadditions:seal_symbols.2=Alright! Seems like I'm on the right way.. I think. Using vis crystal to channel the magic powers of the crystal's type and gold to focus it onto the seal seem to fit the seal design. And I think the amount of possible combinations is overwhelming, but I think that most of them are pointless.
+research_stage.thaumadditions:seal_symbols.1=
+That seal seems to go with somewhat round objects... Now I am thinking of using vis crystals in this setup along with some gold.. maybe?
+research_stage.thaumadditions:seal_symbols.2=
+Alright! Seems like I'm on the right way.. I think. Using vis crystal to channel the magic powers of the crystal's type and gold to focus it onto the seal seem to fit the seal design. And I think the amount of possible combinations is overwhelming, but I think that most of them are pointless.
 
 research_name.thaumadditions:totems=Totemancy
-research_stage.thaumadditions:totems.1=I think that flux rifts absorb flux from my aura at a slow rate. I may be able to connect to the other dimension they are dumping it in, and somehow bring it back. Don't know why, but why not?
-research_stage.thaumadditions:totems.2=After studying the rift better I managed to create a weaker version of it that brings flux back from the other dimensions, at a very slow rate. I think that the connection is unstable by itself thus it may generate large dumps of flux rarely. The book calls this phenomen 'Twilight Totem'<LINE>Though this wasn't what I need. I may need to research shimmerleaf's properties a bit more.
-research_stage.thaumadditions:totems.3=After studying the rift better I managed to create a weaker version of it that brings flux back from the other dimensions, at a very slow rate. I think that the connection is unstable by itself thus it may generate large dumps of flux rarely. The book calls this phenomen 'Twilight Totem'<LINE>Yes, my theory was right. Shimmerleafs can be improved into somewhat more promising. The result is the new totem of dawn. I think it acts quite like a rift, but it's stable and reliable, mostly?
+research_stage.thaumadditions:totems.1=The old texts speak again of the "Aura Nodes", more specifically how they were harnessed: some scraps of text mention "Totems", structures that harness a node they're built around, used for never-quite-understood purposes. Maybe I can try to replicate some of these old methods to focus my own aural hot-spots?
+research_stage.thaumadditions:totems.2=To start on reconstructing the ancient Totems, I looked into something I've already become quite talented at: polluting the aura. As much as I hate to do these kinds of tests, it's simply in the name of progress. Hopefully I can find use in it, perhaps in Vitium creation. Best to be careful though, lest I lose control of it.<BR> Using the magic-absorbing properties of enchanted fabric, I've created a simple totemic structure that pulls in surrounding aura, which then goes through a §lVitium§r crystal as a... well, I'd say a filter, but it's the opposite, instead dirtying and corrupting the aura passing through. This leads to a fascinating replacement of local aura with flux - while interesting to see and a good proof-of-concept, extremely dangerous. This "Twilight Totem" is fairly unstable though, drawing and releasing Aura and Flux in random bursts, so its best I have failsafes in place.
+research_stage.thaumadditions:totems.3=
+##UNFINISHED!! Need to add the Totem of Dawn text 
+##(copy the original one too to keep the description of Twilight Totems there, add <LINE> between)
 
 research_name.thaumadditions:seal_globe=Seal Peeking
-research_stage.thaumadditions:seal_globe.1=Seals are great and all, but I need to know what the setup on the seal does. I think vis resonator has a clue to what I need.
-research_stage.thaumadditions:seal_globe.2=I applied some magic to vis resonator and now it's similar to a globe. This thing is capable of telling me what the seal does.
+research_stage.thaumadditions:seal_globe.1=
+Seals are great and all, but I need to know what the setup on the seal does. I think vis resonator has a clue to what I need.
+research_stage.thaumadditions:seal_globe.2=
+I applied some magic to vis resonator and now it's similar to a globe. This thing is capable of telling me what the seal does.
 
 research_name.thaumadditions:arcane_cake=Arcane Cake
-research_stage.thaumadditions:arcane_cake.1=I was wondering about cake's natural abilities, and how I could improve them. I might be onto something that can once and for all fix my problem with food.
-research_stage.thaumadditions:arcane_cake.2=Using some primordial magic I think I can make the cake slowly regenerate itself. Not only that, I can also apply some vis salt, but it seems to turn into a vis sugar when I do that.
+research_stage.thaumadditions:arcane_cake.1=
+I was wondering about cake's natural abilities, and how I could improve them. I might be onto something that can once and for all fix my problem with food.
+research_stage.thaumadditions:arcane_cake.2=
+Using some primordial magic I think I can make the cake slowly regenerate itself. Not only that, I can also apply some vis salt, but it seems to turn into a vis sugar when I do that.
 
 research_name.thaumadditions:knowledge_tome=Tome of Sharing
-research_stage.thaumadditions:knowledge_tome.1=Something quite useful when I play with my friends would be some kind of a book that stores all everything known by me. I will need to develop this idea a bit further.
-research_stage.thaumadditions:knowledge_tome.2=An empty Thaumonomicon serves a perfect base to write all my knowledge. Not only it seems to continue expanding when I write down more, but it remains as compact.
-research_stage.thaumadditions:knowledge_tome.2_noreuse=An empty Thaumonomicon serves a perfect base to write all my knowledge. Not only it seems to continue expanding when I write down more, but it remains as compact. Though I suspect that after someone reads it, the tome would poof out of existance in a blink of an eye. Very sad fact, actually.
+research_stage.thaumadditions:knowledge_tome.1= 
+## MAKE SURE THIS IS AT THE END SO THEY DONT DELETE THEIR BOOK <LINE>§nThis WILL require a new Thaumonomicon be used in the experiments, so it's best I collect a spare. And, if I've happened to combine mine in an §lAkashic Tome§r§n, for safety it's best to store that entirely seperate, lest all my manuals get destroyed in my tests.§r
+Something quite useful when I play with my friends would be some kind of a book that stores all everything known by me. I will need to develop this idea a bit further. 
+research_stage.thaumadditions:knowledge_tome.2=
+An empty Thaumonomicon serves a perfect base to write all my knowledge. Not only it seems to continue expanding when I write down more, but it remains as compact.
+research_stage.thaumadditions:knowledge_tome.2_noreuse=
+An empty Thaumonomicon serves a perfect base to write all my knowledge. Not only it seems to continue expanding when I write down more, but it remains as compact. Though I suspect that after someone reads it, the tome would poof out of existance in a blink of an eye. Very sad fact, actually.
 
-research_name.thaumadditions:fragnant_pendant=Sane on the go!
-research_stage.thaumadditions:fragnant_pendant.1=My current ways of fighting against warp controlling my mind is simple: have a bath in purifying fluid. This effect lasts for a while. But what if I go on a journey? I need to thing of that more...
-research_stage.thaumadditions:fragnant_pendant.2=From what I see, I can make fancy amulet into a pendant that, when worn, will emit a sanitizing aroma by dispersing odour powder. I think that this way is much better and I can go wherever I want to!
+research_name.thaumadditions:fragnant_pendant=Sanity Management on-the-go
+research_stage.thaumadditions:fragnant_pendant.1=
+My current ways of fighting against warp controlling my mind is simple: have a bath in purifying fluid. This effect lasts for a while. But what if I go on a journey? I need to thing of that more...
+research_stage.thaumadditions:fragnant_pendant.2=
+From what I see, I can make fancy amulet into a pendant that, when worn, will emit a sanitizing aroma by dispersing odour powder. I think that this way is much better and I can go wherever I want to!
 
 research_name.thaumadditions:chester=Chester
-research_stage.thaumadditions:chester.1=Since I travel a lot, keeping my inventory relatively empty is bloody hard. It might be interesting to animate my hungry chest and program it in a way that he will follow me...
-research_stage.thaumadditions:chester.2=Seems like greatwood and thaumium isn't enough. But adding morphic resonator and zombie brains seem to imbue the chest with cognitive abilities. Add some aspects and I get what I was expecting - Chester. It seems that I will need some kind of tool, attuning it to thaumium seems a rather good idea. Bone-eye that is, it will work perfectly for what it was invented for.
+research_stage.thaumadditions:chester.1=
+Since I travel a lot, keeping my inventory relatively empty is bloody hard. It might be interesting to animate my hungry chest and program it in a way that he will follow me...
+research_stage.thaumadditions:chester.2=
+Seems like greatwood and thaumium isn't enough. But adding morphic resonator and zombie brains seem to imbue the chest with cognitive abilities. Add some aspects and I get what I was expecting - Chester. It seems that I will need some kind of tool, attuning it to thaumium seems a rather good idea. Bone-eye that is, it will work perfectly for what it was invented for.
 
 research_name.thaumadditions:vis_seeds=Growing Essentia
-research_stage.thaumadditions:vis_seeds.1=Any thaumaturge while performing magic needs essentia of some kind. In most cases however said essentia needs to be obtained from physical objects like items. I will take it a step further and try to fuse a mundane wheat seed with magic...
-research_stage.thaumadditions:vis_seeds.2=Crucible seems to do the job. Throwing seeds with some herba and a bit more other essentia of any kind seem to infuse wheat seed and change it's genes. This makes it much harder to get more plantables after gathering one, but this is definitely something that may come in use for farming rare essentia.
+research_stage.thaumadditions:vis_seeds.1=
+Any thaumaturge while performing magic needs essentia of some kind. In most cases however said essentia needs to be obtained from physical objects like items. I will take it a step further and try to fuse a mundane wheat seed with magic...
+research_stage.thaumadditions:vis_seeds.2=
+Crucible seems to do the job. Throwing seeds with some herba and a bit more other essentia of any kind seem to infuse wheat seed and change it's genes. This makes it much harder to get more plantables after gathering one, but this is definitely something that may come in use for farming rare essentia.
 
 research_name.thaumadditions:flux_concentrator=Flux Concentrator
-research_stage.thaumadditions:flux_concentrator.1=Some plants that I've found in world seem to be imbued with magic. For example, Vishroom. Sometimes one may need a lot of these rare mushrooms. I need to study gaseous flux; perhaps this may give me some hints?
-research_stage.thaumadditions:flux_concentrator.2=To make gaseous flux I need a machine called "Flux Concentrator". Seems like it needs to be supplied with §5Vitium§r essentia from one side, and using it's bellows it will spit the gaseous flux from the opposite side. It's pressure is enough to travel around sixteen blocks from the concentrator.
+research_stage.thaumadditions:flux_concentrator.1=
+Some plants that I've found in world seem to be imbued with magic. For example, Vishroom. Sometimes one may need a lot of these rare mushrooms. I need to study gaseous flux; perhaps this may give me some hints?
+research_stage.thaumadditions:flux_concentrator.2=
+To make gaseous flux I need a machine called "Flux Concentrator". Seems like it needs to be supplied with §5Vitium§r essentia from one side, and using it's bellows it will spit the gaseous flux from the opposite side. It's pressure is enough to travel around sixteen blocks from the concentrator.
 
 research_name.thaumadditions:vis_scribing_tools=Vis Scribing Tools
-research_stage.thaumadditions:vis_scribing_tools.1=Sometimes the most annoying thing while I do is scribing tools suddenly running out of ink. This is so frustrating! Next time I'm going to need a bigger and better tools...
-research_stage.thaumadditions:vis_scribing_tools.2=Seems like tuning mundane scribing tools with crystals of praecantatio and a little bit of auram essentia in small glass capsule did a fascinating job! Vis Scribing Tools seem to be rechargable on a §lRecharge Pedestal§r, and these tools hold for a little longer.
+research_stage.thaumadditions:vis_scribing_tools.1=
+Sometimes the most annoying thing while I do is scribing tools suddenly running out of ink. This is so frustrating! Next time I'm going to need a bigger and better tools...
+research_stage.thaumadditions:vis_scribing_tools.2=
+Seems like tuning mundane scribing tools with crystals of praecantatio and a little bit of auram essentia in small glass capsule did a fascinating job! Vis Scribing Tools seem to be rechargable on a §lRecharge Pedestal§r, and these tools hold for a little longer.
 
 research_name.thaumadditions:adaminite_fabric=Adaminite Fabric
-research_stage.thaumadditions:adaminite_fabric.1=Adaminite metal can be very soft, hard or even dissolving. What would happen if I mix it with enchanted fabric?..
-research_stage.thaumadditions:adaminite_fabric.2=The result seems to be pretty inefficient. From eight fabric I got only two, but this new cloth is very flexible. It is also a pretty good material for wearing - so soft, and seems unbreakable.
+research_stage.thaumadditions:adaminite_fabric.1=
+Adaminite metal can be very soft, hard or even dissolving. What would happen if I mix it with enchanted fabric?..
+research_stage.thaumadditions:adaminite_fabric.2=
+The result seems to be pretty inefficient. From eight fabric I got only two, but this new cloth is very flexible. It is also a pretty good material for wearing - so soft, and seems unbreakable.
 
 research_name.thaumadditions:mithminite_fabric=Mithminite Fabric
-research_stage.thaumadditions:mithminite_fabric.1=After getting mithminite, I wonder how my adaminite fabric can be further upgraded. Maybe try mixing it with new mithminite metal?
-research_stage.thaumadditions:mithminite_fabric.2=Okay, this time I got same amount of mithminite fabric from less adaminite one. It doesn't seem like I could make myself a wearing from it... that easily, at least... I need to study this phenomen a bit more.
+research_stage.thaumadditions:mithminite_fabric.1=
+After getting mithminite, I wonder how my adaminite fabric can be further upgraded. Maybe try mixing it with new mithminite metal?
+research_stage.thaumadditions:mithminite_fabric.2=
+Okay, this time I got same amount of mithminite fabric from less adaminite one. It doesn't seem like I could make myself a wearing from it... that easily, at least... I need to study this phenomen a bit more.
 
 research_name.thaumadditions:mithminite_hood=Mithminite Hood
-research_stage.thaumadditions:mithminite_hood.1=I'm thinking of upgrading my adaminite helmet with the new mithminite cloth. Seems like infusion would help me.
-research_stage.thaumadditions:mithminite_hood.2=Woah, the infusion I need to do to get mithminite hood is pretty complex, it seems. I was able to infuse few useful things into the helmet, so it has a few 'abilities': Water breathing, night vision, sanity checker, fragrant pendant... and... Tool repairer! No more do I need this silly mending enchantment, my helmet is going to repair any tools in my hand when I pickup experience. Seems like looking at the seal with this hood on I can see what the seal does...
+research_stage.thaumadditions:mithminite_hood.1=
+I'm thinking of upgrading my adaminite helmet with the new mithminite cloth. Seems like infusion would help me.
+research_stage.thaumadditions:mithminite_hood.2=
+Woah, the infusion I need to do to get mithminite hood is pretty complex, it seems. I was able to infuse few useful things into the helmet, so it has a few 'abilities': Water breathing, night vision, sanity checker, fragrant pendant... and... Tool repairer! No more do I need this silly mending enchantment, my helmet is going to repair any tools in my hand when I pickup experience. Seems like looking at the seal with this hood on I can see what the seal does...
 
 research_name.thaumadditions:mithminite_robe=Mithminite Robe
-research_stage.thaumadditions:mithminite_robe.1=Perhaps it's the time to upgrade adaminite robe... I wonder what can I fuse with it and how it could be improved with mithminite fabric?
-research_stage.thaumadditions:mithminite_robe.2=Mithminite Robe seems to be infused with life and a few other aspects hence it has a few awesome abilities: Flight, Additional Health, Movement Speed, Fire Resistance.
+research_stage.thaumadditions:mithminite_robe.1=
+Perhaps it's the time to upgrade adaminite robe... I wonder what can I fuse with it and how it could be improved with mithminite fabric?
+research_stage.thaumadditions:mithminite_robe.2=
+Mithminite Robe seems to be infused with life and a few other aspects hence it has a few awesome abilities: Flight, Additional Health, Movement Speed, Fire Resistance.
 
 research_name.thaumadditions:mithminite_belt=Mithminite Belt
-research_stage.thaumadditions:mithminite_belt.1=I suppose my belt can be upgraded as well... I don't think that I will be able to put much things into it, but it will do the trick, still.
-research_stage.thaumadditions:mithminite_belt.2=And... yeah, this piece is not as powerful as some of it's mithminite alternatives, but it is still there, and I suppose it has a better vis discount, also giving me fast speed.
+research_stage.thaumadditions:mithminite_belt.1=
+I suppose my belt can be upgraded as well... I don't think that I will be able to put much things into it, but it will do the trick, still.
+research_stage.thaumadditions:mithminite_belt.2=
+And... yeah, this piece is not as powerful as some of it's mithminite alternatives, but it is still there, and I suppose it has a better vis discount, also giving me fast speed.
 
 research_name.thaumadditions:mithminite_boots=Mithminite Boots
-research_stage.thaumadditions:mithminite_boots.1=My final part of armor would be boots... Why not to combine it with Boots of the Traveller? I don't really have any other ideas of what can be added to them.
-research_stage.thaumadditions:mithminite_boots.2=Great! I think that my Boots of the Traveller fused within mithminite boots seem to work without need to be constantly recharged.
+research_stage.thaumadditions:mithminite_boots.1=
+My final part of armor would be boots... Why not to combine it with Boots of the Traveller? I don't really have any other ideas of what can be added to them.
+research_stage.thaumadditions:mithminite_boots.2=
+Great! I think that my Boots of the Traveller fused within mithminite boots seem to work without need to be constantly recharged.
 
 research_name.thaumadditions:void_thaumometer=Void Thaumometer
-research_stage.thaumadditions:void_thaumometer.1=After discovering the power of flux rifts, making void metal and going a bit insane I think I might finally be able to know more about flux rifts...
-research_stage.thaumadditions:void_thaumometer.2=Noted! Flux rifts have a stability that can be measured by how much void metal reacts to them. So if I replace golden frame from my thaumometer with void metal, it should do the trick...
+research_stage.thaumadditions:void_thaumometer.1=
+After discovering the power of flux rifts, making void metal and going a bit insane I think I might finally be able to know more about flux rifts...
+research_stage.thaumadditions:void_thaumometer.2=
+Noted! Flux rifts have a stability that can be measured by how much void metal reacts to them. So if I replace golden frame from my thaumometer with void metal, it should do the trick...
 
 research_name.thaumadditions:wormhole_mirror=Wormhole Mirror
-research_stage.thaumadditions:wormhole_mirror.1=I was wondering how I could stabilize and expand the thin connection between magic mirrors, so I could pass through them... Studying void metal does bring some hints, but I need a bit of additional thinking...
-research_stage.thaumadditions:wormhole_mirror.2=Okay, I have found a way to expand connections between magic mirrors... using a... 'wormhole'? Whatever that is, I really want to test it out, but then I think I'm going crazy... Using a thaumometer (as a connection catcher), a bit of void plates onto the hand mirror seem to get me a Wormhole Mirror... Though, how does it work? Perhaps I should use it on a bound mirror?..
+research_stage.thaumadditions:wormhole_mirror.1=
+I was wondering how I could stabilize and expand the thin connection between magic mirrors, so I could pass through them... Studying void metal does bring some hints, but I need a bit of additional thinking...
+research_stage.thaumadditions:wormhole_mirror.2=
+Okay, I have found a way to expand connections between magic mirrors... using a... 'wormhole'? Whatever that is, I really want to test it out, but then I think I'm going crazy... Using a thaumometer (as a connection catcher), a bit of void plates onto the hand mirror seem to get me a Wormhole Mirror... Though, how does it work? Perhaps I should use it on a bound mirror?..
 
 research_name.thaumadditions:void_crop=Growing Void
-research_stage.thaumadditions:void_crop.1=Void seeds have a wonderful ability to regenerate. But could this matter be directed to cloning these rare seeds?
-research_stage.thaumadditions:void_crop.2=Infusing void seeds with primordial energies have enabled me to make the seed plantable. I'll need a complex and long infusion process to get it done.
+research_stage.thaumadditions:void_crop.1=
+Void seeds have a wonderful ability to regenerate. But could this matter be directed to cloning these rare seeds?
+research_stage.thaumadditions:void_crop.2=
+Infusing void seeds with primordial energies have enabled me to make the seed plantable. I'll need a complex and long infusion process to get it done.
 
 research_name.thaumadditions:essentia_pistol=Essentia Pistol
-research_stage.thaumadditions:essentia_pistol.1=Dispersing salts is nice, but not very applicable in rather unexpected situations I might end up in. Making it portable would be a key requirement to success.
-research_stage.thaumadditions:essentia_pistol.2=Using aura disperser as an accelerator is a smart decision. Essentia Pistol would be definitely the best option I could think of. Thaumium would help the essentia travel through the tube safer. I would require something that can hold liquid essentia - something that I already use when infusing items on runic matrix.
+research_stage.thaumadditions:essentia_pistol.1=
+Dispersing salts is nice, but not very applicable in rather unexpected situations I might end up in. Making it portable would be a key requirement to success.
+research_stage.thaumadditions:essentia_pistol.2=
+Using aura disperser as an accelerator is a smart decision. Essentia Pistol would be definitely the best option I could think of. Thaumium would help the essentia travel through the tube safer. I would require something that can hold liquid essentia - something that I already use when infusing items on runic matrix.
 
 research_name.thaumadditions:shadow_enchanter=Shadow Enchanter
-research_stage.thaumadditions:shadow_enchanter.1=There are quite a few ways of infusing tools, weapons and armor with mundane magic, but it is very unstable and occasional. I'll invest the phenomen of enchanting a bit further, to, perhaps, push the limits a bit further.
-research_stage.thaumadditions:shadow_enchanter.2=As it turned out, mithrillium not only allows to stabilize the enchating process and make it more predictable, but with some resonators attached, I might be able to select exactly what I need. Additional bonus of this all is xp-free enchanting! All I need now is only some essentia nearby. To start the process one's going to need to select all desired enchantments and activate the Shadow Enchanter with Caster's Gauntlet.
+research_stage.thaumadditions:shadow_enchanter.1=
+There are quite a few ways of infusing tools, weapons and armor with mundane magic, but it is very unstable and occasional. I'll invest the phenomen of enchanting a bit further, to, perhaps, push the limits a bit further.
+research_stage.thaumadditions:shadow_enchanter.2=
+As it turned out, mithrillium not only allows to stabilize the enchating process and make it more predictable, but with some resonators attached, I might be able to select exactly what I need. Additional bonus of this all is xp-free enchanting! All I need now is only some essentia nearby. To start the process one's going to need to select all desired enchantments and activate the Shadow Enchanter with Caster's Gauntlet.
 
 research_name.thaumadditions:shadow_beam_staff=Shadow Beam Staff
-research_stage.thaumadditions:shadow_beam_staff.1=Mithrillium holds so much power, that I could probably focus it into a beam!
-research_stage.thaumadditions:shadow_beam_staff.2=Using vis resonator with mithrillium allows to harness the Alienis into a powerful laser. To charge it, I would need to use Essentia Sink to fill it up with Alienis essentia. Strangely enough, the laser seem to bounce from any surfaces that it hits.
+research_stage.thaumadditions:shadow_beam_staff.1=
+Mithrillium holds so much power, that I could probably focus it into a beam!
+research_stage.thaumadditions:shadow_beam_staff.2=
+Using vis resonator with mithrillium allows to harness the Alienis into a powerful laser. To charge it, I would need to use Essentia Sink to fill it up with Alienis essentia. Strangely enough, the laser seem to bounce from any surfaces that it hits.
 
 research_name.thaumadditions:void_anvil=Void Anvil
-research_stage.thaumadditions:void_anvil.1=Sometimes mundane anvils don't take long to break, that may be a bit frustrating. After studying void metal, I might try to cover the anvil with void metal. Perhaps that may improve lifespan of them!
-research_stage.thaumadditions:void_anvil.2=Void metal seems to never stop impressing me, huh! I think this dark new anvil is pretty much infinite. But in exchance of damaging itself, it seems that every hit it gets, the aura pollutes by a little. I am going to need to be more careful next time!
+research_stage.thaumadditions:void_anvil.1=
+Sometimes mundane anvils don't take long to break, that may be a bit frustrating. After studying void metal, I might try to cover the anvil with void metal. Perhaps that may improve lifespan of them!
+research_stage.thaumadditions:void_anvil.2=
+Void metal seems to never stop impressing me, huh! I think this dark new anvil is pretty much infinite. But in exchance of damaging itself, it seems that every hit it gets, the aura pollutes by a little. I am going to need to be more careful next time!
 
 research_name.thaumadditions:disenchant_fabric=Fabric of Disenchantment
-research_stage.thaumadditions:disenchant_fabric.1=Enchanting items with mundane tools can be quite hard to alter, I will need a tool to let me take these enchantments and cast them back to (some) experience. Perhaps rubbing my tools with something soft yet magical?
-research_stage.thaumadditions:disenchant_fabric.2=Enchanted Fabric along with salis mundus seem to provide a good and semi-reliable way of taking off the enchantments that I may have. The only catch here is the durability: the fabric seems to vanish after about 30 attempts. What a pain!
+research_stage.thaumadditions:disenchant_fabric.1=
+Enchanting items with mundane tools can be quite hard to alter, I will need a tool to let me take these enchantments and cast them back to (some) experience. Perhaps rubbing my tools with something soft yet magical?
+research_stage.thaumadditions:disenchant_fabric.2=
+Enchanted Fabric along with salis mundus seem to provide a good and semi-reliable way of taking off the enchantments that I may have. The only catch here is the durability: the fabric seems to vanish after about 30 attempts. What a pain!
 
 research_name.thaumadditions:crystal_bag=Crystal Bag
-research_stage.thaumadditions:crystal_bag.1=Inventory problems can get quite annoying something, especially with all these crystals! I wonder if I could link foci pouches that to store crystals somehow...
-research_stage.thaumadditions:crystal_bag.2=The pure crystals may not work, but it appears to me that natural crystals can attune the pouch to accept any crystal. Also, I think I may have opened a black hole of some kind!..
+research_stage.thaumadditions:crystal_bag.1=
+Inventory problems can get quite annoying something, especially with all these crystals! I wonder if I could link foci pouches that to store crystals somehow...
+research_stage.thaumadditions:crystal_bag.2=
+The pure crystals may not work, but it appears to me that natural crystals can attune the pouch to accept any crystal. Also, I think I may have opened a black hole of some kind!..
 
 research_name.thaumadditions:blue_wolf=Blue Wolf
-research_stage.thaumadditions:blue_wolf=Blue Wolves cannot be found. Their fur color seems very unnatural. Everything about them reminds me of that one thing... Anyway, these wolves are a good source of blue fur. It might be worth researching! It appears that these animals only come with male gender, thus cannot be bred.
+research_stage.thaumadditions:blue_wolf=
+Blue Wolves cannot be found. Their fur color seems very unnatural. Everything about them reminds me of that one thing... Anyway, these wolves are a good source of blue fur. It might be worth researching! It appears that these animals only come with male gender, thus cannot be bred.
 
 research_name.thaumadditions:the_beheader=The Beheader
-research_stage.thaumadditions:the_beheader.1=Every trip to the nether annoys me. Running around the fortress exhausting yourself and looking everywhere to find wither skeletons, hoping to get their skulls. Perhaps I should stop smashing those piles of bones and be actually careful enough to harvest black skulls?
-research_stage.thaumadditions:the_beheader.2=Beheading seems like the way to go here. Improving on my thaumium axe would be an excellent idea - it fuses quite well with mithrillium. The new Beheader is lighter than an average axe, and has a good damage, so this may be used when I'm out of swords again.
+research_stage.thaumadditions:the_beheader.1=
+Every trip to the nether annoys me. Running around the fortress exhausting yourself and looking everywhere to find wither skeletons, hoping to get their skulls. Perhaps I should stop smashing those piles of bones and be actually careful enough to harvest black skulls?
+research_stage.thaumadditions:the_beheader.2=
+Beheading seems like the way to go here. Improving on my thaumium axe would be an excellent idea - it fuses quite well with mithrillium. The new Beheader is lighter than an average axe, and has a good damage, so this may be used when I'm out of swords again.
 
 research_name.thaumadditions:adaminite_sword=Adaminite Sword
-research_stage.thaumadditions:adaminite_sword.1=While void metals posesses amazing powers, I have gone far in it's hierarchy, and I am confident that an upgrade to it is worthy.
-research_stage.thaumadditions:adaminite_sword.2=Adaminite fuses well with it's own component, that's pretty smart. Though since adaminite is hard to apply, a lot of auxiliary essentia may be required. Adding some primal energy to it also makes this weapong a pretty much the best melee weapon any thaumaturge may posess. Or is it?
+research_stage.thaumadditions:adaminite_sword.1=
+While void metals posesses amazing powers, I have gone far in it's hierarchy, and I am confident that an upgrade to it is worthy.
+research_stage.thaumadditions:adaminite_sword.2=
+Adaminite fuses well with it's own component, that's pretty smart. Though since adaminite is hard to apply, a lot of auxiliary essentia may be required. Adding some primal energy to it also makes this weapong a pretty much the best melee weapon any thaumaturge may posess. Or is it?
 
 research_name.thaumadditions:mithminite_scythe=Mithminite Scythe
-research_stage.thaumadditions:mithminite_scythe.1=Mithminite has proven to be quite important in few ways, but perhaps a tool could be made out of it?
-research_stage.thaumadditions:mithminite_scythe.2=Unfortunately, just putting Mithminite on a tool handle is a bad idea - all rods that I've tried break very fast... Though it seems like making the entire tool out of mithminite with help of some auxiliary materials is possible, and the result may be a bit more deadly then I expected... Somehow the new scythe is able to shoot with phantom scythes that are also a bit more strong then mine. Oh well, might as well go and murder some enemies.
+research_stage.thaumadditions:mithminite_scythe.1=
+Mithminite has proven to be quite important in few ways, but perhaps a tool could be made out of it?
+research_stage.thaumadditions:mithminite_scythe.2=
+Unfortunately, just putting Mithminite on a tool handle is a bad idea - all rods that I've tried break very fast... Though it seems like making the entire tool out of mithminite with help of some auxiliary materials is possible, and the result may be a bit more deadly then I expected... Somehow the new scythe is able to shoot with phantom scythes that are also a bit more strong then mine. Oh well, might as well go and murder some enemies.
 
 research_name.thaumadditions:void_elemental_hoe=Void Hoe of Growth
-research_stage.thaumadditions:void_elemental_hoe.1=Researching void metal have hinted me at just how much void metal can restore by itself. What would happen if I upgrade my hoe of growth with it?
-research_stage.thaumadditions:void_elemental_hoe.2=I wasn't able to attach void metal to the hoe, but I think that with some primordial energy it might be quite possible. "Void Hoe of Growth" is essentially the same as my Hoe of Growth, but it also restores itself using a little help from aura.
+research_stage.thaumadditions:void_elemental_hoe.1=
+Researching void metal have hinted me at just how much void metal can restore by itself. What would happen if I upgrade my hoe of growth with it?
+research_stage.thaumadditions:void_elemental_hoe.2=
+I wasn't able to attach void metal to the hoe, but I think that with some primordial energy it might be quite possible. "Void Hoe of Growth" is essentially the same as my Hoe of Growth, but it also restores itself using a little help from aura.
 
 research_name.thaumadditions:void_elemental_shovel=Void Shovel of the Earthmover
-research_stage.thaumadditions:void_elemental_shovel.1=Digging out large patches of earth may be easier with shovel of the Earthmover, but sadly it is still no that durable. Surely void metal can be infused into an elemental shovel with a little help from outside this world...
-research_stage.thaumadditions:void_elemental_shovel.2=Using the primordial pearl to merge my shovel with void metal gave a pretty fascinating result. The new void shovel of the Earthmover is now capable of using aura every so often to last longer, or forever. Really depends on how intensively I use it though.
+research_stage.thaumadditions:void_elemental_shovel.1=
+Digging out large patches of earth may be easier with shovel of the Earthmover, but sadly it is still no that durable. Surely void metal can be infused into an elemental shovel with a little help from outside this world...
+research_stage.thaumadditions:void_elemental_shovel.2=
+Using the primordial pearl to merge my shovel with void metal gave a pretty fascinating result. The new void shovel of the Earthmover is now capable of using aura every so often to last longer, or forever. Really depends on how intensively I use it though.
 
 research_name.thaumadditions:void_elemental_pickaxe=Void Pickaxe of the Core
-research_stage.thaumadditions:void_elemental_pickaxe.1=Mining is a chore that requires a lot of tools at all times. Pickaxe of the Core may not be as sturdy as some other materials, but some of it's other perks make it still a better solution. I am sure that the durability problem can be solved with a little trickery with void metal.
-research_stage.thaumadditions:void_elemental_pickaxe.2=This seems wrong.. I think something went wrong, and getting this new Void pickaxe of the Core needs a hefty amount of Metallum. I suppose it may be because the pickaxe itself is very sensitive to metal?
+research_stage.thaumadditions:void_elemental_pickaxe.1=
+Mining is a chore that requires a lot of tools at all times. Pickaxe of the Core may not be as sturdy as some other materials, but some of it's other perks make it still a better solution. I am sure that the durability problem can be solved with a little trickery with void metal.
+research_stage.thaumadditions:void_elemental_pickaxe.2=
+This seems wrong.. I think something went wrong, and getting this new Void pickaxe of the Core needs a hefty amount of Metallum. I suppose it may be because the pickaxe itself is very sensitive to metal?
 
 research_name.thaumadditions:void_elemental_axe=Void Axe of the Stream
-research_stage.thaumadditions:void_elemental_axe.1=Cutting down forests of trees has been easier with Axe of the Stream due to it's ability to destroy the entire trunk. I may need to come up with an upgrade to make it a lot tougher. I am sure that using my beloved void metal is the way here!
-research_stage.thaumadditions:void_elemental_axe.2=Putting together the usual primordial formula for infusing tools with void metal is not too hard, I think. What I know for sure, this is definitely a worthy upgrade as long as used properly.
+research_stage.thaumadditions:void_elemental_axe.1=
+Cutting down forests of trees has been easier with Axe of the Stream due to it's ability to destroy the entire trunk. I may need to come up with an upgrade to make it a lot tougher. I am sure that using my beloved void metal is the way here!
+research_stage.thaumadditions:void_elemental_axe.2=
+Putting together the usual primordial formula for infusing tools with void metal is not too hard, I think. What I know for sure, this is definitely a worthy upgrade as long as used properly.
 
 research_name.thaumadditions:traveller_belt=Belt of the Traveller
-research_stage.thaumadditions:traveller_belt.1=After discovering Boots of the Traveller, they became crucial for the exploration of new land. Though sometimes one could stumble across mobs, and the boots are bad at protecting their wearer.
-research_stage.thaumadditions:traveller_belt.2=Seems like infusing the mundane belt with the same ritual as done with my boots, I can make myself a fancy new Belt of the Traveller. It's function seems absolutely identical, but it is a belt, thus much more portable.
+research_stage.thaumadditions:traveller_belt.1=
+After discovering Boots of the Traveller, they became crucial for the exploration of new land. Though sometimes one could stumble across mobs, and the boots are bad at protecting their wearer.
+research_stage.thaumadditions:traveller_belt.2=
+Seems like infusing the mundane belt with the same ritual as done with my boots, I can make myself a fancy new Belt of the Traveller. It's function seems absolutely identical, but it is a belt, thus much more portable.
 
 research_name.thaumadditions:striding_belt=Striding Belt
-research_stage.thaumadditions:striding_belt.1=Surely the all new and shiny Belt of the Traveller was a really good uplift from old fashioned boots, but should be possible to upgrade a little bit further.
-research_stage.thaumadditions:striding_belt.2=Striding Belt seems to be a pretty sensible outcome of fusing the old belt with a lot of Aer and Motus essentia with some ember and feathers. This belt is capable of making leaps never seen before, while also increasing my walk speed slightly.
+research_stage.thaumadditions:striding_belt.1=
+Surely the all new and shiny Belt of the Traveller was a really good uplift from old fashioned boots, but should be possible to upgrade a little bit further.
+research_stage.thaumadditions:striding_belt.2=
+Striding Belt seems to be a pretty sensible outcome of fusing the old belt with a lot of Aer and Motus essentia with some ember and feathers. This belt is capable of making leaps never seen before, while also increasing my walk speed slightly.
 
 research_name.thaumadditions:meteor_belt=Belt of the Meteor
-research_stage.thaumadditions:meteor_belt.1=I'm unsure if this is a rational move or not, but I *may* need another upgrade to the belt I currently possess... It's quite chaotic, sure, but I still need it!
-research_stage.thaumadditions:meteor_belt.2=Belt of the Meteor is an explosive succeess... Quite literally. It's not as safe, and can cause harm to living beings if I am not careful enough with it. Infusing old belt with lots of Ignis and Motus, I've made a beast of a belt, that is surely at it's peak of power.
+research_stage.thaumadditions:meteor_belt.1=
+I'm unsure if this is a rational move or not, but I *may* need another upgrade to the belt I currently possess... It's quite chaotic, sure, but I still need it!
+research_stage.thaumadditions:meteor_belt.2=
+Belt of the Meteor is an explosive succeess... Quite literally. It's not as safe, and can cause harm to living beings if I am not careful enough with it. Infusing old belt with lots of Ignis and Motus, I've made a beast of a belt, that is surely at it's peak of power.
 
 ############
 
