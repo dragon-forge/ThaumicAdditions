@@ -27,10 +27,10 @@ tile.thaumadditions:puriflower.name=Puriflower
 tile.thaumadditions:crystal_block.name=@ASPECT Crystal Block
 tile.thaumadditions:jar_brass.name=Brass Warded Jar
 tile.thaumadditions:jar_thaumium.name=Thaumium Reinforced Jar
-tile.thaumadditions:jar_eldritch.name=Void Foritified Jar
-tile.thaumadditions:jar_mithrillium.name=Mithrillium Reinforced Jar
-tile.thaumadditions:jar_adaminite.name=Adaminite Foritified Jar
-tile.thaumadditions:jar_mithminite.name=Mithminite Jar
+tile.thaumadditions:jar_eldritch.name=Void Reinforced Jar
+tile.thaumadditions:jar_mithrillium.name=Mithrillium Fortified Jar
+tile.thaumadditions:jar_adaminite.name=Adaminite Fortified Jar
+tile.thaumadditions:jar_mithminite.name=Mithminite Fortified Jar
 tile.thaumadditions:growth_chamber.name=Crystal Growth Chamber
 tile.thaumadditions:dawn_totem.name=Totem of Dawn
 tile.thaumadditions:twilight_totem.name=Twilight Totem
@@ -69,7 +69,7 @@ fluid.thaumadditions:crystal_water=Crystal Water
 
 ##POTIONS##
 
-potion.thaumadditions:sonus=Sound Sensivity
+potion.thaumadditions:sonus=Sound Sensitivity
 
 ##########
 
@@ -161,7 +161,7 @@ item.thaumadditions:meteor_belt.name=Belt of the Meteor
 status.thaumadditions:dna_unpickable=This entity is too strong to be sampled!
 status.thaumadditions:dna_unpickable.1=This is an inanimate object!
 gui.thaumadditions:null=None
-gui.thaumadditions:knowledge_tome.store=Knowledge stored! You own %s discoveries, %s of them are complete.
+gui.thaumadditions:knowledge_tome.store=Knowledge stored! You own %s discoveries, %s of which are complete.
 gui.thaumadditions:knowledge_tome.restore=You now know everything that %s knew at %s
 chat.thaumadditions:chester.stay=The Chester will stay here.
 chat.thaumadditions:chester.follow=The Chester will follow  you.
@@ -182,7 +182,7 @@ damage.thaumadditions:mithminite_scythe.ranged=14 Ranged Damage
 item.wand.mithrillium.cap=Mithrillium Attuned
 item.wand.adaminite.cap=Adaminite Adorned
 item.wand.mithminite.cap=Mithminite Ornamented
-item.wand.adaminitewood.rod=Adamitewood
+item.wand.adaminitewood.rod=Adaminitewood
 
 #################
 
@@ -219,7 +219,7 @@ research_stage.thaumadditions:adaminite.2=Yet again to my surprise, this damned 
 
 research_name.thaumadditions:mithrillium_smelter=Mithrillium Smeltery
 research_stage.thaumadditions:mithrillium_smelter.1=As I mentioned in the original entry, the potential of Mithrillium to have purer reactions should definitely be looked into. Even with the power of the Void Metal, I occasionally noticed it sapped about 5% of essentia for its own dark purposes...
-research_stage.thaumadditions:mithrillium_smelter.2=This is much purer, indeed. In fact, I dont think I've logged any sort of loss - the essentia slurry it creates can't even be regarded as a slurry any more, as if it's been pre-seperated by the metal. It's truly the perfect reaction, with near-0% loss.
+research_stage.thaumadditions:mithrillium_smelter.2=This is much purer, indeed. In fact, I don't think I've logged any sort of loss - the essentia slurry it creates can't even be regarded as a slurry any more, as if it's been pre-separated by the metal. It's truly the perfect reaction, with near-0% loss.
 
 research_name.thaumadditions:adaminite_smelter=Adaminite Smeltery
 research_stage.thaumadditions:adaminite_smelter.1=I find that the total purity of the Mithrillium Smeltery still isn't enough. Even with no loss, could there instead also be gain? Perhaps using the magic property of Adaminite in the filter would be beneficial...
@@ -237,22 +237,22 @@ research_name.thaumadditions:thaumium_jar=Thaumium Reinforced Jars
 research_stage.thaumadditions:thaumium_jar.1=Again, my material studies have given me new potential to improve upon my equipment. The magical nature of Thaumium has seen much use in other places, but its yet to be tested how well it stores raw essentia.
 research_stage.thaumadditions:thaumium_jar.2=By again reinforcing the warding aura of the jar's glass and fastening a specially-made Thaumium lid, I've observed a nice improvement to the original jars. The magical properties of the metal seem to sponge up some of the essentia, acting as an extra storage chamber in a way. Overall, this should see an increase of roughly one hundred from the original jar, a total of 350 essentia.
 
-research_name.thaumadditions:eldritch_jar=Void Foritified Jars
+research_name.thaumadditions:eldritch_jar=Void Reinforced Jars
 research_stage.thaumadditions:eldritch_jar.1=If I were to say that the Void's whispers were the only thing influencing me writing this, I'd be lying. It's become a genuine curiosity to see how different materials react with raw essentia, and despite all the evil surrounding this blackened ingot, I don't see too much harm in a few tests... 
 research_stage.thaumadditions:eldritch_jar.2=After a few straining tests to make sure the Void Metal didn't damage the glass seal of the jar, I've managed to finally draft a lid to top the new jar. The initial tests actually came to little surprise: the jet-black metal seems to sponge up the raw essentia in a way akin to Thaumium, except in a greater quantity. Adding it to the new strengthened glass warding, it should store an estimated 500 essentia. <BR>Regardless of my success here though, it's best I keep an eye on this. The Void's desires are beyond me - I feel its stare every time I glance at that blackened lid. Plus, the material cost of these upgrades is getting quite extreme...
 
-research_name.thaumadditions:mithrillium_jar=Mithrillium Reinforced Jars
+research_name.thaumadditions:mithrillium_jar=Mithrillium Fortified Jars
 research_stage.thaumadditions:mithrillium_jar.1=With the creation of Mithrillium, I've again come back to my old sketches of jars and the efforts I went to in shaping their lids. I'm surprised this hadn't come to me before: why not simply melt the newer metal over the old lid? Its worth testing, and with the malleability of this new blue friend of mine, there's no better place to start.
 research_stage.thaumadditions:mithrillium_jar.2=So. The "melting new metal over the old one" ended with lots of charred hairs. After another attempt - making sure the lid wasn't ON the jar this time - I've managed to basically encase the old Void lid in Mithrillium, also taking it upon myself to reshape the jar's glass. With the blue metal's enhanced properties and purer essence, not only have I silenced that scary black gaze from the Void but I've also doubled the essentia storage: with both metals' pressures pushing the essentia into a denser form, the jar now fits 1000 essentia!
 
-research_name.thaumadditions:adaminite_jar=Adaminite Foritified Jars
+research_name.thaumadditions:adaminite_jar=Adaminite Fortified Jars
 research_stage.thaumadditions:adaminite_jar.1=As lovely as the Mithrillium is, I'm still always open to improvement. While the cobalt-blue metal is a strong material physically, Adaminite has proven to be strong magically. While it's insanely expensive, a few initial tests couldn't hurt...
 research_stage.thaumadditions:adaminite_jar.2=Using a similar method as the previous upgrade, I've molded the Adaminite over the old lids and adjusted the glass again. At this point it feels more like a barrel, both in circumference and storage. The Adaminite condenses all the essentia that passes through it, doubling every bit of the storage previously in the jar. While 2000 essentia is a lot, the jar is quite expensive... also, I've yet to properly test how the condensation of essentia properly works.
-research_stage.thaumadditions:adaminite_jar.3=Using a similar method as the previous upgrade, I've molded the Adaminite over the old lids and adjusted the glass again. At this point it feels more like a barrel, both in circumference and storage. The Adaminite condenses all the essentia that passes through it, doubling every bit of the storage previously in the jar. While 2000 essentia is a lot, the jar is quite expensive... also, I've yet to properly test how the condensation of essentia properly works.<line>§lAddendum:§r After further testing with the final prototype, I've been met with a new concern. The condensation of most aspects is fine, but condensing Flux down that much on even a testing scale has had disasterous results. If I filled this to capacity with it, it'd probably mean quite the explosion - and losing all the materials I invested into this jar. Speaking of, good job, Me. Worth it or not, the fact alone that I crafted this deserves some self-appreciation.
+research_stage.thaumadditions:adaminite_jar.3=Using a similar method as the previous upgrade, I've molded the Adaminite over the old lids and adjusted the glass again. At this point it feels more like a barrel, both in circumference and storage. The Adaminite condenses all the essentia that passes through it, doubling every bit of the storage previously in the jar. While 2000 essentia is a lot, the jar is quite expensive... also, I've yet to properly test how the condensation of essentia properly works.<line>§lAddendum:§r After further testing with the final prototype, I've been met with a new concern. The condensation of most aspects is fine, but condensing Flux down that much on even a testing scale has had disastrous results. If I filled this to capacity with it, it'd probably mean quite the explosion - and losing all the materials I invested into this jar. Speaking of, good job, Me. Worth it or not, the fact alone that I crafted this deserves some self-appreciation.
 
-research_name.thaumadditions:mithminite_jar=Mithminite Jars
+research_name.thaumadditions:mithminite_jar=Mithminite Fortified Jars
 research_stage.thaumadditions:mithminite_jar.1=The discovery of Mithminite brings back questions of how I could possibly improve upon my designs for jars. The method of creation for Mithminite should be a sure enough sign that the old "melt some metal over the last cap" trick won't work for this...
-research_stage.thaumadditions:mithminite_jar.2=Using a somewhat recreatable infusion, I've managed to create a prototype* Mithminite Jar. By infusing an old Void Jar with some Mithminite, alumentum to fuse the metals, and amber to strengthen the glass, I've created an improved jar which densifies and sponges up essentia to a capacity of 4000, twice as much as the last! Not only that, but any excess past its capacity seems to... vanish. I've yet to observe quite how, but I can only assume that by infusing the original Void lid, the dark forces beyond my understanding sap off anything that I have in excess. While this does serve as a good storage and disposal solution, I'd best not pump anything of importance to me in there.
+research_stage.thaumadditions:mithminite_jar.2=Using a somewhat replicable infusion, I've managed to create a prototype* Mithminite Jar. By infusing an old Void Jar with some Mithminite, alumentum to fuse the metals, and amber to strengthen the glass, I've created an improved jar which condenses and sponges up essentia to a capacity of 4000, twice as much as the last! Not only that, but any excess past its capacity seems to... vanish. I've yet to observe quite how, but I can only assume that by infusing the original Void lid, the dark forces beyond my understanding sap off anything that I have in excess. While this does serve as a good storage and disposal solution, I'd best not pump anything of importance to me in there.
 
 research_name.thaumadditions:aspect_combiner=Essentia Combining
 research_stage.thaumadditions:aspect_combiner.1=The art of centrifugal processing is simple: spin stuff until it comes apart. But while the Centrifuge is useful and all, I've had many times I wish I could simply do the opposite. Rather than split one into two, combine two into one...
@@ -260,7 +260,7 @@ research_stage.thaumadditions:aspect_combiner.2=With the purer Mithrillium I'd d
 
 research_name.thaumadditions:aura_charger=Aura Charger
 research_stage.thaumadditions:aura_charger.1=Progress comes at a cost, usually at the expense of the environment. My pollution has definitely done a number... perhaps its time to look into giving back to the aura, instead of taking from it as I always do.
-research_stage.thaumadditions:aura_charger.2=Old scribbles and papers read of "Aura Nodes", small gateways through which the aura flowed. Its safe to assume that those have long since burst, the aura instead infusing with reality itself now - the reason I say this is that regardless of their properties, they all radiated strongly of the aspect §lAuram§r. Which, now that I look at the name, is actually embarassingly obvious. <line>By reversing my methods of harnessing aural vis with the recharger, I've instead created an output: by suppling this §lAura Charger§r with enough §lAuram§r, I can recharge the local aura at a rate of §l1 vis to 10 aura§r. Not only that, but I can overcharge it to almost 3 times its maximum capacity! Though, seeing how I've already thrown off the Aura's balance, I should be sparing in this. Dont want to damage it further.
+research_stage.thaumadditions:aura_charger.2=Old scribbles and papers read of "Aura Nodes", small gateways through which the aura flowed. Its safe to assume that those have long since burst, the aura instead infusing with reality itself now - the reason I say this is that regardless of their properties, they all radiated strongly of the aspect §lAuram§r. Which, now that I look at the name, is actually embarrassingly obvious. <line>By reversing my methods of harnessing aural vis with the recharger, I've instead created an output: by supplying this §lAura Charger§r with enough §lAuram§r, I can recharge the local aura at a rate of §l1 vis to 10 aura§r. Not only that, but I can overcharge it to almost 3 times its maximum capacity! Though, seeing how I've already thrown off the Aura's balance, I should be sparing in this. Don't want to damage it further.
 
 research_name.thaumadditions:crystal_crusher=Crystal Crusher
 research_stage.thaumadditions:crystal_crusher.1=Look. Jumping on vis crystals is fun and all, but my legs ache and there's grains of Corpus making my shoes stink. I really should look into doing it mechanically.
@@ -272,7 +272,7 @@ research_stage.thaumadditions:aura_disperser.2=After some initial tests, I found
 
 research_name.thaumadditions:crystal_bore=Crystal Bore
 research_stage.thaumadditions:crystal_bore.1=The key difference between me and the mages of old is simple: my civilized ways lead me down the path of automation. One such path that I'd been considering for quite some time was the harvesting of primal vis crystals: going down into the mines is a fun but destructive process, leaving the shards with little to grow back from. Its best my new machine is adjusted away from full destruction of the crystal cluster.
-research_stage.thaumadditions:crystal_bore.2=Surprisingly, the solution to this lied simly in the morphic resonator. Infusing this as the core of a drill-like casing, I've created a Crystal Bore, which will harvest any crystal in front of it down to a single shard without damaging it - this leaves a strong enough sample for it to regrow.<LINE> The Crystal Bore has a few important mechanics to it:<BR>-It will harvest whatever crystal it faces down to a single remaining shard. The brass used for the drill-head will probably just harmlessly scrape against anything else, and I'd rather not hurt my ears.<BR>-The Bore will require a small flow of local Aura as a power source, another benefit to using a morphic resonator at the core.<BR>-It will automatically move harvested crystals into most storages attached to the back of it.<BR>-A redstone signal can be applied to turn it off, if need be.
+research_stage.thaumadditions:crystal_bore.2=Surprisingly, the solution to this lied simply in the morphic resonator. Infusing this as the core of a drill-like casing, I've created a Crystal Bore, which will harvest any crystal in front of it down to a single shard without damaging it - this leaves a strong enough sample for it to regrow.<LINE> The Crystal Bore has a few important mechanics to it:<BR>-It will harvest whatever crystal it faces down to a single remaining shard. The brass used for the drill-head will probably just harmlessly scrape against anything else, and I'd rather not hurt my ears.<BR>-The Bore will require a small flow of local Aura as a power source, another benefit to using a morphic resonator at the core.<BR>-It will automatically move harvested crystals into most storages attached to the back of it.<BR>-A redstone signal can be applied to turn it off, if need be.
 
 research_name.thaumadditions:crystal_water=Liquid Crystal
 research_stage.thaumadditions:crystal_water.1=Many branches of both science and magic, especially those involving crystals, typically have some method to hasten crystal growth. Studying further into how crystallized aspects react with liquids may help me find a way to grow the crystals, or at least speed up the natural growth of primal crystals.
@@ -283,8 +283,8 @@ research_stage.thaumadditions:enchanted_golden_apple.1=Along my travels I've rar
 research_stage.thaumadditions:enchanted_golden_apple.2=To my surprise, the ancient apples are actually.. disappointingly simple. By taking my original golden apple and infusing it with more gold and related aspects, I've created what most would see as a perfect copy of the more powerful, "enchanted" golden apples
 
 research_name.thaumadditions:mob_summoning=Entity Recreation
-research_stage.thaumadditions:mob_summoning.1=One of the more common hazards for explorers such as myself are "spawners" or "summoners" - cage-like machines that seem to simply bring new entities into existance. Understanding the mechanisms behind this will be beyond me for a long time, but perhaps I can create a replication of this. I'll need to study mobs and their essence in order to understand how to replicate it, so to start I'll need a 'willing' test subject.
-research_stage.thaumadditions:mob_summoning.2=Now that I've devised a way to capture not only a mob, but seperate it from its basic essence/soul/spirit, the next step will be to find out how this template can be used in creating duplicate mobs. The best lead I have on this is again in the ancient Totemic texts - the dark Twilight Totems seemed to be most used as summoning focal points, at least for maddened zombies and wisps...
+research_stage.thaumadditions:mob_summoning.1=One of the more common hazards for explorers such as myself are "spawners" or "summoners" - cage-like machines that seem to simply bring new entities into existence. Understanding the mechanisms behind this will be beyond me for a long time, but perhaps I can create a replication of this. I'll need to study mobs and their essence in order to understand how to replicate it, so to start I'll need a 'willing' test subject.
+research_stage.thaumadditions:mob_summoning.2=Now that I've devised a way to capture not only a mob, but separate it from its basic essence/soul/spirit, the next step will be to find out how this template can be used in creating duplicate mobs. The best lead I have on this is again in the ancient Totemic texts - the dark Twilight Totems seemed to be most used as summoning focal points, at least for maddened zombies and wisps...
 research_stage.thaumadditions:mob_summoning.3=
 ##UNFINISHED!! 
 ##- needs mechanics after <LINE> (i.e. lighting/redstone function/vis requirement)
@@ -322,7 +322,7 @@ Alright! Seems like I'm on the right way.. I think. Using vis crystal to channel
 
 research_name.thaumadditions:totems=Totemancy
 research_stage.thaumadditions:totems.1=The old texts speak again of the "Aura Nodes", more specifically how they were harnessed: some scraps of text mention "Totems", structures that harness a node they're built around, used for never-quite-understood purposes. Maybe I can try to replicate some of these old methods to focus my own aural hot-spots?
-research_stage.thaumadditions:totems.2=To start on reconstructing the ancient Totems, I looked into something I've already become quite talented at: polluting the aura. As much as I hate to do these kinds of tests, it's simply in the name of progress. Hopefully I can find use in it, perhaps in Vitium creation. Best to be careful though, lest I lose control of it.<BR> Using the magic-absorbing properties of enchanted fabric, I've created a simple totemic structure that pulls in surrounding aura, which then goes through a §lVitium§r crystal as a... well, I'd say a filter, but it's the opposite, instead dirtying and corrupting the aura passing through. This leads to a fascinating replacement of local aura with flux - while interesting to see and a good proof-of-concept, extremely dangerous. This "Twilight Totem" is fairly unstable though, drawing and releasing Aura and Flux in random bursts, so its best I have failsafes in place.
+research_stage.thaumadditions:totems.2=To start on reconstructing the ancient Totems, I looked into something I've already become quite talented at: polluting the aura. As much as I hate to do these kinds of tests, it's simply in the name of progress. Hopefully I can find use in it, perhaps in Vitium creation. Best to be careful though, lest I lose control of it.<BR> Using the magic-absorbing properties of enchanted fabric, I've created a simple totemic structure that pulls in surrounding aura, which then goes through a §lVitium§r crystal as a... well, I'd say a filter, but it's the opposite, instead dirtying and corrupting the aura passing through. This leads to a fascinating replacement of local aura with flux - while interesting to see and a good proof-of-concept, extremely dangerous. This "Twilight Totem" is fairly unstable though, drawing and releasing Aura and Flux in random bursts, so its best I have some sort of failsafe in place.
 research_stage.thaumadditions:totems.3=
 ##UNFINISHED!! Need to add the Totem of Dawn text 
 ##(copy the original one too to keep the description of Twilight Totems there, add <LINE> between)
@@ -341,7 +341,7 @@ Using some primordial magic I think I can make the cake slowly regenerate itself
 
 research_name.thaumadditions:knowledge_tome=Tome of Sharing
 research_stage.thaumadditions:knowledge_tome.1= 
-## MAKE SURE THIS IS AT THE END SO THEY DONT DELETE THEIR BOOK <LINE>§nThis WILL require a new Thaumonomicon be used in the experiments, so it's best I collect a spare. And, if I've happened to combine mine in an §lAkashic Tome§r§n, for safety it's best to store that entirely seperate, lest all my manuals get destroyed in my tests.§r
+## MAKE SURE THIS IS AT THE END SO THEY DON'T DELETE THEIR BOOK <LINE>§nThis WILL require a new Thaumonomicon be used in the experiments, so it's best I collect a spare. And, if I've happened to combine mine in an §lAkashic Tome§r§n, for safety it's best to store that entirely separate, lest all my manuals get destroyed in my tests.§r
 Something quite useful when I play with my friends would be some kind of a book that stores all everything known by me. I will need to develop this idea a bit further. 
 research_stage.thaumadditions:knowledge_tome.2=
 An empty Thaumonomicon serves a perfect base to write all my knowledge. Not only it seems to continue expanding when I write down more, but it remains as compact.
