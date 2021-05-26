@@ -315,8 +315,7 @@ research_stage.thaumadditions:seal_globe.2=Again looking into folklores of old, 
 research_name.thaumadditions:totems=Totemancy
 research_stage.thaumadditions:totems.1=The old texts speak again of the "Aura Nodes", more specifically how they were harnessed: some scraps of text mention "Totems", structures that harness a node they're built around, used for never-quite-understood purposes. Maybe I can try to replicate some of these old methods to focus my own aural hot-spots?
 research_stage.thaumadditions:totems.2=To start on reconstructing the ancient Totems, I looked into something I've already become quite talented at: polluting the aura. As much as I hate to do these kinds of tests, it's simply in the name of progress. Hopefully I can find use in it, perhaps in Vitium creation. Best to be careful though, lest I lose control of it.<BR> Using the magic-absorbing properties of enchanted fabric, I've created a simple totemic structure that pulls in surrounding aura, which then goes through a §lVitium§r crystal as a... well, I'd say a filter, but it's the opposite, instead dirtying and corrupting the aura passing through. This leads to a fascinating replacement of local aura with flux - while interesting to see and a good proof-of-concept, extremely dangerous. This "Twilight Totem" is fairly unstable though, drawing and releasing Aura and Flux in random bursts, so its best I have some sort of failsafe in place.
-research_stage.thaumadditions:totems.3=To start on reconstructing the ancient Totems, I looked into something I've already become quite talented at: polluting the aura. As much as I hate to do these kinds of tests, it's simply in the name of progress. Hopefully I can find use in it, perhaps in Vitium creation. Best to be careful though, lest I lose control of it.<BR> Using the magic-absorbing properties of enchanted fabric, I've created a simple totemic structure that pulls in surrounding aura, which then goes through a §lVitium§r crystal as a... well, I'd say a filter, but it's the opposite, instead dirtying and corrupting the aura passing through. This leads to a fascinating replacement of local aura with flux - while interesting to see and a good proof-of-concept, extremely dangerous. This "Twilight Totem" is fairly unstable though, drawing and releasing Aura and Flux in random bursts, so its best I have some sort of failsafe in place.<LINE>WIP
-##TODO-!! Need to add the Totem of Dawn text to the end of totems.3 (after <LINE>)
+research_stage.thaumadditions:totems.3=To start on reconstructing the ancient Totems, I looked into something I've already become quite talented at: polluting the aura. As much as I hate to do these kinds of tests, it's simply in the name of progress. Hopefully I can find use in it, perhaps in Vitium creation. Best to be careful though, lest I lose control of it.<BR> Using the magic-absorbing properties of enchanted fabric, I've created a simple totemic structure that pulls in surrounding aura, which then goes through a §lVitium§r crystal as a... well, I'd say a filter, but it's the opposite, instead dirtying and corrupting the aura passing through. This leads to a fascinating replacement of local aura with flux - while interesting to see and a good proof-of-concept, extremely dangerous. This "Twilight Totem" is fairly unstable though, drawing and releasing Aura and Flux in random bursts, so its best I have some sort of failsafe in place.<LINE>I've managed to recreate the ancient Totem of Dawn - kind of, at least. I couldn't manage one as stable as Thaumaturges past, perhaps because I don't know the same carvings and incantations they used. I can say, at least, that this Dawn Totem will be the mirror of the Twilight Totem, drawing in and purifying flux in short bursts. Though, there's a non-zero risk of spilling some back, so I shouldn't put too much faith in a single one.
 
 research_name.thaumadditions:arcane_cake=Arcane Cake
 research_stage.thaumadditions:arcane_cake.1=I've found myself struggling with my sugar binges. A whole cake, gone, again...<BR>Rather than pace myself while eating, I will now create an infinite cake, just to spite myself.
@@ -372,136 +371,84 @@ research_stage.thaumadditions:mithminite_boots.1=The Adaminite boots, while very
 research_stage.thaumadditions:mithminite_boots.2=A perfect improvement: improved armor aside, the Mithminite reacted extraordinarily well with the Boots of the Traveller. These give me a nice speed boost, let me effortlessly step up whole blocks, and give me a jump boost, all without needing to be recharged.
 
 research_name.thaumadditions:void_thaumometer=Void Thaumometer
-research_stage.thaumadditions:void_thaumometer.1=WIP
-After discovering the power of flux rifts, making void metal and going a bit insane I think I might finally be able to know more about flux rifts...
-research_stage.thaumadditions:void_thaumometer.2=WIP
-Noted! Flux rifts have a stability that can be measured by how much void metal reacts to them. So if I replace golden frame from my thaumometer with void metal, it should do the trick...
-##reads flux rift as Stable or Unstable (wish that was a gauge or scale)
+research_stage.thaumadditions:void_thaumometer.1=It feels like the dark forces that seeped from the flux rift have corrupted my mind and soul. They drive me towards insanity attacks, I hear their whispers echo in my head... if I wanted to make any sense of them, I'd need to look closer, deeper into the rift... though I fear if I'm not careful, it may just pull me in.
+research_stage.thaumadditions:void_thaumometer.2=By fastening an old thaumometer with the Void Metal, I've made my tool resonate on the same unholy frequency as that dark magic. While it scares me to look through it, lest it show me some dark knowledge of the universe, I've found one key use. Looking into flux rifts doesn't show me any thoughts darker than it already had... it does, however, show me the instability of the rift. Hopefully this comes of use in dealing with these tears in the Aura...
 
 research_name.thaumadditions:wormhole_mirror=Wormhole Mirror
-research_stage.thaumadditions:wormhole_mirror.1=WIP
-I was wondering how I could stabilize and expand the thin connection between magic mirrors, so I could pass through them... Studying void metal does bring some hints, but I need a bit of additional thinking...
-research_stage.thaumadditions:wormhole_mirror.2=WIP
-Okay, I have found a way to expand connections between magic mirrors... using a... 'wormhole'? Whatever that is, I really want to test it out, but then I think I'm going crazy... Using a thaumometer (as a connection catcher), a bit of void plates onto the hand mirror seem to get me a Wormhole Mirror... Though, how does it work? Perhaps I should use it on a bound mirror?..
-##lets you use linked essentia/magic mirrors as teleporters
+research_stage.thaumadditions:wormhole_mirror.1=Often I find myself staring into the void, that space through which all magic flows... yet, I can only watch, bound to this realm. Perhaps, with how the Void Metal resonates with the void, it may let me peer even closer, perhaps even step inside the- no, no, what am I thinking! The voices are getting to me again...
+research_stage.thaumadditions:wormhole_mirror.2=Against my better judgement, I've imbued my hand mirror with the Void Metal. Just holding it in my hand makes me feel... faded? Unstable, as if I'm not bound entirely to reality... when I tested it on one of my prototype essentia mirrors, the device went through - which is shocking, seeing that only essentia should be capable. Perhaps if I made a more stable one to use on my mirrors, I could make it take me through with it? A "Wormhole Mirror" if you will... though whatever I see in the void is best ignored...
 
 research_name.thaumadditions:void_crop=Growing Void
-research_stage.thaumadditions:void_crop.1=WIP
-Void seeds have a wonderful ability to regenerate. But could this matter be directed to cloning these rare seeds?
-research_stage.thaumadditions:void_crop.2=WIP
-Infusing void seeds with primordial energies have enabled me to make the seed plantable. I'll need a complex and long infusion process to get it done.
-##grows Void Seeds (the matching names are annoying) and rarely a Void Fruit, which completely fills saturation
+research_stage.thaumadditions:void_crop.1=The Void Seeds I recover from flux rifts, filling my head with dark thoughts, constantly seem to beg for more power. I can't help but be at least intrigued by their commands...
+research_stage.thaumadditions:void_crop.2=Whatever I've done is beyond even the ancients. If my documentation is right - which it will be, considering the Void whispered most of it to me - then I should be able to quite literally grow Void Seeds. I can only hypothesize that these small crops can draw from the void much the same as flux rifts...<BR>I've also found that, besides the Void Seeds, the crops occasionally grow an actual fruit. Though, with the dark energies inside, I should probably be cautious about eating them... or should I? The Void would never treat me wrong...
 
 research_name.thaumadditions:essentia_pistol=Essentia Pistol
-research_stage.thaumadditions:essentia_pistol.1=WIP
-Dispersing salts is nice, but not very applicable in rather unexpected situations I might end up in. Making it portable would be a key requirement to success.
-research_stage.thaumadditions:essentia_pistol.2=WIP
-Using aura disperser as an accelerator is a smart decision. Essentia Pistol would be definitely the best option I could think of. Thaumium would help the essentia travel through the tube safer. I would require something that can hold liquid essentia - something that I already use when infusing items on runic matrix.
-##???
+research_stage.thaumadditions:essentia_pistol.1=Eating and dispersing salts has shown to be an effective way to apply effects - however, they require the target either eats seasoned food, or happens to be near the set-up machine. I'm curious how easy it would be to make it portable...
+research_stage.thaumadditions:essentia_pistol.2=By using an accelerator mechanism with my already-proven aura disperser, I've made a handheld version capable of shooting short bursts of liquid essentia. Sneak-right-clicking this in-hand lets me attach a jar of my chosen essentia, as well as adjusting the nozzle to spray up to 20 essentia at a time. Finding an offensive use may prove to be the actual challenge, as most of the essentia I've tested with is either useless or applies buffs - which isn't exactly what I want a pistol to do.
 
 research_name.thaumadditions:shadow_enchanter=Shadow Enchanter
-research_stage.thaumadditions:shadow_enchanter.1=WIP
-There are quite a few ways of infusing tools, weapons and armor with mundane magic, but it is very unstable and occasional. I'll invest the phenomen of enchanting a bit further, to, perhaps, push the limits a bit further.
-research_stage.thaumadditions:shadow_enchanter.2=WIP
-As it turned out, mithrillium not only allows to stabilize the enchating process and make it more predictable, but with some resonators attached, I might be able to select exactly what I need. Additional bonus of this all is xp-free enchanting! All I need now is only some essentia nearby. To start the process one's going to need to select all desired enchantments and activate the Shadow Enchanter with Caster's Gauntlet.
-##select enchants + levels, supply with liquid essentia, activate with casting tool
+research_stage.thaumadditions:shadow_enchanter.1=The magic of Enchanting is complex and unreliable. Perhaps I can replicate it in a way that lets me properly manipulate the enchantments?
+research_stage.thaumadditions:shadow_enchanter.2=It turns out that by channeling the correct essentia through some resonators, and crafting a table from Mithrillium, I can choose the exact enchantments I want, as well as their strength! The process is pleasingly simple, and now XP-free.<br>With an item in the table, I'll be able to select from all the possible enchantments it can have, as well as select their strength. After that, I need to supply the Shadow Enchanter with the correct essentia, and activate it with a casting tool. It's not the fastest, but the customizability is worth it. Plus, it seems in some cases I can go to slightly higher levels of enchantment than normal, the levels that would need an enchanted book to reach.
 
 research_name.thaumadditions:shadow_beam_staff=Shadow Beam Staff
-research_stage.thaumadditions:shadow_beam_staff.1=WIP
-Mithrillium holds so much power, that I could probably focus it into a beam!
-research_stage.thaumadditions:shadow_beam_staff.2=WIP
-Using vis resonator with mithrillium allows to harness the Alienis into a powerful laser. To charge it, I would need to use Essentia Sink to fill it up with Alienis essentia. Strangely enough, the laser seem to bounce from any surfaces that it hits.
-##bounces lasers off shiz, supposedly refilled in essentia sink
+research_stage.thaumadditions:shadow_beam_staff.1=Mithrillium has chosen to be amazing at channeling vis of all kinds. I believe the time has come to see how it reacts with Alienis - I've always found it to react in the most peculiar ways with the world around it.
+research_stage.thaumadditions:shadow_beam_staff.2=A mithrillium charge mechanism can be used to project Alienis through a vis resonator, focusing it into a powerful beam. I was... planning on using this in further tests, but the beam alone is unique enough to use: rather than hitting a block and dispersing, the Alienis beam is instantly repelled, bouncing off of several blocks before finally losing strength. This could prove to be a strong weapon, especially in narrow corridors.<BR>I've also designed an Essentia Sink to fill the Mithrillium chamber from. With this, I can fill it with the Alienis it uses to make its beams.
 
 research_name.thaumadditions:void_anvil=Void Anvil
-research_stage.thaumadditions:void_anvil.1=WIP
-Sometimes mundane anvils don't take long to break, that may be a bit frustrating. After studying void metal, I might try to cover the anvil with void metal. Perhaps that may improve lifespan of them!
-research_stage.thaumadditions:void_anvil.2=WIP
-Void metal seems to never stop impressing me, huh! I think this dark new anvil is pretty much infinite. But in exchance of damaging itself, it seems that every hit it gets, the aura pollutes by a little. I am going to need to be more careful next time!
-##anvil w/ no durability, creates flux
+research_stage.thaumadditions:void_anvil.1=Mundane Anvils constantly break and crack, unable to handle the constant hammering and heat. Though... the Void whispers to me again, reminding me how well Void Metal can withstand wear and tear...
+research_stage.thaumadditions:void_anvil.2=Giving in again to the whispers of the Void, I've created a reinforced anvil, primarily made of Void Metal. While it doesn't wear or crack, no matter how often it's used, I've registered flux readings after each bang of my hammer... a necessary price to pay, I suppose...
 
 research_name.thaumadditions:disenchant_fabric=Fabric of Disenchantment
-research_stage.thaumadditions:disenchant_fabric.1=WIP
-Enchanting items with mundane tools can be quite hard to alter, I will need a tool to let me take these enchantments and cast them back to (some) experience. Perhaps rubbing my tools with something soft yet magical?
-research_stage.thaumadditions:disenchant_fabric.2=WIP
-Enchanted Fabric along with salis mundus seem to provide a good and semi-reliable way of taking off the enchantments that I may have. The only catch here is the durability: the fabric seems to vanish after about 30 attempts. What a pain!
-##???
+research_stage.thaumadditions:disenchant_fabric.1=Enchanted items have proven to be very strongly bound to their magic. While the strength of this connection is fascinating, it's also annoying, leaving me with unwanted enchantments stuck to my tools. Its best I look into a way to remove them, hopefully in a way that refunds my XP.
+research_stage.thaumadditions:disenchant_fabric.2=I've created a cloth that essentially lets me 'clean' enchantments off of an item. By using Salis Mundus with some enchanted fabric, I've created a fabric that's extremely absorbent when it comes to magic.<BR>Combining this Fabric of Disenchantment with my tools lets me remove all enchantments, with a slight refund. However, the fabric can only absorb so much magical potential before it unravels, breaking in my hand - giving it about 30 uses.
 
 research_name.thaumadditions:crystal_bag=Crystal Bag
 research_stage.thaumadditions:crystal_bag.1=The amount of crystals I find myself working with can be insane, not even taking into account the different types of them. I need a new storage solution for them that's not only easy to access, but stores enough to be of use.
-research_stage.thaumadditions:crystal_bag.2=I've, uh, more than succeeded at storing large amounts of crystals. I'm still not quite sure what I did wrong - or, right, I guess. By infusing a dusty old foci pouch I had with some natural primal crystal clusters, primal esssentia, and some vacuos, I've created what can only be seen as the end-all of crystal storage.<BR>Not only does it have enough space for every crystal type, but it stores seemingly endless amounts of them! It also automatically picks up any off the floor nearby while in my hotbar, so I dont have to juggle with it to store them, AND it sorts them however I please!
+research_stage.thaumadditions:crystal_bag.2=I've, uh, more than succeeded at storing large amounts of crystals. I'm still not quite sure what I did wrong - or, right, I guess. By infusing a dusty old foci pouch I had with some natural primal crystal clusters, primal esssentia, and some vacuos, I've created what can only be seen as the end-all of crystal storage, a singularity.<BR>Not only does it have enough space for every crystal type, but it stores seemingly endless amounts of them! It also automatically picks up any off the floor nearby while in my hotbar, so I dont have to juggle with it to store them, AND it sorts them however I please!
 
 research_name.thaumadditions:blue_wolf=Blue Wolf
-research_stage.thaumadditions:blue_wolf=WIP
-Blue Wolves cannot be found. Their fur color seems very unnatural. Everything about them reminds me of that one thing... Anyway, these wolves are a good source of blue fur. It might be worth researching! It appears that these animals only come with male gender, thus cannot be bred.
-##use blue bone on wolf??
+research_stage.thaumadditions:blue_wolf=Taming a wolf with a specially crafted blue bone has... well... I dont know, actually. I'd like to say it summoned this, or let the wolf be used as a host, but I dont know what "this" even is. I can only assume its some ancient experiment from one of the first Thaumaturges, perhaps a pioneer in this line of Thaumaturgy.<BR>Aside from only being male, the wolves dont seem to have anything special about them. Their fur, however, is unique: while the reason for its pattern is beyond me, the magic that made it that way is very helpful to study.
 
 research_name.thaumadditions:the_beheader=The Beheader
-research_stage.thaumadditions:the_beheader.1=WIP
-Every trip to the nether annoys me. Running around the fortress exhausting yourself and looking everywhere to find wither skeletons, hoping to get their skulls. Perhaps I should stop smashing those piles of bones and be actually careful enough to harvest black skulls?
-research_stage.thaumadditions:the_beheader.2=WIP
-Beheading seems like the way to go here. Improving on my thaumium axe would be an excellent idea - it fuses quite well with mithrillium. The new Beheader is lighter than an average axe, and has a good damage, so this may be used when I'm out of swords again.
-## The Beheader - 11 attack damage, 20% behead chance.
+research_stage.thaumadditions:the_beheader.1=Collecting the heads of my opponents, while quite grim, is something I need to learn to do more efficiently: specifically, collecting wither skulls. Perhaps I can make a weapon that's specifically designed to cut cleanly through the neck?
+research_stage.thaumadditions:the_beheader.2=Fusing one of my old tools with mithrillium has given me a good base to work off, and with some trimming and sharpening of the metal and refitting the handle, it's perfectly fit for cutting through bone - most importantly, the neck. It's also still a good axe, if I need to chop trees with it; but cutting heads is its built purpose.
 
 research_name.thaumadditions:adaminite_sword=Adaminite Sword
-research_stage.thaumadditions:adaminite_sword.1=WIP
-While void metals posesses amazing powers, I have gone far in it's hierarchy, and I am confident that an upgrade to it is worthy.
-research_stage.thaumadditions:adaminite_sword.2=WIP
-Adaminite fuses well with it's own component, that's pretty smart. Though since adaminite is hard to apply, a lot of auxiliary essentia may be required. Adding some primal energy to it also makes this weapong a pretty much the best melee weapon any thaumaturge may posess. Or is it?
-##Adaminite Sword - 16 attack damage, unlimited uses.
+research_stage.thaumadditions:adaminite_sword.1=While the Void Metals power is beyond comprehension, I feel I should look into upgrading the tools I've made from it... if only to stop them from whispering darkness to me...
+research_stage.thaumadditions:adaminite_sword.2=As I've seen before, Adaminite fuses well with its component metal. Using lots of essentia to aid and enhance the infusion, I've made a sword thats quite powerful, but more importantly, seemingly unbreakable. This weapon may be one of the best I can come across...
 
 research_name.thaumadditions:mithminite_scythe=Mithminite Scythe
-research_stage.thaumadditions:mithminite_scythe.1=WIP
-Mithminite has proven to be quite important in few ways, but perhaps a tool could be made out of it?
-research_stage.thaumadditions:mithminite_scythe.2=WIP
-Unfortunately, just putting Mithminite on a tool handle is a bad idea - all rods that I've tried break very fast... Though it seems like making the entire tool out of mithminite with help of some auxiliary materials is possible, and the result may be a bit more deadly then I expected... Somehow the new scythe is able to shoot with phantom scythes that are also a bit more strong then mine. Oh well, might as well go and murder some enemies.
-##high damage + scythe projectiles
+research_stage.thaumadditions:mithminite_scythe.1=With the improvements the new metals have given me, I wonder if Mithminite, too, can be made into a tool/weapon to surpass all others?
+research_stage.thaumadditions:mithminite_scythe.2=Every test with the Mithminite has proven disappointing, but it always fell back to the handle more than the head. Nothing could stay together!<br>My new designs are quite literally made entirely of Mithminite, at least as the frame. By assembling each component and fitting them all together, I've made a combination melee and ranged weapon: swinging the scythe collects aural vis as you swing, which slides off the head and continues travelling, as if it was a flying blade. A very unique phenomenon, but one that'll prove to be very powerful for me.
 
 research_name.thaumadditions:void_elemental_hoe=Void Hoe of Growth
-research_stage.thaumadditions:void_elemental_hoe.1=WIP
-Researching void metal have hinted me at just how much void metal can restore by itself. What would happen if I upgrade my hoe of growth with it?
-research_stage.thaumadditions:void_elemental_hoe.2=WIP
-I wasn't able to attach void metal to the hoe, but I think that with some primordial energy it might be quite possible. "Void Hoe of Growth" is essentially the same as my Hoe of Growth, but it also restores itself using a little help from aura.
-##regens durability
+research_stage.thaumadditions:void_elemental_hoe.1=Looking at my Hoe of Growth, then back at the Void Metal in my hand, I'm filled with my darkest thought yet... what if I not only improved my infused tools, but imbued them with primordial powers... I'm scared of the power this thought may hold...
+research_stage.thaumadditions:void_elemental_hoe.2=Reinforcing my old Hoe of Growth with two Void Plates proved to be nothing but better... and yet, I pushed further. Using a primordial shard of any strength, I've given the Void the power of self-repairing. Drawing from the aura, the metal reshapes itself back to full strength.<LINE>Just for posteritys sake, I'll re-write the functions of the infused tools, of which these Void tools mimic:<BR>Aside from its newfound self-repairing, the Void Hoe of Growth functions the same as its lesser, hoeing a 3x3 plot of land, and sacrificing durability to imbue a crop with life and accelerate its growth. Crouching while using it will make it function as a normal hoe.
 
 research_name.thaumadditions:void_elemental_shovel=Void Shovel of the Earthmover
-research_stage.thaumadditions:void_elemental_shovel.1=WIP
-Digging out large patches of earth may be easier with shovel of the Earthmover, but sadly it is still no that durable. Surely void metal can be infused into an elemental shovel with a little help from outside this world...
-research_stage.thaumadditions:void_elemental_shovel.2=WIP
-Using the primordial pearl to merge my shovel with void metal gave a pretty fascinating result. The new void shovel of the Earthmover is now capable of using aura every so often to last longer, or forever. Really depends on how intensively I use it though.
-##regens durability
+research_stage.thaumadditions:void_elemental_shovel.1=The Shovel of the Earthmover, while great for terraforming, only has so much durability... maybe reinforcement with the Void Metal might not be too bad... right..?
+research_stage.thaumadditions:void_elemental_shovel.2=The Void Metal fit cleanly around the old shovel, but I've decided to push worryingly further. Infusing it with a primordial sample has given it a way to draw from the aura and mend the metal, making it effectively unbreakable.<LINE>Just for posteritys sake, I'll re-write the functions of the infused tools, of which these Void tools mimic:<BR>Alongside its self-repair, the Void Shovel of the Earthmover can dig in a 3x3 area, making it much faster for terraforming. Right-clicking with it will place a 3x3 of whatever block I'm looking at (as long as I have them in my inventory), and holding shift will show me where it will place. Pressing G will toggle how it will be placed, and holding Shift will make it function as a normal shovel.
 
 research_name.thaumadditions:void_elemental_pickaxe=Void Pickaxe of the Core
-research_stage.thaumadditions:void_elemental_pickaxe.1=WIP
-Mining is a chore that requires a lot of tools at all times. Pickaxe of the Core may not be as sturdy as some other materials, but some of it's other perks make it still a better solution. I am sure that the durability problem can be solved with a little trickery with void metal.
-research_stage.thaumadditions:void_elemental_pickaxe.2=WIP
-This seems wrong.. I think something went wrong, and getting this new Void pickaxe of the Core needs a hefty amount of Metallum. I suppose it may be because the pickaxe itself is very sensitive to metal?
-##???
+research_stage.thaumadditions:void_elemental_pickaxe.1=Mining is, by far, one of the most time and material intensive tasks. Even if it has major returns, I should always look to improve upon my methods... and, if I've learned anything, the Void will have my answers......
+research_stage.thaumadditions:void_elemental_pickaxe.2=Strengthening my Pickaxe of the Core with Void Plates has improved its durability, but I need more. The primordial sample will let it repair itself from the aura, making it near-invincible. I've also infused it with probably too much Metallum, making it more reactive with nearby metals.<LINE>Just for posteritys sake, I'll re-write the functions of the infused tools, of which these Void tools mimic:<BR>Besides its improved durability and its self-repair, the Void Pickaxe of the Core should mostly function as a normal pickaxe. However, it has two useful abilities: shift-right-clicking a block will let the pickaxe sound out any ores nearby, and the original infusion lets it mine pure clusters of ore.
 
 research_name.thaumadditions:void_elemental_axe=Void Axe of the Stream
-research_stage.thaumadditions:void_elemental_axe.1=WIP
-Cutting down forests of trees has been easier with Axe of the Stream due to it's ability to destroy the entire trunk. I may need to come up with an upgrade to make it a lot tougher. I am sure that using my beloved void metal is the way here!
-research_stage.thaumadditions:void_elemental_axe.2=WIP
-Putting together the usual primordial formula for infusing tools with void metal is not too hard, I think. What I know for sure, this is definitely a worthy upgrade as long as used properly.
-##???
+research_stage.thaumadditions:void_elemental_axe.1=The Axe of the Stream has proven very unique in its ability to cut the furthest logs first. If I combine this with the hunger of the Void Metal, I might be able to make a direct improvement...
+research_stage.thaumadditions:void_elemental_axe.2=Rather than reinforce the axe with Void Plates, this time I've actually entirely removed the old axe head and replaced it with a double-sided Void Metal head. Why? It looks cool.<BR>Infusing a primordial shard into the axe has let it draw from the nearby aura and, in a disturbing display, re-build any metal that's been worn or chipped off.<LINE>Just for posteritys sake, I'll re-write the functions of the infused tools, of which these Void tools mimic:<BR>Adding to the self repair, the Void Axe of the Stream will also cut the furthest log of a tree first, letting you essentially chop it from top to bottom, FROM the bottom. It will also draw any mined blocks towards it, and holding shift-rightclick will draw all dropped items to it. Crouching while chopping wood will act like a normal axe.
 
 research_name.thaumadditions:traveller_belt=Belt of the Traveller
 research_stage.thaumadditions:traveller_belt.1=While I've found the Boots of the Traveller are perfect for exploring, they fall short of actually protecting me from hazards or attackers. Perhaps if I could get the same effects while wearing something else...
 research_stage.thaumadditions:traveller_belt.2=I honestly don't know why I didn't just do it this way at the start: by doing the same ritual as the boots but on a belt, I've made a functionally-identical bauble that won't hinder the wearing of armor.
 
 research_name.thaumadditions:striding_belt=Striding Belt
-research_stage.thaumadditions:striding_belt.1=WIP
-Surely the all new and shiny Belt of the Traveller was a really good uplift from old fashioned boots, but should be possible to upgrade a little bit further.
-research_stage.thaumadditions:striding_belt.2=WIP
-Striding Belt seems to be a pretty sensible outcome of fusing the old belt with a lot of Aer and Motus essentia with some ember and feathers. This belt is capable of making leaps never seen before, while also increasing my walk speed slightly.
-##???
+research_stage.thaumadditions:striding_belt.1=Now that I've developed a much nicer Traveller bauble to wear, perhaps I should look into improving it?
+research_stage.thaumadditions:striding_belt.2=Infusing my Travelling belt has been nothing but an improvement: using amber to strengthen it and feathers to help encourage the infusion to work how I wanted, I've directly upgraded to the Striding Belt: this will let me jump higher and move faster than the previous belt!
 
 research_name.thaumadditions:meteor_belt=Belt of the Meteor
-research_stage.thaumadditions:meteor_belt.1=WIP
-I'm unsure if this is a rational move or not, but I *may* need another upgrade to the belt I currently possess... It's quite chaotic, sure, but I still need it!
-research_stage.thaumadditions:meteor_belt.2=WIP
-Belt of the Meteor is an explosive succeess... Quite literally. It's not as safe, and can cause harm to living beings if I am not careful enough with it. Infusing old belt with lots of Ignis and Motus, I've made a beast of a belt, that is surely at it's peak of power.
-##???
+research_stage.thaumadditions:meteor_belt.1=The simplicity of upgrading my Belt of the Traveller into the Striding Belt makes me wonder how simple another improvement might be. Aside from the base improvements, perhaps I can also reverse its ability to make me go up... and use it to come down.
+research_stage.thaumadditions:meteor_belt.2=The belt is an explosive success - quite literally. Aside from being a direct upgrade to the Striding Belt in speed and jump height, crouching in mid-air will let me propel down at high speeds - and, using some ignis, most of my impact will become an explosion around me. It's a small explosion that doesn't damage blocks, but it's a very good opener for combat with multiple enemies. However, it doesn't negate all fall damage, so I'd best not jump from too high without protection still.
+
 ############
 
 
