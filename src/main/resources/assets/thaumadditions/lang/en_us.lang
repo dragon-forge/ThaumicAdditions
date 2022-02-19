@@ -54,6 +54,7 @@ tile.thaumadditions:taintkin.name=Taintkin
 tile.thaumadditions:taintkin_lit.name=Taint o' Lantern
 tile.thaumadditions:chiseled_amber_block.name=Chiseled Amber Block
 tile.thaumadditions:chiseled_greatwood.name=Chiseled Greatwood
+tile.thaumadditions:crystal_lamp.name=Crystal Lamp
 
 ##########
 
@@ -447,6 +448,10 @@ research_stage.thaumadditions:striding_belt.2=Striding Belt seems to be a pretty
 research_name.thaumadditions:meteor_belt=Belt of the Meteor
 research_stage.thaumadditions:meteor_belt.1=I'm unsure if this is a rational move or not, but I *may* need another upgrade to the belt I currently possess... It's quite chaotic, sure, but I still need it!
 research_stage.thaumadditions:meteor_belt.2=Belt of the Meteor is an explosive succeess... Quite literally. It's not as safe, and can cause harm to living beings if I am not careful enough with it. Infusing old belt with lots of Ignis and Motus, I've made a beast of a belt, that is surely at it's peak of power.
+
+research_name.thaumadditions:crystal_lamp=Crystal Lamp
+research_stage.thaumadditions:crystal_lamp.1=I was thinking of making a light source based on vis crystals that I have. I should try channeling their energy into photons somehow. Perhaps Greatwood might be a good housing for it.
+research_stage.thaumadditions:crystal_lamp.2=Nitor encased in Greatwood seems to do the trick just nicely. The real miracle happens when I put the Vis Crystal into the lamp. It should start glowing. The new invention also seems to react to redstone, turning itself off when it gets powered.
 
 ############
 

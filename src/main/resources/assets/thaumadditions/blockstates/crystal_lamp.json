@@ -1,0 +1,13 @@
+{
+	"variants": {
+		"enabled=false,facing=north": { "model": "thaumadditions:crystal_lamp" },
+		"enabled=false,facing=south": { "model": "thaumadditions:crystal_lamp", "y": 180 },
+		"enabled=false,facing=west":  { "model": "thaumadditions:crystal_lamp", "y": 270 },
+		"enabled=false,facing=east":  { "model": "thaumadditions:crystal_lamp", "y": 90 },
+		
+		"enabled=true,facing=north": { "model": "thaumadditions:crystal_lamp_on" },
+		"enabled=true,facing=south": { "model": "thaumadditions:crystal_lamp_on", "y": 180 },
+		"enabled=true,facing=west":  { "model": "thaumadditions:crystal_lamp_on", "y": 270 },
+		"enabled=true,facing=east":  { "model": "thaumadditions:crystal_lamp_on", "y": 90 }
+	}
+}

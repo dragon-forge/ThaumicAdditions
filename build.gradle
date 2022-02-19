@@ -33,7 +33,7 @@ configFile.withReader {
 }
 
 version = "${config.mod_version}"
-group = "com.zeitheron.${config.mod_id}"
+group = "org.zeith.${config.mod_id}"
 archivesBaseName = "${config.mod_id_fancy}-${config.minecraft_version}"
 
 sourceCompatibility = targetCompatibility = "1.8"
@@ -62,28 +62,19 @@ repositories {
 		url = "https://raw.github.com/TehNut/temporary-maven-thing/master/maven"
 	}
     maven {
-        name = "CurseForge"
-        url = "https://minecraft.curseforge.com/api/maven/"
-    }
-    maven {
         name = "DragonForge"
-        url = "https://raw.github.com/dragon-forge/maven/master"
+        url = "https://maven.zeith.org"
     }
     maven {
         name = "jei"
         url =  "http://dvs1.progwml6.com/files/maven"
     }
-	maven {
-		name = "HWYLA"
-		url = "http://tehnut.info/maven"
-	}
 }
 
 dependencies {
-	deobfCompile "tk.zeitheron.HammerLib:HammerLib-${config.minecraft_version}:${config.hl_version}:deobf"
-	deobfCompile "visuals:Visuals-${config.minecraft_version}:2r:deobf"
-	deobfCompile "tk.zeitheron.ColoredLux:ColoredLux-${config.minecraft_version}:${config.cl_version}:deobf"
-	deobfCompile "mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2"
+	deobfCompile "org.zeith.HammerLib:HammerLib-${config.minecraft_version}:${config.hl_version}"
+	deobfCompile "org.zeith.Visuals:Visuals-${config.minecraft_version}:7r"
+	deobfCompile "org.zeith.ColoredLux:ColoredLux-${config.minecraft_version}:${config.cl_version}"
 	deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
 	
     deobfCompile "mezz.jei:jei_${config.minecraft_version}:${config.jei_version}:api"
@@ -118,11 +109,19 @@ task DownloadThaumicJEI(type: Download) {
     overwrite false
 }
 
+task DownloadHwyla(type: Download) {
+    src 'https://media.forgecdn.net/files/2568/751/Hwyla-1.8.26-B41_1.12.2.jar'
+    dest new File("libs/Hwyla-1.8.26-B41_1.12.2.jar")
+    overwrite false
+}
+
 task deobfJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'deobf'
     manifest {
         attributes 'FMLAT': "${config.mod_id}_at.cfg"
+        attributes 'FMLCorePlugin': 'org.zeith.thaumicadditions.asm.TARCore'
+        attributes 'FMLCorePluginContainsFMLMod': 'false'
     }
 }
 
@@ -131,12 +130,16 @@ task srcJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
 	manifest {
         attributes 'FMLAT': "${config.mod_id}_at.cfg"
+        attributes 'FMLCorePlugin': 'org.zeith.thaumicadditions.asm.TARCore'
+        attributes 'FMLCorePluginContainsFMLMod': 'false'
     }
 }
 
 jar {
 	manifest {
 		attributes 'FMLAT': "${config.mod_id}_at.cfg"
+        attributes 'FMLCorePlugin': 'org.zeith.thaumicadditions.asm.TARCore'
+        attributes 'FMLCorePluginContainsFMLMod': 'false'
 	}
 }
 
@@ -233,9 +236,10 @@ build.dependsOn signSrcJar
 tasks.build.dependsOn makeChangelog
 
 afterEvaluate {
-    tasks["eclipse"].dependsOn.add(DownloadThaumcraft);
+    tasks["idea"].dependsOn.add(DownloadThaumcraft);
+	tasks["idea"].dependsOn.add(DownloadThaumicJEI);
+	tasks["idea"].dependsOn.add(DownloadHwyla);
     tasks["build"].dependsOn.add(DownloadThaumcraft);
-	tasks["eclipse"].dependsOn.add(DownloadThaumicJEI);
 	tasks["curseforge${config.cf_project}"].dependsOn.add(signJar)
 	tasks["curseforge${config.cf_project}"].dependsOn.add(signDeobfJar)
 	tasks["curseforge${config.cf_project}"].dependsOn.add(signSrcJar)
