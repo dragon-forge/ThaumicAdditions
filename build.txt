@@ -7,8 +7,8 @@ git_commit=https://gitlab.com/DragonForge/ThaumicAdditions/commit/{{hash}}
 forge_version=14.23.5.2847
 minecraft_version=1.12.2
 mcp=stable_39
-hl_version=2.0.6.23
-cl_version=12.3.17
+hl_version=2.0.6.32
+cl_version=12.6.30
 jei_version=4.15.0.275
 
 #Mod info
@@ -16,6 +16,6 @@ trusted_build=false
 mod_id=thaumadds
 mod_id_fancy=ThaumicAdditions
 mod_name=Thaumic Additions: Reconstructed
-mod_version=12.6.7
+mod_version=12.7.8
 cf_project=232564
 release_type=release
