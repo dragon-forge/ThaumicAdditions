@@ -9,11 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.zeith.thaumicadditions.utils.BlockSideHelper;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.BiPredicate;
 import java.util.stream.Stream;
@@ -31,8 +28,7 @@ public class RecipesFluxConcentrator
 
 	public static void handle(IBlockState src, FluxConcentratorOutput target)
 	{
-		if(target == null)
-			throw new NullPointerException("target must not be null.");
+		Objects.requireNonNull(target, "target must not be null.");
 		HANDLERS.put(src, target);
 		PASS_IN_BLOCKS.add(src);
 	}
