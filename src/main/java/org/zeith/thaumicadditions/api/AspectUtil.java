@@ -1,20 +1,27 @@
 package org.zeith.thaumicadditions.api;
 
 import com.zeitheron.hammercore.utils.color.ColorHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.Constants.NBT;
 import org.zeith.thaumicadditions.init.BlocksTAR;
 import org.zeith.thaumicadditions.init.ItemsTAR;
 import org.zeith.thaumicadditions.items.ItemSealSymbol;
+import thaumcraft.api.ThaumcraftApi;
+import thaumcraft.api.ThaumcraftApi.EntityTags;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.internal.CommonInternals;
 import thaumcraft.api.items.ItemsTC;
 import thaumcraft.common.items.consumables.ItemPhial;
 import thaumcraft.common.items.resources.ItemCrystalEssence;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class AspectUtil
 {
@@ -162,5 +169,39 @@ public class AspectUtil
 	public static AspectList primals(int i)
 	{
 		return new AspectList().add(Aspect.AIR, i).add(Aspect.WATER, i).add(Aspect.ORDER, i).add(Aspect.ENTROPY, i).add(Aspect.FIRE, i).add(Aspect.EARTH, i);
+	}
+
+	public static Optional<EntityTags> getOrCreateEntityTags(Class<? extends Entity> type)
+	{
+		ResourceLocation key = EntityList.getKey(type);
+		if(key != null)
+		{
+			String oldName = EntityList.getTranslationName(key);
+			for(EntityTags et : CommonInternals.scanEntities)
+				if(et.entityName.equals(oldName))
+					return Optional.of(et);
+
+			EntityTags tags;
+			CommonInternals.scanEntities.add(tags = new EntityTags(oldName, new AspectList()));
+			return Optional.of(tags);
+		}
+
+		return Optional.empty();
+	}
+
+	public static AspectList getAspects(Class<? extends Entity> type)
+	{
+		AspectList tags = new AspectList();
+
+		ResourceLocation key = EntityList.getKey(type);
+		if(key != null)
+		{
+			String oldName = EntityList.getTranslationName(key);
+			for(EntityTags et : CommonInternals.scanEntities)
+				if(et.entityName.equals(oldName))
+					tags.add(et.aspects);
+		}
+
+		return tags;
 	}
 }

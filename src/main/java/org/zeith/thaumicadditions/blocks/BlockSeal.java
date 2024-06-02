@@ -45,6 +45,7 @@ import org.zeith.thaumicadditions.items.ItemSealSymbol;
 import org.zeith.thaumicadditions.tiles.TileSeal;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.items.ItemsTC;
+import thaumcraft.common.items.casters.ItemCaster;
 
 import java.util.List;
 
@@ -245,7 +246,7 @@ public class BlockSeal
 					old.onSealBreak();
 
 				return false;
-			} else if(!playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getItem() == ItemsTC.casterBasic && seal.getSymbol(0) != null)
+			} else if(!playerIn.getHeldItem(hand).isEmpty() && playerIn.getHeldItem(hand).getItem() instanceof ItemCaster && seal.getSymbol(0) != null)
 				for(int i = 2; i >= 0; --i)
 					if(seal.getSymbol(i) != null)
 						if(seal.getSymbol(i) != null)

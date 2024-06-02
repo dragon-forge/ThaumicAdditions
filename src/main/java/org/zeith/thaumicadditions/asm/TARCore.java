@@ -14,7 +14,7 @@ public class TARCore
 	public String[] getASMTransformerClass()
 	{
 		return new String[]{
-//				TARTransformer.class.getName()
+				TARTransformer.class.getName()
 		};
 	}
 

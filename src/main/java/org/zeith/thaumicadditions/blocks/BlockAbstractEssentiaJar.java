@@ -52,7 +52,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 	public static boolean spillEssentia;
 	public final int capacity;
 	public final BlockAbstractJarItem itemBlock = new BlockAbstractJarItem(this);
-
+	
 	public BlockAbstractEssentiaJar(Class<T> t, int capacity, String name)
 	{
 		super(Material.GLASS, t, name);
@@ -60,13 +60,13 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 		setHardness(0.3F);
 		setSoundType(SoundsTC.JAR);
 	}
-
+	
 	@Override
 	public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;
 	}
-
+	
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
 	{
@@ -86,44 +86,44 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 		}
 		return super.getPickBlock(state, target, world, pos, player);
 	}
-
+	
 	@Override
 	public SoundType getSoundType()
 	{
 		return SoundsTC.JAR;
 	}
-
+	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return new AxisAlignedBB(0.1875, 0.0, 0.1875, 0.8125, 0.75, 0.8125);
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getRenderLayer()
 	{
 		return BlockRenderLayer.TRANSLUCENT;
 	}
-
+	
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
-
+	
 	@Override
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		return this.getStateFromMeta(meta);
 	}
-
+	
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
@@ -131,7 +131,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 		super.breakBlock(worldIn, pos, state);
 		spillEssentia = true;
 	}
-
+	
 	@Override
 	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
@@ -144,7 +144,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 			super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
 		}
 	}
-
+	
 	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack)
 	{
@@ -156,7 +156,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 			super.harvestBlock(worldIn, player, pos, state, null, stack);
 		}
 	}
-
+	
 	private void spawnFilledJar(World world, BlockPos pos, IBlockState state, TileAbstractJarFillable te)
 	{
 		ItemStack drop = new ItemStack(this, 1, this.getMetaFromState(state));
@@ -172,7 +172,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 			Block.spawnAsEntity(world, pos, new ItemStack(ItemsTC.jarBrace));
 		Block.spawnAsEntity(world, pos, drop);
 	}
-
+	
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase ent, ItemStack stack)
 	{
@@ -198,27 +198,29 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 			}
 		}
 	}
-
+	
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		TileEntity te = world.getTileEntity(pos);
-		if(te != null && te instanceof TileAbstractJarFillable && !player.getHeldItem(hand).isEmpty())
+		TileAbstractJarFillable tile = Cast.cast(world.getTileEntity(pos), TileAbstractJarFillable.class);
+		if(tile == null) return false;
+		
+		ItemStack heldItem = player.getHeldItem(hand);
+		
+		if(!heldItem.isEmpty())
 		{
-			TileAbstractJarFillable tile = (TileAbstractJarFillable) te;
-
 			IJar jar;
-
-			ItemStack held = player.getHeldItem(hand);
+			
+			ItemStack held = heldItem;
 			if(held.getItem() == ItemsTC.phial)
 			{
 				ItemPhial ip = (ItemPhial) ItemsTC.phial;
-
+				
 				if(held.getItemDamage() == 0 && tile.amount >= 10)
 				{
 					if(world.isRemote)
 						return true;
-
+					
 					Aspect asp = tile.aspect;
 					if(asp != null && tile.takeFromContainer(asp, 10))
 					{
@@ -234,10 +236,10 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 				} else
 				{
 					AspectList al;
-					if((al = ip.getAspects(player.getHeldItem(hand))) != null && al.size() == 1)
+					if((al = ip.getAspects(heldItem)) != null && al.size() == 1)
 					{
 						Aspect aspect = al.getAspects()[0];
-						if(player.getHeldItem(hand).getItemDamage() != 0)
+						if(heldItem.getItemDamage() != 0)
 						{
 							if(tile.amount <= tile.getCapacity() - 10 && tile.doesContainerAccept(aspect))
 							{
@@ -247,7 +249,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 								{
 									world.markAndNotifyBlock(pos, world.getChunk(pos), state, state, 3);
 									tile.syncTile(true);
-									player.getHeldItem(hand).shrink(1);
+									heldItem.shrink(1);
 									if(!player.inventory.addItemStackToInventory(new ItemStack(ip, 1, 0)))
 										world.spawnEntity(new EntityItem(world, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, new ItemStack(ip, 1, 0)));
 									SoundUtil.playSoundEffect(world, SoundEvents.ITEM_BOTTLE_EMPTY.getRegistryName().toString(), pos, .5F, 1F, SoundCategory.PLAYERS);
@@ -276,139 +278,133 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 					world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundsTC.jar, SoundCategory.BLOCKS, 0.4f, 1.0f, false);
 					world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 0.5f, 1.0f + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.3f, false);
 				}
+			} else if(!tile.blocked && heldItem.getItem() == ItemsTC.jarBrace)
+			{
+				tile.blocked = true;
+				heldItem.shrink(1);
+				if(world.isRemote)
+					world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundsTC.key, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+				else
+					tile.markDirty();
 			}
-		} else if(te != null && te instanceof TileAbstractJarFillable && !((TileAbstractJarFillable) te).blocked && player.getHeldItem(hand).getItem() == ItemsTC.jarBrace)
+		} else if(player.isSneaking() && tile.aspectFilter != null && side.ordinal() == tile.facing)
 		{
-			((TileAbstractJarFillable) te).blocked = true;
-			player.getHeldItem(hand).shrink(1);
+			tile.aspectFilter = null;
 			if(world.isRemote)
-			{
-				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundsTC.key, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
-			} else
-			{
-				te.markDirty();
-			}
-		} else if(te != null && te instanceof TileAbstractJarFillable && player.isSneaking() && ((TileAbstractJarFillable) te).aspectFilter != null && side.ordinal() == ((TileAbstractJarFillable) te).facing)
-		{
-			((TileAbstractJarFillable) te).aspectFilter = null;
-			if(world.isRemote)
-			{
 				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundsTC.page, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
-			} else
-			{
+			else
 				world.spawnEntity(new EntityItem(world, pos.getX() + 0.5f + side.getXOffset() / 3.0f, pos.getY() + 0.5f, pos.getZ() + 0.5f + side.getZOffset() / 3.0f, new ItemStack(ItemsTC.label)));
-			}
-		} else if(te != null && te instanceof TileAbstractJarFillable && player.isSneaking() && player.getHeldItem(hand).isEmpty())
+		} else if(player.isSneaking() && heldItem.isEmpty())
 		{
-			if(((TileAbstractJarFillable) te).aspectFilter == null)
-			{
-				((TileAbstractJarFillable) te).aspect = null;
-			}
+			if(tile.aspectFilter == null) tile.aspect = null;
 			if(world.isRemote)
 			{
 				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundsTC.jar, SoundCategory.BLOCKS, 0.4f, 1.0f, false);
 				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 0.5f, 1.0f + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.3f, false);
 			} else
-				AuraHelper.polluteAura(world, pos, ((TileAbstractJarFillable) te).amount, true);
-			((TileAbstractJarFillable) te).amount = 0;
-			te.markDirty();
+				AuraHelper.polluteAura(world, pos, tile.amount, true);
+			tile.amount = 0;
+			tile.markDirty();
 		}
 		return true;
 	}
-
+	
 	@Override
 	public boolean applyLabel(EntityPlayer player, BlockPos pos, EnumFacing side, ItemStack labelstack)
 	{
-		TileEntity te = player.world.getTileEntity(pos);
-		if(te != null && te instanceof TileAbstractJarFillable && ((TileAbstractJarFillable) te).aspectFilter == null)
+		TileAbstractJarFillable tile = Cast.cast(player.world.getTileEntity(pos), TileAbstractJarFillable.class);
+		if(tile == null) return false;
+		
+		if(tile.aspectFilter == null)
 		{
-			if(((TileAbstractJarFillable) te).amount == 0 && ((IEssentiaContainerItem) labelstack.getItem()).getAspects(labelstack) == null)
+			if(tile.amount == 0 && ((IEssentiaContainerItem) labelstack.getItem()).getAspects(labelstack) == null)
 			{
 				return false;
 			}
-			if(((TileAbstractJarFillable) te).amount == 0 && ((IEssentiaContainerItem) labelstack.getItem()).getAspects(labelstack) != null)
+			if(tile.amount == 0 && ((IEssentiaContainerItem) labelstack.getItem()).getAspects(labelstack) != null)
 			{
-				((TileAbstractJarFillable) te).aspect = ((IEssentiaContainerItem) labelstack.getItem()).getAspects(labelstack).getAspects()[0];
+				tile.aspect = ((IEssentiaContainerItem) labelstack.getItem()).getAspects(labelstack).getAspects()[0];
 			}
 			this.onBlockPlacedBy(player.world, pos, player.world.getBlockState(pos), player, null);
-			((TileAbstractJarFillable) te).aspectFilter = ((TileAbstractJarFillable) te).aspect;
+			tile.aspectFilter = tile.aspect;
 			player.world.markAndNotifyBlock(pos, player.world.getChunk(pos), player.world.getBlockState(pos), player.world.getBlockState(pos), 3);
-			te.markDirty();
+			tile.markDirty();
 			player.world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundsTC.jar, SoundCategory.BLOCKS, 0.4f, 1.0f);
 			return true;
 		}
 		return false;
 	}
-
+	
 	@Override
 	public boolean hasComparatorInputOverride(IBlockState state)
 	{
 		return true;
 	}
-
+	
 	@Override
 	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
 	{
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile != null && tile instanceof TileAbstractJarFillable)
 		{
-			float r = ((TileAbstractJarFillable) tile).amount / 250.0f;
-			return MathHelper.floor(r * 14.0f) + (((TileAbstractJarFillable) tile).amount > 0 ? 1 : 0);
+			TileAbstractJarFillable jar = (TileAbstractJarFillable) tile;
+			float r = jar.amount / ((float) jar.getCapacity());
+			return MathHelper.floor(r * 14.0f) + (jar.amount > 0 ? 1 : 0);
 		}
 		return super.getComparatorInputOverride(state, world, pos);
 	}
-
+	
 	@Override
 	public ItemBlock getItemBlock()
 	{
 		return itemBlock;
 	}
-
+	
 	public static class BlockAbstractJarItem
 			extends ItemBlock
 			implements IEssentiaContainerItem
 	{
 		public final BlockAbstractEssentiaJar block;
-
+		
 		protected BlockAbstractJarItem(BlockAbstractEssentiaJar bl)
 		{
 			super(bl);
 			this.block = bl;
 		}
-
+		
 		@Override
 		public boolean showDurabilityBar(ItemStack stack)
 		{
 			return this.getAspects(stack) != null;
 		}
-
+		
 		@Override
 		public double getDurabilityForDisplay(ItemStack stack)
 		{
 			AspectList al = this.getAspects(stack);
 			return al == null ? 0.0 : 1 - al.visSize() / (double) block.capacity;
 		}
-
+		
 		@Override
 		public int getRGBDurabilityForDisplay(ItemStack stack)
 		{
 			AspectList al = this.getAspects(stack);
-
+			
 			if(al != null)
 			{
 				float percent = (float) getDurabilityForDisplay(stack);
 				int rgb = AspectUtil.getColor(al, true);
-
+				
 				float r = ColorHelper.getRed(rgb);
 				float g = ColorHelper.getGreen(rgb);
 				float b = ColorHelper.getBlue(rgb);
-
+				
 				return ColorHelper.packRGB(r, g, b);
 			}
-
+			
 			return super.getRGBDurabilityForDisplay(stack);
 		}
-
+		
 		@Override
 		public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand)
 		{
@@ -463,7 +459,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 			}
 			return EnumActionResult.PASS;
 		}
-
+		
 		@Override
 		public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState)
 		{
@@ -480,7 +476,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 			}
 			return b;
 		}
-
+		
 		@Override
 		@SideOnly(value = Side.CLIENT)
 		public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
@@ -493,7 +489,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 			}
 			super.addInformation(stack, worldIn, tooltip, flagIn);
 		}
-
+		
 		@Override
 		public AspectList getAspects(ItemStack itemstack)
 		{
@@ -505,14 +501,14 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 			}
 			return null;
 		}
-
+		
 		public Aspect getFilter(ItemStack itemstack)
 		{
 			if(itemstack.hasTagCompound())
 				return Aspect.getAspect(itemstack.getTagCompound().getString("AspectFilter"));
 			return null;
 		}
-
+		
 		@Override
 		public void setAspects(ItemStack itemstack, AspectList aspects)
 		{
@@ -520,7 +516,7 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 				itemstack.setTagCompound(new NBTTagCompound());
 			aspects.writeToNBT(itemstack.getTagCompound());
 		}
-
+		
 		@Override
 		public boolean ignoreContainedAspects()
 		{

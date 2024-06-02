@@ -47,6 +47,7 @@ minecraft {
     mappings = "${config.mcp}"
     makeObfSourceJar = false
 	replace 'required-after:hammercore', "required-after:hammercore@[${config.hl_version},)"
+	replace 'required-after:hammeranims', "required-after:hammeranims@[${config.ha_version},)"
     replace '@VERSION@', "${config.mod_version}"
 	replace 'DEV_BUILD', config.trusted_build == "true" ? "TRUSTED_BUILD" : "PUBLIC_BUILD"
 }
@@ -75,6 +76,7 @@ dependencies {
 	deobfCompile "org.zeith.HammerLib:HammerLib-${config.minecraft_version}:${config.hl_version}"
 	deobfCompile "org.zeith.Visuals:Visuals-${config.minecraft_version}:7r"
 	deobfCompile "org.zeith.ColoredLux:ColoredLux-${config.minecraft_version}:${config.cl_version}"
+	deobfCompile "org.zeith.hammeranims:HammerAnimations-${config.minecraft_version}:${config.ha_version}"
 	deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
 	
     deobfCompile "mezz.jei:jei_${config.minecraft_version}:${config.jei_version}:api"

@@ -31,7 +31,7 @@ import net.minecraft.world.chunk.storage.AnvilChunkLoader;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.zeith.thaumicadditions.ChatTA;
@@ -94,7 +94,7 @@ public class ItemEntityCell
 		if(sample.isEmpty() || !sample.hasTagCompound() || !sample.getTagCompound().hasKey("Entity", NBT.TAG_COMPOUND))
 			return null;
 		NBTTagCompound nbt = sample.getTagCompound().getCompoundTag("Entity");
-		EntityEntry entry = GameRegistry.findRegistry(EntityEntry.class).getValue(new ResourceLocation(nbt.getString("Id")));
+		EntityEntry entry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(nbt.getString("Id")));
 		if(entry != null)
 		{
 			Entity ent = entry.newInstance(world);
@@ -169,7 +169,7 @@ public class ItemEntityCell
 		if(isInCreativeTab(tab))
 		{
 			items.add(new ItemStack(this));
-			for(EntityEntry e : GameRegistry.findRegistry(EntityEntry.class).getValuesCollection())
+			for(EntityEntry e : ForgeRegistries.ENTITIES.getValuesCollection())
 				if(e.getEgg() != null && !ConfigsTAR.entityBlacklist.contains(e.getRegistryName()))
 					items.add(sample(e, null));
 		}
@@ -185,7 +185,7 @@ public class ItemEntityCell
 			return;
 		}
 		NBTTagCompound nbt = sample.getTagCompound().getCompoundTag("Entity");
-		EntityEntry entry = GameRegistry.findRegistry(EntityEntry.class).getValue(new ResourceLocation(nbt.getString("Id")));
+		EntityEntry entry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(nbt.getString("Id")));
 		if(entry != null)
 			tooltip.add(I18n.format("item.thaumadditions:dna_sample.entity") + ": " + I18n.format("entity." + entry.getName() + ".name"));
 	}
@@ -198,7 +198,7 @@ public class ItemEntityCell
 		if(sample.isEmpty() || !sample.hasTagCompound() || !sample.getTagCompound().hasKey("Entity", NBT.TAG_COMPOUND))
 			return 0xFFFFFF;
 		NBTTagCompound nbt = sample.getTagCompound().getCompoundTag("Entity");
-		EntityEntry entry = GameRegistry.findRegistry(EntityEntry.class).getValue(new ResourceLocation(nbt.getString("Id")));
+		EntityEntry entry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(nbt.getString("Id")));
 		if(entry != null && entry.getEgg() != null)
 		{
 			EntityEggInfo inf = entry.getEgg();

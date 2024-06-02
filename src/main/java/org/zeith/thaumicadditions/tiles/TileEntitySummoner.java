@@ -20,12 +20,11 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.storage.AnvilChunkLoader;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.zeith.thaumicadditions.api.AspectUtil;
 import org.zeith.thaumicadditions.init.ItemsTAR;
-import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.ThaumcraftApi.EntityTags;
 import thaumcraft.api.ThaumcraftApi.EntityTagsNBT;
 import thaumcraft.api.ThaumcraftApiHelper;
@@ -55,7 +54,7 @@ public class TileEntitySummoner
 		if(!sample.isEmpty() && sample.getItem() == ItemsTAR.ENTITY_CELL && sample.hasTagCompound() && sample.getTagCompound().hasKey("Entity", NBT.TAG_COMPOUND))
 		{
 			NBTTagCompound nbt = sample.getTagCompound().getCompoundTag("Entity");
-			EntityEntry entry = GameRegistry.findRegistry(EntityEntry.class).getValue(new ResourceLocation(nbt.getString("Id")));
+			EntityEntry entry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(nbt.getString("Id")));
 			NBTTagCompound tc = nbt.getCompoundTag("Data");
 
 			AspectList tags = new AspectList();
