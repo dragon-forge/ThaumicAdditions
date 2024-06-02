@@ -12,6 +12,10 @@ public class EssentiaHandlerMixin
 	public void apply(ClassNode node, boolean obfuscatedEnv)
 	{
 		findMethod(node, "addEssentia", null, this::addNPECheck);
+		findMethod(node, "drainEssentia", null, this::addNPECheck);
+		findMethod(node, "drainEssentiaWithConfirmation", null, this::addNPECheck);
+		findMethod(node, "findEssentia", null, this::addNPECheck);
+		findMethod(node, "canAcceptEssentia", null, this::addNPECheck);
 	}
 	
 	private void addNPECheck(MethodNode node)
