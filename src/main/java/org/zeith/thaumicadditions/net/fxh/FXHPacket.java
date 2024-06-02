@@ -49,18 +49,14 @@ public class FXHPacket
 	public IPacket executeOnClient(PacketContext net)
 	{
 		EntityPlayer ep = HammerCore.renderProxy.getClientPlayer();
-
-		switch(sub)
+		
+		if(sub == 0)
 		{
-			case 0:
-				TileAuraDisperser tad = Cast.cast(ep.world.getTileEntity(pos), TileAuraDisperser.class);
-				if(tad != null)
-					TAReconstructed.proxy.getFX().spawnAuraDisperserFX(tad);
-				break;
-
-			default:
-				break;
+			TileAuraDisperser tad = Cast.cast(ep.world.getTileEntity(pos), TileAuraDisperser.class);
+			if(tad != null)
+				TAReconstructed.proxy.getFX().spawnAuraDisperserFX(tad);
 		}
+		
 		return null;
 	}
 }

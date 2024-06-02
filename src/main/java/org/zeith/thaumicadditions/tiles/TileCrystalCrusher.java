@@ -8,7 +8,8 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import org.zeith.thaumicadditions.api.fx.ParticleHelperTAR;
+import net.minecraft.util.math.Vec3d;
+import org.zeith.thaumicadditions.TAReconstructed;
 import org.zeith.thaumicadditions.init.ItemsTAR;
 import org.zeith.thaumicadditions.inventory.container.ContainerCrystalCrusher;
 import org.zeith.thaumicadditions.inventory.gui.GuiCrystalCrusher;
@@ -54,7 +55,12 @@ public class TileCrystalCrusher
 			if(world.isRemote)
 			{
 				rotator.speedup(1F);
-				ParticleHelperTAR.spawnItemCrack(world, pos.getX() + .1 + getRNG().nextFloat() * .8, pos.getY() + 4 / 16D, pos.getZ() + .1 + getRNG().nextFloat() * .8, (getRNG().nextFloat() - getRNG().nextFloat()) * .3, 0, (getRNG().nextFloat() - getRNG().nextFloat()) * .3, inv.getStackInSlot(0));
+				
+				TAReconstructed.proxy.getFX().spawnItemCrack(world,
+						new Vec3d(pos.getX() + .1 + getRNG().nextFloat() * .8, pos.getY() + 4 / 16D, pos.getZ() + .1 + getRNG().nextFloat() * .8),
+						new Vec3d((getRNG().nextFloat() - getRNG().nextFloat()) * .3, 0, (getRNG().nextFloat() - getRNG().nextFloat()) * .3),
+						inv.getStackInSlot(0)
+				);
 			}
 			if(!world.isRemote && atTickRate(10))
 				sendChangesToNearby();

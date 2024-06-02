@@ -1,8 +1,7 @@
 package org.zeith.thaumicadditions.net.fxh;
 
 import com.zeitheron.hammercore.api.lighting.ColoredLightManager;
-import com.zeitheron.hammercore.net.IPacket;
-import com.zeitheron.hammercore.net.PacketContext;
+import com.zeitheron.hammercore.net.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
@@ -12,6 +11,7 @@ import org.zeith.thaumicadditions.client.fx.FXShadowBeam;
 import java.util.ArrayList;
 import java.util.List;
 
+@MainThreaded
 public class FXShadowBeamParticle
 		implements IPacket
 {

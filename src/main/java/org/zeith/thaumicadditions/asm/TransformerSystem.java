@@ -6,8 +6,7 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
-import org.zeith.thaumicadditions.asm.minmixin.Debug;
-import org.zeith.thaumicadditions.asm.minmixin.IMixin;
+import org.zeith.thaumicadditions.asm.minmixin.*;
 
 import java.io.*;
 import java.net.URL;
@@ -91,7 +90,8 @@ class TransformerSystem
 	
 	public void register(IMixin hook)
 	{
-		for(String target : hook.getTargets())
+		MinMixin mixin = hook.getClass().getAnnotation(MinMixin.class);
+		for(String target : mixin.value())
 			hooks.computeIfAbsent(target, k -> new ArrayList<>())
 					.add(hook);
 	}
