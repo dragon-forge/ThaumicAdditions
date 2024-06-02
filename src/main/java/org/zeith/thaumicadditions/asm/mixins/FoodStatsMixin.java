@@ -3,9 +3,9 @@ package org.zeith.thaumicadditions.asm.mixins;
 import net.minecraft.entity.player.EntityPlayer;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
-import org.zeith.thaumicadditions.asm.minmixin.*;
+import org.zeith.thaumicadditions.asm.minmixin.IMixin;
+import org.zeith.thaumicadditions.asm.minmixin.MinMixin;
 
-@Debug
 @MinMixin("net.minecraft.util.FoodStats")
 public class FoodStatsMixin
 		implements IMixin
