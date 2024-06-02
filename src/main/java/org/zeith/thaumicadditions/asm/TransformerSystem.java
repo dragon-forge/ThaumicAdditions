@@ -106,10 +106,15 @@ class TransformerSystem
 		return transformedCurrentClass;
 	}
 	
+	private boolean obf;
+	
 	public byte[] transform(String name, String transformedName, byte[] data)
 	{
 		currentClass = name;
 		transformedCurrentClass = transformedName;
+		
+		if(!obf)
+			obf = !name.equals(transformedName);
 		
 		byte[] origin = data;
 		boolean l = false;
@@ -122,7 +127,6 @@ class TransformerSystem
 				info("Transforming " + transformedName + " (" + name + ")...");
 			}
 			
-			boolean obf = !name.equals(transformedName);
 			ClassNode node = ObjectWebUtils.loadClass(data);
 			
 			currentClass = name;

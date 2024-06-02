@@ -424,9 +424,9 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 						return EnumActionResult.FAIL;
 					}
 					int amt = tile.amount;
-					if(this.getAspects(itemstack) != null && this.getAspects(itemstack).visSize() + amt > 250)
+					if(this.getAspects(itemstack) != null && this.getAspects(itemstack).visSize() + amt > block.capacity)
 					{
-						amt = Math.abs(this.getAspects(itemstack).visSize() - 250);
+						amt = Math.abs(this.getAspects(itemstack).visSize() - block.capacity);
 					}
 					if(amt <= 0)
 					{

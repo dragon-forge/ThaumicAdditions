@@ -2,8 +2,7 @@ package org.zeith.thaumicadditions.asm;
 
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.zeith.thaumicadditions.asm.minmixin.IMixin;
-import org.zeith.thaumicadditions.asm.mixins.EssentiaHandlerMixin;
-import org.zeith.thaumicadditions.asm.mixins.FoodStatsMixin;
+import org.zeith.thaumicadditions.asm.mixins.*;
 
 public class TARTransformer
 		implements IClassTransformer
@@ -14,6 +13,7 @@ public class TARTransformer
 	{
 		register(new EssentiaHandlerMixin());
 		register(new FoodStatsMixin());
+		register(new BlockSmelterAuxMixin());
 	}
 	
 	static void register(IMixin handle)
