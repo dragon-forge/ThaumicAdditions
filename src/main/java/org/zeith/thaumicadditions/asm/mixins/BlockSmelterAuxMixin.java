@@ -18,10 +18,7 @@ public class BlockSmelterAuxMixin
 	@Override
 	public void apply(ClassNode node, boolean obfuscatedEnv)
 	{
-		InsnList insn = new InsnList();
-		
 		String Block = obfuscatedEnv ? "Laow;" : "Lnet/minecraft/block/Block;";
-		insn.add(new MethodInsnNode(Opcodes.INVOKESTATIC, getClass().getCanonicalName().replace('.', '/'), "process", String.format("(%s)%s", Block, Block), false));
 		
 		for(MethodNode method : node.methods)
 		{
@@ -32,6 +29,8 @@ public class BlockSmelterAuxMixin
 					   && ((TypeInsnNode) i).desc.equals("thaumcraft/common/blocks/essentia/BlockSmelter");
 			}).ifPresent(i ->
 			{
+				InsnList insn = new InsnList();
+				insn.add(new MethodInsnNode(Opcodes.INVOKESTATIC, getClass().getCanonicalName().replace('.', '/'), "process", String.format("(%s)%s", Block, Block), false));
 				method.instructions.insertBefore(i, insn);
 			});
 		}

@@ -19,6 +19,7 @@ public interface IMixin
 			i = i.getNext();
 		}
 	}
+	
 	default Optional<AbstractInsnNode> findFirstInsnNode(InsnList insn, Predicate<AbstractInsnNode> filter)
 	{
 		AbstractInsnNode i = insn.getFirst();

@@ -17,8 +17,7 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.*;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
@@ -42,7 +41,7 @@ public class BlockArcaneCake
 		setDefaultState(blockState.getBaseState().withProperty(BITES, 0));
 		setTickRandomly(true);
 	}
-
+	
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
@@ -52,10 +51,10 @@ public class BlockArcaneCake
 			tile = new TileArcaneCake();
 			worldIn.setTileEntity(pos, tile);
 		}
-
+		
 		tile.aspects.add(EdibleAspect.getSalt(stack));
 	}
-
+	
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
@@ -73,54 +72,54 @@ public class BlockArcaneCake
 				}
 			}
 		}
-
+		
 		super.updateTick(worldIn, pos, state, rand);
 	}
-
+	
 	protected boolean eatCake(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
 		if(player instanceof FakePlayer)
 			return false;
-
+		
 		player.addStat(StatList.CAKE_SLICES_EATEN);
 		player.getFoodStats().addStats(4, 1F);
 		int i = state.getValue(BITES);
-
+		
 		TileArcaneCake cake = Cast.cast(worldIn.getTileEntity(pos), TileArcaneCake.class);
-
+		
 		if(cake != null)
 			EdibleAspect.execute(player, cake.aspects);
-
+		
 		if(i < 6)
 		{
 			worldIn.setBlockState(pos, state.withProperty(BITES, Integer.valueOf(i + 1)), 3);
-
+			
 			cake.validate();
 			worldIn.setTileEntity(pos, cake);
 		} else
 			worldIn.setBlockToAir(pos);
-
+		
 		return true;
 	}
-
+	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return CAKE_AABB[state.getValue(BITES)];
 	}
-
+	
 	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
@@ -132,89 +131,98 @@ public class BlockArcaneCake
 			return this.eatCake(worldIn, pos, state, playerIn) || itemstack.isEmpty();
 		}
 	}
-
+	
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		return super.canPlaceBlockAt(worldIn, pos) && canBlockStay(worldIn, pos);
 	}
-
+	
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
 		if(!canBlockStay(worldIn, pos))
 			worldIn.setBlockToAir(pos);
 	}
-
+	
 	private boolean canBlockStay(World worldIn, BlockPos pos)
 	{
 		return worldIn.getBlockState(pos.down()).getMaterial().isSolid();
 	}
-
+	
 	@Override
 	public int quantityDropped(Random random)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.AIR;
 	}
-
+	
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(BlocksTAR.CAKE);
 	}
-
+	
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return getDefaultState().withProperty(BITES, meta);
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BlockRenderLayer getRenderLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
 	}
-
+	
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		return state.getValue(BITES);
 	}
-
+	
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, BITES);
 	}
-
+	
 	@Override
 	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos)
 	{
 		return (7 - blockState.getValue(BITES)) * 2;
 	}
-
+	
 	@Override
 	public boolean hasComparatorInputOverride(IBlockState state)
 	{
 		return true;
 	}
-
+	
 	@Override
 	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
 	{
 		return BlockFaceShape.UNDEFINED;
 	}
-
+	
 	@Override
 	public Class<TileArcaneCake> getTileClass()
 	{
 		return TileArcaneCake.class;
+	}
+	
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+	{
+		TileArcaneCake cake = Cast.cast(world.getTileEntity(pos), TileArcaneCake.class);
+		if(cake != null)
+			return EdibleAspect.applyToFoodStack(new ItemStack(this), cake.aspects);
+		return super.getPickBlock(state, target, world, pos, player);
 	}
 }
