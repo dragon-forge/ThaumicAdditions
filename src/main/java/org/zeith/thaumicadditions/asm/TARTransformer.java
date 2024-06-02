@@ -7,16 +7,17 @@ import org.zeith.thaumicadditions.asm.mixins.*;
 public class TARTransformer
 		implements IClassTransformer
 {
-	static final TransformerSystem asm = new TransformerSystem();
+	protected final TransformerSystem asm = new TransformerSystem();
 	
-	static
+	public TARTransformer()
 	{
 		register(new EssentiaHandlerMixin());
 		register(new FoodStatsMixin());
 		register(new BlockSmelterAuxMixin());
+		register(new ScanSkyMixin());
 	}
 	
-	static void register(IMixin handle)
+	void register(IMixin handle)
 	{
 		asm.register(handle);
 	}

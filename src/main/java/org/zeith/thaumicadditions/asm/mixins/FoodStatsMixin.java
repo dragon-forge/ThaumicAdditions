@@ -22,20 +22,20 @@ public class FoodStatsMixin
 	
 	private void onUpdateMixin(MethodNode node, String EntityPlayer)
 	{
-		InsnList insn = new InsnList();
-		
-		insn.add(new VarInsnNode(Opcodes.ALOAD, 1));
-		insn.add(new VarInsnNode(Opcodes.ILOAD, 3));
-		insn.add(new MethodInsnNode(Opcodes.INVOKESTATIC,
-				FoodStatsMixin.class.getCanonicalName().replace('.', '/'),
-				"hasNaturalRegeneration",
-				"(" + EntityPlayer + "Z)Z",
-				false
-		));
-		insn.add(new VarInsnNode(Opcodes.ISTORE, 3));
-		
 		findFirstInsnNode(node.instructions, f -> f instanceof VarInsnNode && f.getOpcode() == Opcodes.ISTORE && ((VarInsnNode) f).var == 3).ifPresent(naturalRegeneration ->
 		{
+			InsnList insn = new InsnList();
+			
+			insn.add(new VarInsnNode(Opcodes.ALOAD, 1));
+			insn.add(new VarInsnNode(Opcodes.ILOAD, 3));
+			insn.add(new MethodInsnNode(Opcodes.INVOKESTATIC,
+					FoodStatsMixin.class.getCanonicalName().replace('.', '/'),
+					"hasNaturalRegeneration",
+					"(" + EntityPlayer + "Z)Z",
+					false
+			));
+			insn.add(new VarInsnNode(Opcodes.ISTORE, 3));
+			
 			node.instructions.insertBefore(naturalRegeneration.getNext(), insn);
 		});
 	}

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.IntFunction;
+import java.util.function.IntUnaryOperator;
 
 public class ShadowEnchantment
 {
@@ -20,11 +22,11 @@ public class ShadowEnchantment
 	private static final List<ShadowEnchantment> REGISTRY = new ArrayList<>();
 
 	public final Enchantment enchantment;
-	protected final ByIntFunction<AspectList> aspects;
+	protected final IntFunction<AspectList> aspects;
 	protected final ResourceLocation icon;
 	protected final String research;
 
-	public ShadowEnchantment(Enchantment enchantment, ByIntFunction<AspectList> aspects, ResourceLocation icon, String research)
+	public ShadowEnchantment(Enchantment enchantment, IntFunction<AspectList> aspects, ResourceLocation icon, String research)
 	{
 		this.enchantment = enchantment;
 		this.aspects = aspects;
@@ -43,7 +45,7 @@ public class ShadowEnchantment
 		ENCH_REGISTRY.put(ench.enchantment, ench);
 	}
 
-	public static void registerEnchantment(Enchantment ench, ByIntFunction<AspectList> aspects, ResourceLocation icon, @Nullable String research)
+	public static void registerEnchantment(Enchantment ench, IntFunction<AspectList> aspects, ResourceLocation icon, @Nullable String research)
 	{
 		registerEnchantment(new ShadowEnchantment(ench, aspects, icon, research));
 	}
@@ -83,28 +85,15 @@ public class ShadowEnchantment
 		if(research != null)
 		{
 			IPlayerKnowledge k = ThaumcraftCapabilities.getKnowledge(player);
-			if(k != null)
-				return k.isResearchComplete(research);
-			else
-				return false;
+			return k != null && k.isResearchComplete(research);
 		}
 		return true;
 	}
 
-	public interface Int2IntFunction
-	{
-		int applyAsInt(int i);
-	}
-
-	public interface ByIntFunction<T>
-	{
-		T apply(int i);
-	}
-
 	public static class AspectBuilder
-			implements ByIntFunction<AspectList>
+			implements IntFunction<AspectList>
 	{
-		private final Map<Aspect, Int2IntFunction> aspects = new HashMap<>();
+		private final Map<Aspect, IntUnaryOperator> aspects = new HashMap<>();
 
 		private AspectBuilder()
 		{
