@@ -1,9 +1,9 @@
 package org.zeith.thaumicadditions.init;
 
-import com.zeitheron.hammercore.annotations.MCFBus;
 import com.zeitheron.hammercore.lib.zlib.tuple.TwoTuple;
 import com.zeitheron.hammercore.lib.zlib.utils.Joiner;
 import com.zeitheron.hammercore.utils.OnetimeCaller;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -15,9 +15,11 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.commons.lang3.ArrayUtils;
 import org.zeith.thaumicadditions.InfoTAR;
 import org.zeith.thaumicadditions.TAReconstructed;
@@ -25,10 +27,13 @@ import org.zeith.thaumicadditions.api.*;
 import org.zeith.thaumicadditions.compat.ITARC;
 import org.zeith.thaumicadditions.config.ConfigsTAR;
 import org.zeith.thaumicadditions.entity.EntityBlueWolf;
+import org.zeith.thaumicadditions.entity.EntityChester;
+import org.zeith.thaumicadditions.entity.EntityMithminiteScythe;
 import org.zeith.thaumicadditions.items.seed.ItemVisSeeds;
 import org.zeith.thaumicadditions.tiles.TileAuraCharger;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectHelper;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.capabilities.IPlayerKnowledge.EnumKnowledgeType;
@@ -47,7 +52,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@MCFBus
+@EventBusSubscriber
 public class KnowledgeTAR
 {
 	public static final OnetimeCaller clInit = new OnetimeCaller(KnowledgeTAR::$);
@@ -99,6 +104,8 @@ public class KnowledgeTAR
 
 	private static void $init()
 	{
+		TAReconstructed.LOG.info("Registering scans and researches.");
+
 		registerScans();
 
 		ResearchCategory R_BASICS = ResearchCategories.getResearchCategory("BASICS");
@@ -154,7 +161,7 @@ public class KnowledgeTAR
 
 			new REB().setBaseInfo("TAR_BRASS_JAR", "brass_jar", 8, 5, new ItemStack(BlocksTAR.BRASS_JAR)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":brass_jar.1").setRequiredCraft(new ItemStack(BlocksTC.jarNormal)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, R_ALCHEMY, 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":brass_jar.2").setRecipes(InfoTAR.MOD_ID + ":brass_jar").build()).setParents("WARDEDJARS").buildAndRegister();
 			new REB().setBaseInfo("TAR_THAUMIUM_JAR", "thaumium_jar", 8, 3, new ItemStack(BlocksTAR.THAUMIUM_JAR)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":thaumium_jar.1").setRequiredCraft(new ItemStack(BlocksTAR.BRASS_JAR)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, R_ALCHEMY, 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":thaumium_jar.2").setRecipes(InfoTAR.MOD_ID + ":thaumium_jar").build()).setParents("TAR_BRASS_JAR").buildAndRegister();
-			new REB().setBaseInfo("TAR_ELDRITCH_JAR", "eldritch_jar", 8, 1, new ItemStack(BlocksTAR.ELDRITCH_JAR)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":eldritch_jar.1").setRequiredCraft(new ItemStack(BlocksTAR.THAUMIUM_JAR)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, R_ALCHEMY, 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":eldritch_jar.2").setRecipes(InfoTAR.MOD_ID + ":eldritch_jar").build()).setParents("TAR_THAUMIUM_JAR").buildAndRegister();
+			new REB().setBaseInfo("TAR_ELDRITCH_JAR", "eldritch_jar", 8, 1, new ItemStack(BlocksTAR.ELDRITCH_JAR)).setMeta(EnumResearchMeta.HIDDEN).setStages(new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":eldritch_jar.1").setRequiredCraft(new ItemStack(BlocksTAR.THAUMIUM_JAR)).setKnow(new Knowledge(EnumKnowledgeType.OBSERVATION, R_ALCHEMY, 1)).build(), new RSB().setText("research_stage." + InfoTAR.MOD_ID + ":eldritch_jar.2").setRecipes(InfoTAR.MOD_ID + ":eldritch_jar").build()).setParents("TAR_THAUMIUM_JAR", "BASEELDRITCH").buildAndRegister();
 
 			//
 
@@ -321,6 +328,15 @@ public class KnowledgeTAR
 					appendAspects(t.get1(), new AspectList().add(iter, t.get2()));
 			}
 		}
+
+		AspectUtil.getOrCreateEntityTags(EntityBlueWolf.class) // Blue wolf aspects
+				.ifPresent(bw -> bw.aspects.add(AspectUtil.getAspects(EntityWolf.class).add(CAELES, 5)));
+
+		AspectUtil.getOrCreateEntityTags(EntityChester.class) // Chester aspects
+				.ifPresent(bw -> bw.aspects.add(AspectHelper.getObjectAspects(new ItemStack(ItemsTAR.CHESTER))));
+
+		AspectUtil.getOrCreateEntityTags(EntityMithminiteScythe.class) // Mithminite scythe aspects (why?)
+				.ifPresent(bw -> bw.aspects.add(new AspectList().add(Aspect.MAGIC, 5).add(CAELES, 5)));
 	}
 
 	private static void appendAspects(String oreDict, AspectList toAdd)
@@ -368,8 +384,8 @@ public class KnowledgeTAR
 
 	private static String addIfPresent(String item, AspectList al, String prefix)
 	{
-		Item it = GameRegistry.findRegistry(Item.class).getValue(new ResourceLocation(item));
-		if(it != null)
+		Item it = ForgeRegistries.ITEMS.getValue(new ResourceLocation(item));
+		if(it != null && it != Items.AIR)
 		{
 			List<String> fullAspectList = Arrays.stream(al.getAspectsSortedByAmount()).map(a -> al.getAmount(a) + "x " + a.getName()).collect(Collectors.toList());
 			TAReconstructed.LOG.info("I " + prefix + "found " + item + " and I added some aspects to it! " + Joiner.on(", ").join(fullAspectList));
@@ -405,8 +421,10 @@ public class KnowledgeTAR
 	{
 	}
 
+	private static boolean doInitAfterTcReload = false;
+
 	@SubscribeEvent
-	public void commandEvent(CommandEvent ce)
+	public static void commandEvent(CommandEvent ce)
 	{
 		if(ce.getCommand() instanceof CommandThaumcraft && ce.getParameters().length > 0 && ce.getParameters()[0].equalsIgnoreCase("reload"))
 		{
@@ -421,8 +439,21 @@ public class KnowledgeTAR
 						e.printStackTrace();
 					}
 
-				$init();
+				doInitAfterTcReload = true;
 			}).start();
+		}
+	}
+
+	@SubscribeEvent
+	public static void serverTick(ServerTickEvent e)
+	{
+		if(e.phase == Phase.END)
+		{
+			if(doInitAfterTcReload)
+			{
+				$init();
+				doInitAfterTcReload = false;
+			}
 		}
 	}
 

@@ -2,7 +2,7 @@ package org.zeith.thaumicadditions.init;
 
 import com.zeitheron.hammercore.utils.OnetimeCaller;
 import net.minecraft.potion.Potion;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.zeith.thaumicadditions.effect.PotionSanityChecker;
 import org.zeith.thaumicadditions.effect.PotionSoundSensivity;
@@ -19,7 +19,7 @@ public class PotionsTAR
 
 	private static void $register()
 	{
-		IForgeRegistry<Potion> reg = GameRegistry.findRegistry(Potion.class);
+		IForgeRegistry<Potion> reg = ForgeRegistries.POTIONS;
 
 		for(Field f : PotionsTAR.class.getDeclaredFields())
 		{

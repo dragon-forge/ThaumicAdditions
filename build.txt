@@ -7,7 +7,8 @@ git_commit=https://gitlab.com/DragonForge/ThaumicAdditions/commit/{{hash}}
 forge_version=14.23.5.2847
 minecraft_version=1.12.2
 mcp=stable_39
-hl_version=2.0.6.32
+hl_version=12.2.50
+ha_version=12.2.33
 cl_version=12.6.30
 jei_version=4.15.0.275
 
