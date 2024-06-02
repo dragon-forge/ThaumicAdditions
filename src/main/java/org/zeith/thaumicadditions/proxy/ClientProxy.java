@@ -1,23 +1,17 @@
 package org.zeith.thaumicadditions.proxy;
 
 import com.google.common.base.Predicates;
-import com.zeitheron.hammercore.api.lighting.ColoredLight;
-import com.zeitheron.hammercore.api.lighting.ColoredLightManager;
-import com.zeitheron.hammercore.api.lighting.LightingBlacklist;
+import com.zeitheron.hammercore.api.lighting.*;
 import com.zeitheron.hammercore.client.render.item.ItemRenderingHandler;
 import com.zeitheron.hammercore.client.utils.UtilsFX;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockHorizontal;
 import com.zeitheron.hammercore.internal.blocks.base.IBlockOrientable;
 import com.zeitheron.hammercore.proxy.RenderProxy_Client;
-import com.zeitheron.hammercore.utils.NBTUtils;
 import com.zeitheron.hammercore.utils.color.ColorHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.particle.ParticleBreaking;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -30,13 +24,8 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumHandSide;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.gen.NoiseGeneratorSimplex;
 import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -55,26 +44,18 @@ import org.zeith.thaumicadditions.api.AspectUtil;
 import org.zeith.thaumicadditions.api.EdibleAspect;
 import org.zeith.thaumicadditions.api.animator.BaseItemAnimator;
 import org.zeith.thaumicadditions.api.animator.IAnimatableItem;
-import org.zeith.thaumicadditions.api.fx.TARParticleTypes;
 import org.zeith.thaumicadditions.blocks.BlockAbstractEssentiaJar.BlockAbstractJarItem;
 import org.zeith.thaumicadditions.blocks.BlockCrystal;
 import org.zeith.thaumicadditions.blocks.decor.BlockCrystalLamp;
 import org.zeith.thaumicadditions.blocks.plants.BlockVisCrop;
-import org.zeith.thaumicadditions.client.fx.FXColoredDrop;
 import org.zeith.thaumicadditions.client.isr.ItemRenderJar;
 import org.zeith.thaumicadditions.client.models.baked.BakedCropModel;
 import org.zeith.thaumicadditions.client.render.block.statemap.LambdaStateMapper;
-import org.zeith.thaumicadditions.client.render.entity.RenderBlueWolf;
-import org.zeith.thaumicadditions.client.render.entity.RenderChester;
-import org.zeith.thaumicadditions.client.render.entity.RenderEssentiaShot;
-import org.zeith.thaumicadditions.client.render.entity.RenderMithminiteScythe;
+import org.zeith.thaumicadditions.client.render.entity.*;
 import org.zeith.thaumicadditions.client.render.tile.*;
 import org.zeith.thaumicadditions.client.texture.TextureThaumonomiconBG;
 import org.zeith.thaumicadditions.compat.ITARC;
-import org.zeith.thaumicadditions.entity.EntityBlueWolf;
-import org.zeith.thaumicadditions.entity.EntityChester;
-import org.zeith.thaumicadditions.entity.EntityEssentiaShot;
-import org.zeith.thaumicadditions.entity.EntityMithminiteScythe;
+import org.zeith.thaumicadditions.entity.*;
 import org.zeith.thaumicadditions.events.ClientEventReactor;
 import org.zeith.thaumicadditions.init.BlocksTAR;
 import org.zeith.thaumicadditions.init.ItemsTAR;
@@ -90,8 +71,6 @@ import org.zeith.thaumicadditions.proxy.fx.FXHandlerClient;
 import org.zeith.thaumicadditions.tiles.*;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
-import thaumcraft.client.fx.ParticleEngine;
-import thaumcraft.client.fx.particles.FXGeneric;
 import thaumcraft.common.blocks.essentia.BlockJarItem;
 import thaumcraft.common.tiles.crafting.TileInfusionMatrix;
 import thaumcraft.common.tiles.devices.TileMirror;
@@ -270,53 +249,6 @@ public class ClientProxy
 	@Override
 	public void postInit()
 	{
-		Minecraft.getMinecraft().effectRenderer.registerParticle(TARParticleTypes.ITEMSTACK_CRACK.getParticleID(), (particleID, worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn, args) -> new ParticleColoredBreaking(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn, new ItemStack(NBTUtils.toNBT(args))));
-
-		Minecraft.getMinecraft().effectRenderer.registerParticle(TARParticleTypes.POLLUTION.getParticleID(), (particleID, w, x, y, z, x2, y2, z2, args) ->
-		{
-			FXGeneric fb = new FXGeneric(w, x, y, z, (w.rand.nextFloat() - w.rand.nextFloat()) * 0.005, 0.02, (w.rand.nextFloat() - w.rand.nextFloat()) * 0.005);
-			fb.setMaxAge(400 + w.rand.nextInt(100));
-			fb.setRBGColorF(1F, .3F, .9F);
-			fb.setAlphaF(.5F, 0);
-			fb.setGridSize(16);
-			fb.setParticles(56, 1, 1);
-			fb.setScale(2, 5);
-			fb.setLayer(1);
-			fb.setSlowDown(1);
-			fb.setWind(0.001);
-			fb.setRotationSpeed(w.rand.nextFloat(), w.rand.nextBoolean() ? -1 : 1);
-			ParticleEngine.addEffect(w, fb);
-			return null;
-		});
-
-		Minecraft.getMinecraft().effectRenderer.registerParticle(TARParticleTypes.COLOR_CLOUD.getParticleID(), (particleID, worldIn, x, y, z, x2, y2, z2, args) ->
-		{
-			int red = args.length > 1 ? args[0] : 255;
-			int green = args.length > 2 ? args[1] : 255;
-			int blue = args.length > 3 ? args[2] : 255;
-			int alpha = args.length > 4 ? args[3] : 0;
-			int a = 200 + worldIn.rand.nextInt(100);
-			FXGeneric fb = new FXGeneric(worldIn, x, y, z, (x2 - x) / (a * .9), (y2 - y) / (a * .9), (z2 - z) / (a * .9));
-			fb.setMaxAge(a);
-			fb.setRBGColorF(red / 255F, green / 255F, blue / 255F);
-			fb.setAlphaF(alpha == 0 ? .3F : alpha / 255F, 0);
-			fb.setGridSize(16);
-			fb.setParticles(56, 1, 1);
-			fb.setScale(2, 5);
-			fb.setLayer(0);
-			fb.setSlowDown(1);
-			fb.setNoClip(args.length > 5 && args[4] > 0);
-			fb.setRotationSpeed(worldIn.rand.nextFloat(), worldIn.rand.nextBoolean() ? -1 : 1);
-			ParticleEngine.addEffect(worldIn, fb);
-			return null;
-		});
-
-		Minecraft.getMinecraft().effectRenderer.registerParticle(TARParticleTypes.COLOR_DROP.getParticleID(), (particleID, worldIn, x, y, z, x2, y2, z2, args) ->
-		{
-			if(args.length < 1)
-				return null;
-			return new FXColoredDrop(worldIn, x, y, z, args[0]);
-		});
 	}
 
 	@Override
@@ -497,16 +429,5 @@ public class ClientProxy
 	public void viewSeal(TileSeal tile)
 	{
 		Minecraft.getMinecraft().addScheduledTask(() -> Minecraft.getMinecraft().displayGuiScreen(new GuiSealGlobe(tile)));
-	}
-
-	public static class ParticleColoredBreaking
-			extends ParticleBreaking
-	{
-		protected ParticleColoredBreaking(World worldIn, double posXIn, double posYIn, double posZIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, ItemStack stack)
-		{
-			super(worldIn, posXIn, posYIn, posZIn, xSpeedIn, ySpeedIn, zSpeedIn, stack.getItem(), stack.getItemDamage());
-			int color = TAReconstructed.proxy.getItemColor(stack, 0);
-			setRBGColorF(ColorHelper.getRed(color), ColorHelper.getGreen(color), ColorHelper.getBlue(color));
-		}
 	}
 }

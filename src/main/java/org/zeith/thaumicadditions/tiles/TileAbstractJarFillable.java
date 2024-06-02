@@ -11,9 +11,9 @@ public abstract class TileAbstractJarFillable
 		extends TileJarFillable
 {
 	int absCount;
-
+	
 	public abstract int getCapacity();
-
+	
 	@Override
 	public int addToContainer(Aspect tt, int am)
 	{
@@ -30,51 +30,37 @@ public abstract class TileAbstractJarFillable
 		markDirty();
 		return am;
 	}
-
+	
 	@Override
 	public int getSuctionAmount(EnumFacing loc)
 	{
-		if(this.amount < getCapacity())
-		{
-			if(this.aspectFilter != null)
-				return 64;
-			return 32;
-		}
-		return 0;
+		if(this.amount >= getCapacity()) return 0;
+		if(this.aspectFilter != null) return 64;
+		return 32;
 	}
-
+	
 	@Override
 	public void update()
 	{
 		if(!world.isRemote && ++absCount % 5 == 0 && amount < getCapacity())
 			fillAbstractJar();
 	}
-
+	
 	void fillAbstractJar()
 	{
 		TileEntity te = ThaumcraftApiHelper.getConnectableTile(this.world, this.pos, EnumFacing.UP);
-		if(te != null)
-		{
-			IEssentiaTransport ic = (IEssentiaTransport) te;
-			if(!ic.canOutputTo(EnumFacing.DOWN))
-			{
-				return;
-			}
-			Aspect ta = null;
-			if(this.aspectFilter != null)
-			{
-				ta = this.aspectFilter;
-			} else if(this.aspect != null && this.amount > 0)
-			{
-				ta = this.aspect;
-			} else if(ic.getEssentiaAmount(EnumFacing.DOWN) > 0 && ic.getSuctionAmount(EnumFacing.DOWN) < this.getSuctionAmount(EnumFacing.UP) && this.getSuctionAmount(EnumFacing.UP) >= ic.getMinimumSuction())
-			{
-				ta = ic.getEssentiaType(EnumFacing.DOWN);
-			}
-			if(ta != null && ic.getSuctionAmount(EnumFacing.DOWN) < this.getSuctionAmount(EnumFacing.UP))
-			{
-				this.addToContainer(ta, ic.takeEssentia(ta, 1, EnumFacing.DOWN));
-			}
-		}
+		if(te == null) return;
+		
+		IEssentiaTransport ic = (IEssentiaTransport) te;
+		if(!ic.canOutputTo(EnumFacing.DOWN)) return;
+		
+		Aspect ta = null;
+		if(this.aspectFilter != null) ta = this.aspectFilter;
+		else if(this.aspect != null && this.amount > 0) ta = this.aspect;
+		else if(ic.getEssentiaAmount(EnumFacing.DOWN) > 0 && ic.getSuctionAmount(EnumFacing.DOWN) < this.getSuctionAmount(EnumFacing.UP) && this.getSuctionAmount(EnumFacing.UP) >= ic.getMinimumSuction())
+			ta = ic.getEssentiaType(EnumFacing.DOWN);
+		
+		if(ta != null && ic.getSuctionAmount(EnumFacing.DOWN) < this.getSuctionAmount(EnumFacing.UP))
+			this.addToContainer(ta, ic.takeEssentia(ta, 1, EnumFacing.DOWN));
 	}
 }

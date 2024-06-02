@@ -4,59 +4,60 @@ import com.zeitheron.hammercore.utils.SoundUtil;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.network.datasync.*;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.zeith.thaumicadditions.TAReconstructed;
 import org.zeith.thaumicadditions.api.AspectUtil;
 import org.zeith.thaumicadditions.api.EdibleAspect;
-import org.zeith.thaumicadditions.api.fx.TARParticleTypes;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+
+import java.awt.*;
 
 public class EntityEssentiaShot
 		extends EntityThrowable
 {
 	public static final DataParameter<Integer> COLOR = EntityDataManager.createKey(EntityEssentiaShot.class, DataSerializers.VARINT);
-
+	
 	public final AspectList aspects;
-
+	
 	public EntityEssentiaShot(World worldIn, EntityLivingBase throwerIn, AspectList aspects)
 	{
 		super(worldIn, throwerIn);
 		this.aspects = aspects;
 	}
-
+	
 	public EntityEssentiaShot(World worldIn)
 	{
 		super(worldIn);
 		this.aspects = new AspectList();
 	}
-
+	
 	@Override
 	protected void entityInit()
 	{
 		dataManager.register(COLOR, -1);
 	}
-
+	
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
 		aspects.writeToNBT(compound);
 	}
-
+	
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
 		aspects.readFromNBT(compound);
 	}
-
+	
 	@Override
 	public void onUpdate()
 	{
@@ -66,15 +67,15 @@ public class EntityEssentiaShot
 		else
 			dataManager.set(COLOR, AspectUtil.getColor(aspects, true));
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	public void particle()
 	{
 		int color = dataManager.get(COLOR);
 		if(color != -1)
-			world.spawnParticle(TARParticleTypes.COLOR_DROP, posX, posY, posZ, 0, 0, 0, color);
+			TAReconstructed.proxy.getFX().spawnColorDrop(world, getPositionVector(), Vec3d.ZERO, new Color(color));
 	}
-
+	
 	@Override
 	protected void onImpact(RayTraceResult result)
 	{
