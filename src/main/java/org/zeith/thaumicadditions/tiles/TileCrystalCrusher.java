@@ -46,8 +46,11 @@ public class TileCrystalCrusher
 		if(world.getRedstonePowerFromNeighbors(pos) > 0)
 			return;
 		
-		if(crushes <= 0 && EssentiaHandler.drainEssentia(this, Aspect.MECHANISM, null, 12, 1))
+		if(!world.isRemote && crushes <= 0 && EssentiaHandler.drainEssentia(this, Aspect.MECHANISM, null, 12, 1))
+		{
 			crushes += 3;
+			sync();
+		}
 		
 		if(canCraft())
 		{
