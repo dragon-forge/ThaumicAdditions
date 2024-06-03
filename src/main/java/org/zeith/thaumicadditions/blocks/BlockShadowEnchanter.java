@@ -14,6 +14,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.zeith.thaumicadditions.api.data.datas.GauntletData;
 import org.zeith.thaumicadditions.tiles.TileShadowEnchanter;
 import thaumcraft.common.items.casters.ItemCaster;
 
@@ -38,7 +39,7 @@ public class BlockShadowEnchanter
 		if(ench != null)
 		{
 			ItemStack stack = playerIn.getHeldItem(hand);
-			if(!stack.isEmpty() && stack.getItem() instanceof ItemCaster)
+			if(!stack.isEmpty() && GauntletData.isGauntlet(stack))
 			{
 				if(!ench.infusing)
 					ench.startCraft();

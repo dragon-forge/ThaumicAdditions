@@ -37,4 +37,9 @@ public interface ISimpleDataProvider<BASE>
 			}
 		};
 	}
+	
+	static <BASE, OUT> ISimpleDataProvider<BASE> stable(DataType<OUT> singleType, OUT value)
+	{
+		return simple(singleType, base -> value);
+	}
 }
