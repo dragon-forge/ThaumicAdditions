@@ -1,12 +1,11 @@
 package org.zeith.thaumicadditions.utils;
 
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.function.*;
 
 public class ListHelper
 {
-	public static <K> int replace(List<K> list, Predicate<K> matcher, Function<K, K> replacer)
+	public static <K> int replace(List<K> list, Predicate<K> matcher, UnaryOperator<K> replacer)
 	{
 		int c = 0;
 		for(int i = 0; i < list.size(); ++i)
