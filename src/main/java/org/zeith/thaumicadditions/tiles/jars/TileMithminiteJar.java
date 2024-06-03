@@ -13,7 +13,13 @@ public class TileMithminiteJar
 	{
 		return 4005;
 	}
-
+	
+	@Override
+	public boolean voidsExcess()
+	{
+		return true;
+	}
+	
 	@Override
 	public int addToContainer(Aspect tt, int am)
 	{

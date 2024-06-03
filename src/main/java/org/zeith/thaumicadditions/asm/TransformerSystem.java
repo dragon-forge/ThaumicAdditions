@@ -7,6 +7,8 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.zeith.thaumicadditions.asm.minmixin.*;
+import org.zeith.thaumicadditions.asm.minmixin.annotations.Debug;
+import org.zeith.thaumicadditions.asm.minmixin.annotations.MinMixin;
 
 import java.io.*;
 import java.net.URL;
@@ -18,7 +20,7 @@ import java.util.concurrent.Executors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-class TransformerSystem
+public class TransformerSystem
 {
 	static final Logger LOG = LogManager.getLogger("ThaumicAdditionsCore");
 	private final Map<String, List<IMixin>> hooks = new HashMap<>();
@@ -153,7 +155,7 @@ class TransformerSystem
 		return data;
 	}
 	
-	static class ObjectWebUtils
+	public static class ObjectWebUtils
 	{
 		public static ClassNode loadClass(byte[] data)
 		{

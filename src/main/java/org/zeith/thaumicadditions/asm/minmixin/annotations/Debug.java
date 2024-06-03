@@ -1,4 +1,4 @@
-package org.zeith.thaumicadditions.asm.minmixin;
+package org.zeith.thaumicadditions.asm.minmixin.annotations;
 
 import java.lang.annotation.*;
 

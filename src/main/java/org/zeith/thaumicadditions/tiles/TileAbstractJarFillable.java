@@ -14,6 +14,11 @@ public abstract class TileAbstractJarFillable
 	
 	public abstract int getCapacity();
 	
+	public boolean voidsExcess()
+	{
+		return false;
+	}
+	
 	@Override
 	public int addToContainer(Aspect tt, int am)
 	{

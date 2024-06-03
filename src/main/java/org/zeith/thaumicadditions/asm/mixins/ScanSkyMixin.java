@@ -7,9 +7,7 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 import org.zeith.thaumicadditions.api.data.datas.ScribingToolsData;
 import org.zeith.thaumicadditions.asm.minmixin.IMixin;
-import org.zeith.thaumicadditions.asm.minmixin.MinMixin;
-import org.zeith.thaumicadditions.init.ItemsTAR;
-import thaumcraft.api.items.IScribeTools;
+import org.zeith.thaumicadditions.asm.minmixin.annotations.MinMixin;
 
 @MinMixin("thaumcraft.common.lib.research.ScanSky")
 public class ScanSkyMixin
