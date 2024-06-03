@@ -29,20 +29,20 @@ public class TileCrystalBore
 	public EnumFacing oldFace;
 	// VERY, VERY BORING!
 	public int boring = 0;
-
+	
 	{
 		rotator.degree = new Random().nextFloat() * 360;
 	}
-
+	
 	@Override
 	public void tick()
 	{
 		rotator.friction = .25F;
 		rotator.update();
-
+		
 		oldFace = face;
 		face = WorldUtil.getFacing(loc.getState());
-
+		
 		if(canBore())
 		{
 			boolean isDraneable = AuraHandler.drainVis(world, pos, 1F, true) >= .02F;
@@ -50,30 +50,34 @@ public class TileCrystalBore
 			{
 				++boring;
 				rotator.speedup(.5F);
-				AuraHandler.drainVis(world, pos, .02F, false);
+				if(!world.isRemote)
+					AuraHandler.drainVis(world, pos, .02F, false);
 				if(world.isRemote && atTickRate(3))
 				{
 					int i = 4;
 					double j = .8;
-
+					
 					for(int a = 0; a < i; ++a)
 					{
 						double x = getPos().getX() - face.getXOffset() / 1.6 + .5 + world.rand.nextGaussian() * .02500000037252903;
 						double y = getPos().getY() - face.getYOffset() / 1.6 + .5 + world.rand.nextGaussian() * .02500000037252903;
 						double z = getPos().getZ() - face.getZOffset() / 1.6 + .5 + world.rand.nextGaussian() * .02500000037252903;
 						FXDispatcher.INSTANCE.drawCurlyWisp(x + face.getXOffset() / 2., y + face.getYOffset() / 2., z + face.getZOffset() / 2., face.getXOffset() / 25. * j + world.rand.nextGaussian() * .0032999999821186066, face.getYOffset() / 25. * j + world.rand.nextGaussian() * .0032999999821186066, face.getZOffset() / 25. * j + world.rand.nextGaussian() * .0032999999821186066, .5F, .25F, .75F, 1F, .25F, null, 1, 0, a % 3 * 2);
-
+						
 						x = getPos().getX() - face.getXOffset() / 1.6 + .5 + world.rand.nextGaussian() * .02500000037252903;
 						y = getPos().getY() - face.getYOffset() / 1.6 + .5 + world.rand.nextGaussian() * .02500000037252903;
 						z = getPos().getZ() - face.getZOffset() / 1.6 + .5 + world.rand.nextGaussian() * .02500000037252903;
-						FXDispatcher.INSTANCE.drawCurlyWisp(x, y, z, (double) ((float) face.getXOffset() / 25.0f * (float) j) + this.world.rand.nextGaussian() * 0.0020000000949949026, (double) ((float) face.getYOffset() / 25.0f * (float) j) + this.world.rand.nextGaussian() * 0.0020000000949949026, (double) ((float) face.getZOffset() / 25.0f * (float) j) + this.world.rand.nextGaussian() * 0.0020000000949949026, 0.25f, this.world.rand.nextFloat(), this.world.rand.nextFloat(), this.world.rand.nextFloat(), 0.5f, null, 1, 0, 1 + a % 3 * 2);
+						FXDispatcher.INSTANCE.drawCurlyWisp(x, y, z,
+								(double) ((float) face.getXOffset() / 25.0f * (float) j) + this.world.rand.nextGaussian() * 0.0020000000949949026,
+								(double) ((float) face.getYOffset() / 25.0f * (float) j) + this.world.rand.nextGaussian() * 0.0020000000949949026, (double) ((float) face.getZOffset() / 25.0f * (float) j) + this.world.rand.nextGaussian() * 0.0020000000949949026, 0.25f, this.world.rand.nextFloat(), this.world.rand.nextFloat(), this.world.rand.nextFloat(), 0.5f, null, 1, 0, 1 + a % 3 * 2
+						);
 					}
-
+					
 					if(atTickRate(3))
 						SoundUtil.playSoundEffect(loc, "thaumcraft:grind", .5F, 1F, SoundCategory.BLOCKS);
 				}
 			}
-
+			
 			if(boring >= 100)
 			{
 				boring = 0;
@@ -99,13 +103,13 @@ public class TileCrystalBore
 			}
 		}
 	}
-
+	
 	public boolean canBore()
 	{
 		IBlockState state = world.getBlockState(pos.offset(face));
 		return getLocation().getRedstone() == 0 && state.getBlock() instanceof BlockCrystal && state.getValue(BlockCrystal.SIZE) >= minCrystals;
 	}
-
+	
 	public ItemStack bore()
 	{
 		IBlockState state = world.getBlockState(pos.offset(face));
@@ -120,13 +124,13 @@ public class TileCrystalBore
 		}
 		return ItemStack.EMPTY;
 	}
-
+	
 	@Override
 	public void writeNBT(NBTTagCompound nbt)
 	{
 		nbt.setInteger("MinCrystals", minCrystals);
 	}
-
+	
 	@Override
 	public void readNBT(NBTTagCompound nbt)
 	{

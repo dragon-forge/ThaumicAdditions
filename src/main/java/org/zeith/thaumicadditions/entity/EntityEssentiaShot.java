@@ -6,8 +6,7 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.*;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -72,8 +71,23 @@ public class EntityEssentiaShot
 	public void particle()
 	{
 		int color = dataManager.get(COLOR);
-		if(color != -1)
-			TAReconstructed.proxy.getFX().spawnColorDrop(world, getPositionVector(), Vec3d.ZERO, new Color(color));
+		if(color == -1) return;
+		
+		Vec3d prev = new Vec3d(prevPosX, prevPosY, prevPosZ);
+		Vec3d cur = getPositionVector();
+		
+		Vec3d vel = new Vec3d(motionX, motionY, motionZ);
+		
+		int seg = 4;
+		for(int i = 0; i <= seg; i++)
+		{
+			float slide = i / (float) seg;
+			TAReconstructed.proxy.getFX().spawnColorDrop(world, new Vec3d(
+					MathHelper.clampedLerp(prevPosX, posX, slide),
+					MathHelper.clampedLerp(prevPosY, posY, slide),
+					MathHelper.clampedLerp(prevPosZ, posZ, slide)
+			), vel, new Color(color));
+		}
 	}
 	
 	@Override

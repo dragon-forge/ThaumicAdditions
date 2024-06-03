@@ -29,97 +29,97 @@ import thaumcraft.common.lib.events.EssentiaHandler;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TileShadowEnchanter
 		extends TileSyncableTickable
 		implements ITileDroppable
 {
 	public final InventoryDummy items = new InventoryDummy(2);
-
+	
 	public List<EnchantmentData> enchants = new ArrayList<>();
-
+	
 	public boolean infusing = false;
 	public AspectList pending;
 	public int craftTimer;
-
+	
 	public int brainCD;
-
+	
 	@Override
 	public void tick()
 	{
 		enchants.removeIf(e -> !isAplicable(e.enchantment));
-
-		if(infusing && items.getStackInSlot(1).isEmpty())
+		
+		if(!infusing || !items.getStackInSlot(1).isEmpty())
+			return;
+		
+		if(pending == null || items.getStackInSlot(0).isEmpty())
 		{
-			if(pending == null || items.getStackInSlot(0).isEmpty())
-			{
-				if(!world.isRemote)
-					SoundUtil.playSoundEffect(world, SoundsTC.craftfail.getRegistryName().toString(), pos, 1F, 1F, SoundCategory.BLOCKS);
-				infusing = false;
-				craftTimer = 0;
-				enchants.clear();
-				pending = null;
-				sendChangesToNearby();
-				return;
-			} else if(!world.isRemote)
-			{
-				++craftTimer;
-				if(brainCD > 0)
-					--brainCD;
-				if(brainCD <= 0)
-				{
-					SoundUtil.playSoundEffect(world, SoundsTC.brain.getRegistryName().toString(), pos, 0.2F, 1F, SoundCategory.BLOCKS);
-					brainCD += 35 + getRNG().nextInt(50);
-				}
-				if(pending.visSize() == 0)
-				{
-					ItemStack stack = items.getStackInSlot(0).copy();
-					enchants.forEach(ed -> stack.addEnchantment(ed.enchantment, ed.enchantmentLevel));
-					items.setInventorySlotContents(1, stack);
-					items.getStackInSlot(0).shrink(1);
-					SoundUtil.playSoundEffect(world, SoundsTC.poof.getRegistryName().toString(), pos, 1F, 1F, SoundCategory.BLOCKS);
-					enchants.clear();
-					infusing = false;
-					craftTimer = 0;
-					sendChangesToNearby();
-					return;
-				} else
-				{
-					Aspect a = pending.getAspectsSortedByName()[0];
-					if(atTickRate(6))
-					{
-						if(EssentiaHandler.drainEssentia(this, a, null, 12, 1))
-						{
-							pending.remove(a, 1);
-							HCNet.INSTANCE.sendToAllAround(PacketShadowFX.create(this, a.getColor()), getSyncPoint(100));
-							sendChangesToNearby();
-							brainCD = Math.min(brainCD, 50);
-						} else
-							brainCD = 10000;
-					}
-				}
-			}
+			if(!world.isRemote)
+				SoundUtil.playSoundEffect(world, SoundsTC.craftfail.getRegistryName().toString(), pos, 1F, 1F, SoundCategory.BLOCKS);
+			infusing = false;
+			craftTimer = 0;
+			enchants.clear();
+			pending = null;
+			sendChangesToNearby();
+			return;
 		}
+		
+		if(world.isRemote) return;
+		
+		++craftTimer;
+		
+		if(brainCD > 0) --brainCD;
+		if(brainCD <= 0)
+		{
+			SoundUtil.playSoundEffect(world, SoundsTC.brain.getRegistryName().toString(), pos, 0.2F, 1F, SoundCategory.BLOCKS);
+			brainCD += 35 + getRNG().nextInt(50);
+		}
+		
+		if(pending.visSize() == 0)
+		{
+			ItemStack stack = items.getStackInSlot(0).copy();
+			enchants.forEach(ed -> stack.addEnchantment(ed.enchantment, ed.enchantmentLevel));
+			items.setInventorySlotContents(1, stack);
+			items.getStackInSlot(0).shrink(1);
+			SoundUtil.playSoundEffect(world, SoundsTC.poof.getRegistryName().toString(), pos, 1F, 1F, SoundCategory.BLOCKS);
+			enchants.clear();
+			infusing = false;
+			craftTimer = 0;
+			sendChangesToNearby();
+			return;
+		}
+		
+		if(atTickRate(6)) return;
+		
+		Aspect a = pending.getAspectsSortedByName()[0];
+		
+		if(!EssentiaHandler.drainEssentia(this, a, null, 12, 1))
+		{
+			brainCD = 10000;
+			return;
+		}
+		
+		pending.remove(a, 1);
+		HCNet.INSTANCE.sendToAllAround(PacketShadowFX.create(this, a.getColor()), getSyncPoint(100));
+		sendChangesToNearby();
+		brainCD = Math.min(brainCD, 50);
 	}
-
+	
 	public AspectList calculateAspects()
 	{
 		AspectList al = new AspectList();
-		for(AspectList list : enchants.stream().map(ed ->
+		for(EnchantmentData ed : enchants)
 		{
 			ShadowEnchantment se = ShadowEnchantment.pick(ed.enchantment);
-			if(se != null)
-				return se.getAspects(ed.enchantmentLevel);
-			return null;
-		}).collect(Collectors.toList()))
-			if(list != null)
-				al.add(list);
+			AspectList al2;
+			if(se != null && (al2 = se.getAspects(ed.enchantmentLevel)) != null)
+				al.add(al2);
 			else
 				return null;
+		}
 		return al;
 	}
-
+	
 	public void startCraft()
 	{
 		if(!infusing && !enchants.isEmpty() && items.getStackInSlot(1).isEmpty())
@@ -127,25 +127,25 @@ public class TileShadowEnchanter
 			AspectList al = calculateAspects();
 			if(al == null || al.size() > 32)
 				return;
-
+			
 			infusing = true;
 			craftTimer = 0;
 			pending = al;
-
+			
 			SoundUtil.playSoundEffect(world, SoundsTC.craftstart.getRegistryName().toString(), pos, 0.2F, 1F, SoundCategory.BLOCKS);
-
+			
 			sendChangesToNearby();
 		}
 	}
-
+	
 	public boolean isAplicable(Enchantment ench)
 	{
-		if(enchants.stream().filter(ed -> ed.enchantment != ench && !ed.enchantment.isCompatibleWith(ench)).findAny().isPresent())
+		if(enchants.stream().anyMatch(ed -> ed.enchantment != ench && !ed.enchantment.isCompatibleWith(ench)))
 			return false;
 		ItemStack s = items.getStackInSlot(0);
 		return !s.isEmpty() && s.isItemEnchantable() && ench.canApply(s);
 	}
-
+	
 	public boolean isAplicableBy(Enchantment ench, EntityPlayer player)
 	{
 		if(!isAplicable(ench))
@@ -153,7 +153,7 @@ public class TileShadowEnchanter
 		ShadowEnchantment e = ShadowEnchantment.pick(ench);
 		return e != null && e.canBeAppliedBy(player);
 	}
-
+	
 	public void upLvl(Enchantment ench, EntityPlayer player)
 	{
 		if(!isAplicableBy(ench, player) || infusing)
@@ -162,7 +162,7 @@ public class TileShadowEnchanter
 			enchants.add(new EnchantmentData(ench, ench.getMinLevel()));
 		sendChangesToNearby();
 	}
-
+	
 	public void downLvl(Enchantment ench, EntityPlayer player)
 	{
 		if(!infusing && ListHelper.replace(enchants, e -> e.enchantment == ench, k ->
@@ -173,30 +173,30 @@ public class TileShadowEnchanter
 		}) > 0)
 			sendChangesToNearby();
 	}
-
+	
 	@Override
 	public boolean hasGui()
 	{
 		return true;
 	}
-
+	
 	@Override
 	public Object getClientGuiElement(EntityPlayer player)
 	{
 		return new GuiShadowEnchanter(new ContainerShadowEnchanter(player, this));
 	}
-
+	
 	@Override
 	public Object getServerGuiElement(EntityPlayer player)
 	{
 		return new ContainerShadowEnchanter(player, this);
 	}
-
+	
 	@Override
 	public void writeNBT(NBTTagCompound nbt)
 	{
 		nbt.setTag("Items", items.writeToNBT(new NBTTagCompound()));
-
+		
 		NBTTagList ench = new NBTTagList();
 		enchants.forEach(d ->
 		{
@@ -211,7 +211,7 @@ public class TileShadowEnchanter
 		if(pending != null)
 			pending.writeToNBT(nbt, "Aspects");
 	}
-
+	
 	@Override
 	public void readNBT(NBTTagCompound nbt)
 	{
@@ -234,7 +234,7 @@ public class TileShadowEnchanter
 		} else
 			pending = null;
 	}
-
+	
 	@Override
 	public void createDrop(EntityPlayer player, World world, BlockPos pos)
 	{
