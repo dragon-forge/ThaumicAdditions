@@ -3,9 +3,9 @@ package org.zeith.thaumicadditions.asm.mixins;
 import net.minecraft.block.Block;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
+import org.zeith.thaumicadditions.api.data.datas.SmelterData;
 import org.zeith.thaumicadditions.asm.minmixin.IMixin;
 import org.zeith.thaumicadditions.asm.minmixin.MinMixin;
-import org.zeith.thaumicadditions.blocks.BlockAbstractSmelter;
 import thaumcraft.api.blocks.BlocksTC;
 
 @MinMixin({
@@ -38,8 +38,7 @@ public class BlockSmelterAuxMixin
 	
 	public static Block process(Block block)
 	{
-		if(block instanceof BlockAbstractSmelter)
-			return BlocksTC.smelterThaumium;
+		if(SmelterData.isSmelter(block)) return BlocksTC.smelterThaumium;
 		return block;
 	}
 }
