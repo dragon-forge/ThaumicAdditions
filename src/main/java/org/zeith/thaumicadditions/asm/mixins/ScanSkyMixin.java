@@ -5,9 +5,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
+import org.zeith.thaumicadditions.api.data.datas.ScribingToolsData;
 import org.zeith.thaumicadditions.asm.minmixin.IMixin;
 import org.zeith.thaumicadditions.asm.minmixin.MinMixin;
 import org.zeith.thaumicadditions.init.ItemsTAR;
+import thaumcraft.api.items.IScribeTools;
 
 @MinMixin("thaumcraft.common.lib.research.ScanSky")
 public class ScanSkyMixin
@@ -45,7 +47,7 @@ public class ScanSkyMixin
 			for(int i = 0; i < inv.getSizeInventory(); i++)
 			{
 				ItemStack it = inv.getStackInSlot(i);
-				if(!it.isEmpty() && it.getItem() == ItemsTAR.VIS_SCRIBING_TOOLS)
+				if(!it.isEmpty() && ScribingToolsData.isScribingTools(it))
 					return true;
 			}
 		}
