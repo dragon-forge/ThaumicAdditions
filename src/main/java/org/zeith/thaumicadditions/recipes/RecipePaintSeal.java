@@ -4,17 +4,13 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.Constants.NBT;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.IForgeRegistryEntry.Impl;
 import org.zeith.thaumicadditions.InfoTAR;
 import org.zeith.thaumicadditions.init.BlocksTAR;
@@ -44,7 +40,7 @@ public class RecipePaintSeal
 	}
 
 	{
-		setRegistryName(new ResourceLocation(InfoTAR.MOD_ID, "seal_paint"));
+		setRegistryName(InfoTAR.id("seal_paint"));
 	}
 
 	private static float[] createSheepColor(EnumDyeColor p_192020_0_)
