@@ -3,6 +3,7 @@ package org.zeith.thaumicadditions.asm.mixins;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.zeith.thaumicadditions.asm.minmixin.*;
+import org.zeith.thaumicadditions.asm.minmixin.annotations.MinMixin;
 
 @MinMixin("thaumcraft.common.lib.events.EssentiaHandler")
 public class EssentiaHandlerMixin

@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 import org.zeith.thaumicadditions.asm.minmixin.IMixin;
-import org.zeith.thaumicadditions.asm.minmixin.MinMixin;
+import org.zeith.thaumicadditions.asm.minmixin.annotations.MinMixin;
 
 @MinMixin("net.minecraft.util.FoodStats")
 public class FoodStatsMixin

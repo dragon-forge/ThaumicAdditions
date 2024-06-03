@@ -5,7 +5,7 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 import org.zeith.thaumicadditions.api.data.datas.SmelterData;
 import org.zeith.thaumicadditions.asm.minmixin.IMixin;
-import org.zeith.thaumicadditions.asm.minmixin.MinMixin;
+import org.zeith.thaumicadditions.asm.minmixin.annotations.MinMixin;
 import thaumcraft.api.blocks.BlocksTC;
 
 @MinMixin({

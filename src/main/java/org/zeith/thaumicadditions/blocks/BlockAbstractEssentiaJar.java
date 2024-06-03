@@ -51,11 +51,18 @@ public class BlockAbstractEssentiaJar<T extends TileAbstractJarFillable>
 {
 	public static boolean spillEssentia;
 	public final int capacity;
+	public final boolean voidsExcess;
 	public final BlockAbstractJarItem itemBlock = new BlockAbstractJarItem(this);
 	
 	public BlockAbstractEssentiaJar(Class<T> t, int capacity, String name)
 	{
+		this(t, capacity, false, name);
+	}
+	
+	public BlockAbstractEssentiaJar(Class<T> t, int capacity, boolean voidsExcess, String name)
+	{
 		super(Material.GLASS, t, name);
+		this.voidsExcess = voidsExcess;
 		this.capacity = capacity;
 		setHardness(0.3F);
 		setSoundType(SoundsTC.JAR);

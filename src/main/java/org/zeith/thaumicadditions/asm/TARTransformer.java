@@ -15,6 +15,8 @@ public class TARTransformer
 		register(new FoodStatsMixin());
 		register(new BlockSmelterAuxMixin());
 		register(new ScanSkyMixin());
+		register(new BlockJarMixin());
+		register(new BlockJarItemMixin());
 	}
 	
 	void register(IMixin handle)

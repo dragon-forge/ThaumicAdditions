@@ -1,5 +1,7 @@
 package org.zeith.thaumicadditions.asm.minmixin;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.tree.*;
 
 import java.util.Optional;
@@ -8,6 +10,8 @@ import java.util.function.Predicate;
 
 public interface IMixin
 {
+	Logger LOG = LogManager.getLogger("ThaumicAdditionsCore");
+	
 	void apply(ClassNode node, boolean obfuscatedEnv);
 	
 	default void findInsnNode(InsnList insn, Predicate<AbstractInsnNode> filter, Consumer<AbstractInsnNode> handler)
