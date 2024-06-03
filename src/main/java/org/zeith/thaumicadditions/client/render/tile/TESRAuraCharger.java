@@ -12,7 +12,7 @@ import org.zeith.thaumicadditions.tiles.TileAuraCharger;
 public class TESRAuraCharger
 		extends TESR<TileAuraCharger>
 {
-	public ResourceLocation texture = new ResourceLocation(InfoTAR.MOD_ID, "textures/models/aura_charger.png");
+	public ResourceLocation texture = InfoTAR.id("textures/models/aura_charger.png");
 	public ModelAuraCharger model = new ModelAuraCharger();
 
 	@Override

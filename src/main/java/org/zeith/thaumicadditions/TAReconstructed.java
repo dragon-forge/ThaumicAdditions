@@ -54,7 +54,7 @@ import java.util.List;
 		name = InfoTAR.MOD_NAME,
 		version = InfoTAR.MOD_VERSION,
 		certificateFingerprint = "9f5e2a811a8332a842b34f6967b7db0ac4f24856",
-		dependencies = "required-after:hammercore;required-after:thaumcraft@[6.1.BETA26,);before:iceandfire;after:solarflux",
+		dependencies = "required-after:hammercore;required-after:thaumcraft@[6.1.BETA26,);after:iceandfire;after:fossil;after:solarflux",
 		updateJSON = "https://api.modrinth.com/updates/Fi4BbtaL/forge_updates.json"
 )
 public class TAReconstructed

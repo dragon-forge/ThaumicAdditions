@@ -56,7 +56,7 @@ public class TileMithminiteJar
 	@Override
 	public int getSuctionAmount(EnumFacing loc)
 	{
-		if(aspectFilter != null && amount < 250)
+		if(aspectFilter != null && amount < 4000)
 			return 48;
 		return 32;
 	}

@@ -3,6 +3,7 @@ package org.zeith.thaumicadditions.api;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.ArrayUtils;
+import org.zeith.thaumicadditions.InfoTAR;
 import thaumcraft.api.research.ResearchStage;
 import thaumcraft.api.research.ResearchStage.Knowledge;
 import thaumcraft.common.lib.research.ResearchManager;
@@ -19,9 +20,16 @@ public class ResearchStageBuilder
 		return new ResearchStageBuilder();
 	}
 
+	@Deprecated
 	public ResearchStageBuilder setText(String text)
 	{
 		entry.setText(text);
+		return this;
+	}
+
+	public ResearchStageBuilder setText(ResourceLocation text)
+	{
+		entry.setText("research_stage." + text.getNamespace() + ":" + text.getPath());
 		return this;
 	}
 
