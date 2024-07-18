@@ -27,6 +27,9 @@ public class TileMithminiteJar
 		{
 			aspect = tt;
 			amount = am;
+			syncTile(false);
+			markDirty();
+			return;
 		}
 		boolean up = this.amount < getCapacity();
 		if(am == 0)
