@@ -98,6 +98,13 @@ public class TransformerSystem
 					.add(hook);
 	}
 	
+	public void register(IMixin hook, String... targets)
+	{
+		for(String target : targets)
+			hooks.computeIfAbsent(target, k -> new ArrayList<>())
+					.add(hook);
+	}
+	
 	public String getCurrentClass()
 	{
 		return currentClass;

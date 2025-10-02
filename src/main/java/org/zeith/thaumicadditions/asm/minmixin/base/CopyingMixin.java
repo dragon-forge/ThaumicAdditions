@@ -12,12 +12,12 @@ import java.util.ListIterator;
 public abstract class CopyingMixin
 		implements IMixin
 {
+	protected static final String COPY_DESC = String.format("L%s;", Copy.class.getCanonicalName().replace('.', '/'));
 	protected String innerPrefix = "org/zeith/thaumicadditions/asm/mixins/inner/";
 	
 	protected String innerName;
 	protected HashSet<MethodNode> copyMethods;
 	
-	protected static final String COPY_DESC = String.format("L%s;", Copy.class.getCanonicalName().replace('.', '/'));
 	
 	public CopyingMixin()
 	{

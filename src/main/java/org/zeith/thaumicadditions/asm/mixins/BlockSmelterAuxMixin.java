@@ -22,12 +22,7 @@ public class BlockSmelterAuxMixin
 		
 		for(MethodNode method : node.methods)
 		{
-			findFirstInsnNode(method.instructions, i ->
-			{
-				return i instanceof TypeInsnNode
-					   && i.getOpcode() == Opcodes.INSTANCEOF
-					   && ((TypeInsnNode) i).desc.equals("thaumcraft/common/blocks/essentia/BlockSmelter");
-			}).ifPresent(i ->
+			IMixin.findFirstInsnNode(method.instructions, IMixin.instanceofNode("thaumcraft/common/blocks/essentia/BlockSmelter")).ifPresent(i ->
 			{
 				InsnList insn = new InsnList();
 				insn.add(new MethodInsnNode(Opcodes.INVOKESTATIC, getClass().getCanonicalName().replace('.', '/'), "process", String.format("(%s)%s", Block, Block), false));

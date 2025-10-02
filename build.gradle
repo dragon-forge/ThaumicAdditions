@@ -166,7 +166,6 @@ curseforge {
             requiredLibrary 'Thaumcraft'
 			optionalLibrary 'Visuals'
             optionalLibrary 'Colored-Lux'
-            optionalLibrary 'Thaumic-Wands'
         }
 	}
 }

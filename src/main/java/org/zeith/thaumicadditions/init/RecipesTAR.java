@@ -26,6 +26,7 @@ import org.zeith.thaumicadditions.TAReconstructed;
 import org.zeith.thaumicadditions.api.AspectUtil;
 import org.zeith.thaumicadditions.api.RecipesFluxConcentrator;
 import org.zeith.thaumicadditions.api.blueprint.BlueprintBuilder;
+import org.zeith.thaumicadditions.api.infusion.IInfusionOutputInstance;
 import org.zeith.thaumicadditions.api.utils.ILogAxisObtainer;
 import org.zeith.thaumicadditions.compat.ITARC;
 import org.zeith.thaumicadditions.config.ConfigsTAR;
@@ -77,7 +78,7 @@ public class RecipesTAR
 	
 	public static void addInfusionRecipe(String path, Object output, String research, int instability, Object catalyst, AspectList aspects, Object... inputs)
 	{
-		ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(InfoTAR.MOD_ID, path), new InfusionRecipe(research, output, instability, aspects, catalyst, inputs));
+		ThaumcraftApi.addInfusionCraftingRecipe(InfoTAR.id(path), new InfusionRecipe(research, output, instability, aspects, catalyst, inputs));
 	}
 	
 	public static void addShapedArcaneRecipe(String path, String res, int vis, AspectList crystals, ItemStack result, Object... recipe)
@@ -244,6 +245,18 @@ public class RecipesTAR
 	private void infusing()
 	{
 		Ingredient primordialPearl = Ingredient.fromItem(ItemsTC.primordialPearl);
+		
+		if(false)
+		{
+			Ingredient i = Ingredient.fromItems(ForgeRegistries.ITEMS.getValuesCollection().stream().filter(t -> t.isDamageable()).toArray(Item[]::new));
+			addInfusionRecipe("test",
+					InfuserRecipeTypesTAR.MAKE_UNBREAKABLE.createRecipeResult(IInfusionOutputInstance.EMPTY),
+					"TAR_ADAMINITE",
+					1, i,
+					new AspectList().add(Aspect.FIRE, 5),
+					new ItemStack(Blocks.BEDROCK)
+			);
+		}
 		
 		addInfusionRecipe("mithrillium_ingot", new ItemStack(ItemsTAR.MITHRILLIUM_INGOT), "TAR_MITHRILLIUM", 5, new ItemStack(ItemsTC.ingots, 1, 1), new AspectList().add(Aspect.CRYSTAL, 30).add(Aspect.ENERGY, 15).add(Aspect.ELDRITCH, 10).add(Aspect.METAL, 30)
 				.add(Aspect.MAGIC, 10), new ItemStack(ItemsTC.amber), new ItemStack(ItemsTC.alumentum), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.fabric), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.amber), new ItemStack(ItemsTC.alumentum), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.fabric), new ItemStack(ItemsTC.salisMundus));

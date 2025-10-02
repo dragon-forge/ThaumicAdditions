@@ -21,7 +21,7 @@ public class ScanSkyMixin
 		for(MethodNode method : node.methods)
 		{
 			if(!method.name.equals("onSuccess")) continue;
-			findInsnNode(method.instructions, i ->
+			IMixin.findInsnNode(method.instructions, i ->
 			{
 				return i instanceof MethodInsnNode
 					   && i.getOpcode() == Opcodes.INVOKESTATIC

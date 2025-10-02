@@ -5,6 +5,8 @@ import org.objectweb.asm.tree.MethodNode;
 import org.zeith.thaumicadditions.asm.minmixin.*;
 import org.zeith.thaumicadditions.asm.minmixin.annotations.MinMixin;
 
+import static org.zeith.thaumicadditions.asm.minmixin.IMixin.*;
+
 @MinMixin("thaumcraft.common.lib.events.EssentiaHandler")
 public class EssentiaHandlerMixin
 		implements IMixin

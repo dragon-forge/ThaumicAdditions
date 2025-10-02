@@ -15,14 +15,14 @@ public class FoodStatsMixin
 	{
 		String EntityPlayer = obfuscatedEnv ? "Laed;" : "Lnet/minecraft/entity/player/EntityPlayer;";
 		
-		findMethod(node, obfuscatedEnv ? "a" : "onUpdate", "(" + EntityPlayer + ")V", m ->
+		IMixin.findMethod(node, obfuscatedEnv ? "a" : "onUpdate", "(" + EntityPlayer + ")V", m ->
 				onUpdateMixin(m, EntityPlayer)
 		);
 	}
 	
 	private void onUpdateMixin(MethodNode node, String EntityPlayer)
 	{
-		findFirstInsnNode(node.instructions, f -> f instanceof VarInsnNode && f.getOpcode() == Opcodes.ISTORE && ((VarInsnNode) f).var == 3).ifPresent(naturalRegeneration ->
+		IMixin.findFirstInsnNode(node.instructions, f -> f instanceof VarInsnNode && f.getOpcode() == Opcodes.ISTORE && ((VarInsnNode) f).var == 3).ifPresent(naturalRegeneration ->
 		{
 			InsnList insn = new InsnList();
 			

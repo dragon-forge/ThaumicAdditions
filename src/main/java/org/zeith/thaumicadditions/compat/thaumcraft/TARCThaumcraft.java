@@ -1,6 +1,7 @@
 package org.zeith.thaumicadditions.compat.thaumcraft;
 
 import com.zeitheron.hammercore.mod.ModuleLoader;
+import com.zeitheron.hammercore.utils.base.Cast;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -9,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import org.zeith.thaumicadditions.api.data.DataProviderRegistry;
 import org.zeith.thaumicadditions.api.data.datas.*;
 import org.zeith.thaumicadditions.api.data.datas.JarData.JarStorage;
+import org.zeith.thaumicadditions.asm.mixins.accessor.IInfuserAccess;
 import org.zeith.thaumicadditions.blocks.BlockAbstractEssentiaJar.BlockAbstractJarItem;
 import org.zeith.thaumicadditions.blocks.BlockAbstractSmelter;
 import org.zeith.thaumicadditions.compat.ITARC;
@@ -19,6 +21,7 @@ import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.common.blocks.essentia.BlockJarItem;
 import thaumcraft.common.items.casters.ItemCaster;
 import thaumcraft.common.items.tools.ItemScribingTools;
+import thaumcraft.common.tiles.crafting.TileInfusionMatrix;
 import thaumcraft.common.tiles.devices.TileMirror;
 import thaumcraft.common.tiles.devices.TileMirrorEssentia;
 import thaumcraft.common.tiles.essentia.TileJarFillable;
@@ -37,6 +40,9 @@ public class TARCThaumcraft
 		initGauntlets();
 		initScribingTools();
 		initJars();
+		
+		// Through the magic of ASM, TileInfusionMatrix starts implementing IInfuserAccess
+		DataProviderRegistry.registerSimple(IInfuserAccess.TYPE, TileInfusionMatrix.class, Cast::cast);
 	}
 	
 	public void initJars()
